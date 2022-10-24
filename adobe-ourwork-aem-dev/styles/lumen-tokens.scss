@@ -1,0 +1,493 @@
+// Font imports
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+// https://unpkg.com/browse/@world-vision-canada/wvc-design-system@0.2.0/dist/tokens.scss
+
+$orange-lighter: #f7833b;
+$orange: #e7600c;
+$blue-light: #337ab7;
+$blue-dark: #0d4773;
+$white: #ffffff;
+$orange-light: #ff6b00;
+$blue-lighter: #00acca;
+$blue: #0c6699;
+$orange-dark: #cc6600;
+$sky-lighter: #f5f5f5;
+$sky-light: #ededed;
+$grey-lighter: #cccccc;
+$charcoal: #333333;
+$grey: #666666;
+$red-error: #d0021b;
+$orange-alert: #ff6b00;
+$blue-info: #0099cc;
+$grey-light: #999999;
+$black: #000000;
+$orange-lightest: #fedec7;
+$orange-lighter-2: #f9a56f;
+$maroon: #842e14;
+$yellow: #fdd25f;
+$teal: #006661;
+$green: #46bb95;
+$purple: #9054a1;
+$green-success: #007a00;
+
+// NOTE: DO NOT INCLUDE @font-face definitions from Zeplin in this file. Just mixins.
+@mixin typographylargeheadingh1 {
+  font-family: Lato;
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1.14;
+}
+@mixin typographylargeheadingh2 {
+  font-family: Lato;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.33;
+}
+@mixin typographysmallheadingh1 {
+  font-family: Lato;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+@mixin typographylargeheadingh3_underline {
+  font-family: Lato;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.31;
+}
+@mixin typographylargeheadingh3 {
+  font-family: Lato;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+@mixin typographysmallheadingh2 {
+  font-family: Lato;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.14;
+}
+@mixin typographysmallheadingh3 {
+  font-family: Lato;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1.23;
+}
+@mixin typographylargeheadingh4 {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.33;
+}
+@mixin typographysmallheadingh3_underline {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargeparagraphintro_strong {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargelistul_strong {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargelistol_strong {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargelistlinked_default {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargelistlinkedunderline {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargelinkanchor {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargeheadingh5 {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@mixin typographylargeparagraphintro_italic {
+  font-family: Lato;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.6;
+}
+@mixin typographylargeparagraphintro_regular {
+  font-family: Lato;
+  font-size: 20px;
+  line-height: 1.6;
+}
+@mixin typographylargelist_regular {
+  font-family: Lato;
+  font-size: 20px;
+  line-height: 1.6;
+}
+@mixin typographylargelistol_regular {
+  font-family: Lato;
+  font-size: 20px;
+  line-height: 1.6;
+}
+@mixin typographysmallparagraphintro_strong {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+}
+@mixin typographysmallparagraphbodycopy_strong {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+}
+@mixin typographysmalllistul_strong {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+}
+@mixin typographysmalllistol_strong {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+}
+@mixin typographysmalllistlinked_underline {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+}
+@mixin typographysmalllistlinked_default {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+}
+@mixin typographysmalllinkanchor {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+}
+@mixin typographysmallheadingh4 {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+}
+@mixin typographylargeparagraphsbodycopy_strong {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+}
+@mixin typographysmallparagraphintro_italic {
+  font-family: Lato;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.33;
+}
+@mixin typographysmallparagraphbodycopy_italic {
+  font-family: Lato;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.78;
+}
+@mixin typographylargeparagraphbodycopy_italic {
+  font-family: Lato;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.78;
+}
+@mixin typographysmallparagraphintro_regular {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.33;
+}
+@mixin typographysmallparagraphbodycopy_regular {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.78;
+}
+@mixin typographysmalllist_regular {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.78;
+}
+@mixin typographysmalllistol_regular {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.78;
+}
+@mixin typographylargeparagraphbodycopy_regular {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.78;
+}
+@mixin typographylargelinkinline {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.78;
+}
+@mixin typographylargeheadingh6 {
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 1.78;
+}
+@mixin typographylargelinklinkbtn_default {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 0.8px;
+}
+@mixin typographylargelinkbtnlabelsecondary {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 2.4px;
+}
+@mixin typographylargelinkbtnlabelprimary {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 2.4px;
+}
+@mixin typographysmallparagraphsmallcopy_strong {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+@mixin typographysmallheadingh5 {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+@mixin typographylargeparagraphsmallcopy_strong {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+@mixin typographylargelinktextlink_underline {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+@mixin typographylargelinktextlink_default {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+@mixin typographylargelinklinkbtn_underlined {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 0.8px;
+}
+@mixin typographysmallparagraphsmallcopy_italic {
+  font-family: Lato;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.5;
+}
+@mixin typographylargeparagraphsmallcopy_italic {
+  font-family: Lato;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.5;
+}
+@mixin typographysmallparagraphsmallcopy_regular {
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@mixin typographysmalllinkinline {
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 2;
+}
+@mixin typographylargeparagraphsmallcopy_regular {
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@mixin typographylargelinksbreadcrumb_default {
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@mixin typographylargelinkfiltertag {
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@mixin typographylargelinkbreadcrumb_underline {
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@mixin typographysmalllinklinkbtn_default {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+  letter-spacing: 0.7px;
+}
+@mixin typographysmalllinkbtnlabelsecondary {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+  letter-spacing: 2.1px;
+}
+@mixin typographysmalllinkbtnlabelprimary {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+  letter-spacing: 2.1px;
+}
+@mixin typographysmallparagraphxsmallcopy_strong {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+}
+@mixin typographysmalllinktextlink_underline {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+}
+@mixin typographysmalllinktextlink_default {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+}
+@mixin typographysmalllinklinkbtn_underline {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+  letter-spacing: 0.7px;
+}
+@mixin typographylargeparagraphxsmallcopy_strong {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.71;
+}
+@mixin typographysmallparagraphxsmallcopy_italic {
+  font-family: Lato;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.71;
+}
+@mixin typographylargeparagraphsxsmallcopy_italic {
+  font-family: Lato;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.71;
+}
+@mixin typographysmallparagraphxsmallcopy_regular {
+  font-family: Lato;
+  font-size: 14px;
+  line-height: 1.71;
+}
+@mixin typographysmalllinkfiltertag {
+  font-family: Lato;
+  font-size: 14px;
+  line-height: 1.71;
+}
+@mixin typographysmallheadingh6 {
+  font-family: Lato;
+  font-size: 14px;
+  line-height: 1.71;
+}
+@mixin typographylargeparagraphsxsmallcopy_regular {
+  font-family: Lato;
+  font-size: 14px;
+  line-height: 1.71;
+}
+
+// TODO: may want to go through these and split them out into sizing and misc tokens
+// (once they are available in Lumen Styleguide).
+
+$size-xxxl: 64px;
+$size-xxl: 48px;
+$size-xl: 36px;
+$size-l: 24px;
+$size-ms: 18px;
+$size-m: 16px;
+$size-s: 13px;
+$size-xs: 11px;
+$font-heading: 'Karla', 'Lato', Arial, sans-serif;
+$font-text: 'Lato', Arial, sans-serif;
+$weight-bold: 700;
+$weight-semi-bold: 600;
+$weight-normal: 400;
+$weight-light: 300;
+$opacity-disabled: 0.5;
+$height-footer: 64px;
+$tappable-square: 44px;
+$duration-quickly: 0.08s;
+$duration-slowly: 0.5s;
+$z-index-modal: 9999;
+$z-index-sticky: 100;
+$media-query-m: (
+  min-width: 768px
+);
+$media-query-l: (
+  min-width: 1024px
+);
+$shadow-s: 0 0 0 1px rgba(92, 106, 196, 0.1);
+$spacing-xl: 2px;
+$spacing-l: 1px;
+$spacing-m: 0;
+$spacing-s: -0.5px;
+$spacing-xs: -1px;
+
+$radius-default: 4px;
+$radius-circle: 50%;
+
+$space-xxl: 28px;
+$space-xl: 24px;
+$space-l: 20px;
+$space-m: 16px;
+$space-s: 12px;
+$space-xs: 8px;
+$space-xxs: 4px;
+$line-height-m: 1.5;
+$line-height-s: 1.3;
+$line-height-xs: 1;

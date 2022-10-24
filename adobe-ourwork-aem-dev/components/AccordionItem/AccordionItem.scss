@@ -1,0 +1,84 @@
+@import '../../styles/lumen-tokens';
+
+.accordion-item-container {
+  margin-bottom: 2rem;
+  background-color: $white;
+  color: $charcoal;
+  border-bottom: 0.0625rem solid $orange;
+
+  h5 {
+    @include typographylargeheadingh5;
+    text-align: left;
+
+    @media (max-width: 896px) {
+      @include typographysmallheadingh5;
+    }
+  }
+
+  p {
+    @include typographylargeparagraphsxsmallcopy_regular;
+  }
+
+  .accordion-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      margin-left: 1rem;
+      transition: all 280ms;
+
+      path {
+        fill: $charcoal;
+      }
+    }
+
+    &:hover,
+    &:active {
+      svg {
+        path {
+          fill: $orange-dark;
+        }
+      }
+    }
+
+    &:focus-visible {
+      border: 0.25rem solid $blue-light;
+    }
+  }
+
+  &--dark {
+    background-color: $charcoal;
+
+    h5,
+    p {
+      color: $white;
+    }
+
+    .accordion-title-container {
+      svg {
+        path {
+          fill: $white;
+        }
+      }
+    }
+  }
+
+  &--open {
+    .accordion-title-container {
+      svg {
+        transform: rotate(180deg);
+        transition: all 280ms;
+      }
+    }
+  }
+
+  .accordion-item-content-container {
+    padding: 0.5rem 1rem 1rem;
+  }
+}
