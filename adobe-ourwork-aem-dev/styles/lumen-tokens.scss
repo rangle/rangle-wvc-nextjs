@@ -387,6 +387,11 @@ $green-success: #007a00;
   line-height: 1.71;
   letter-spacing: 2.1px;
 }
+@mixin typographysmallkarlaregular {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: 400;
+}
 @mixin typographysmallparagraphxsmallcopy_strong {
   font-family: Lato;
   font-size: 14px;

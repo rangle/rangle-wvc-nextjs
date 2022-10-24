@@ -8,7 +8,7 @@
     box-sizing: border-box;
 
     /* Auto layout */
-
+    @include typographysmallkarlaregular;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -66,6 +66,7 @@
   .tab-panel-container {
     border-top: 0.063rem solid $grey-lighter;
     margin-top: -0.063rem;
+    @include typographysmallkarlaregular;
 
     &[role='tabpanel'] {
       padding: 0.625rem;
