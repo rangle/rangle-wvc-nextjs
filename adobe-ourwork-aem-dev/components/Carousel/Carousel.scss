@@ -1,0 +1,130 @@
+@import '../../styles/lumen-tokens';
+
+.carousel {
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h2 {
+      @include typographylargeheadingh2;
+    }
+  }
+
+  .swiper {
+    padding-bottom: 1rem;
+  }
+
+  .swiper-slide {
+    margin-right: 1.5rem;
+    width: auto;
+
+    @media (max-width: 767px) {
+      margin-right: 0.5rem;
+      width: calc(100% - 2rem);
+      position: relative;
+      left: 1rem;
+    }
+  }
+}
+
+.carousel-nav-container-desktop,
+.carousel-nav-container-mobile {
+  display: flex;
+}
+
+.carousel-nav-container-desktop {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.carousel-nav-container-mobile {
+  justify-content: space-between;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.carousel-pagination {
+  @include typographylargekarladefault;
+}
+
+.carousel-nav-button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+
+  .nav-button-arrow,
+  .nav-button-border {
+    fill: $orange;
+    transition: fill 280ms;
+  }
+
+  .nav-button-background {
+    fill: $white;
+    transition: fill 280ms;
+  }
+
+  .carousel-nav-button--label {
+    @include typographysmallparagraphsmallcopy_regular;
+    margin: 0 0.25rem;
+    font-weight: 400;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .carousel-nav-button--label {
+      border-bottom: 1px solid $black;
+      line-height: normal;
+    }
+
+    .nav-button-background,
+    .nav-button-border {
+      fill: $orange-light;
+      transition: fill 280ms;
+    }
+
+    .nav-button-arrow {
+      fill: $white;
+      transition: fill 280ms;
+    }
+  }
+}
+
+.carousel-nav-button-previous--mobile {
+  margin-left: 0;
+}
+
+.swiper-button-disabled {
+  .nav-button-arrow,
+  .nav-button-border {
+    fill: $grey-light;
+  }
+
+  .carousel-nav-button--label {
+    color: $grey-light;
+  }
+
+  &:hover {
+    cursor: not-allowed;
+
+    .nav-button-arrow,
+    .nav-button-border {
+      fill: $grey-light;
+    }
+
+    .nav-button-background {
+      fill: $white;
+    }
+
+    .carousel-nav-button--label {
+      border-bottom: none;
+    }
+  }
+}

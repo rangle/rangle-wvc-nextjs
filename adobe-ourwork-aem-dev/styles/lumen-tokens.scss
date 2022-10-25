@@ -256,6 +256,11 @@ $green-success: #007a00;
   font-size: 18px;
   line-height: 1.78;
 }
+@mixin typographylargekarladefault {
+  font-family: Karla;
+  font-size: 16px;
+  line-height: 1.5;
+}
 @mixin typographylargelinklinkbtn_default {
   font-family: Karla;
   font-size: 16px;
@@ -355,6 +360,11 @@ $green-success: #007a00;
   font-family: Lato;
   font-size: 16px;
   line-height: 1.5;
+}
+@mixin typographysmallkarladefault {
+  font-family: Karla;
+  font-size: 14px;
+  line-height: 1.71;
 }
 @mixin typographysmalllinklinkbtn_default {
   font-family: Karla;
