@@ -115,7 +115,8 @@ h6 {
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* commenting out for now to not have dark mode as the default theme */
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -123,4 +124,4 @@ h6 {
     color: white;
     background: black;
   }
-}
+} */

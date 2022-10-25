@@ -115,7 +115,8 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* commenting out for now to not have dark mode as the default theme */
+/* @media (prefers-color-scheme: dark) {
   .card,
   .footer {
     border-color: #222;
@@ -126,4 +127,4 @@
   .logo img {
     filter: invert(1);
   }
-}
+} */
