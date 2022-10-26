@@ -41,8 +41,60 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 <br>
 
+## Conventions
+
+### Code Formatting
+
+- Format code using [prettier](https://prettier.io/) - [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscodes)
+### Branch Naming 
+
+type/company/branch-name
+- type: feature, bug, chore, etc    
+- example: feature/rangle/tabs
+
+### PR Template
+
+*Include Links to*
+
+- [WVC Component Spreadsheet](https://docs.google.com/spreadsheets/d/1V8gw9LwVEOOfs8nMq7MnW3cpyaPU72ImtHHwCAOcrYI/edit#gid=0)
+- [Figma Designs](https://www.figma.com/file/07lYCuZ0FsKrMSFTvWKcPj/WV-Components?node-id=6%3A495) - link to design for appropiate component
+- jira ticket if applicable 
+
+**Include**
+
+- Screenshots if applicable
+- Testing details
+- Components should include a storybook story, showing light mode and dark mode 
+
+
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Packages of Note
+
+- [NextJS](https://nextjs.org/) -[docs](https://nextjs.org/docs/getting-started)
+- [react-aria](https://react-spectrum.adobe.com/react-aria/) - A library of React Hooks that provides accessible UI primitives for your design system.
+- [react-stately](https://react-spectrum.adobe.com/react-stately/index.html) - A library of React Hooks that provides cross-platform state management for your design system. 
+
+
+
+### react-aria
+
+react-aria is a package that has a number of hooks to make writing accessible components easier, and helps manage common tasks such as
+
+- [useFocus](https://react-spectrum.adobe.com/react-aria/useFocus.html) - Handles focus events for the immediate target. Focus events on child elements will be ignored
+- [useTabList](https://react-spectrum.adobe.com/react-aria/useTabList.html) - Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.
+
+
+### react-stately 
+
+some components still require some state to manage selected items, position in a carasoule, etc, [react-stately](https://react-spectrum.adobe.com/react-stately/getting-started.html) provides hooks for common tasks, see [docs](https://react-spectrum.adobe.com/react-stately/getting-started.html) for full details.
+
+- [useTabListState](https://react-spectrum.adobe.com/react-stately/useTabListState.html) - Provides state management for a Tabs component. Tabs include a TabList which tracks which tab is currently selected and displays the content associated with that Tab in a TabPanel.
+
+
+
