@@ -15,6 +15,10 @@
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
+
+  @media (max-width: 1024px) {
+    @include typographysmalllinklinkbtn_default;
+  }
 }
 
 .btn-primary {
