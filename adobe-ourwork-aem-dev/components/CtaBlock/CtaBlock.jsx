@@ -1,11 +1,10 @@
 import './CtaBlock.scss'
+import Button from '../Button/Button'
 
-const CtaBlock = () => {
+const CtaBlock = ({ label }) => {
   return (
     <div>
-      <button className='wbtn wbtn-primary  wtheme-light'>
-        here is a button
-      </button>
+      <Button label={label} />
     </div>
   )
 }

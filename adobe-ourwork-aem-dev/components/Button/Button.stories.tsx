@@ -20,3 +20,9 @@ Disabled.args = {
   disabled: true,
   label: 'Button'
 };
+
+export const Link = Template.bind({});
+Link.args = {
+  label: 'Button',
+  url: 'http://worldvision.ca'
+};

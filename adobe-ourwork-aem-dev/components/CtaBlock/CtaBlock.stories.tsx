@@ -12,11 +12,5 @@ const Template: ComponentStory<typeof CtaBlock> = (args) => <CtaBlock {...args} 
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'This is an accordion item'
-};
-
-export const DarkMode = Template.bind({});
-DarkMode.args = {
-  isDarkMode: true,
-  title: 'This is a dark mode accordion item'
+  label: 'Sponsor a child'
 };
