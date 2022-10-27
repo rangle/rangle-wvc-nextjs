@@ -9,18 +9,59 @@ const CtaBlock = ({
   imageUrlAlt,
   title
 }) => {
-  return (
-    <div className='cta-block'>
-      <div className='cta-block-container--content'>
-        <h2>{title}</h2>
-        <div className='cta-block-body-container'>
-          <p>{body}</p>
+  const ContentContainer = ({
+    showTitleInside,
+    showTitleOutside,
+    showBody,
+    title,
+    body,
+    buttonLabel,
+    buttonUrl
+  }) => {
+    return (
+      <>
+        {showTitleOutside && <h2 className='cta-block-title'>{title}</h2>}
+        <div
+          className={`cta-block-body-container ${
+            !showBody ? 'cta-block-body-container--title' : ''
+          }`}
+        >
+          {showTitleInside && (
+            <h2
+              className={`cta-block-title cta-block-title--fw ${
+                showBody ? 'mb' : ''
+              }`}
+            >
+              {title}
+            </h2>
+          )}
+          {showBody && <p>{body}</p>}
           <Button label={buttonLabel} url={buttonUrl} />
         </div>
+      </>
+    )
+  }
+
+  return (
+    <div className='cta-block'>
+      <div className={`cta-block-container--content ${!body ? 'no-body' : ''}`}>
+        <ContentContainer
+          showTitleInside={!body || (body && !imageUrl)}
+          showTitleOutside={body && imageUrl}
+          showBody={!!body}
+          title={title}
+          body={body}
+          buttonLabel={buttonLabel}
+          buttonUrl={buttonUrl}
+        />
       </div>
-      <div className='cta-block-container--image'>
-        <img src={imageUrl} alt={imageUrlAlt} />
-      </div>
+      {imageUrl && (
+        <div
+          className={`cta-block-container--image ${!body ? 'image-sm' : ''}`}
+        >
+          <img src={imageUrl} alt={imageUrlAlt} />
+        </div>
+      )}
     </div>
   )
 }
