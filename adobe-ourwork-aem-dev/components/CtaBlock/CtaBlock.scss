@@ -23,7 +23,7 @@
     }
   }
 
-  .no-body {
+  .cta-block-container--content-title-only {
     display: unset;
   }
 
@@ -46,7 +46,7 @@
     }
   }
 
-  .mb {
+  .cta-block-title--mb {
     margin-bottom: 1.5rem;
   }
 
@@ -58,7 +58,7 @@
     text-align: left;
     padding: 2rem;
 
-    p {
+    .cta-block-body {
       @include typographysmallparagraphsmallcopy_regular;
     }
 
@@ -99,7 +99,7 @@
     }
   }
 
-  .image-sm {
+  .cta-block-container--image-title-only {
     grid-column: 7 / 11;
     width: 100%;
     height: 100%;
