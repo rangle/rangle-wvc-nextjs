@@ -12,7 +12,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Bar } from 'react-chartjs-2'
 import { numFormatter } from '../../utils/convertNumbers'
-import { Options } from './BarChart.type'
+import { Options } from '../BarChart/BarChart.type'
 
 ChartJS.register(
   CategoryScale,
@@ -24,16 +24,20 @@ ChartJS.register(
   ChartDataLabels
 )
 
-export function BarChart({
+export function StackedBarChart({
   data,
   labels,
   colours,
   withAxes,
   yStepSize,
   aspectRatio = 1,
-  showTopBarLabels = false,
   title = '',
   subTitle = '',
+  titlePosition = 'top',
+  displayLegend = true,
+  legends = [],
+  stackedBar = false,
+  legendPosition = 'bottom'
 }) {
 
   const fullTitle = [title, subTitle]
@@ -43,33 +47,29 @@ export function BarChart({
     aspectRatio: aspectRatio,
     plugins: {
       legend: {
-        display: false
+        display: displayLegend,
+        position: legendPosition,
+        labels: {
+            boxWidth: 15,
+            boxHeight: 15,
+            padding: 30,
+            color: '#000000',
+        },
+
       },
       title: {
         display: title,
         text: fullTitle,
-        position: 'bottom',
+        position: titlePosition,
         font: {
           size: 18
-        }
+        },
+        color: '#000000',
+        padding: 30
+
       },
       datalabels: {
-        display: showTopBarLabels,
-        color: '#333333',
-        anchor: 'end',
-        align: 'end',
-        font: {
-          size: 20,
-          weight: '400',
-          family: 'Lato'
-        },
-        formatter: function (value, context) {
-          // if the data received ends with %, add "%" to the top bar labels
-          if (data[0][data[0].length-1] === '%') {
-            return value + '%'
-          }
-          return value
-        }
+        display: false,
       }
     },
     scales: {
@@ -87,7 +87,8 @@ export function BarChart({
         },
         title: {
           display: true
-        }
+        },
+        stacked: stackedBar
       },
       y: {
         display: withAxes,
@@ -105,20 +106,23 @@ export function BarChart({
           },
           color: '#333333'
         },
-        grace: showTopBarLabels ? '25%' : ''
+        grace: (displayLegend && legendPosition === 'top') ? '25%' : '',
+        stacked: stackedBar
+
       }
     }
   }
 
   const chartData = {
     labels,
-    datasets: [
-      {
-        data: data.map((ea) => parseFloat(ea)),
-        backgroundColor: colours,
-        maxBarThickness: 40
-      }
-    ]
+    datasets: data.map((eaData, idx) => {
+        return {
+            label: legends[idx],
+            data: eaData.map(ea => parseFloat(ea)),
+            backgroundColor: colours[idx],
+            maxBarThickness: 40
+        }
+    })
   }
 
   return <Bar options={options} data={chartData} />
