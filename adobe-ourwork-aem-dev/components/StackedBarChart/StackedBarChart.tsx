@@ -39,7 +39,6 @@ export function StackedBarChart({
   stackedBar = false,
   legendPosition = 'bottom'
 }) {
-
   const fullTitle = [title, subTitle]
 
   const options: Options = {
@@ -50,12 +49,11 @@ export function StackedBarChart({
         display: displayLegend,
         position: legendPosition,
         labels: {
-            boxWidth: 15,
-            boxHeight: 15,
-            padding: 30,
-            color: '#000000',
-        },
-
+          boxWidth: 15,
+          boxHeight: 15,
+          padding: 30,
+          color: '#000000'
+        }
       },
       title: {
         display: title,
@@ -66,10 +64,9 @@ export function StackedBarChart({
         },
         color: '#000000',
         padding: 30
-
       },
       datalabels: {
-        display: false,
+        display: false
       }
     },
     scales: {
@@ -106,9 +103,8 @@ export function StackedBarChart({
           },
           color: '#333333'
         },
-        grace: (displayLegend && legendPosition === 'top') ? '25%' : '',
+        grace: displayLegend && legendPosition === 'top' ? '25%' : '',
         stacked: stackedBar
-
       }
     }
   }
@@ -116,12 +112,12 @@ export function StackedBarChart({
   const chartData = {
     labels,
     datasets: data.map((eaData, idx) => {
-        return {
-            label: legends[idx],
-            data: eaData.map(ea => parseFloat(ea)),
-            backgroundColor: colours[idx],
-            maxBarThickness: 40
-        }
+      return {
+        label: legends[idx],
+        data: eaData.map((ea) => parseFloat(ea)),
+        backgroundColor: colours[idx],
+        maxBarThickness: 40
+      }
     })
   }
 

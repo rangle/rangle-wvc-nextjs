@@ -33,9 +33,8 @@ export function BarChart({
   aspectRatio = 1,
   showTopBarLabels = false,
   title = '',
-  subTitle = '',
+  subTitle = ''
 }) {
-
   const fullTitle = [title, subTitle]
 
   const options: Options = {
@@ -65,7 +64,7 @@ export function BarChart({
         },
         formatter: function (value, context) {
           // if the data received ends with %, add "%" to the top bar labels
-          if (data[0][data[0].length-1] === '%') {
+          if (data[0][data[0].length - 1] === '%') {
             return value + '%'
           }
           return value
