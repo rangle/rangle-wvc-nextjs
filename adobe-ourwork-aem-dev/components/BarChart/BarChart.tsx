@@ -39,9 +39,8 @@ export function BarChart({
   aspectRatio = 1,
   topBarLabels = false,
   bottomLabelTitle = '',
-  bottomLabelSubtitle = '',
+  bottomLabelSubtitle = ''
 }) {
-
   const bottomTitle = [bottomLabelTitle, bottomLabelSubtitle]
 
   const options: Options = {
@@ -71,9 +70,10 @@ export function BarChart({
         },
         formatter: function (value, context) {
           // if the data received ends with %, add "%" to the bar labels
-          if (data[0][data[0].length-1] === '%') {
+          if (data[0][data[0].length - 1] === '%') {
             return value + '%'
-          } return value
+          }
+          return value
         }
       }
     },
@@ -119,7 +119,7 @@ export function BarChart({
     labels,
     datasets: [
       {
-        data: data.map(ea => parseFloat(ea)),
+        data: data.map((ea) => parseFloat(ea)),
         backgroundColor: colours,
         maxBarThickness: 40
       }
