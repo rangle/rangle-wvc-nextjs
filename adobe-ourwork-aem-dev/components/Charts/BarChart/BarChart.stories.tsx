@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { BarChart } from './BarChart'
 
 export default {
-  title: 'Example/BarChart',
+  title: 'Example/Charts/BarChart',
   component: BarChart
 } as ComponentMeta<typeof BarChart>
 

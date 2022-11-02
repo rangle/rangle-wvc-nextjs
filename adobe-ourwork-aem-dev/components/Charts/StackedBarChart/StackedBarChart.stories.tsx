@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StackedBarChart } from './StackedBarChart';
 
 export default {
-    title: 'Example/StackedBarChart',
+    title: 'Example/Charts/StackedBarChart',
     argTypes: {
         titlePosition: {
             options: ['top', 'bottom'],
