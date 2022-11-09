@@ -1,0 +1,42 @@
+@import '../../styles/lumen-tokens';
+
+.select-dropdown {
+  &__label {
+    @include typographysmallparagraphxsmallcopy_regular;
+    color: $charcoal;
+
+    .select-dropdown--darkTheme & {
+      color: $white;
+    }
+  }
+
+  &__select {
+    @include typographylargeparagraphsmallcopy_strong;
+    appearance: none;
+    background-color: $white;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' aria-hidden='true'><path fill='currentColor' d='M12 1.888 6 8 0 1.888 1.853 0 6 4.225 10.147 0 12 1.888z' /></svg>");
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - $space-m);
+    background-position-y: 50%;
+    border: 0;
+    border-radius: $radius-default;
+    box-shadow: inset 0 0 0 1px $grey-light;
+    cursor: pointer;
+    display: block;
+    margin-top: $space-xxs;
+    min-width: 94px;
+    padding: $space-s $space-xxl $space-s $space-m;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+
+    .select-dropdown--darkTheme & {
+      box-shadow: inset 0 0 0 1px $grey-lighter;
+    }
+
+    &:focus {
+      background: $sky-lighter;
+      outline: $space-xxs solid $blue-lighter;
+    }
+  }
+}
