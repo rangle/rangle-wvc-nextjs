@@ -14,6 +14,7 @@ WithAxes.args = {
   yStepSize: 100000,
   aspectRatio: 0.8,
   showTopBarLabels: false,
+  ariaLabel: 'Bar Chart Reading Comprehension',
   colours: ['rgb(231, 96, 12)'],
   labels: ['Girls', 'Boys', 'Women', 'Men'],
   data: [480000, 410000, 250000, 220000]

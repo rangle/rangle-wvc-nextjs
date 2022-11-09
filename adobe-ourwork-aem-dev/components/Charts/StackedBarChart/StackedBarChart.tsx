@@ -37,7 +37,8 @@ export function StackedBarChart({
   displayLegend = true,
   legends = [],
   stackedBar = false,
-  legendPosition = 'bottom'
+  legendPosition = 'bottom',
+  ariaLabel = ''
 }) {
   const fullTitle = [title, subTitle]
 
@@ -121,5 +122,5 @@ export function StackedBarChart({
     })
   }
 
-  return <Bar options={options} data={chartData} />
+  return <Bar options={options} data={chartData} aria-label={ariaLabel} />
 }

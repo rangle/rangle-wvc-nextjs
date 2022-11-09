@@ -33,7 +33,8 @@ export function BarChart({
   aspectRatio = 1,
   showTopBarLabels = false,
   title = '',
-  subTitle = ''
+  subTitle = '',
+  ariaLabel = ''
 }) {
   const fullTitle = [title, subTitle]
 
@@ -120,5 +121,5 @@ export function BarChart({
     ]
   }
 
-  return <Bar options={options} data={chartData} />
+  return <Bar options={options} data={chartData} aria-label={ariaLabel} />
 }
