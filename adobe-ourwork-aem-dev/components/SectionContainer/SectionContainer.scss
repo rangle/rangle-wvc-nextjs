@@ -1,0 +1,59 @@
+@import '../../styles/lumen-tokens';
+
+.section-container {
+  &__picture {
+    display: block;
+  }
+
+  &__image {
+    display: block;
+    max-height: 432px;
+    max-width: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__content-wrapper {
+    background-color: $sky-lighter;
+    padding-left: $space-m;
+    padding-bottom: $space-m;
+    padding-right: $space-m;
+  }
+
+  &__heading-layout-wrapper {
+    transform: translate(0, -50%);
+
+    @media (min-width: 1024px) {
+      display: flex;
+      justify-content: flex-end;
+      transform: translate(16px, -50%);
+    }
+  }
+
+  &__heading-container {
+    background: $white;
+    text-align: center;
+    padding-bottom: $space-m;
+    padding-left: $space-m;
+    padding-right: $space-m;
+    padding-top: $space-m;
+    width: 100%;
+
+    @media (min-width: 1024px) {
+      max-width: 671px;
+      padding-bottom: 42px;
+      padding-left: 100px;
+      padding-right: 91px;
+      padding-top: 42px;
+      text-align: left;
+    }
+  }
+
+  &__heading {
+    @include typographysmallheadingh2;
+  }
+
+  &__content {
+    @include typographylargeparagraphbodycopy_regular;
+  }
+}
