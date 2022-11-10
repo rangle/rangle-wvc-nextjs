@@ -1,0 +1,58 @@
+@import '../../styles/lumen-tokens';
+
+.emergency-alert {
+  background: #3c6f99;
+
+  &__content-container {
+    margin: 0 auto;
+    padding: $space-xl;
+
+    @media (min-width: 768px) {
+      display: flex;
+      gap: $space-xxxl;
+      justify-content: center;
+      max-width: calc(768px + 48px); // max-width including padding
+    }
+  }
+
+  &__icon-container {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__title {
+    @include typographysmallheadingh4;
+    color: $white;
+    margin-bottom: $space-xs;
+  }
+
+  &__body {
+    @include typographylargeparagraphsmallcopy_regular;
+    color: $white;
+  }
+
+  &__link {
+    display: inline-block;
+    padding-left: $space-s;
+    color: $white;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &__button {
+    @include typographysmallparagraphbodycopy_regular;
+    background: #2c5372;
+    border: 0;
+    color: $white;
+    padding: $space-xxs;
+    text-transform: uppercase;
+    width: 100%;
+    cursor: pointer;
+  }
+}
