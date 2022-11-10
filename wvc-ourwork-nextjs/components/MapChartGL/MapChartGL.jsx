@@ -21,7 +21,7 @@ function MapChartGL() {
 
       mapRef.current.easeTo({
         center: feature.geometry.coordinates,
-        zoom: 8,
+        zoom:8,
         duration: 5000
       });
     });

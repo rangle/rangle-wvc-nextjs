@@ -80,7 +80,7 @@ const Template = (args) => {
     <div>
       <ReactTooltip>{content}</ReactTooltip>
       <div style={{ display: 'block' }}>
-        <select
+  { /*    <select
           value={selection}
           onChange={(e) => setSelection(e.target.value)}
         >
@@ -90,8 +90,8 @@ const Template = (args) => {
         </select>
         <br />
         someTotal: {someStatTotal}
-        <br />
-      </div>
+        <br /> */ }
+  </div> 
       <MapChartGL />
     </div>
   )

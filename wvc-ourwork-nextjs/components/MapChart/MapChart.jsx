@@ -66,7 +66,7 @@ const MapChart = ({ setTooltipContent, markers = MARKERS_INIT }) => {
             return true
           }}
         >
-          <Geographies geography={geoUrl3}>
+          <Geographies geography={geoUrl1}>
             {({ geographies }) =>
               geographies.map((geo) => (
                 <Geography
