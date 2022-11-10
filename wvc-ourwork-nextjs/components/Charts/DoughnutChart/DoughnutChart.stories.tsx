@@ -19,7 +19,13 @@ export default {
 } as ComponentMeta<typeof DoughnutChart>
 
 const Template: ComponentStory<typeof DoughnutChart> = (args) => (
-  <DoughnutChart {...args} />
+  <div
+  style={{
+    background: args.isDarkMode ? '#333333' : '',
+  }}
+  >
+    <DoughnutChart {...args} />
+  </div>
 )
 
 export const Default = Template.bind({})
@@ -46,8 +52,8 @@ Default.args = {
   ariaLabel: 'Doughnut chart for development program'
 }
 
-export const DefaultDarkmode = Template.bind({})
-DefaultDarkmode.args = {
+export const Darkmode = Template.bind({})
+Darkmode.args = {
   title: '',
   titlePosition: 'top',
   displayLegend: true,

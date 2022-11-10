@@ -1,29 +1,18 @@
-import React from 'react'
-
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { BarChart } from './BarChart'
+import { LineChart } from './LineChart'
 
 export default {
-  title: 'Example/Charts/BarChart',
+  title: 'Example/Charts/LineChart',
   argTypes: {
     titlePosition: {
       options: ['top', 'bottom'],
       control: { type: 'select' }
     },
   },
-  component: BarChart
-} as ComponentMeta<typeof BarChart>
+  component: LineChart
+}
 
-const Template: ComponentStory<typeof BarChart> = (args) => (
-  <div
-    style={{
-      background: args.isDarkMode ? '#333333' : '',
-      padding: '24px 32px'
-    }}
-  >
-    <BarChart {...args} />
-  </div>
-)
+const Template = (args) => LineChart(args)
 
 export const WithAxes = Template.bind({})
 WithAxes.args = {
@@ -31,14 +20,10 @@ WithAxes.args = {
   yStepSize: 100000,
   aspectRatio: 0.8,
   showTopBarLabels: false,
-  isDarkMode: false,
-  title: 'Reading Comprehension',
-  subTitle: 'Eravur Pattu, Sri Lanka',
-  titlePosition: 'top',
   ariaLabel: 'Bar Chart Reading Comprehension',
   colours: ['rgb(231, 96, 12)'],
-  labels: ['Girls', 'Boys', 'Women', 'Men'],
-  data: [480000, 410000, 250000, 220000]
+  labels: ['2019', '2020', '2021'],
+  data: [480000, 410000, 250000]
 }
 
 export const WithoutAxesWithIndvTopBarLabel = Template.bind({})
@@ -47,11 +32,9 @@ WithoutAxesWithIndvTopBarLabel.args = {
   yStepSize: 10,
   aspectRatio: 0.8,
   showTopBarLabels: true,
-  isDarkMode: false,
   title: 'Reading Comprehension',
   subTitle: 'Eravur Pattu, Sri Lanka',
-  titlePosition: 'bottom',
-  ariaLabel: 'Bar Chart Reading Comprehension',
+  titlePosition: 'top',
   colours: ['rgb(231, 96, 12)', 'rgb(255, 166, 102)', 'rgb(255, 225, 204)'],
   labels: ['2021', '2013'],
   data: ['83.5%', '74.1%']
