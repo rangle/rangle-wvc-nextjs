@@ -37,9 +37,9 @@ const defaultArgs: DropdownProps = {
       value: 'option 3'
     },
     {
-        label: 'Option 4',
-        value: 'option 4'
-      }
+      label: 'Option 4',
+      value: 'option 4'
+    }
   ],
   updateSelection: (value: string) => {
     alert(`Value chosen: ${value}`)
