@@ -4,7 +4,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Doughnut } from 'react-chartjs-2'
 import { Options } from '../BarChart/BarChart.type'
-import './DoughnutChart.scss'
 
 ChartJS.register(ArcElement, ChartDataLabels)
 
