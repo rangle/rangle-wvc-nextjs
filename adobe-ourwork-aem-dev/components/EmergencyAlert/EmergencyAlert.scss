@@ -1,7 +1,7 @@
 @import '../../styles/lumen-tokens';
 
 .emergency-alert {
-  background: $blue-nataliya;
+  background: #3c6f99;
 
   &__content-container {
     margin: 0 auto;
@@ -34,9 +34,20 @@
     color: $white;
   }
 
+  &__link {
+    display: inline-block;
+    padding-left: $space-s;
+    color: $white;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
   &__button {
     @include typographysmallparagraphbodycopy_regular;
-    background: $blue-dark-nataliya;
+    background: #2c5372;
     border: 0;
     color: $white;
     padding: $space-xxs;
