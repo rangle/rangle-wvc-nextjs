@@ -8,4 +8,4 @@ Development environment for the WVC project
 
 2. `cd rangle-wvc-nextjs/wvc-ourwork-nextjs`
 
-3. See `wvc-ourwork-nextjs`'s [README](/wvc-ourwork-nextjsv/README.md)
+3. See `wvc-ourwork-nextjs`'s [README](/wvc-ourwork-nextjs/README.md)
