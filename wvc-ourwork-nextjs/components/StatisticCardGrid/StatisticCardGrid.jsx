@@ -23,7 +23,6 @@ const StatisticCardGrid = ({ cards }) => {
   let modifier = ''
 
   if (cards.length < 3) {
-    console.log(cards.length)
     if (cards.length === 2) {
       modifier = 'statistic-card-grid--duo'
     } else {

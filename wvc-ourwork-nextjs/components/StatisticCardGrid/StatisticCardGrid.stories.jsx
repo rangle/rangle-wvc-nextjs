@@ -1,7 +1,5 @@
 import React from 'react'
-import StatisticCardGrid, {
-  StatisticCard
-} from '../StatisticCardGrid/StatisticCardGrid'
+import StatisticCardGrid, { StatisticCard } from './StatisticCardGrid'
 
 export default {
   title: 'Example/StatisticCardGrid',
