@@ -77,9 +77,16 @@ const Template = (args) => {
     return (acc += value.someStat)
   }, 0)
   return (
-    <div>
-      <ReactTooltip>{content}</ReactTooltip>
-      <div style={{ display: 'block' }}>
+    <div style={{
+      position: 'relative',
+      width: '500px',
+      height: '500px',
+      display: 'block',
+      border: '2px solid black',
+      overflow:'hidden'
+    }}>
+      
+      
   { /*    <select
           value={selection}
           onChange={(e) => setSelection(e.target.value)}
@@ -91,7 +98,7 @@ const Template = (args) => {
         <br />
         someTotal: {someStatTotal}
         <br /> */ }
-  </div> 
+  
       <MapChartGL />
     </div>
   )
