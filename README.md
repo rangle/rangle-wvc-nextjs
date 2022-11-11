@@ -6,6 +6,6 @@ Development environment for the WVC project
 ### Set up:
 1. `git clone https://github.com/rangle/rangle-wvc-nextjs.git`
 
-2. `cd rangle-wvc-nextjs/adobe-ourwork-aem-dev`
+2. `cd rangle-wvc-nextjs/wvc-ourwork-nextjs`
 
-3. See `adobe-ourwork-aem-dev`'s [README](/adobe-ourwork-aem-dev/README.md)
+3. See `wvc-ourwork-nextjs`'s [README](/wvc-ourwork-nextjsv/README.md)
