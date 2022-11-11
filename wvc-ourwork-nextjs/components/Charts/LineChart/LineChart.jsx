@@ -3,25 +3,22 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-//   BarElement,
   PointElement,
   LineElement,
   Title,
   Tooltip,
   Legend,
   Filler,
-  SubTitle,
+  SubTitle
 } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Line } from 'react-chartjs-2'
 import { numFormatter } from '../../../utils/convertNumbers'
-// import { Options } from './BarChart/BarChart.type'
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-//   BarElement,
   PointElement,
   LineElement,
   Title,
@@ -39,118 +36,94 @@ export function LineChart({
   withAxes,
   yStepSize,
   aspectRatio = 1,
-  showTopBarLabels = false,
+  titlePosition = 'top',
+  isDarkMode = false,
   title = '',
-  subTitle = '',
   ariaLabel = ''
 }) {
-  const fullTitle = [title, subTitle]
-
   const options = {
     responsive: true,
     aspectRatio: aspectRatio,
     plugins: {
       legend: {
-        display: false,
-        // labels: {
-        //     usePointStyle: true,
-        // }
+        display: false
+      },
+      title: {
+        display: title,
+        text: title,
+        position: titlePosition,
+        font: {
+          size: 18
+        },
+        padding: 20,
+        color: isDarkMode ? '#ffffff' : ''
+      },
+      datalabels: {
+        display: false
       }
-      //   title: {
-      //     display: title,
-      //     text: fullTitle,
-      //     position: 'bottom',
-      //     font: {
-      //       size: 18
-      //     }
-      //   },
-      //   datalabels: {
-      //     display: showTopBarLabels,
-      //     color: '#333333',
-      //     anchor: 'end',
-      //     align: 'end',
-      //     font: {
-      //       size: 20,
-      //       weight: '400',
-      //       family: 'Lato'
-      //     },
-      //     formatter: function (value, context) {
-      //       // if the data received ends with %, add "%" to the top bar labels
-      //       if (data[0][data[0].length - 1] === '%') {
-      //         return value + '%'
-      //       }
-      //       return value
-      //     }
-      //   }
     },
     elements: {
       line: {
-        tension: 0.4,
         borderWidth: 2,
-        fill: false,
-        borderColor: colours[0],
-        backgroundColor: colours[1]
+        borderColor: colours
       },
       point: {
-        radius: 0,
-        hoverRadius: 0,
-        hitRadius: 0,
-        hoverBorderWidth: 0
+        radius: 5,
+        backgroundColor: colours
       }
     },
     scales: {
-        x: {
-            display: false,
+      x: {
+        grid: {
+          display: false,
+          borderColor: withAxes
+            ? isDarkMode
+              ? '#999999'
+              : ChartJS.defaults.borderColor
+            : 'transparent'
         },
-        y: {
-            display: false,
+        ticks: {
+          font: {
+            size: withAxes ? 14 : 20,
+            family: 'Lato'
+          },
+          color: isDarkMode ? '#cccccc' : '#333333'
         },
-    },
-    // scales: {
-    //   x: {
-    //     grid: {
-    //       display: false,
-    //       borderColor: withAxes ? ChartJS.defaults.borderColor : 'transparent'
-    //     },
-    //     ticks: {
-    //       font: {
-    //         size: withAxes ? 14 : 20,
-    //         family: 'Lato'
-    //       },
-    //       color: '#333333'
-    //     },
-    //     title: {
-    //       display: true
-    //     }
-    //   },
-    //   y: {
-    //     display: withAxes,
-    //     grid: {
-    //       display: true,
-    //       drawOnChartArea: false // to still have the tick marks
-    //     },
-    //     ticks: {
-    //       callback: function (value, index, ticks) {
-    //         return numFormatter(value)
-    //       },
-    //       stepSize: yStepSize,
-    //       font: {
-    //         size: 14
-    //       },
-    //       color: '#333333'
-    //     },
-    //     grace: showTopBarLabels ? '25%' : ''
-    //   }
-    // }
+        title: {
+          display: true
+        }
+      },
+      y: {
+        display: withAxes,
+        grid: {
+          display: true,
+          drawOnChartArea: false, // to still show the tick marks but remove grid lines
+          color: isDarkMode ? '#999999' : ChartJS.defaults.borderColor,
+          borderColor: isDarkMode ? '#999999' : ChartJS.defaults.borderColor
+        },
+        ticks: {
+          callback: function (value, index, ticks) {
+            return numFormatter(value)
+          },
+          stepSize: yStepSize,
+          font: {
+            size: 14
+          },
+          color: isDarkMode ? '#cccccc' : '#333333'
+        },
+        suggestedMin: 0
+      }
+    }
   }
 
   const chartData = {
-    labels,
+    labels: withAxes ? [''].concat(labels) : labels,
     datasets: [
       {
-        data: data.map((ea) => parseFloat(ea)),
-        backgroundColor: colours,
-        maxBarThickness: 40
+        data: withAxes
+          ? [null].concat(data).map((ea) => parseFloat(ea))
+          : data.map((ea) => parseFloat(ea)),
+        borderColor: colours
       }
     ]
   }

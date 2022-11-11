@@ -12,7 +12,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Bar } from 'react-chartjs-2'
 import { numFormatter } from '../../../utils/convertNumbers'
-import { Options } from '../BarChart/BarChart.type'
+import { Options } from '../charts.type'
 
 ChartJS.register(
   CategoryScale,
@@ -38,7 +38,8 @@ export function StackedBarChart({
   legends = [],
   stackedBar = false,
   legendPosition = 'bottom',
-  ariaLabel = ''
+  ariaLabel = '',
+  isDarkMode = false
 }) {
   const fullTitle = [title, subTitle]
 
@@ -53,7 +54,7 @@ export function StackedBarChart({
           boxWidth: 15,
           boxHeight: 15,
           padding: 30,
-          color: '#000000'
+          color: isDarkMode ? '#ffffff' : '#000000'
         }
       },
       title: {
@@ -63,7 +64,7 @@ export function StackedBarChart({
         font: {
           size: 18
         },
-        color: '#000000',
+        color: isDarkMode ? '#ffffff' : '#000000',
         padding: 30
       },
       datalabels: {
@@ -74,14 +75,18 @@ export function StackedBarChart({
       x: {
         grid: {
           display: false,
-          borderColor: withAxes ? ChartJS.defaults.borderColor : 'transparent'
+          borderColor: withAxes
+            ? isDarkMode
+              ? '#cccccc'
+              : ChartJS.defaults.borderColor
+            : 'transparent'
         },
         ticks: {
           font: {
             size: withAxes ? 14 : 20,
             family: 'Lato'
           },
-          color: '#333333'
+          color: isDarkMode ? '#cccccc' : '#333333'
         },
         title: {
           display: true
@@ -91,8 +96,10 @@ export function StackedBarChart({
       y: {
         display: withAxes,
         grid: {
-          display: true,
-          drawOnChartArea: false // to still have the tick marks
+          display: true, // to still show the tick marks
+          drawOnChartArea: false,
+          borderColor: isDarkMode ? '#cccccc' : ChartJS.defaults.borderColor,
+          color: isDarkMode ? '#999999' : ChartJS.defaults.borderColor
         },
         ticks: {
           callback: function (value, index, ticks) {
@@ -102,7 +109,7 @@ export function StackedBarChart({
           font: {
             size: 14
           },
-          color: '#333333'
+          color: isDarkMode ? '#cccccc' : '#333333'
         },
         grace: displayLegend && legendPosition === 'top' ? '25%' : '',
         stacked: stackedBar

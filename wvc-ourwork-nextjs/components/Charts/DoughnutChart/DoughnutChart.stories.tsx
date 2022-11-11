@@ -11,7 +11,7 @@ export default {
       control: { type: 'select' }
     },
     legendPosition: {
-      options: ['top', 'bottom', 'right', 'left'],
+      options: ['right', 'left'],
       control: { type: 'select' }
     }
   },
@@ -20,9 +20,10 @@ export default {
 
 const Template: ComponentStory<typeof DoughnutChart> = (args) => (
   <div
-  style={{
-    background: args.isDarkMode ? '#333333' : '',
-  }}
+    style={{
+      background: args.isDarkMode ? '#333333' : '',
+      padding: '24px 32px'
+    }}
   >
     <DoughnutChart {...args} />
   </div>
@@ -59,7 +60,6 @@ Darkmode.args = {
   displayLegend: true,
   legendPosition: 'left',
   aspectRatio: 2,
-  cutout: 90,
   colours: [
     'rgb(231, 96, 12)',
     'rgb(255, 166, 102)',
@@ -74,4 +74,28 @@ Darkmode.args = {
   data: ['90%', '6%', '4%'],
   isDarkMode: true,
   ariaLabel: 'Doughnut chart for development program'
+}
+
+export const isMobile = Template.bind({})
+isMobile.args = {
+  title: '',
+  titlePosition: 'top',
+  displayLegend: true,
+  legendPosition: 'left',
+  aspectRatio: 0.8,
+  colours: [
+    'rgb(231, 96, 12)',
+    'rgb(255, 166, 102)',
+    'rgb(255, 195, 153)',
+    'rgb(231, 96, 12)'
+  ],
+  labels: [
+    'Development Programming',
+    'Protected Emergencies & Fragile Contexts',
+    'Emergencies Response I-III'
+  ],
+  data: [1000, 2000, 4000],
+  isDarkMode: true,
+  ariaLabel: 'Doughnut chart for development program',
+  isMobile: true
 }

@@ -9,7 +9,7 @@ export default {
     titlePosition: {
       options: ['top', 'bottom'],
       control: { type: 'select' }
-    },
+    }
   },
   component: BarChart
 } as ComponentMeta<typeof BarChart>
@@ -55,4 +55,20 @@ WithoutAxesWithIndvTopBarLabel.args = {
   colours: ['rgb(231, 96, 12)', 'rgb(255, 166, 102)', 'rgb(255, 225, 204)'],
   labels: ['2021', '2013'],
   data: ['83.5%', '74.1%']
+}
+
+export const Darkmode = Template.bind({})
+Darkmode.args = {
+  withAxes: true,
+  yStepSize: 100000,
+  aspectRatio: 0.8,
+  showTopBarLabels: false,
+  isDarkMode: true,
+  title: 'Reading Comprehension',
+  subTitle: 'Eravur Pattu, Sri Lanka',
+  titlePosition: 'top',
+  ariaLabel: 'Bar Chart Reading Comprehension',
+  colours: ['rgb(231, 96, 12)'],
+  labels: ['Girls', 'Boys', 'Women', 'Men'],
+  data: [480000, 410000, 250000, 220000]
 }

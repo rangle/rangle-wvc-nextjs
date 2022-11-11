@@ -12,7 +12,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Bar } from 'react-chartjs-2'
 import { numFormatter } from '../../../utils/convertNumbers'
-import { Options } from './BarChart.type'
+import { Options } from '../charts.type'
 
 ChartJS.register(
   CategoryScale,
@@ -38,7 +38,6 @@ export function BarChart({
   titlePosition = 'bottom',
   ariaLabel = ''
 }) {
-
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
@@ -50,29 +49,39 @@ export function BarChart({
         display: title,
         text: titlePosition === 'top' ? title : subTitle,
         position: titlePosition,
-        color: titlePosition === 'top' 
-          ? !isDarkMode ? '' : '#ffffff' 
-          : !isDarkMode ? '#666666' : '#cccccc',
+        color:
+          titlePosition === 'top'
+            ? !isDarkMode
+              ? ''
+              : '#ffffff'
+            : !isDarkMode
+            ? '#666666'
+            : '#cccccc',
         font: {
           size: titlePosition === 'top' ? 18 : 12,
           weight: titlePosition === 'top' ? 'bold' : 'normal'
-        },
+        }
       },
       subtitle: {
         display: subTitle,
         text: titlePosition === 'top' ? subTitle : title,
         position: titlePosition,
-        color: titlePosition === 'top' 
-          ? !isDarkMode ? '' : '#cccccc'
-          : !isDarkMode ? '#333333' : '#ffffff',
+        color:
+          titlePosition === 'top'
+            ? !isDarkMode
+              ? ''
+              : '#cccccc'
+            : !isDarkMode
+            ? '#333333'
+            : '#ffffff',
         font: {
           size: titlePosition === 'top' ? 12 : 18,
           weight: titlePosition === 'top' ? 'normal' : 'bold'
-        },
+        }
       },
       datalabels: {
         display: showTopBarLabels,
-        color: isDarkMode ? '#ffffff': '#333333',
+        color: isDarkMode ? '#ffffff' : '#333333',
         anchor: 'end',
         align: 'end',
         font: {
@@ -93,8 +102,10 @@ export function BarChart({
       x: {
         grid: {
           display: false,
-          borderColor: withAxes 
-            ? isDarkMode ? '#999999' : ChartJS.defaults.borderColor
+          borderColor: withAxes
+            ? isDarkMode
+              ? '#999999'
+              : ChartJS.defaults.borderColor
             : 'transparent'
         },
         ticks: {
@@ -102,7 +113,7 @@ export function BarChart({
             size: withAxes ? 14 : 20,
             family: 'Lato'
           },
-          color: isDarkMode ? '#ffffff': '#333333'
+          color: isDarkMode ? '#ffffff' : '#333333'
         },
         title: {
           display: true
@@ -113,7 +124,8 @@ export function BarChart({
         grid: {
           display: true,
           drawOnChartArea: false, // to still have the tick marks whilst not showing the grid
-          borderColor: isDarkMode ? '#999999' : ChartJS.defaults.borderColor
+          borderColor: isDarkMode ? '#999999' : ChartJS.defaults.borderColor,
+          color: isDarkMode ? '#999999' : ChartJS.defaults.borderColor
         },
         ticks: {
           callback: function (value, index, ticks) {
@@ -123,7 +135,7 @@ export function BarChart({
           font: {
             size: 14
           },
-          color: isDarkMode ? '#ffffff': '#333333'
+          color: isDarkMode ? '#ffffff' : '#333333'
         },
         grace: showTopBarLabels ? '25%' : ''
       }
