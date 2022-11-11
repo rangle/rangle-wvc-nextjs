@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Doughnut } from 'react-chartjs-2'
-import { Options } from '../BarChart/BarChart.type'
+import { Options } from '../charts.type'
 
 ChartJS.register(ArcElement, ChartDataLabels)
 
@@ -17,9 +17,9 @@ export const DoughnutChart = ({
   titlePosition = 'top',
   displayLegend = true,
   legendPosition = 'right',
-  cutout = 90,
   isDarkMode = false,
-  ariaLabel = 'Doughnut Chart'
+  ariaLabel = 'Doughnut Chart',
+  isMobile = false
 }) => {
   const fullTitle = [title, subTitle]
 
@@ -29,7 +29,7 @@ export const DoughnutChart = ({
     plugins: {
       legend: {
         display: displayLegend,
-        position: legendPosition,
+        position: isMobile ? 'bottom' : legendPosition,
         labels: {
           boxWidth: 20,
           boxHeight: 20,
@@ -50,8 +50,7 @@ export const DoughnutChart = ({
       datalabels: {
         display: false
       }
-    },
-    cutout: cutout
+    }
   }
 
   const chartData = {
@@ -71,9 +70,5 @@ export const DoughnutChart = ({
     ]
   }
 
-  return (
-    <div className={`${isDarkMode ? 'doughnut-container--dark' : ''}`}>
-      <Doughnut options={options} data={chartData} aria-label={ariaLabel} />
-    </div>
-  )
+  return <Doughnut options={options} data={chartData} aria-label={ariaLabel} />
 }
