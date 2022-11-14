@@ -7,14 +7,14 @@ const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
 
   return (
     showAlert && (
-      <div class='emergency-alert'>
-        <div class='emergency-alert__content-container'>
-          <div class='emergency-alert__icon-container'>
+      <div className='emergency-alert'>
+        <div className='emergency-alert__content-container'>
+          <div className='emergency-alert__icon-container'>
             <ExclamationMark />
           </div>
           <div>
-            <h4 class='emergency-alert__title'>{title}</h4>
-            <p class='emergency-alert__body'>
+            <h4 className='emergency-alert__title'>{title}</h4>
+            <p className='emergency-alert__body'>
               {body}
               {url && (
                 <a target='_blank' className='emergency-alert__link' href={url}>
@@ -26,7 +26,7 @@ const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
         </div>
         <button
           aria-label='Close alert'
-          class='emergency-alert__button'
+          className='emergency-alert__button'
           onClick={() => setShowAlert(false)}
         >
           {buttonLabel}
