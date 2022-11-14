@@ -48,12 +48,18 @@
     "canvas": "^2.10.2",
     "eslint": "8.26.0",
     "eslint-config-next": "12.3.1",
+<<<<<<< HEAD
 
+=======
+>>>>>>> 017452b (wip)
     "eslint-plugin-storybook": "^0.6.6",
     "jest": "^29.3.1",
     "jest-canvas-mock": "^2.4.0",
     "jest-css-modules": "^2.1.0",
     "jest-environment-jsdom": "^29.3.1"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 017452b (wip)
   }
 }

@@ -1,23 +1,18 @@
-import MapChart from './MapChart'
+import MapChartCountry from './MapChartCountry'
+import { MapProvider } from 'react-map-gl'
 import { Source, Layer } from 'react-map-gl'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default {
-  title: 'Example/MapChart',
-  component: MapChart
+  title: 'Example/MapChartCountry',
+  component: MapChartCountry
 }
-const layerStyle1 = {
-  id: 'point1',
-  type: 'line',
-  paint: {
-    'line-width': 2,
-    'line-color': '#0080ef'
-  }
-}
+
 const Template = (args) => {
   
 
   return (
+    <MapProvider>
     <div
       style={{
         position: 'relative',
@@ -29,7 +24,8 @@ const Template = (args) => {
       }}
     >
      
-     
+     <MapChartCountry countryCode={args.countryCode}/>
+     {/* 
       <MapChart {...args}>
         <Source
           id='my-data-ch'
@@ -38,8 +34,10 @@ const Template = (args) => {
         >
           <Layer {...layerStyle1} />
         </Source>
-      </MapChart>
+    </MapChart>*/}
+    
     </div>
+    </MapProvider>
   )
 }
 
@@ -47,4 +45,5 @@ export const SimpleMap = Template.bind({})
 SimpleMap.args = {
   interactive: true,
   zoom: 0,
+  countryCode: "CHN"
 }

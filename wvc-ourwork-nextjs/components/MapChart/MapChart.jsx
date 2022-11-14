@@ -6,24 +6,15 @@ import './MapChart.scss'
 const TOKEN =
   'pk.eyJ1IjoiZS1zY2h1bHR6IiwiYSI6ImNsYTJ2MGYzdjA2Yzkzb3BhY2FlaGM1dDEifQ.HBoblCqe9VRjFOfUNacejg'
 
-function MapChartGL({ interactive = true, children, zoom = 0, ...props }) {
-  const [x,setX] = useState(false);
-  const [viewState, setViewState] = useState({
-    
-    // west, siyth, east, north
-    /*bounds: [
-      73.61720299999996, 18.168884000000048, 134.77359000000013,
-      53.55443600000007
-    ],*/
-  })
-  const onToggle = useCallback((evt)=>{
+function MapChartGL({ interactive = true, id, children, zoom = 0, ...props }) {
+  const onToggle = useCallback((evt) => {
     console.log(mapRef)
-    setX((v)=>!v)
+    setX((v) => !v)
     //mapRef.current.scrollZoom.disable();
     mapRef.current.setZoom(zoom)
-  },[])
-  console.log({interactive,zoom})
-  const geojson = {
+  }, [])
+
+  /* const geojson = {
     type: 'FeatureCollection',
     features: [
       {
@@ -48,28 +39,21 @@ function MapChartGL({ interactive = true, children, zoom = 0, ...props }) {
       'line-width': 2,
       'line-color': '#0080ef'
     }
-  }
+  }*/
 
   const mapRef = useRef(null)
-  if(mapRef.current) {
+  if (mapRef.current) {
     //mapRef.current.setZoom(zoom)
   }
   // https://gist.github.com/graydon/11198540
 
   return (
     <>
-    
-    <button onClick={onToggle}>Toggle! - {x ? 'yes' : 'no'}</button>
       <Map
-        
         mapboxAccessToken={TOKEN}
-        zoom={zoom}  
-        interactive={interactive}
-        scrollZoom={interactive}
-        dragPan={interactive}
-        keyboard={interactive}
-        cursor={interactive ? 'pointer' : 'auto'}
+        zoom={zoom}
         mapStyle='mapbox://styles/mapbox/dark-v10'
+        id={id}
       >
         {children}
 
