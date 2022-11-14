@@ -19,7 +19,7 @@ const ExpandableTextBlock = ({
         less={
           <div className='expandable-text-block__button'>{showLessText}</div>
         }
-        className='expandable-text-block__body expandable-text-block__body-closed'
+        className='expandable-text-block__body expandable-text-block__body--closed'
       >
         <p className='expandable-text-block__body'>{body}</p>
         {footnote && (
