@@ -1,0 +1,59 @@
+@import '../../styles/lumen-tokens';
+
+.impact-highlight-grid {
+  @media (min-width: 1024px) {
+    display: flex;
+    gap: 9.5rem;
+    justify-content: center;
+  }
+}
+
+.impact-highlight {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 37.5rem; // 600px;
+  text-align: center;
+
+  &:not(:only-child) {
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    margin-left: 0;
+    margin-right: 0;
+
+    &:not(:only-child) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    @include typographysmallheadingh6;
+    color: $grey;
+    font-weight: 400;
+    margin-bottom: $space-m;
+    text-transform: uppercase;
+  }
+
+  &__year {
+    @include typographylargeparagraphbodycopy_regular;
+    color: $grey;
+    text-transform: uppercase;
+  }
+
+  &__highlight {
+    color: $orange;
+    display: block;
+    font-family: Lato;
+    font-size: 62px;
+    font-weight: 800;
+    line-height: 0.78;
+    margin-bottom: $space-m;
+  }
+
+  &__label {
+    @include typographylargeheadingh5;
+    color: $black;
+    margin-bottom: $space-m;
+  }
+}
