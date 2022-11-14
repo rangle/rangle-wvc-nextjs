@@ -1,4 +1,10 @@
-import React, { useRef, useMemo, useState, useCallback } from 'react'
+import React, {
+  useRef,
+  useMemo,
+  useState,
+  useCallback,
+  forwardRef
+} from 'react'
 import { Map, Source, Layer } from 'react-map-gl'
 import './MapChart.scss'
 
@@ -6,15 +12,9 @@ import './MapChart.scss'
 const TOKEN =
   'pk.eyJ1IjoiZS1zY2h1bHR6IiwiYSI6ImNsYTJ2MGYzdjA2Yzkzb3BhY2FlaGM1dDEifQ.HBoblCqe9VRjFOfUNacejg'
 
-function MapChartGL({ interactive = true, id, children, zoom = 0, ...props }) {
-  const onToggle = useCallback((evt) => {
-    console.log(mapRef)
-    setX((v) => !v)
-    //mapRef.current.scrollZoom.disable();
-    mapRef.current.setZoom(zoom)
-  }, [])
-
-  /* const geojson = {
+const MapChartGL = forwardRef(
+  ({ interactive = true, id, children, zoom = 0, ...props }, ref) => {
+    /* const geojson = {
     type: 'FeatureCollection',
     features: [
       {
@@ -41,23 +41,25 @@ function MapChartGL({ interactive = true, id, children, zoom = 0, ...props }) {
     }
   }*/
 
-  const mapRef = useRef(null)
-  if (mapRef.current) {
+    // const mapRef = useRef(null)
+    // if (mapRef.current) {
     //mapRef.current.setZoom(zoom)
-  }
-  // https://gist.github.com/graydon/11198540
+    // }
+    // https://gist.github.com/graydon/11198540
 
-  return (
-    <>
-      <Map
-        mapboxAccessToken={TOKEN}
-        interactive={interactive}
-        mapStyle='mapbox://styles/mapbox/dark-v10'
-        id={id}
-      >
-        {children}
+    return (
+      <>
+        <Map
+          mapboxAccessToken={TOKEN}
+          interactive={interactive}
+          mapStyle='mapbox://styles/mapbox/dark-v10'
+          id={id}
+          {...props}
+          ref={ref}
+        >
+          {children}
 
-        {/*
+          {/*
       <Source
         id='my-data-ch'
         type='geojson'
@@ -73,9 +75,12 @@ function MapChartGL({ interactive = true, id, children, zoom = 0, ...props }) {
         <Layer {...layerStyle2} />
     
     </Source>*/}
-      </Map>
-    </>
-  )
-}
+        </Map>
+      </>
+    )
+  }
+)
+
+MapChartGL.displayName = "MapChartGL"
 
 export default MapChartGL

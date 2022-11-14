@@ -1,6 +1,6 @@
 import MapChart from './MapChart'
 import { Source, Layer } from 'react-map-gl'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default {
   title: 'Example/MapChart',
@@ -15,8 +15,8 @@ const layerStyle1 = {
   }
 }
 const Template = (args) => {
-  
-
+  const mapRef = useRef();
+  console.log(mapRef)
   return (
     <div
       style={{
@@ -30,7 +30,7 @@ const Template = (args) => {
     >
      
      
-      <MapChart {...args}>
+      <MapChart {...args} ref={mapRef}>
         <Source
           id='my-data-ch'
           type='geojson'
