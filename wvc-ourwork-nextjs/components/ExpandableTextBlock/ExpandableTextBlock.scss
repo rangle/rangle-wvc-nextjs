@@ -1,0 +1,26 @@
+@import '../../styles/lumen-tokens';
+
+.expandable-text-block {
+  &__title {
+    @include typographylargeheadingh5;
+  }
+
+  &__body {
+    @include typographysmallparagraphbodycopy_regular;
+    line-height: 2rem;
+    margin: 1rem 0;
+
+    &-closed {
+      margin-bottom: 0;
+    }
+  }
+
+  &__footnote {
+    @include typographysmallparagraphxsmallcopy_italic;
+    margin-bottom: 1rem;
+  }
+
+  &__button {
+    margin-top: 1rem;
+  }
+}
