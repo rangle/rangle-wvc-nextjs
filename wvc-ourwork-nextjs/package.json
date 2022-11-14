@@ -13,7 +13,11 @@
   },
   "dependencies": {
     "@storybook/preset-scss": "^1.0.3",
+<<<<<<< HEAD
     "@tippyjs/react": "^4.2.6",
+=======
+    "@turf/bbox": "^6.5.0",
+>>>>>>> dc7a154 (fit to bounds on country change)
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "css-loader": "^6.7.1",

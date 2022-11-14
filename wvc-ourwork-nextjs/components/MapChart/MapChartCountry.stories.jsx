@@ -9,23 +9,20 @@ export default {
 }
 
 const Template = (args) => {
-  
-
   return (
     <MapProvider>
-    <div
-      style={{
-        position: 'relative',
-        width: '60vw',
-        height: '90vh',
-        display: 'block',
-        
-        overflow: 'hidden'
-      }}
-    >
-     
-     <MapChartCountry countryCode={args.countryCode}/>
-     {/* 
+      <div
+        style={{
+          position: 'relative',
+          width: '100vw',
+          height: '90vh',
+          display: 'block',
+
+          overflow: 'hidden'
+        }}
+      >
+        <MapChartCountry countryCode={args.countryCode} duration={args.duration}/>
+        {/* 
       <MapChart {...args}>
         <Source
           id='my-data-ch'
@@ -35,15 +32,25 @@ const Template = (args) => {
           <Layer {...layerStyle1} />
         </Source>
     </MapChart>*/}
-    
-    </div>
+      </div>
     </MapProvider>
   )
 }
 
 export const SimpleMap = Template.bind({})
+SimpleMap.argTypes = {
+  countryCode: {
+    options: ['AFG', 'CHN','CAF','EGY','JPN','PAK','KOR'],
+    control: { type: 'select'}
+  },
+  duration: {
+    options: [500, 1000, 2000],
+    control: { type: 'select'}
+  }
+}
 SimpleMap.args = {
   interactive: true,
   zoom: 0,
-  countryCode: "CHN"
+  countryCode: 'CHN',
+  duration: 1000,
 }

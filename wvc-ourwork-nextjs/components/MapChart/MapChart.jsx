@@ -51,7 +51,7 @@ function MapChartGL({ interactive = true, id, children, zoom = 0, ...props }) {
     <>
       <Map
         mapboxAccessToken={TOKEN}
-        zoom={zoom}
+        interactive={interactive}
         mapStyle='mapbox://styles/mapbox/dark-v10'
         id={id}
       >

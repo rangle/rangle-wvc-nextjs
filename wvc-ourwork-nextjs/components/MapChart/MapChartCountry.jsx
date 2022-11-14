@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import MapChart from './MapChart'
 import { Source, Layer, useMap } from 'react-map-gl'
+import bbox from '@turf/bbox'
 const countryLayerStyle = {
   id: 'countryLayer',
   type: 'line',
@@ -9,39 +10,45 @@ const countryLayerStyle = {
     'line-color': '#0080ef'
   }
 }
-function MapChartCountries({ countryCode, ...props }) {
+function MapChartCountries({ countryCode, duration = 1000, ...props }) {
   const { countryMap } = useMap()
   const [allData, setAllData] = useState()
   const [countryData, setCountryData] = useState()
 
   const boundingBox = useMemo(() => {
-    return allData?.features[0].properties.bbox
+    if (allData) {
+      const [minLng, minLat, maxLng, maxLat] = bbox(allData)
+      return { minLng, minLat, maxLng, maxLat }
+    }
   }, [allData])
 
   useEffect(() => {
-    if (countryMap) {
-        console.log(boundingBox)
-    /*  countryMap.fitBounds(
+    if (countryMap && boundingBox) {
+      console.log(boundingBox,duration)
+      const { minLng, minLat, maxLng, maxLat } = boundingBox
+      countryMap.fitBounds(
         [
-          [boundingBox[0], boundingBox[2]],
-          [boundingBox[1], boundingBox[3]]
+          [minLng, minLat],
+          [maxLng, maxLat]
         ],
-        { padding: 40, duration: 1000 }
-      )*/
+        { padding: 40, duration: duration }
+      )
     }
-  }, [boundingBox])
+  }, [boundingBox,countryMap])
+
   useEffect(() => {
-    if (countryCode && countryCode.length === 3) {
+    if (countryCode && countryCode.length === 3 && countryMap) {
+      console.log('useEffect yo')
       fetch(
         `https://inmagik.github.io/world-countries/countries/${countryCode}.geojson`
       )
         .then((res) => res.json())
         .then((json) => setAllData(json))
     }
-  }, [countryCode])
-  console.log({ countryMap })
+  }, [countryCode, countryMap])
+
   return (
-    <MapChart {...props} id='countryMap'>
+    <MapChart {...props} id='countryMap' interactive={false}>
       {allData && (
         <Source id={`data-country`} type='geojson' data={allData}>
           <Layer {...countryLayerStyle} />
