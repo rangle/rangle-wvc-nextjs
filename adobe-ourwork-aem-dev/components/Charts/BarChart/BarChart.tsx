@@ -38,6 +38,7 @@ export function BarChart({
   titlePosition = 'bottom',
   ariaLabel = ''
 }) {
+ 
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
@@ -153,5 +154,12 @@ export function BarChart({
     ]
   }
 
-  return <Bar options={options} data={chartData} aria-label={ariaLabel} />
+  return (
+    <Bar
+      options={options}
+      data={chartData}
+      aria-label={ariaLabel}
+      data-testid='bar-chart'
+    />
+  )
 }

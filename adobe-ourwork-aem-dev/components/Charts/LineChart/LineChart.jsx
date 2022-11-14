@@ -128,5 +128,12 @@ export function LineChart({
     ]
   }
 
-  return <Line options={options} data={chartData} aria-label={ariaLabel} />
+  return (
+    <Line
+      options={options}
+      data={chartData}
+      aria-label={ariaLabel}
+      data-testid='line-chart'
+    />
+  )
 }

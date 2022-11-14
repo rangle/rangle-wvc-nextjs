@@ -129,5 +129,12 @@ export function StackedBarChart({
     })
   }
 
-  return <Bar options={options} data={chartData} aria-label={ariaLabel} />
+  return (
+    <Bar
+      options={options}
+      data={chartData}
+      aria-label={ariaLabel}
+      data-testid='stacked-bar-chart'
+    />
+  )
 }
