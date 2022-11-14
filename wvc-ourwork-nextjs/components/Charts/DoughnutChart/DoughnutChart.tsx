@@ -70,5 +70,12 @@ export const DoughnutChart = ({
     ]
   }
 
-  return <Doughnut options={options} data={chartData} aria-label={ariaLabel} />
+  return (
+    <Doughnut
+      options={options}
+      data={chartData}
+      aria-label={ariaLabel}
+      data-testid='doughnut-chart'
+    />
+  )
 }
