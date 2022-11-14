@@ -1,0 +1,45 @@
+@import '../../styles/lumen-tokens';
+
+.statistic-card {
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.05);
+  padding: $space-l;
+  text-align: center;
+  width: 100%;
+
+  &__title {
+    @include typographylargeheadingh6;
+    color: $grey;
+    font-weight: 400;
+    margin-bottom: $space-s;
+    text-transform: uppercase;
+  }
+
+  &__statistic {
+    @include typographylargeheadingh2;
+    color: $orange;
+    display: block;
+    margin-bottom: $space-xs;
+  }
+
+  &__body {
+    @include typographylargeparagraphbodycopy_regular;
+    color: $black;
+  }
+}
+
+.statistic-card-grid {
+  display: grid;
+  column-gap: $space-xl;
+  grid-template-columns: repeat(3, minmax(0, 600px));
+  justify-content: center;
+
+  &--duo {
+    grid-template-columns: repeat(2, minmax(275px, 600px));
+  }
+
+  &--single {
+    grid-template-columns: minmax(275px, 600px);
+  }
+}
