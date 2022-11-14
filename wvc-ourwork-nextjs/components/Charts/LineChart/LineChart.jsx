@@ -3,72 +3,73 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler,
+  SubTitle
 } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
-import { Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import { numFormatter } from '../../../utils/convertNumbers'
-import { Options } from '../charts.type'
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
+  Filler,
+  SubTitle,
   ChartDataLabels
 )
 
-export function StackedBarChart({
+export function LineChart({
   data,
   labels,
   colours,
   withAxes,
   yStepSize,
   aspectRatio = 1,
-  title = '',
-  subTitle = '',
   titlePosition = 'top',
-  displayLegend = true,
-  legends = [],
-  stackedBar = false,
-  legendPosition = 'bottom',
-  ariaLabel = '',
-  isDarkMode = false
+  isDarkMode = false,
+  title = '',
+  ariaLabel = ''
 }) {
-  const fullTitle = [title, subTitle]
-
-  const options: Options = {
+  const options = {
     responsive: true,
     aspectRatio: aspectRatio,
     plugins: {
       legend: {
-        display: displayLegend,
-        position: legendPosition,
-        labels: {
-          boxWidth: 15,
-          boxHeight: 15,
-          padding: 30,
-          color: isDarkMode ? '#ffffff' : '#000000'
-        }
+        display: false
       },
       title: {
         display: title,
-        text: fullTitle,
+        text: title,
         position: titlePosition,
         font: {
           size: 18
         },
-        color: isDarkMode ? '#ffffff' : '#000000',
-        padding: 30
+        padding: 20,
+        color: isDarkMode ? '#ffffff' : ''
       },
       datalabels: {
         display: false
+      }
+    },
+    elements: {
+      line: {
+        borderWidth: 2,
+        borderColor: colours
+      },
+      point: {
+        radius: 5,
+        backgroundColor: colours
       }
     },
     scales: {
@@ -77,7 +78,7 @@ export function StackedBarChart({
           display: false,
           borderColor: withAxes
             ? isDarkMode
-              ? '#cccccc'
+              ? '#999999'
               : ChartJS.defaults.borderColor
             : 'transparent'
         },
@@ -90,16 +91,15 @@ export function StackedBarChart({
         },
         title: {
           display: true
-        },
-        stacked: stackedBar
+        }
       },
       y: {
         display: withAxes,
         grid: {
-          display: true, // to still show the tick marks
-          drawOnChartArea: false,
-          borderColor: isDarkMode ? '#cccccc' : ChartJS.defaults.borderColor,
-          color: isDarkMode ? '#999999' : ChartJS.defaults.borderColor
+          display: true,
+          drawOnChartArea: false, // to still show the tick marks but remove grid lines
+          color: isDarkMode ? '#999999' : ChartJS.defaults.borderColor,
+          borderColor: isDarkMode ? '#999999' : ChartJS.defaults.borderColor
         },
         ticks: {
           callback: function (value, index, ticks) {
@@ -111,30 +111,29 @@ export function StackedBarChart({
           },
           color: isDarkMode ? '#cccccc' : '#333333'
         },
-        grace: displayLegend && legendPosition === 'top' ? '25%' : '',
-        stacked: stackedBar
+        suggestedMin: 0
       }
     }
   }
 
   const chartData = {
-    labels,
-    datasets: data.map((eaData, idx) => {
-      return {
-        label: legends[idx],
-        data: eaData.map((ea) => parseFloat(ea)),
-        backgroundColor: colours[idx],
-        maxBarThickness: 40
+    labels: withAxes ? [''].concat(labels) : labels,
+    datasets: [
+      {
+        data: withAxes
+          ? [null].concat(data).map((ea) => parseFloat(ea))
+          : data.map((ea) => parseFloat(ea)),
+        borderColor: colours
       }
-    })
+    ]
   }
 
   return (
-    <Bar
+    <Line
       options={options}
       data={chartData}
       aria-label={ariaLabel}
-      data-testid='stacked-bar-chart'
+      data-testid='line-chart'
     />
   )
 }
