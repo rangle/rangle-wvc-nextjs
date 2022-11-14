@@ -11,7 +11,7 @@ const Carousel = ({ cards, title }) => {
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
 
   return (
-    <div className='carousel'>
+    <div id={`carousel-${title}`} className='carousel'>
       <div className='carousel--header'>
         {title && <h2>{title}</h2>}
         <div className='carousel-nav-container-desktop'>
@@ -35,11 +35,12 @@ const Carousel = ({ cards, title }) => {
         </div>
       </div>
       <Swiper
+        id={`swiper-${title}`}
         modules={[Navigation, A11y]}
         allowTouchMove={false}
         navigation={{
-          prevEl: '.carousel-nav-button-previous',
-          nextEl: '.carousel-nav-button-next'
+          prevEl: `#carousel-${title} .carousel-nav-button-previous`,
+          nextEl: `#carousel-${title} .carousel-nav-button-next`
         }}
         slidesPerView={'auto'}
         onSlideChange={(swiper) => {
