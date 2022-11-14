@@ -6,7 +6,7 @@ import { PrevIcon, NextIcon } from './icons'
 import './Carousel.scss'
 import 'swiper/scss'
 
-const Carousel = ({ altText = 'Carousel of program cards', cards, title }) => {
+const Carousel = ({ cards, title }) => {
   const slideTotal = cards.length
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
 
@@ -42,9 +42,6 @@ const Carousel = ({ altText = 'Carousel of program cards', cards, title }) => {
           nextEl: '.carousel-nav-button-next'
         }}
         slidesPerView={'auto'}
-        a11y={{
-          containerMessage: altText
-        }}
         onSlideChange={(swiper) => {
           setActiveSlideNumber(swiper.realIndex + 1)
         }}
