@@ -26,7 +26,7 @@ const ImpactHighlightGrid = ({ impactHighlights }) => {
   return (
     <div className='impact-highlight-grid'>
       {impactHighlights.map((item) => {
-        return <ImpactHighlight {...item} />
+        return <ImpactHighlight {...item} key={item.highlight} />
       })}
     </div>
   )
