@@ -26,7 +26,8 @@ Default.args = {
     },
     {
       title: 'Level of fragility',
-      value: 'Very low developing'
+      value: 'Very low developing',
+      tooltip: 'Sample tooltip'
     },
     {
       title: 'Gender equality rank',
@@ -53,7 +54,8 @@ Vertical.args = {
     },
     {
       title: 'Areas of Focus',
-      value: 'Education | Gender Equality and Social Inclusion'
+      value: 'Education | Gender Equality and Social Inclusion',
+      tooltip: 'Sample tooltip'
     },
     {
       title: 'Total Program Cost',

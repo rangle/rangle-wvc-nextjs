@@ -1,3 +1,4 @@
+import Tooltip from '../Tooltip/Tooltip'
 import './SummaryBlock.scss'
 
 const SummaryBlock = ({ direction = 'horizontal', highlights }) => {
@@ -6,8 +7,12 @@ const SummaryBlock = ({ direction = 'horizontal', highlights }) => {
       {highlights.map((highlight) => {
         return (
           <div key={highlight.value} className='summary-block__highlight'>
-            <p className='summary-block__highlight--title'>{highlight.title}</p>
-            {highlight.tooltip && <p>{highlight.tooltip}</p>}
+            <div className='summary-block__highlight-title-container'>
+              <p className='summary-block__highlight--title'>
+                {highlight.title}
+              </p>
+              {highlight.tooltip && <Tooltip content={highlight.tooltip} />}
+            </div>
             <p className='summary-block__highlight--value'>{highlight.value}</p>
           </div>
         )
