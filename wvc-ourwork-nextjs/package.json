@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@storybook/preset-scss": "^1.0.3",
+    "@tippyjs/react": "^4.2.6",
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "css-loader": "^6.7.1",
