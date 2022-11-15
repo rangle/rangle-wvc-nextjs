@@ -1,8 +1,4 @@
 import React, {
-  useRef,
-  useMemo,
-  useState,
-  useCallback,
   forwardRef
 } from 'react'
 import { Map, Source, Layer } from 'react-map-gl'
@@ -14,6 +10,7 @@ const TOKEN =
 
 const MapChartGL = forwardRef(
   ({ interactive = true, id, children, zoom = 0, ...props }, ref) => {
+    console.log(props)
     /* const geojson = {
     type: 'FeatureCollection',
     features: [

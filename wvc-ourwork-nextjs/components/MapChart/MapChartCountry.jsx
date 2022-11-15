@@ -1,16 +1,15 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import MapChart from './MapChart'
-
-import { Source, Layer, useMap, Marker } from 'react-map-gl'
+import { Source, Layer } from 'react-map-gl'
 import bbox from '@turf/bbox'
 
+import MapChart from './MapChart'
 import { useFetchGeoJson, useFitBounds, useMapMarkers } from './MapChatHooks'
 
 const countryLayerStyle = {
   id: 'countryLayer',
   type: 'line',
   paint: {
-    'line-width': 2,
+    'line-width': 1,
     'line-color': '#FF6B00'
   }
 }
