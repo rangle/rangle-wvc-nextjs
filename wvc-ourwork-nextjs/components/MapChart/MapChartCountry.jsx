@@ -60,5 +60,5 @@ const MapChartCountries = ({
     </MapChart>
   )
 }
-
+MapChartCountries.displayName = "MapChartCountries"
 export default MapChartCountries

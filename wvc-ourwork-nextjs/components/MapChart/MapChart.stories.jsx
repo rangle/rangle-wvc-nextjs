@@ -3,14 +3,14 @@ import { Source, Layer } from 'react-map-gl'
 import { useState, useEffect, useRef } from 'react'
 
 export default {
-  title: 'Example/MapChart/Basic Map',
+  title: 'Example/Maps',
   component: MapChart
 }
 const layerStyle1 = {
   id: 'point1',
   type: 'line',
   paint: {
-    'line-width':1,
+    'line-width': 1,
     'line-color': '#FF6B00'
   }
 }
@@ -24,11 +24,17 @@ const Template = (args) => {
         width: '100vw',
         height: '90vh',
         display: 'block',
-
         overflow: 'hidden'
       }}
     >
-      <MapChart {...args} ref={mapRef} bounds={[73.61720299999996, 18.168884000000048, 134.77359000000013, 53.55443600000007]}>
+      <MapChart
+        ref={mapRef}
+        {...args}
+        bounds={[
+          73.61720299999996, 18.168884000000048, 134.77359000000013,
+          53.55443600000007
+        ]}
+      >
         <Source
           id='my-data-ch'
           type='geojson'
@@ -41,8 +47,26 @@ const Template = (args) => {
   )
 }
 
-export const SimpleMap = Template.bind({})
-SimpleMap.args = {
-  interactive: true,
-  zoom: 0
+export const MapChartBase = Template.bind({})
+MapChartBase.argTypes = {
+  interactive: {
+    table: {
+      disable: true
+    }
+  }
+}
+MapChartBase.args = {
+  interactive: true
+}
+
+export const MapChartNonInteractive = Template.bind({})
+MapChartNonInteractive.argTypes = {
+  interactive: {
+    table: {
+      disable: true
+    }
+  }
+}
+MapChartNonInteractive.args = {
+  interactive: false
 }

@@ -5,7 +5,7 @@ import { COUNTRY_CODES } from './MapConstants'
 import { generateRandomCoordinates } from './map-helpers'
 
 export default {
-  title: 'Example/MapChart/MapChartCountry',
+  title: 'Example/Maps',
   component: MapChartCountry
 }
 
@@ -22,7 +22,6 @@ const Template = (args) => {
         width: '100vw',
         height: '90vh',
         display: 'block',
-
         overflow: 'hidden'
       }}
     >
@@ -38,9 +37,9 @@ const Template = (args) => {
   )
 }
 
-export const SimpleMap = Template.bind({})
+export const MapChartCountrySelect = Template.bind({})
 
-SimpleMap.argTypes = {
+MapChartCountrySelect.argTypes = {
   countryCode: {
     options: Object.keys(COUNTRY_CODES),
 
@@ -60,21 +59,17 @@ SimpleMap.argTypes = {
     control: { type: 'select' }
   },
   markerCoordinates: {
-      table: {
-          disable: true
-      }
+    table: {
+      disable: true
+    }
   },
   onCountryChange: {
     table: {
-        disable: true
+      disable: true
     }
+  }
 }
-
-
-}
-SimpleMap.args = {
-  //interactive: true,
-  //zoom: 0,
+MapChartCountrySelect.args = {
   countryCode: 'CHN',
   duration: 1000,
   padding: 40
