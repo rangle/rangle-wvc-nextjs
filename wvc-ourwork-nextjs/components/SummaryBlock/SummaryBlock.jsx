@@ -7,6 +7,7 @@ const SummaryBlock = ({ direction = 'horizontal', highlights }) => {
         return (
           <div key={highlight.value} className='summary-block__highlight'>
             <p className='summary-block__highlight--title'>{highlight.title}</p>
+            {highlight.tooltip && <p>{highlight.tooltip}</p>}
             <p className='summary-block__highlight--value'>{highlight.value}</p>
           </div>
         )
