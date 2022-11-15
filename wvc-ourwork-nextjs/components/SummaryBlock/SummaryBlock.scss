@@ -1,0 +1,61 @@
+@import '../../styles/lumen-tokens';
+
+.summary-block {
+  background: $white;
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 2rem;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+
+  &__highlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:not(:first-child) {
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      &:not(:first-child) {
+        margin-top: 0;
+      }
+    }
+
+    &--title {
+      @include typographysmallheadingh6;
+      color: $charcoal;
+      line-height: 2rem;
+    }
+
+    &--value {
+      @include typographysmallheadingh4;
+      color: $black;
+      line-height: 2rem;
+    }
+  }
+}
+
+.summary-block--vertical {
+  flex-wrap: wrap;
+
+  .summary-block__highlight {
+    @media (min-width: 1024px) {
+      width: 50%;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    &:nth-child(n + 3) {
+      margin-top: 1.5rem;
+    }
+  }
+}
