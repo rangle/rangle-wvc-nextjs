@@ -1,20 +1,19 @@
 import { useState } from 'react'
 import { Navigation, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import ProgramCard from '../ProgramCard/ProgramCard'
 import { PrevIcon, NextIcon } from './icons'
 
 import './Carousel.scss'
 import 'swiper/scss'
 
-const Carousel = ({ altText = 'Carousel of program cards', cards, title }) => {
+const Carousel = ({ cards, title }) => {
   const slideTotal = cards.length
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
 
   return (
-    <div className='carousel'>
+    <div id={`carousel-${title}`} className='carousel'>
       <div className='carousel--header'>
-        <h2>{title}</h2>
+        {title && <h2>{title}</h2>}
         <div className='carousel-nav-container-desktop'>
           <p className='carousel-pagination'>
             Slide {activeSlideNumber}/{slideTotal}
@@ -36,16 +35,14 @@ const Carousel = ({ altText = 'Carousel of program cards', cards, title }) => {
         </div>
       </div>
       <Swiper
+        id={`swiper-${title}`}
         modules={[Navigation, A11y]}
         allowTouchMove={false}
         navigation={{
-          prevEl: '.carousel-nav-button-previous',
-          nextEl: '.carousel-nav-button-next'
+          prevEl: `#carousel-${title} .carousel-nav-button-previous`,
+          nextEl: `#carousel-${title} .carousel-nav-button-next`
         }}
         slidesPerView={'auto'}
-        a11y={{
-          containerMessage: altText
-        }}
         onSlideChange={(swiper) => {
           setActiveSlideNumber(swiper.realIndex + 1)
         }}
@@ -55,17 +52,7 @@ const Carousel = ({ altText = 'Carousel of program cards', cards, title }) => {
         {cards &&
           cards.length &&
           cards.map((card, i) => {
-            return (
-              <SwiperSlide key={i}>
-                <ProgramCard
-                  body={card.body}
-                  image={card.image}
-                  labels={card.labels}
-                  title={card.title}
-                  url={card.url}
-                />
-              </SwiperSlide>
-            )
+            return <SwiperSlide key={i}>{card}</SwiperSlide>
           })}
       </Swiper>
       <div className='carousel-nav-container-mobile'>

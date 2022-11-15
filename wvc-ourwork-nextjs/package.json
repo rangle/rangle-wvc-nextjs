@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@storybook/preset-scss": "^1.0.3",
+    "@tippyjs/react": "^4.2.6",
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "css-loader": "^6.7.1",
@@ -21,6 +22,7 @@
     "react-aria": "^3.20.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
+    "react-show-more-text": "^1.6.2",
     "react-stately": "^3.18.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
