@@ -39,14 +39,15 @@ export function LineChart({
   titlePosition = 'top',
   isDarkMode = false,
   title = '',
-  ariaLabel = ''
+  ariaLabel = '',
+  displayLegend = false,
 }) {
   const options = {
     responsive: true,
     aspectRatio: aspectRatio,
     plugins: {
       legend: {
-        display: false
+        display: displayLegend
       },
       title: {
         display: title,
@@ -55,7 +56,10 @@ export function LineChart({
         font: {
           size: 18
         },
-        padding: 20,
+        padding: {
+          top: title && titlePosition === 'top' ? 10 : 30,
+          bottom: title && titlePosition === 'top' ? 30 : 10,
+        },
         color: isDarkMode ? '#ffffff' : ''
       },
       datalabels: {

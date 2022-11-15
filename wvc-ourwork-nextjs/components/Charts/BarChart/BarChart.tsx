@@ -36,32 +36,37 @@ export function BarChart({
   title = '',
   subTitle = '',
   titlePosition = 'bottom',
-  ariaLabel = ''
+  ariaLabel = '',
+  displayLegend = false
 }) {
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
     plugins: {
       legend: {
-        display: false
+        display: displayLegend
       },
       title: {
         display: title,
-        text: titlePosition === 'top' ? title : subTitle,
+        text: titlePosition === 'top' || !subTitle ? title : subTitle,
         position: titlePosition,
         color:
-          titlePosition === 'top'
-          // if the title is on the top, just change the darkmode color
-            ? !isDarkMode
-              ? ''
-              : '#ffffff'
-          // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
-            : !isDarkMode
-            ? '#666666'
-            : '#cccccc',
+          titlePosition === 'top' || !subTitle
+            ? // if the title is on the top or there is no subtitle, just change the darkmode color
+              isDarkMode
+              ? '#ffffff'
+              : ''
+            : // if title is on the bottom AND there is a subtitle, change colors to match subtitle colors
+              isDarkMode
+              ? '#cccccc'
+              : '#666666',
         font: {
-          size: titlePosition === 'top' ? 18 : 12,
-          weight: titlePosition === 'top' ? 'bold' : 'normal'
+          size: titlePosition === 'top' || !subTitle ? 18 : 12,
+          weight: titlePosition === 'top' || !subTitle ? 'bold' : 'normal'
+        },
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10,
         }
       },
       subtitle: {
@@ -70,14 +75,14 @@ export function BarChart({
         position: titlePosition,
         color:
           titlePosition === 'top'
-          // if the subtitle is on the top, just change the darkmode color
-            ? !isDarkMode
-              ? ''
-              : '#cccccc'
-          // if subtitle is on the bottom, this becomes the title, so change colors to match title
-            : !isDarkMode
-            ? '#333333'
-            : '#ffffff',
+            ? // if the subtitle is on the top, just change the darkmode color
+              isDarkMode
+              ? '#cccccc'
+              : ''
+            : // if subtitle is on the bottom, this becomes the title, so change colors to match title
+            isDarkMode
+            ? '#ffffff'
+            : '#333333',
         font: {
           size: titlePosition === 'top' ? 12 : 18,
           weight: titlePosition === 'top' ? 'normal' : 'bold'
