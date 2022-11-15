@@ -58,29 +58,12 @@ const MapChartGL = forwardRef(
           ref={ref}
         >
           {children}
-
-          {/*
-      <Source
-        id='my-data-ch'
-        type='geojson'
-        data='https://inmagik.github.io/world-countries/countries/CHN.geojson'
-      >
-        <Layer {...layerStyle1} />
-      </Source>
-      <Source
-        id='my-data'
-        type='geojson'
-        data='https://inmagik.github.io/world-countries/countries/AFG.geojson'
-      >
-        <Layer {...layerStyle2} />
-    
-    </Source>*/}
         </Map>
       </>
     )
   }
 )
 
-MapChartGL.displayName = "MapChartGL"
+MapChartGL.displayName = 'MapChartGL'
 
 export default MapChartGL

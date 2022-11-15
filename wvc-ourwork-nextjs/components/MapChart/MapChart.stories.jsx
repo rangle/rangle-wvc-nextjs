@@ -3,7 +3,7 @@ import { Source, Layer } from 'react-map-gl'
 import { useState, useEffect, useRef } from 'react'
 
 export default {
-  title: 'Example/MapChart',
+  title: 'Example/MapChart/Basic Map',
   component: MapChart
 }
 const layerStyle1 = {
@@ -15,29 +15,27 @@ const layerStyle1 = {
   }
 }
 const Template = (args) => {
-  const mapRef = useRef();
-  console.log(mapRef)
+  const mapRef = useRef()
+
   return (
     <div
       style={{
         position: 'relative',
-        width: '60vw',
+        width: '100vw',
         height: '90vh',
         display: 'block',
-        
+
         overflow: 'hidden'
       }}
     >
-     
-     
       <MapChart {...args} ref={mapRef}>
-        <Source
+        {/*<Source
           id='my-data-ch'
           type='geojson'
           data='https://inmagik.github.io/world-countries/countries/CHN.geojson'
         >
           <Layer {...layerStyle1} />
-        </Source>
+    </Source>*/}
       </MapChart>
     </div>
   )
@@ -46,5 +44,5 @@ const Template = (args) => {
 export const SimpleMap = Template.bind({})
 SimpleMap.args = {
   interactive: true,
-  zoom: 0,
+  zoom: 0
 }

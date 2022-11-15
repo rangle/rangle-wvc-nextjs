@@ -42,7 +42,7 @@ const COUNTRY_CODES = {
     SEN: 'Senegal',
     SLE: 'Sierra Leone',
     SOM: 'Somalia',
-    SSD: 'South Sudan',
+    SSD: '[x] South Sudan',
     LKA: 'Sri Lanka',
     SDN: 'Sudan',
     SYR: 'Syria Response (Turkey, Jordan, Syria)',

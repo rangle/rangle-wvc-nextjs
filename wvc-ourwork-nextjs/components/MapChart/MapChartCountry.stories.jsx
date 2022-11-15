@@ -1,14 +1,20 @@
 import MapChartCountry from './MapChartCountry'
-import { MapProvider } from 'react-map-gl'
-import { Source, Layer } from 'react-map-gl'
-import { useState, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { COUNTRY_CODES } from './MapConstants'
+
+import { generateRandomCoordinates } from './map-helpers'
+
 export default {
-  title: 'Example/MapChartCountry',
+  title: 'Example/MapChart/MapChartCountry',
   component: MapChartCountry
 }
 
 const Template = (args) => {
+  const [markerCoordinates, setMarkerCoordinates] = useState([])
+  const onCountryChange = useCallback(({ allData, countryCode }) => {
+    setMarkerCoordinates(() => generateRandomCoordinates(allData, countryCode))
+  })
+
   return (
     <div
       style={{
@@ -25,17 +31,9 @@ const Template = (args) => {
         duration={args.duration}
         padding={args.padding}
         interactive={args.interactive}
+        onCountryChange={onCountryChange}
+        markerCoordinates={markerCoordinates}
       />
-      {/* 
-      <MapChart {...args}>
-        <Source
-          id='my-data-ch'
-          type='geojson'
-          data='https://inmagik.github.io/world-countries/countries/CHN.geojson'
-        >
-          <Layer {...layerStyle1} />
-        </Source>
-    </MapChart>*/}
     </div>
   )
 }
@@ -60,7 +58,19 @@ SimpleMap.argTypes = {
   padding: {
     options: [10, 20, 40, 100],
     control: { type: 'select' }
-  }
+  },
+  markerCoordinates: {
+      table: {
+          disable: true
+      }
+  },
+  onCountryChange: {
+    table: {
+        disable: true
+    }
+}
+
+
 }
 SimpleMap.args = {
   //interactive: true,
