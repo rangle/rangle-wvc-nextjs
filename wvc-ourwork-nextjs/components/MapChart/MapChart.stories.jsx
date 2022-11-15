@@ -10,8 +10,8 @@ const layerStyle1 = {
   id: 'point1',
   type: 'line',
   paint: {
-    'line-width': 2,
-    'line-color': '#0080ef'
+    'line-width':1,
+    'line-color': '#FF6B00'
   }
 }
 const Template = (args) => {
@@ -28,14 +28,14 @@ const Template = (args) => {
         overflow: 'hidden'
       }}
     >
-      <MapChart {...args} ref={mapRef}>
-        {/*<Source
+      <MapChart {...args} ref={mapRef} bounds={[73.61720299999996, 18.168884000000048, 134.77359000000013, 53.55443600000007]}>
+        <Source
           id='my-data-ch'
           type='geojson'
           data='https://inmagik.github.io/world-countries/countries/CHN.geojson'
         >
           <Layer {...layerStyle1} />
-    </Source>*/}
+        </Source>
       </MapChart>
     </div>
   )

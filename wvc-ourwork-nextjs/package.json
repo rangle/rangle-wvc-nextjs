@@ -12,20 +12,12 @@
     "test": "jest --watch"
   },
   "dependencies": {
-    "@faker-js/faker": "^7.6.0",
     "@storybook/preset-scss": "^1.0.3",
-<<<<<<< HEAD
     "@tippyjs/react": "^4.2.6",
-=======
     "@turf/bbox": "^6.5.0",
-<<<<<<< HEAD
->>>>>>> dc7a154 (fit to bounds on country change)
-=======
-    "@turf/helpers": "^6.5.0",
     "@turf/meta": "^6.5.0",
     "@turf/points-within-polygon": "^6.5.0",
     "@turf/random": "^6.5.0",
->>>>>>> 9788b36 (Implement initial Impact Highlight Grid)
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "css-loader": "^6.7.1",
@@ -60,18 +52,10 @@
     "canvas": "^2.10.2",
     "eslint": "8.26.0",
     "eslint-config-next": "12.3.1",
-<<<<<<< HEAD
-
-=======
->>>>>>> 017452b (wip)
     "eslint-plugin-storybook": "^0.6.6",
     "jest": "^29.3.1",
     "jest-canvas-mock": "^2.4.0",
     "jest-css-modules": "^2.1.0",
     "jest-environment-jsdom": "^29.3.1"
-<<<<<<< HEAD
-
-=======
->>>>>>> 017452b (wip)
   }
 }
