@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SectionContainer from './SectionContainer'
-import imageFile from '../../public/images/sectioncontainerimage.png'
+import imageFile from '../../assets/images/sectioncontainerimage.png'
 
 export default {
   title: 'Example/SectionContainer',
