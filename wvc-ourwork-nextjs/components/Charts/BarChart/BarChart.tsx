@@ -51,12 +51,12 @@ export function BarChart({
         position: titlePosition,
         color:
           titlePosition === 'top'
-          // if the title is on the top, just change the darkmode color
-            ? !isDarkMode
+            ? // if the title is on the top, just change the darkmode color
+              !isDarkMode
               ? ''
               : '#ffffff'
-          // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
-            : !isDarkMode
+            : // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
+            !isDarkMode
             ? '#666666'
             : '#cccccc',
         font: {
@@ -70,12 +70,12 @@ export function BarChart({
         position: titlePosition,
         color:
           titlePosition === 'top'
-          // if the subtitle is on the top, just change the darkmode color
-            ? !isDarkMode
+            ? // if the subtitle is on the top, just change the darkmode color
+              !isDarkMode
               ? ''
               : '#cccccc'
-          // if subtitle is on the bottom, this becomes the title, so change colors to match title
-            : !isDarkMode
+            : // if subtitle is on the bottom, this becomes the title, so change colors to match title
+            !isDarkMode
             ? '#333333'
             : '#ffffff',
         font: {

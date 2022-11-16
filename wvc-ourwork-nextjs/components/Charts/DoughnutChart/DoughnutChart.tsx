@@ -45,7 +45,10 @@ export const DoughnutChart = ({
           size: 18
         },
         color: '#000000',
-        padding: 30
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10
+        }
       },
       datalabels: {
         display: false

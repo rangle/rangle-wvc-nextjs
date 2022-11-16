@@ -1,0 +1,43 @@
+@import '../../styles/lumen-tokens.scss';
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  &-control {
+    background-color: #f6f2ec;
+    width: 50%;
+    padding: 2rem 3rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+
+    &__title {
+      @include typographylargeheadingh2;
+      margin-bottom: 1rem;
+    }
+
+    &__footnote {
+      @include typographysmallparagraphxsmallcopy_regular;
+      margin-top: 1rem;
+
+      @media (max-width: 600px) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &-chart {
+    background-color: #f6f2ec;
+    width: 50%;
+    padding: 1rem 2rem 2rem 0.5rem;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+}
