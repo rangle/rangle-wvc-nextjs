@@ -23,7 +23,7 @@ const COUNTRY_CODES = {
   IND: 'India',
   IDN: 'Indonesia',
   IRQ: 'Iraq',
-  TBD: ' TBD - Jerusalem - West Bank - Gaza',
+  // TBD: ' TBD - Jerusalem - West Bank - Gaza',
   KEN: 'Kenya',
   LAO: 'Laos',
   LBN: 'Lebanon',
@@ -42,7 +42,7 @@ const COUNTRY_CODES = {
   SEN: 'Senegal',
   SLE: 'Sierra Leone',
   SOM: 'Somalia',
-  SSD: '[x] South Sudan',
+  // SSD: '[x] South Sudan', - missing geojson file for region
   LKA: 'Sri Lanka',
   SDN: 'Sudan',
   SYR: 'Syria Response (Turkey, Jordan, Syria)',
