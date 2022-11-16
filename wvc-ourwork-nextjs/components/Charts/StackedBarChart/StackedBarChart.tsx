@@ -36,7 +36,7 @@ export function StackedBarChart({
   titlePosition = 'top',
   displayLegend = true,
   legends = [],
-  stackedBar = false,
+  stackedBar = true,
   legendPosition = 'bottom',
   ariaLabel = '',
   isDarkMode = false
@@ -65,7 +65,10 @@ export function StackedBarChart({
           size: 18
         },
         color: isDarkMode ? '#ffffff' : '#000000',
-        padding: 30
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10
+        }
       },
       datalabels: {
         display: false

@@ -38,7 +38,7 @@ const Dropdown = ({
         >
           {options.map((option) => {
             return (
-              <option className='select-dropdown__option' value={option.value}>
+              <option className='select-dropdown__option' value={option.value} key={option.label}>
                 {option.label}
               </option>
             )
