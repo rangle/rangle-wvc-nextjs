@@ -3,7 +3,7 @@ import styles from './HeroBlock.module.scss'
 
 import Button from '../Button/Button'
 import SummaryBlock from '../SummaryBlock/SummaryBlock'
-import MapChartCountries from '../MapChart/MapChartCountry'
+import MapChartCountries from '../MapChart/MapChartCountry/MapChartCountry'
 import { getScreenWidth } from '../../utils/getScreenWidth'
 
 const HeroBlock = ({
@@ -69,8 +69,8 @@ const HeroBlock = ({
               <MapChartCountries
                 countryCode={countryCode}
                 markerCoordinates={markerCoordinates}
+                interactive={false}
                 zoomLevel={mapZoomLevel}
-                interactive={true}
               />
             </div>
           )}

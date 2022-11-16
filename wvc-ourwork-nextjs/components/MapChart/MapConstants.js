@@ -32,7 +32,7 @@ const COUNTRY_CODES = {
   MRT: 'Mauritania',
   MEX: 'Mexico',
   MNG: 'Mongolia',
-  MMR: 'Mozambique',
+  MOZ: 'Mozambique',
   NPL: 'Nepal',
   NIC: 'Nicaragua',
   NER: 'Niger',
@@ -45,6 +45,7 @@ const COUNTRY_CODES = {
   // SSD: '[x] South Sudan', - missing geojson file for region
   LKA: 'Sri Lanka',
   SDN: 'Sudan',
+  SSD: 'South Sudan',
   SYR: 'Syria Response (Turkey, Jordan, Syria)',
   TZA: 'Tanzania',
   UGA: 'Uganda',
@@ -55,4 +56,7 @@ const COUNTRY_CODES = {
   UKR: 'Ukraine Response (Ukraine, Romania, Moldova)'
 }
 
-export { COUNTRY_CODES }
+const COUNTRY_NAMES = Object.fromEntries(
+  Object.entries(COUNTRY_CODES).map(([key, value]) => [value, key])
+)
+export { COUNTRY_CODES, COUNTRY_NAMES }

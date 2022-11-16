@@ -49,6 +49,10 @@ const Template = (args) => {
 
 export const MapChartBase = Template.bind({})
 MapChartBase.argTypes = {
+  color: {
+    options: ['light', 'dark'],
+    control: { type: 'select' }
+  },
   interactive: {
     table: {
       disable: true
@@ -56,11 +60,16 @@ MapChartBase.argTypes = {
   }
 }
 MapChartBase.args = {
+  color: 'light',
   interactive: true
 }
 
 export const MapChartNonInteractive = Template.bind({})
 MapChartNonInteractive.argTypes = {
+  color: {
+    options: ['light', 'dark'],
+    control: { type: 'select' }
+  },
   interactive: {
     table: {
       disable: true
@@ -68,5 +77,6 @@ MapChartNonInteractive.argTypes = {
   }
 }
 MapChartNonInteractive.args = {
-  interactive: false
+  interactive: false,
+  color: 'light'
 }
