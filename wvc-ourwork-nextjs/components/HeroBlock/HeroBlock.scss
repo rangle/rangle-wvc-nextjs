@@ -1,0 +1,146 @@
+@import '../../styles/lumen-tokens';
+
+.hero-block {
+  display: flex;
+  flex-direction: column;
+
+  &__hero-container {
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+  }
+
+  &__top-container {
+    height: 150px;
+
+    img {
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      height: 250px;
+    }
+
+    @media (min-width: 1024px) {
+      height: unset;
+      max-height: 640px;
+      width: 100%;
+      max-width: 100%;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+      }
+    }
+  }
+
+  &__background-img {
+    background: linear-gradient(
+      to bottom,
+      $orange-lighter 0%,
+      $orange-lighter 25%,
+      $orange-lighter 25%,
+      #febf92 25%,
+      #febf92 100%
+    );
+    padding-bottom: 2rem;
+
+    @media (min-width: 1024px) {
+      position: relative;
+      height: 350px;
+      padding-bottom: 0;
+    }
+
+    img {
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: block;
+        max-height: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__hero-content {
+    background-color: $white;
+    border-radius: 4px 0px 0px 4px;
+    box-shadow: 2px 2px 24px rgba(0, 0, 0, 0.02);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: -3rem 1rem 0;
+    position: relative;
+    z-index: 10;
+
+    @media (min-width: 1024px) {
+      width: 75%;
+      position: absolute;
+      top: -4rem;
+      left: 12.5%;
+      padding: 2.625rem 3.5rem;
+    }
+
+    .btn {
+      align-self: center;
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+    }
+  }
+
+  &__title {
+    @include typographysmallheadingh1;
+
+    @media (min-width: 1024px) {
+      @include typographylargeheadingh1;
+    }
+  }
+
+  &__body {
+    @include typographysmallparagraphbodycopy_regular;
+    margin: 0.5rem 0 1.5rem;
+    // margin-top: 0.5rem;
+
+    @media (min-width: 1024px) {
+      margin-top: 1rem;
+    }
+  }
+
+  &__summary-container {
+    display: relative;
+  }
+
+  &__summary-block {
+    position: static;
+    background: linear-gradient(
+      to bottom,
+      #febf92 0%,
+      #febf92 50%,
+      #febf92 50%,
+      #fcf6f2 50%,
+      #fcf6f2 100%
+    );
+
+    @media (min-width: 1024px) {
+      position: absolute;
+      // top: 5px;
+      margin-top: -70px;
+      width: 100%;
+      background: transparent;
+    }
+  }
+
+  &__children-container {
+    padding: 5rem 1rem;
+    background-color: #fcf6f2;
+    @media (min-width: 1024px) {
+      padding: 10rem 5rem 8rem;
+    }
+  }
+}

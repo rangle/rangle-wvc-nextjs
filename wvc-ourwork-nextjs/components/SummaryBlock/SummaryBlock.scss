@@ -7,10 +7,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
+  margin: 0 1rem;
 
   @media (min-width: 1024px) {
     flex-direction: row;
+    padding: 2.5rem 8rem;
+    margin: 0 4rem;
   }
 
   &__highlight {
@@ -41,6 +44,10 @@
       color: $black;
       line-height: 1.78;
     }
+  }
+
+  &__highlight--reverse {
+    flex-direction: column-reverse;
   }
 
   .summary-block__highlight-title-container {
