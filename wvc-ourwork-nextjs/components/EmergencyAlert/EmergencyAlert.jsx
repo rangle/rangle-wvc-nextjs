@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './EmergencyAlert.scss'
-import { ExclamationMark } from '../../icons/ExclamationMark'
+import ExclamationMark from '../../assets/icons/exclamation.svg'
 
 const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
   const [showAlert, setShowAlert] = useState(true)
@@ -10,7 +10,7 @@ const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
       <div className='emergency-alert'>
         <div className='emergency-alert__content-container'>
           <div className='emergency-alert__icon-container'>
-            <ExclamationMark />
+            <img src={ExclamationMark} alt='Exclamation mark icon' />
           </div>
           <div>
             <h4 className='emergency-alert__title'>{title}</h4>

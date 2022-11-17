@@ -25,6 +25,7 @@ p,
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #000000;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -115,7 +116,7 @@ h6 {
   }
 }
 
-/* commenting out for now to not have dark mode as the default theme */
+/* commenting out for now to not have dark mode as the default theme ** */
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
