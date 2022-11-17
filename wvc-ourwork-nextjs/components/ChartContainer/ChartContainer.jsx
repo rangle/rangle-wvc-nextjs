@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import './ChartContainer.scss'
 import Dropdown from '../Dropdown/Dropdown'
@@ -11,11 +11,12 @@ export const ChartContainer = ({
   footnote,
   controlTitle,
   isDarkMode,
-  chartType = 'line'
+  chartType = 'line',
+  controlOptionsProp
 }) => {
   const [chartToRender, setChartToRender] = useState(chartType)
 
-  const controlOptions = [
+  const controlOptionsSample = [
     {
       title: 'People Reached / Line',
       chartType: 'line'
@@ -33,6 +34,8 @@ export const ChartContainer = ({
       chartType: 'stackedBar'
     }
   ]
+
+  let controlOptions = controlOptionsProp || controlOptionsSample
 
   const chartArgs = {
     colours: ['rgb(231, 96, 12)'],
@@ -79,22 +82,19 @@ export const ChartContainer = ({
     displayLegend: true
   }
 
-  let chartComponent
-  switch (chartToRender) {
-    case 'bar':
-      chartComponent = <BarChart {...chartArgs} />
-      break
-    case 'line':
-      chartComponent = <LineChart {...chartArgs} />
-      break
-    case 'doughnut':
-      chartComponent = <DoughnutChart {...doughnutArgs} />
-      break
-    case 'stackedBar':
-      chartComponent = <StackedBarChart {...stackedBarArgs} />
-      break
-    default:
-      chartComponent = <BarChart {...chartArgs} />
+  const chartComponent = (chartType) => {
+    switch (chartType) {
+      case 'bar':
+        return <BarChart {...chartArgs} />
+      case 'line':
+        return <LineChart {...chartArgs} />
+      case 'doughnut':
+        return <DoughnutChart {...doughnutArgs} />
+      case 'stackedBar':
+        return <StackedBarChart {...stackedBarArgs} />
+      default:
+        chartComponent = <BarChart {...chartArgs} />
+    }
   }
 
   return (
@@ -117,7 +117,9 @@ export const ChartContainer = ({
             </div>
           )}
         </div>
-        <div className='chart-container-chart'>{chartComponent}</div>
+        <div className='chart-container-chart'>
+          {chartComponent(chartToRender)}
+        </div>
       </div>
     </div>
   )
