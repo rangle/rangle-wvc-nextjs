@@ -1,43 +1,70 @@
 @import '../../styles/lumen-tokens.scss';
 
-.chart-container {
-  display: flex;
-  flex-wrap: wrap;
+.chart-control-section-container {
+  background-image: url('../../assets/images/D155.png');
+  padding: 6rem 4rem;
 
-  &-control {
-    background-color: #f6f2ec;
-    width: 50%;
-    padding: 2rem 3rem 2rem 2rem;
+  @media (max-width: 767px) {
+    padding: 4rem 0;
+  }
+
+  .chart-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
 
-    @media (max-width: 600px) {
-      width: 100%;
-    }
+    &-control {
+      background-color: #f6f2ec;
+      width: 50%;
+      padding: 2rem 4rem 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-    &__title {
-      @include typographylargeheadingh2;
-      margin-bottom: 1rem;
-    }
+      @media (max-width: 767px) {
+        width: 100%;
+      }
 
-    &__footnote {
-      @include typographysmallparagraphxsmallcopy_regular;
-      margin-top: 1rem;
-
-      @media (max-width: 600px) {
+      &__title {
+        @include typographylargeheadingh2;
         margin-bottom: 1rem;
+      }
+
+      &__footnote {
+        margin-top: 1rem;
+
+        @media (max-width: 767px) {
+          position: absolute;
+          bottom: 2rem;
+          align-self: center;
+        }
+
+        p {
+          @include typographysmallparagraphxsmallcopy_regular;
+        }
+      }
+    }
+
+    &-chart {
+      width: 50%;
+      height: 65vh;
+      background-color: #f6f2ec;
+      padding: 1rem 2rem 2rem 0.5rem;
+
+      @media (max-width: 767px) {
+        width: 100%;
+        padding: 1rem 2rem 5rem 2rem;
+      }
+
+      @media (max-width: 400px) {
+        height: 80vh;
       }
     }
   }
+}
 
-  &-chart {
-    background-color: #f6f2ec;
-    width: 50%;
-    padding: 1rem 2rem 2rem 0.5rem;
-
-    @media (max-width: 600px) {
-      width: 100%;
-    }
-  }
+label.select-dropdown__label {
+  @include typographylargeheadingh2;
+  margin-bottom: 1rem;
 }

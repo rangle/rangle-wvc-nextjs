@@ -40,11 +40,13 @@ export function LineChart({
   isDarkMode = false,
   title = '',
   ariaLabel = '',
-  displayLegend = false
+  displayLegend = false,
+  maintainAspectRatio = true
 }) {
   const options = {
     responsive: true,
     aspectRatio: aspectRatio,
+    maintainAspectRatio: maintainAspectRatio,
     plugins: {
       legend: {
         display: displayLegend
