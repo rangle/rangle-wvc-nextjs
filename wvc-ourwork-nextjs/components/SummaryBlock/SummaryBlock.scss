@@ -21,7 +21,7 @@
     text-align: center;
 
     &:not(:first-child) {
-      margin-top: 1.5rem;
+      margin-top: $space-xl;
     }
 
     @media (min-width: 1024px) {
@@ -39,7 +39,7 @@
     &--value {
       @include typographysmallheadingh4;
       color: $black;
-      line-height: 2rem;
+      line-height: 1.78;
     }
   }
 
@@ -65,7 +65,7 @@
     }
 
     &:nth-child(n + 3) {
-      margin-top: 1.5rem;
+      margin-top: $space-xl;
     }
   }
 }
