@@ -1,13 +1,22 @@
 import './MediaCard.scss'
 
-const MediaCard = ({ title, body, labels, url, iconSrc, imageSrc, alt }) => {
+const MediaCard = ({
+  ariaLabel,
+  title,
+  body,
+  labels,
+  url,
+  iconSrc,
+  imageSrc,
+  alt
+}) => {
   const labelList = Array.from(labels.values()).join(', ')
 
   return (
     <a
       href={url}
       className='media-card'
-      aria-label={`Link to program page on the topics of ${labelList} with the title ${title}`}
+      aria-label={ariaLabel || `Link to ${title}`}
     >
       <div>
         <div className='media-card__media-container'>

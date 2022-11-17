@@ -10,7 +10,7 @@ const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
       <div className='emergency-alert'>
         <div className='emergency-alert__content-container'>
           <div className='emergency-alert__icon-container'>
-            <img src={ExclamationMark} alt='' />
+            <img src={ExclamationMark} alt='Exclamation mark icon' />
           </div>
           <div>
             <h4 className='emergency-alert__title'>{title}</h4>
