@@ -1,7 +1,7 @@
 import './Tooltip.scss'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import { QuestionMark } from '../../icons/QuestionMark'
+import { QuestionMark } from '../../assets/icons/QuestionMark'
 
 const Tooltip = ({ content }) => {
   return (

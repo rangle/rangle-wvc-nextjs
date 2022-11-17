@@ -19,13 +19,15 @@ export const DoughnutChart = ({
   legendPosition = 'right',
   isDarkMode = false,
   ariaLabel = 'Doughnut Chart',
-  isMobile = false
+  isMobile = false,
+  maintainAspectRatio = true
 }) => {
   const fullTitle = [title, subTitle]
 
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
+    maintainAspectRatio: maintainAspectRatio,
     plugins: {
       legend: {
         display: displayLegend,
@@ -33,7 +35,6 @@ export const DoughnutChart = ({
         labels: {
           boxWidth: 20,
           boxHeight: 20,
-          padding: 30,
           color: isDarkMode ? '#eee' : '#000000'
         }
       },
@@ -45,7 +46,10 @@ export const DoughnutChart = ({
           size: 18
         },
         color: '#000000',
-        padding: 30
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10
+        }
       },
       datalabels: {
         display: false

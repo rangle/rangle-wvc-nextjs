@@ -36,16 +36,18 @@ export function StackedBarChart({
   titlePosition = 'top',
   displayLegend = true,
   legends = [],
-  stackedBar = false,
+  stackedBar = true,
   legendPosition = 'bottom',
   ariaLabel = '',
-  isDarkMode = false
+  isDarkMode = false,
+  maintainAspectRatio = true
 }) {
   const fullTitle = [title, subTitle]
 
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
+    maintainAspectRatio: maintainAspectRatio,
     plugins: {
       legend: {
         display: displayLegend,
@@ -53,7 +55,6 @@ export function StackedBarChart({
         labels: {
           boxWidth: 15,
           boxHeight: 15,
-          padding: 30,
           color: isDarkMode ? '#ffffff' : '#000000'
         }
       },
@@ -65,7 +66,10 @@ export function StackedBarChart({
           size: 18
         },
         color: isDarkMode ? '#ffffff' : '#000000',
-        padding: 30
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10
+        }
       },
       datalabels: {
         display: false

@@ -36,11 +36,13 @@ export function BarChart({
   title = '',
   subTitle = '',
   titlePosition = 'bottom',
-  ariaLabel = ''
+  ariaLabel = '',
+  maintainAspectRatio = true
 }) {
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
+    maintainAspectRatio: maintainAspectRatio,
     plugins: {
       legend: {
         display: false
@@ -51,17 +53,21 @@ export function BarChart({
         position: titlePosition,
         color:
           titlePosition === 'top'
-          // if the title is on the top, just change the darkmode color
-            ? !isDarkMode
+            ? // if the title is on the top, just change the darkmode color
+              !isDarkMode
               ? ''
               : '#ffffff'
-          // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
-            : !isDarkMode
+            : // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
+            !isDarkMode
             ? '#666666'
             : '#cccccc',
         font: {
           size: titlePosition === 'top' ? 18 : 12,
           weight: titlePosition === 'top' ? 'bold' : 'normal'
+        },
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10
         }
       },
       subtitle: {
@@ -70,12 +76,12 @@ export function BarChart({
         position: titlePosition,
         color:
           titlePosition === 'top'
-          // if the subtitle is on the top, just change the darkmode color
-            ? !isDarkMode
+            ? // if the subtitle is on the top, just change the darkmode color
+              !isDarkMode
               ? ''
               : '#cccccc'
-          // if subtitle is on the bottom, this becomes the title, so change colors to match title
-            : !isDarkMode
+            : // if subtitle is on the bottom, this becomes the title, so change colors to match title
+            !isDarkMode
             ? '#333333'
             : '#ffffff',
         font: {
