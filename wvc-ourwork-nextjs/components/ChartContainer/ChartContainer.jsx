@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './ChartContainer.scss'
 import Dropdown from '../Dropdown/Dropdown'
@@ -14,6 +14,7 @@ export const ChartContainer = ({
   chartType = 'line'
 }) => {
   const [chartToRender, setChartToRender] = useState(chartType)
+
   const controlOptions = [
     {
       title: 'People Reached / Line',
@@ -43,7 +44,8 @@ export const ChartContainer = ({
     aspectRatio: 0.9,
     ariaLabel: 'People Reached bar graph',
     titlePosition: 'top',
-    displayLegend: false
+    displayLegend: false,
+    maintainAspectRatio: false
   }
 
   const doughnutArgs = {
@@ -96,26 +98,27 @@ export const ChartContainer = ({
   }
 
   return (
-    <div className='chart-container'>
-      <div className='chart-container-control'>
-        {controlTitle && (
-          <div className='chart-container-control__title'>{controlTitle}</div>
-        )}
-        <Dropdown
-          id='selectId'
-          isDark={isDarkMode}
-          options={controlOptions.map((option) => ({
-            label: option.title,
-            value: option.chartType
-          }))}
-          updateSelection={(e) => setChartToRender(e)}
-          dropdownLabel={controlTitle}
-        />
-        {footnote && (
-          <p className='chart-container-control__footnote'>{footnote}</p>
-        )}
+    <div className='chart-control-section-container'>
+      <div className='chart-container'>
+        <div className='chart-container-control'>
+          <Dropdown
+            id='selectId'
+            isDark={isDarkMode}
+            options={controlOptions.map((option) => ({
+              label: option.title,
+              value: option.chartType
+            }))}
+            updateSelection={(e) => setChartToRender(e)}
+            dropdownLabel={controlTitle}
+          />
+          {footnote && (
+            <div className='chart-container-control__footnote'>
+              <p>{footnote}</p>
+            </div>
+          )}
+        </div>
+        <div className='chart-container-chart'>{chartComponent}</div>
       </div>
-      <div className='chart-container-chart'>{chartComponent}</div>
     </div>
   )
 }

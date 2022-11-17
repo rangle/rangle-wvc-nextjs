@@ -36,11 +36,13 @@ export function BarChart({
   title = '',
   subTitle = '',
   titlePosition = 'bottom',
-  ariaLabel = ''
+  ariaLabel = '',
+  maintainAspectRatio = true
 }) {
   const options: Options = {
     responsive: true,
     aspectRatio: aspectRatio,
+    maintainAspectRatio: maintainAspectRatio,
     plugins: {
       legend: {
         display: false
@@ -62,6 +64,10 @@ export function BarChart({
         font: {
           size: titlePosition === 'top' ? 18 : 12,
           weight: titlePosition === 'top' ? 'bold' : 'normal'
+        },
+        padding: {
+          top: title && titlePosition == 'top' ? 10 : 30,
+          bottom: title && titlePosition == 'top' ? 30 : 10
         }
       },
       subtitle: {

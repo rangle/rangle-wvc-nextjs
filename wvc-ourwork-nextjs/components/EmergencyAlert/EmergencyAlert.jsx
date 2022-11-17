@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './EmergencyAlert.scss'
-import { ExclamationMark } from '../../icons/ExclamationMark'
+import { ExclamationMark } from '../../assets/icons/ExclamationMark'
 
 const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
   const [showAlert, setShowAlert] = useState(true)
