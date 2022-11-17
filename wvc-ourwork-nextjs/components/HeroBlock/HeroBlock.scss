@@ -105,7 +105,6 @@
   &__body {
     @include typographysmallparagraphbodycopy_regular;
     margin: 0.5rem 0 1.5rem;
-    // margin-top: 0.5rem;
 
     @media (min-width: 1024px) {
       margin-top: 1rem;
@@ -129,7 +128,6 @@
 
     @media (min-width: 1024px) {
       position: absolute;
-      // top: 5px;
       margin-top: -70px;
       width: 100%;
       background: transparent;
@@ -139,6 +137,7 @@
   &__children-container {
     padding: 5rem 1rem;
     background-color: #fcf6f2;
+
     @media (min-width: 1024px) {
       padding: 10rem 5rem 8rem;
     }

@@ -89,7 +89,29 @@ Country.args = {
   body: 'World Vision began emergency relief operations in Afghanistan in 2001, to address the urgent needs of children and families affected by natural disasters and decades of conflict. Today, programs have expanded to development sectors such as health, water and sanitation, child protection, education and empowering women to engage in civil and social change.',
   ctaLabel: 'donate',
   ctaUrl: 'https://worldvision.ca',
-  highlights: [],
+  highlights: [
+    {
+      value: '1975',
+      title: 'Partnering Since'
+    },
+    {
+      value: '10',
+      title: 'Programs Supported'
+    },
+    {
+      value: '3,291',
+      title: 'Children Sponsored'
+    },
+    {
+      value: 'Very low developing',
+      title: 'Level of Fragility',
+      tooltip: 'Sample tooltip content'
+    },
+    {
+      value: '115/144',
+      title: 'Gender Equality Rank'
+    }
+  ],
   children: (
     <div>
       <ImpactHighlightGrid impactHighlights={impactHighlights} />
@@ -106,7 +128,41 @@ Program.args = {
   title: "Equality for Girls' Access to Learning (EGAL)",
   ctaLabel: 'donate',
   ctaUrl: 'https://worldvision.ca',
-  highlights: [],
+  highlights: [
+    {
+      value: 'Development',
+      title: 'Program Type'
+    },
+    {
+      value: 'January 2020 - March 2023',
+      title: 'Timing'
+    },
+    {
+      value: 'Democratic Republic of the Congo | Myanmar',
+      title: 'Location'
+    },
+    {
+      value: 'Education | Gender Equality and Social Inclusion',
+      title: 'Areas of focus'
+    },
+    {
+      value: '$432,231.76',
+      title: 'Total Program Cost'
+    },
+    {
+      value: 'World Vision Canada',
+      title: 'Lead Agency'
+    },
+    {
+      value: 'Global Affairs Canada',
+      title: 'Funding Partners'
+    },
+    {
+      value: 'University of Toronto',
+      title: 'Implementing Partners'
+    }
+  ],
+  summaryDirection: 'vertical',
   children: (
     <div>
       <StatisticCardGrid cards={statisticCards} />

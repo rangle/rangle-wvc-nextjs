@@ -17,6 +17,7 @@ const HeroBlock = ({
   page,
   sectorImgAlt,
   sectorImgSrc,
+  summaryDirection = 'horizontal',
   title
 }) => {
   const [imgSrc, setImgSrc] = useState(HeroProgram)
@@ -57,6 +58,7 @@ const HeroBlock = ({
           <SummaryBlock
             highlights={highlights}
             order={page === 'sector' ? 'reverse' : 'title-first'}
+            direction={summaryDirection}
           />
         </div>
         <div className='hero-block__children-container'>{children}</div>
