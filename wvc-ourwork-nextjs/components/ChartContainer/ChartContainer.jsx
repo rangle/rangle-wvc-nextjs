@@ -16,6 +16,11 @@ export const ChartContainer = ({
 }) => {
   const [chartToRender, setChartToRender] = useState(chartType)
 
+  // The below are hardcoded `-Sample` data for now so we can see the charts
+  // The [real] data will be coming from an api, and it will be formatted
+  // in a way that is specific to the chart type. 
+  // We will create this data transform function once we have the api data received
+
   const controlOptionsSample = [
     {
       title: 'People Reached / Line',
@@ -37,7 +42,7 @@ export const ChartContainer = ({
 
   let controlOptions = controlOptionsProp || controlOptionsSample
 
-  const chartArgs = {
+  const chartArgsSample = {
     colours: ['rgb(231, 96, 12)'],
     labels: ['Girls', 'Boys', 'Women', 'Men'],
     data: [48000, 41000, 99000, 20000],
@@ -51,8 +56,8 @@ export const ChartContainer = ({
     maintainAspectRatio: false
   }
 
-  const doughnutArgs = {
-    ...chartArgs,
+  const doughnutArgsSample = {
+    ...chartArgsSample,
     colours: [
       'rgb(153, 153, 153)',
       'rgb(102, 102, 102)',
@@ -63,8 +68,8 @@ export const ChartContainer = ({
     displayLegend: true
   }
 
-  const stackedBarArgs = {
-    ...chartArgs,
+  const stackedBarArgsSample = {
+    ...chartArgsSample,
     colours: [
       'rgb(153, 153, 153)',
       'rgb(102, 102, 102)',
@@ -85,15 +90,15 @@ export const ChartContainer = ({
   const chartComponent = (chartType) => {
     switch (chartType) {
       case 'bar':
-        return <BarChart {...chartArgs} />
+        return <BarChart {...chartArgsSample} />
       case 'line':
-        return <LineChart {...chartArgs} />
+        return <LineChart {...chartArgsSample} />
       case 'doughnut':
-        return <DoughnutChart {...doughnutArgs} />
+        return <DoughnutChart {...doughnutArgsSample} />
       case 'stackedBar':
-        return <StackedBarChart {...stackedBarArgs} />
+        return <StackedBarChart {...stackedBarArgsSample} />
       default:
-        chartComponent = <BarChart {...chartArgs} />
+        chartComponent = <BarChart {...chartArgsSample} />
     }
   }
 

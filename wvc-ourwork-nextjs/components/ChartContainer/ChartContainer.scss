@@ -2,10 +2,10 @@
 
 .chart-control-section-container {
   background-image: url('../../assets/images/D155.png');
-  padding: 6rem 4rem;
+  padding: $size-xxxl 0;
 
-  @media (max-width: 767px) {
-    padding: 4rem 0;
+  @media (min-width: 767px) {
+    padding: 6rem $size-xxxl;
   }
 
   .chart-container {
@@ -16,28 +16,30 @@
 
     &-control {
       background-color: #f6f2ec;
-      width: 50%;
-      padding: 2rem 4rem 2rem 3rem;
+      width: 100%;
+      padding: 2rem $size-xxxl 2rem 3rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
-      @media (max-width: 767px) {
-        width: 100%;
+      @media (min-width: 767px) {
+        width: 50%;
       }
 
       &__title {
         @include typographylargeheadingh2;
-        margin-bottom: 1rem;
+        margin-bottom: $size-m;
       }
 
       &__footnote {
-        margin-top: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        align-self: center;
 
-        @media (max-width: 767px) {
-          position: absolute;
-          bottom: 2rem;
-          align-self: center;
+        @media (min-width: 767px) {
+          padding-top: $size-xxl;
+          align-self: flex-start;
+          position: relative;
         }
 
         p {
@@ -47,24 +49,25 @@
     }
 
     &-chart {
-      width: 50%;
-      height: 65vh;
+      width: 100%;
+      height: 80vh;
       background-color: #f6f2ec;
-      padding: 1rem 2rem 2rem 0.5rem;
+      padding: $size-m 2rem 5rem 2rem;
 
-      @media (max-width: 767px) {
-        width: 100%;
-        padding: 1rem 2rem 5rem 2rem;
+      @media (min-width: 400px) {
+        height: 65vh;
       }
 
-      @media (max-width: 400px) {
-        height: 80vh;
+      @media (min-width: 767px) {
+        width: 50%;
+        padding: $size-m 2rem 2rem 0.5rem;
       }
+
     }
   }
 }
 
 label.select-dropdown__label {
   @include typographylargeheadingh2;
-  margin-bottom: 1rem;
+  margin-bottom: $size-m;
 }
