@@ -48,7 +48,6 @@ const MapChartCountries = ({
       {...props}
       id='countryMap'
       onLoad={() => setIsMapLoaded(true)}
-      color='light'
       ref={mapRef}
     >
       {mapMarkers}
