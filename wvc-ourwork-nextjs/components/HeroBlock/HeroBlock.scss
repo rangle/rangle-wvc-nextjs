@@ -1,0 +1,231 @@
+@import '../../styles/lumen-tokens';
+
+.hero-block {
+  display: flex;
+  flex-direction: column;
+
+  &__hero-container {
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+  }
+
+  &__top-container {
+    height: 9.375rem; // 150px
+
+    img {
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      height: 15.625rem; // 250px
+    }
+
+    @media (min-width: 1024px) {
+      height: unset;
+      max-height: 40rem; // 640px
+      width: 100%;
+      max-width: 100%;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+      }
+    }
+  }
+
+  &__map-container {
+    height: 9.375rem; // 150px
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+
+    @media (min-width: 768px) {
+      height: 15.625rem; // 250px
+    }
+
+    @media (min-width: 1024px) {
+      height: 40rem; // 640px
+    }
+  }
+
+  &__main-content {
+    padding-bottom: 2rem;
+
+    &--sector {
+      background: linear-gradient(
+        to bottom,
+        $orange-lighter 0%,
+        $orange-lighter 33.33%,
+        $orange-lighter 33.33%,
+        #febf92 33.33%,
+        #febf92 100%
+      );
+    }
+
+    &--country {
+      background: linear-gradient(
+        to bottom,
+        $charcoal 0%,
+        $charcoal 75%,
+        $charcoal 75%,
+        $grey-light 33.33%,
+        $grey-light 100%
+      );
+    }
+
+    &--program {
+      background: #fffaf2;
+    }
+
+    @media (min-width: 1024px) {
+      position: relative;
+      height: 21.875rem; // 350px
+      padding-bottom: 0;
+    }
+
+    img {
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: block;
+        max-height: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__hero-content {
+    background-color: $white;
+    border-radius: 4px 0px 0px 4px;
+    box-shadow: 2px 2px 24px rgba(0, 0, 0, 0.02);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: -3rem 1rem 0;
+    position: relative;
+    z-index: 10;
+
+    @media (min-width: 1024px) {
+      width: 75%;
+      position: absolute;
+      top: -4rem;
+      left: 12.5%;
+      padding: 2.625rem 3.5rem;
+    }
+
+    .btn {
+      align-self: center;
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+      margin-top: 1.5rem;
+    }
+  }
+
+  &__title {
+    @include typographysmallheadingh1;
+
+    @media (min-width: 1024px) {
+      @include typographylargeheadingh1;
+    }
+  }
+
+  &__body {
+    @include typographysmallparagraphbodycopy_regular;
+    margin: 0.5rem 0 0;
+
+    @media (min-width: 1024px) {
+      margin-top: 1rem;
+    }
+  }
+
+  &__summary-container {
+    display: relative;
+  }
+
+  &__summary-block {
+    position: static;
+
+    &--country {
+      background: linear-gradient(
+        to bottom,
+        $grey-light 0%,
+        $grey-light 50%,
+        $grey-light 50%,
+        #fcf6f2 50%,
+        #fcf6f2 100%
+      );
+    }
+
+    &--sector {
+      background: linear-gradient(
+        to bottom,
+        #febf92 0%,
+        #febf92 50%,
+        #febf92 50%,
+        #fcf6f2 50%,
+        #fcf6f2 100%
+      );
+    }
+
+    &--program {
+      background: linear-gradient(
+        to bottom,
+        #fffaf2 0%,
+        #fffaf2 50%,
+        #fffaf2 50%,
+        #fcf6f2 50%,
+        #fcf6f2 100%
+      );
+    }
+
+    @media (min-width: 1024px) {
+      position: relative;
+      z-index: 10;
+      margin-top: -70px;
+      width: 100%;
+      background: #fcf6f2;
+
+      &--sector,
+      &--country {
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 50%,
+          transparent 50%,
+          #fcf6f2 50%,
+          #fcf6f2 100%
+        );
+      }
+
+      &--program {
+        margin-top: -150px;
+
+        background: linear-gradient(
+          to bottom,
+          #fffaf2 0%,
+          #fffaf2 33.33%,
+          #fffaf2 33.33%,
+          #fcf6f2 33.33%,
+          #fcf6f2 100%
+        );
+      }
+    }
+  }
+
+  &__children-container {
+    padding: 5rem 1rem;
+    background-color: #fcf6f2;
+
+    @media (min-width: 1024px) {
+      padding: 5rem;
+    }
+  }
+}

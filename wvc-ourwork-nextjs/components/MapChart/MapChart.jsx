@@ -3,15 +3,16 @@ import { Map } from 'react-map-gl'
 import './MapChart.scss'
 
 const MapChartGL = forwardRef(
-  ({ interactive = true, id, children, ...props }, ref) => {
+  ({ interactive = true, id, children, color = 'light', ...props }, ref) => {
     return (
       <>
         <Map
           interactive={interactive}
-          mapStyle='mapbox://styles/mapbox/dark-v10'
+          mapStyle={`mapbox://styles/mapbox/${color}-v10`}
           id={id}
           {...props}
           ref={ref}
+          zoom={props.zoomLevel ? props.zoomLevel : 4}
         >
           {children}
         </Map>
