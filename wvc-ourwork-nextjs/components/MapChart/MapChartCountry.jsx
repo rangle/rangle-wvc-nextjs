@@ -49,6 +49,7 @@ const MapChartCountries = ({
       id='countryMap'
       interactive={true}
       onLoad={() => setIsMapLoaded(true)}
+      color='light'
       ref={mapRef}
     >
       {mapMarkers}
@@ -60,5 +61,5 @@ const MapChartCountries = ({
     </MapChart>
   )
 }
-MapChartCountries.displayName = "MapChartCountries"
+MapChartCountries.displayName = 'MapChartCountries'
 export default MapChartCountries

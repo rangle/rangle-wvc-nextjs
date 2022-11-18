@@ -112,6 +112,7 @@ Country.args = {
       title: 'Gender Equality Rank'
     }
   ],
+  countryCode: 'AFG',
   children: (
     <div>
       <ImpactHighlightGrid impactHighlights={impactHighlights} />

@@ -40,16 +40,46 @@
     }
   }
 
-  &__background-img {
-    background: linear-gradient(
-      to bottom,
-      $orange-lighter 0%,
-      $orange-lighter 25%,
-      $orange-lighter 25%,
-      #febf92 25%,
-      #febf92 100%
-    );
+  &__map-container {
+    height: 150px;
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+
+    @media (min-width: 768px) {
+      height: 250px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 640px;
+    }
+  }
+
+  &__main-content {
     padding-bottom: 2rem;
+
+    &--sector {
+      background: linear-gradient(
+        to bottom,
+        $orange-lighter 0%,
+        $orange-lighter 33.33%,
+        $orange-lighter 33.33%,
+        #febf92 33.33%,
+        #febf92 100%
+      );
+    }
+
+    &--country {
+      background: linear-gradient(
+        to bottom,
+        $charcoal 0%,
+        $charcoal 75%,
+        $charcoal 75%,
+        $grey-light 33.33%,
+        $grey-light 100%
+      );
+    }
 
     @media (min-width: 1024px) {
       position: relative;
@@ -117,14 +147,28 @@
 
   &__summary-block {
     position: static;
-    background: linear-gradient(
-      to bottom,
-      #febf92 0%,
-      #febf92 50%,
-      #febf92 50%,
-      #fcf6f2 50%,
-      #fcf6f2 100%
-    );
+
+    &--country {
+      background: linear-gradient(
+        to bottom,
+        $grey-light 0%,
+        $grey-light 50%,
+        $grey-light 50%,
+        #fcf6f2 50%,
+        #fcf6f2 100%
+      );
+    }
+
+    &--sector {
+      background: linear-gradient(
+        to bottom,
+        #febf92 0%,
+        #febf92 50%,
+        #febf92 50%,
+        #fcf6f2 50%,
+        #fcf6f2 100%
+      );
+    }
 
     @media (min-width: 1024px) {
       position: absolute;
