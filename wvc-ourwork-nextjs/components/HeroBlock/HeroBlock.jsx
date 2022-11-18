@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import './HeroBlock.scss'
 
 import HeroCountry from '../../assets/HeroCountry.png'
@@ -17,6 +17,7 @@ const HeroBlock = ({
   ctaLabel,
   ctaUrl,
   highlights,
+  markerCoordinates,
   page,
   sectorImgAlt,
   sectorImgSrc,
@@ -63,6 +64,17 @@ const HeroBlock = ({
               <MapChartCountries
                 countryCode={countryCode}
                 zoomLevel={mapZoomLevel}
+                interactive={false}
+              />
+            </div>
+          )}
+          {page === 'program' && (
+            <div className='hero-block__map-container'>
+              <MapChartCountries
+                countryCode={countryCode}
+                markerCoordinates={markerCoordinates}
+                zoomLevel={mapZoomLevel}
+                interactive={false}
               />
             </div>
           )}

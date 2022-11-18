@@ -164,6 +164,7 @@ Program.args = {
     }
   ],
   summaryDirection: 'vertical',
+  markerCoordinates: [[15.307045, -4.322447]],
   children: (
     <div>
       <StatisticCardGrid cards={statisticCards} />

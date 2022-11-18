@@ -47,7 +47,6 @@ const MapChartCountries = ({
     <MapChart
       {...props}
       id='countryMap'
-      interactive={true}
       onLoad={() => setIsMapLoaded(true)}
       color='light'
       ref={mapRef}

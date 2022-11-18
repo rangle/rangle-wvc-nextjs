@@ -67,7 +67,7 @@
 
   .summary-block__highlight {
     @media (min-width: 1024px) {
-      width: 50%;
+      width: calc(50% - 1rem);
       align-items: flex-start;
       text-align: left;
     }

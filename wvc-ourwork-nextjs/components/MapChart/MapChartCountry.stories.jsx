@@ -15,6 +15,8 @@ const Template = (args) => {
     setMarkerCoordinates(() => generateRandomCoordinates(allData, countryCode))
   })
 
+  console.log({ markerCoordinates })
+
   return (
     <div
       style={{
