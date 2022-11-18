@@ -74,7 +74,7 @@ const HeroBlock = ({
                 countryCode={countryCode}
                 markerCoordinates={markerCoordinates}
                 zoomLevel={mapZoomLevel}
-                interactive={false}
+                interactive={true}
               />
             </div>
           )}
