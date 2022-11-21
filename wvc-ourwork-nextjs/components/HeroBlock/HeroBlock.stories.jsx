@@ -8,7 +8,10 @@ import StatisticCardGrid, {
 
 export default {
   title: 'Example/HeroBlock',
-  component: HeroBlock
+  component: HeroBlock,
+  parameters: {
+    layout: 'fullscreen'
+  }
 }
 
 const Template = (args) => <HeroBlock {...args} />
