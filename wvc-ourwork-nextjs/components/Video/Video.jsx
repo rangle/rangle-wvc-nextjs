@@ -1,26 +1,7 @@
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
-import PlayButton from '../../assets/icons/play.svg'
 import './Video.scss'
 
-const ControlIcons = ({ backgroundImage, playVideo, playing }) => {
-  return (
-    <div
-      className={`${
-        playing ? 'video__controls video__controls--active' : 'video__controls'
-      }`}
-    >
-      <button
-        className='video__controls-button'
-        aria-label='Play video'
-        onClick={playVideo}
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <img className='video__controls-play-icon' src={PlayButton} />
-      </button>
-    </div>
-  )
-}
 const Video = ({ backgroundImage, src }) => {
   const [playerstate, setPlayerState] = useState({
     playing: false
@@ -56,7 +37,7 @@ const Video = ({ backgroundImage, src }) => {
           onClick={playVideo}
           style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-          <img className='video__controls-play-icon' src={PlayButton} />
+          <img className='video__controls-play-icon' src='./play.svg' />
         </button>
       </div>
     </div>
