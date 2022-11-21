@@ -1,0 +1,59 @@
+@import '../../styles/lumen-tokens';
+
+.media-block {
+  background-color: $charcoal;
+  padding-bottom: 3.5rem;
+  padding-top: 3.5rem;
+  color: $white;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1.5rem;
+  }
+
+  &__content {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-bottom: 2rem;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      text-align: left;
+      padding-bottom: 3.5rem;
+    }
+  }
+
+  &__title {
+    @include typographysmallheadingh2;
+    padding-bottom: $space-xxxl;
+  }
+
+  &__body {
+    @include typographysmallparagraphintro_regular;
+    position: relative;
+    padding-bottom: 1.5rem;
+
+    @media (min-width: 768px) {
+      padding-top: 1.5rem;
+    }
+
+    &:before {
+      content: '';
+      width: 80px;
+      height: 8px;
+      background-color: $orange;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media (min-width: 768px) {
+        top: -8px;
+        width: 120px;
+        left: 0;
+        transform: translateX(0);
+      }
+    }
+  }
+}
