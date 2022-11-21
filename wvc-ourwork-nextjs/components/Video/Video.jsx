@@ -3,13 +3,13 @@ import ReactPlayer from 'react-player/lazy'
 import styles from './Video.module.scss'
 
 const Video = ({ backgroundImage, src }) => {
-  const [playerstate, setPlayerState] = useState({
+  const [playerState, setPlayerState] = useState({
     playing: false
   })
 
-  const { playing } = playerstate
+  const { playing } = playerState
   const playVideo = () => {
-    setPlayerState({ ...playerstate, playing: true })
+    setPlayerState({ ...playerState, playing: true })
   }
 
   return (
@@ -40,6 +40,7 @@ const Video = ({ backgroundImage, src }) => {
           <img
             className={styles['video__controls-play-icon']}
             src='./play.svg'
+            alt=''
           />
         </button>
       </div>
