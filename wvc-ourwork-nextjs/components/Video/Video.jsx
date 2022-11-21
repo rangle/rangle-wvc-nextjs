@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
-import './Video.scss'
+import styles from './Video.module.scss'
 
 const Video = ({ backgroundImage, src }) => {
   const [playerstate, setPlayerState] = useState({
@@ -13,7 +13,7 @@ const Video = ({ backgroundImage, src }) => {
   }
 
   return (
-    <div className='video'>
+    <div className={styles['video']}>
       <ReactPlayer
         controls={true}
         height='100%'
@@ -21,23 +21,26 @@ const Video = ({ backgroundImage, src }) => {
         playing={playing}
         url={src}
         width='100%'
-        className='react-player'
+        className={styles['react-player']}
       />
       {/* PLAY BUTTON & BACKGROUND */}
       <div
-        className={`${
+        className={
           playing
-            ? 'video__controls video__controls--active'
-            : 'video__controls'
-        }`}
+            ? styles['video__controls--active']
+            : styles['video__controls']
+        }
       >
         <button
-          className='video__controls-button'
+          className={styles['video__controls-button']}
           aria-label='Play video'
           onClick={playVideo}
           style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-          <img className='video__controls-play-icon' src='./play.svg' />
+          <img
+            className={styles['video__controls-play-icon']}
+            src='./play.svg'
+          />
         </button>
       </div>
     </div>
