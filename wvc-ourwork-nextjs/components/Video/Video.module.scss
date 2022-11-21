@@ -1,0 +1,64 @@
+@import '../../styles/lumen-tokens';
+
+.react-player {
+  padding-top: 56.25%; // Percentage ratio for 16:9
+  position: relative;
+
+  > div,
+  > video {
+    position: absolute; // To enable responsive/scaling
+    top: 0;
+    left: 0;
+  }
+}
+
+.video {
+  position: relative;
+  width: auto;
+  height: auto;
+
+  &__controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+
+    &--active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    button {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      width: 100%;
+
+      &:hover .video__controls-play-icon {
+        transition: 0.5s ease-out;
+        transform: scale(1.2);
+      }
+    }
+
+    &-play-icon {
+      transition: 0.5s ease-out;
+      z-index: 1;
+    }
+  }
+}
