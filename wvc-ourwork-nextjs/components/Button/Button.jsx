@@ -1,10 +1,10 @@
-import './Button.scss'
+import styles from './Button.module.scss'
 
 const Button = ({ label, disabled = false, url }) => {
   if (url) {
     return (
       <a
-        className={`btn ${disabled ? 'btn-disabled' : 'btn-primary'}`}
+        className={`${styles['btn']} ${disabled ? styles['btn-disabled'] : styles['btn-primary']}`}
         tabIndex={disabled ? -1 : 0}
         href={url}
       >
@@ -15,7 +15,7 @@ const Button = ({ label, disabled = false, url }) => {
 
   return (
     <button
-      className={`btn ${disabled ? 'btn-disabled' : 'btn-primary'}`}
+      className={`${styles['btn']} ${disabled ? styles['btn-disabled'] : styles['btn-primary']}`}
       tabIndex={disabled ? -1 : 0}
     >
       {label}

@@ -2,7 +2,7 @@ import React from 'react'
 import { useTab, useTabList, useTabPanel } from 'react-aria'
 import { useTabListState } from 'react-stately'
 
-import './Tabs.scss'
+import styles from './Tabs.module.scss'
 
 function Tabs(props) {
   props = { keyboardActivation: 'manual', ...props }
@@ -12,8 +12,8 @@ function Tabs(props) {
 
   return (
     <div
-      className={`tabs-container tabs-container--${props.orientation || ''} ${
-        props.isDarkMode ? 'tabs-container--dark' : ''
+      className={`${styles['tabs-container']} ${styles[`tabs-container--${props.orientation || ''}`]} ${
+        props.isDarkMode ? styles['tabs-container--dark'] : ''
       }`}
     >
       <div {...tabListProps} ref={ref}>
@@ -46,7 +46,7 @@ function TabPanel({ state, ...props }) {
   let ref = React.useRef()
   let { tabPanelProps } = useTabPanel(props, state, ref)
   return (
-    <div {...tabPanelProps} ref={ref} className='tab-panel-container'>
+    <div {...tabPanelProps} ref={ref} className={styles['tab-panel-container']}>
       {state.selectedItem?.props.children}
     </div>
   )

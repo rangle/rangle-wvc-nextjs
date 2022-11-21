@@ -5,7 +5,6 @@ import ImpactHighlightGrid from '../ImpactHighlightGrid/ImpactHighlightGrid'
 import StatisticCardGrid, {
   StatisticCard
 } from '../StatisticCardGrid/StatisticCardGrid'
-import SectorHeaderSample from '../../assets/SectorHeaderSample.png'
 
 export default {
   title: 'Example/HeroBlock',
@@ -53,7 +52,7 @@ const statisticCards = [
 export const Sector = Template.bind({})
 Sector.args = {
   page: 'sector',
-  sectorImgSrc: SectorHeaderSample,
+  sectorImgSrc: '/SectorHeaderSample.png',
   title: 'Health',
   body: 'World Vision began emergency relief operations in Afghanistan in 2001, to address the urgent needs of children and families affected by natural disasters and decades of conflict. Today, programs have expanded to development sectors such as health, water and sanitation, child protection, education and empowering women to engage in civil and social change.',
   ctaLabel: 'donate',

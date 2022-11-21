@@ -1,29 +1,30 @@
 import ShowMoreText from 'react-show-more-text'
-import './ExpandableTextBlock.scss'
+import styles from './ExpandableTextBlock.module.scss'
 
 const ExpandableTextBlock = ({
   body,
   footnote,
+  // TODO: need to be translated
   showLessText = 'Show less',
   showMoreText = 'Show more',
   title
 }) => {
   return (
-    <div className='expandable-text-block'>
-      {title && <h5 className='expandable-text-block__title'>{title}</h5>}
+    <div className={styles['expandable-text-block']}>
+      {title && <h5 className={styles['expandable-text-block__title']}>{title}</h5>}
       <ShowMoreText
         lines={2}
         more={
-          <div className='expandable-text-block__button'>{showMoreText}</div>
+          <button tabIndex={1} className={styles['expandable-text-block__button']}>{showMoreText}</button>
         }
         less={
-          <div className='expandable-text-block__button'>{showLessText}</div>
+          <button tabIndex={1} className={styles['expandable-text-block__button']}>{showLessText}</button>
         }
-        className='expandable-text-block__body expandable-text-block__body--closed'
+        className={`${styles['expandable-text-block__body']} ${styles['expandable-text-block__body--closed']}`}
       >
-        <p className='expandable-text-block__body'>{body}</p>
+        <p className={styles['expandable-text-block__body']}>{body}</p>
         {footnote && (
-          <p className='expandable-text-block__footnote'>{footnote}</p>
+          <p className={styles['expandable-text-block__footnote']}>{footnote}</p>
         )}
       </ShowMoreText>
     </div>

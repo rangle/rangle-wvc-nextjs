@@ -1,7 +1,6 @@
 import React from 'react'
 
 import MediaCard from './MediaCard'
-import iconFile from '../../assets/icons/conference.svg'
 
 export default {
   title: 'Example/MediaCard',
@@ -14,7 +13,7 @@ const image = {
 }
 
 const icon = {
-  src: iconFile,
+  src: '/conference.svg',
   alt: 'My icon alt text.'
 }
 

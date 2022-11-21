@@ -2,6 +2,9 @@
 
 .emergency-alert {
   background: #3c6f99;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 
   &__content-container {
     margin: 0 auto;

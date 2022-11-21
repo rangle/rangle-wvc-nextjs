@@ -1,4 +1,4 @@
-import './MediaCard.scss'
+import styles from './MediaCard.module.scss'
 
 const MediaCard = ({
   ariaLabel,
@@ -15,26 +15,26 @@ const MediaCard = ({
   return (
     <a
       href={url}
-      className='media-card'
+      className={styles['media-card']}
       aria-label={ariaLabel || `Link to ${title}`}
     >
       <div>
-        <div className='media-card__media-container'>
+        <div className={styles['media-card__media-container']}>
           {iconSrc && (
-            <div className='media-card__icon-container'>
-              <img className='media-card__icon' src={iconSrc} alt={alt} />
+            <div className={styles['media-card__icon-container']}>
+              <img className={styles['media-card__icon']} src={iconSrc} alt={alt} />
             </div>
           )}
           {imageSrc && (
-            <div className='media-card__image-container'>
-              <img className='media-card__image' src={imageSrc} alt={alt} />
+            <div className={styles['media-card__image-container']}>
+              <img className={styles['media-card__image']} src={imageSrc} alt={alt} />
             </div>
           )}
         </div>
-        <div className='media-card__content'>
-          <h5 className='media-card__title truncate'>{title}</h5>
-          <p className='media-card__body truncate'>{body}</p>
-          <p className='media-card__labels truncate'>{labelList}</p>
+        <div className={styles['media-card__content']}>
+          <h5 className={`${styles['media-card__title']} ${styles['truncate']}`}>{title}</h5>
+          <p className={`${styles['media-card__body']} ${styles['truncate']}`}>{body}</p>
+          <p className={`${styles['media-card__labels']} ${styles['truncate']}`}>{labelList}</p>
         </div>
       </div>
     </a>

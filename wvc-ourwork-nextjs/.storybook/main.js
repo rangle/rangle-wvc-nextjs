@@ -1,6 +1,7 @@
-const { config } = require("@storybook/addon-actions");
+const { config } = require('@storybook/addon-actions')
 
 module.exports = {
+  staticDirs: ['../public'],
   stories: [
     '../stories/**/*.stories.mdx',
     '../components/**/*.stories.@(js|jsx|ts|tsx)'
@@ -18,7 +19,6 @@ module.exports = {
   },
   env: (config) => ({
     ...config,
-    MapboxAccessToken: 'pk.eyJ1IjoiZS1zY2h1bHR6IiwiYSI6ImNsYWswOXk4MDAwemszb3Iwd25qeDk1NjUifQ.dt716pE63lESHEgKz3_MZA'
+    MapboxAccessToken: process.env.MAPBOX_TOKEN
   })
-
 }

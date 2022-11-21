@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './AccordionItem.scss'
+import styles from './AccordionItem.module.scss'
 
 const Chevron = () => {
   return (
@@ -23,12 +23,12 @@ const AccordionItem = ({ children, isDarkMode = false, title }) => {
 
   return (
     <div
-      className={`accordion-item-container ${
-        isDarkMode ? 'accordion-item-container--dark' : ''
-      } ${isOpen ? 'accordion-item-container--open' : ''}`}
+      className={`${styles['accordion-item-container']} ${
+        isDarkMode ? styles['accordion-item-container--dark'] : ''
+      } ${isOpen ? styles['accordion-item-container--open'] : ''}`}
     >
       <button
-        className='accordion-title-container'
+        className={styles['accordion-title-container']}
         onClick={() => setIsOpen(!isOpen)}
       >
         <h5>{title}</h5>
@@ -36,7 +36,7 @@ const AccordionItem = ({ children, isDarkMode = false, title }) => {
       </button>
       {/* TODO: Extend to support RTE when CMS is decided */}
       {isOpen && (
-        <div className='accordion-item-content-container'>{children}</div>
+        <div className={styles['accordion-item-content-container']}>{children}</div>
       )}
     </div>
   )

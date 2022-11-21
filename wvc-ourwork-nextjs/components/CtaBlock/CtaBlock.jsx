@@ -1,4 +1,4 @@
-import './CtaBlock.scss'
+import styles from './CtaBlock.module.scss'
 import Button from '../Button/Button'
 
 const CtaContainer = ({
@@ -12,22 +12,22 @@ const CtaContainer = ({
 }) => {
   return (
     <>
-      {showTitleOutside && <h2 className='cta-block-title'>{title}</h2>}
+      {showTitleOutside && <h2 className={styles['cta-block-title']}>{title}</h2>}
       <div
-        className={`cta-block-body-container ${
-          !showBody ? 'cta-block-body-container--title' : ''
+        className={`${styles['cta-block-body-container']} ${
+          !showBody ? styles['cta-block-body-container--title'] : ''
         }`}
       >
         {showTitleInside && (
           <h2
-            className={`cta-block-title cta-block-title--fw ${
-              showBody ? 'cta-block-title--mb' : ''
+            className={`${styles['cta-block-title cta-block-title--fw']} ${
+              showBody ? styles['cta-block-title--mb'] : ''
             }`}
           >
             {title}
           </h2>
         )}
-        {showBody && <p className='cta-block-body'>{body}</p>}
+        {showBody && <p className={styles['cta-block-body']}>{body}</p>}
         <Button label={buttonLabel} url={buttonUrl} />
       </div>
     </>
@@ -43,10 +43,10 @@ const CtaBlock = ({
   title
 }) => {
   return (
-    <div className='cta-block'>
+    <div className={styles['cta-block']}>
       <div
-        className={`cta-block-container--content ${
-          !body ? 'cta-block-container--content-title-only' : ''
+        className={`${styles['cta-block-container--content']} ${
+          !body ? styles['cta-block-container--content-title-only'] : ''
         }`}
       >
         <CtaContainer
@@ -61,8 +61,8 @@ const CtaBlock = ({
       </div>
       {imageUrl && (
         <div
-          className={`cta-block-container--image ${
-            !body ? 'cta-block-container--image-title-only' : ''
+          className={`${styles['cta-block-container--image']} ${
+            !body ? styles['cta-block-container--image-title-only'] : ''
           }`}
         >
           <img src={imageUrl} alt={imageUrlAlt} />

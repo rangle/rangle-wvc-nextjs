@@ -5,6 +5,7 @@
   flex-direction: column;
 
   [role='tab'] {
+    justify-content: center;
     box-sizing: border-box;
 
     /* Auto layout */
@@ -36,11 +37,10 @@
 
   [role='tablist'] {
     display: flex;
+    justify-content: center;
   }
 
   [role='tablist'][aria-orientation='horizontal'] [role='tab'] {
-    border-bottom: 0.063rem solid $grey-lighter;
-
     &:focus {
       border-bottom: 0.125rem solid $blue-light;
     }
@@ -64,7 +64,6 @@
   }
 
   .tab-panel-container {
-    border-top: 0.063rem solid $grey-lighter;
     margin-top: -0.063rem;
     @include typographysmallkarlaregular;
 

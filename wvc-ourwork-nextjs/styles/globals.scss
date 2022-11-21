@@ -1,0 +1,115 @@
+/* Global styles */
+@import './lumen-tokens';
+@import 'swiper/scss';
+@import 'tippy.js/dist/tippy.css';
+@import 'tippy.js/dist/border.css';
+
+html,
+body {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+h2 {
+  @include typographylargeheadingh2;
+}
+
+h5 {
+  @include typographylargeheadingh5;
+}
+
+.visually-hidden {
+  position: absolute;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Global Overrides */
+.swiper {
+  .swiper-slide {
+    margin-right: 1.5rem;
+    width: auto;
+    height: auto;
+  
+    @media (max-width: 767px) {
+      margin-right: 0.5rem;
+      width: calc(100% - 2rem);
+      position: relative;
+      left: 1rem;
+    }
+  }
+}
+
+.tippy-box[data-theme~='info-light'] {
+  @include typographysmallparagraphsmallcopy_regular;
+  background-color: $white;
+  background-clip: padding-box;
+  border: 2px solid $blue-light;
+  color: $charcoal;
+  box-shadow: 0 0 4px 1.3px rgba(0, 153, 204, 0.3);
+  line-height: 1.5rem;
+  color: $charcoal;
+}
+
+.tippy-box[data-theme~='info-light'][data-placement^='top']
+  > .tippy-arrow::before {
+  border-top-color: $white;
+}
+.tippy-box[data-theme~='info-light'][data-placement^='bottom']
+  > .tippy-arrow::before {
+  border-bottom-color: $white;
+}
+.tippy-box[data-theme~='info-light'][data-placement^='left']
+  > .tippy-arrow::before {
+  border-left-color: $white;
+}
+.tippy-box[data-theme~='info-light'][data-placement^='right']
+  > .tippy-arrow::before {
+  border-right-color: $white;
+}
+
+/* commenting out for now to not have dark mode as the default theme ** */
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+} */

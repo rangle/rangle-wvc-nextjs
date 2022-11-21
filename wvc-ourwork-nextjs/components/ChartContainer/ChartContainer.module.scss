@@ -1,7 +1,6 @@
 @import '../../styles/lumen-tokens.scss';
 
 .chart-control-section-container {
-  background-image: url('../../assets/images/D155.png');
   padding: $size-xxxl 0;
 
   @media (min-width: 767px) {
@@ -67,7 +66,6 @@
   }
 }
 
-label.select-dropdown__label {
-  @include typographylargeheadingh2;
+.chart-title {
   margin-bottom: $size-m;
 }
