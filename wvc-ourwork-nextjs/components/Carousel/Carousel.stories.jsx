@@ -1,7 +1,5 @@
 import React from 'react'
 
-import iconFile from '../../assets/icons/conference.svg'
-
 import Carousel from './Carousel'
 import MediaCard from '../MediaCard/MediaCard'
 import { StatisticCard } from '../StatisticCardGrid/StatisticCardGrid'
@@ -12,7 +10,7 @@ export default {
 }
 
 const icon = {
-  src: iconFile,
+  src: '/conference.svg',
   alt: 'My icon alt text.'
 }
 

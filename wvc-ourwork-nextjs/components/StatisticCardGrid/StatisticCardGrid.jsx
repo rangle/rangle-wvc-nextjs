@@ -1,15 +1,15 @@
-import './StatisticCardGrid.scss'
+import styles from './StatisticCardGrid.module.scss'
 import Carousel from '../Carousel/Carousel'
 import { getScreenWidth } from '../../utils/getScreenWidth'
 import { useEffect, useState } from 'react'
 
 export const StatisticCard = ({ body, statistic, title }) => {
   return (
-    <div className='statistic-card'>
-      <div className='statistic-card__content'>
-        <h6 className='statistic-card__title'>{title}</h6>
-        <p className='statistic-card__body'>
-          <span className='statistic-card__statistic'>{statistic}</span>
+    <div className={styles['statistic-card']}>
+      <div className={styles['statistic-card__content']}>
+        <h6 className={styles['statistic-card__title']}>{title}</h6>
+        <p className={styles['statistic-card__body']}>
+          <span className={styles['statistic-card__statistic']}>{statistic}</span>
           {body}
         </p>
       </div>
@@ -41,7 +41,7 @@ const StatisticCardGrid = ({ cards }) => {
   return isMobile ? (
     <Carousel cards={cards} />
   ) : (
-    <div className={`statistic-card-grid ${modifier}`}>{[cards]}</div>
+    <div className={`${styles['statistic-card-grid']} ${styles[modifier]}`}>{[cards]}</div>
   )
 }
 

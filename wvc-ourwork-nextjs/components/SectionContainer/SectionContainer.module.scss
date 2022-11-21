@@ -18,6 +18,13 @@
     padding-left: $space-m;
     padding-bottom: $space-m;
     padding-right: $space-m;
+
+    &--dark {
+      background-color: $charcoal;
+      padding-left: $space-m;
+      padding-bottom: $space-m;
+      padding-right: $space-m;
+    }
   }
 
   &__heading-layout-wrapper {
@@ -55,5 +62,9 @@
 
   &__content {
     @include typographylargeparagraphbodycopy_regular;
+
+    .section-container__content-wrapper--dark & {
+      color: $white;
+    }
   }
 }

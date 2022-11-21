@@ -1,9 +1,9 @@
 import AccordionItem from '../AccordionItem/AccordionItem'
-import './AccordionGroup.scss'
+import styles from './AccordionGroup.module.scss'
 
 const AccordionGroup = ({ items, isDarkMode = false }) => {
   return (
-    <div className={isDarkMode ? 'accordion-group--dark' : ''}>
+    <div className={isDarkMode ? styles['accordion-group--dark'] : ''}>
       {items &&
         items.length &&
         items.map((item) => {

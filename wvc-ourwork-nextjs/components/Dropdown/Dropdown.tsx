@@ -1,5 +1,5 @@
 import React from 'react'
-import './Dropdown.scss'
+import styles from './Dropdown.module.scss'
 
 interface Option {
   value: string
@@ -12,6 +12,7 @@ export interface DropdownProps {
   isDark: boolean
   options: Option[]
   updateSelection: (value: string) => void
+  hideLabel?: boolean;
 }
 
 const Dropdown = ({
@@ -19,18 +20,19 @@ const Dropdown = ({
   id,
   isDark,
   options,
-  updateSelection
+  updateSelection,
+  hideLabel
 }: DropdownProps) => {
   return (
-    <div className={`select-dropdown${isDark ? '--darkTheme' : ''}`}>
+    <div className={styles[`select-dropdown${isDark ? '--darkTheme' : ''}`]}>
       <div>
-        <label htmlFor={id} className='select-dropdown__label'>
+        <label htmlFor={id} className={`${styles['select-dropdown__label']} ${hideLabel ? 'visually-hidden' : ''}`}>
           {dropdownLabel}
         </label>
       </div>
       <div>
         <select
-          className='select-dropdown__select'
+          className={styles['select-dropdown__select']}
           id={id}
           onChange={(e) => {
             return updateSelection(e.target.value)
@@ -38,7 +40,7 @@ const Dropdown = ({
         >
           {options.map((option) => {
             return (
-              <option className='select-dropdown__option' value={option.value} key={option.label}>
+              <option className={styles['select-dropdown__option']} value={option.value} key={option.label}>
                 {option.label}
               </option>
             )

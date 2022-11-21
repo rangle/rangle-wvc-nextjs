@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import './ChartContainer.scss'
+import styles from './ChartContainer.module.scss'
 import Dropdown from '../Dropdown/Dropdown'
 import { BarChart } from '../Charts/BarChart/BarChart'
 import { LineChart } from '../Charts/LineChart/LineChart'
@@ -103,12 +103,14 @@ export const ChartContainer = ({
   }
 
   return (
-    <div className='chart-control-section-container'>
-      <div className='chart-container'>
-        <div className='chart-container-control'>
+    <div className={styles['chart-control-section-container']} style={{backgroundImage: `url('/D155.png')`}}>
+      <div className={styles['chart-container']}>
+        <div className={styles['chart-container-control']}>
+          <h2 className={styles['chart-title']}>{controlTitle}</h2>
           <Dropdown
             id='selectId'
             isDark={isDarkMode}
+            hideLabel
             options={controlOptions.map((option) => ({
               label: option.title,
               value: option.chartType
@@ -117,12 +119,12 @@ export const ChartContainer = ({
             dropdownLabel={controlTitle}
           />
           {footnote && (
-            <div className='chart-container-control__footnote'>
+            <div className={styles['chart-container-control__footnote']}>
               <p>{footnote}</p>
             </div>
           )}
         </div>
-        <div className='chart-container-chart'>
+        <div className={styles['chart-container-chart']}>
           {chartComponent(chartToRender)}
         </div>
       </div>
