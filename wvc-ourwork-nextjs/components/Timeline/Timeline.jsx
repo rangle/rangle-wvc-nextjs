@@ -38,7 +38,7 @@ export const Timeline = ({ data, isMobile }) => {
       >
         <div className='chrono-icons'>
           {data.map((ea) => (
-            <img key={ea.title} src={filledCircleDot} alt='circle-dot' />
+            <img key={ea.title} src={filledCircleDot} alt={`Marker for ${ea.title}`} />
           ))}
         </div>
       </Chrono>
