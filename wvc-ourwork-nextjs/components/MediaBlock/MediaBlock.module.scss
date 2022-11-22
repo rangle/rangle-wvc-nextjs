@@ -17,9 +17,11 @@
     padding-bottom: $space-xxxl;
     padding-left: $space-xl;
     text-align: center;
+    padding-right: 1.5rem;
 
     @media (min-width: 768px) {
       padding-left: 3rem;
+      padding-right: 0;
       padding-bottom: 0;
       text-align: left;
       width: 50%;
