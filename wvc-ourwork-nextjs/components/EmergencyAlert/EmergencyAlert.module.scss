@@ -1,20 +1,30 @@
 @import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
 
 .emergency-alert {
   background: #3c6f99;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: $z-index-sticky;
 
   &__content-container {
-    margin: 0 auto;
-    padding: $space-xl;
+    margin: 0 $page-margin-mobile;
+    padding: $space-xl 0;
 
     @media (min-width: 768px) {
       display: flex;
       gap: $space-xxxl;
       justify-content: center;
-      max-width: calc(768px + 48px); // max-width including padding
+      margin: 0 $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 0 auto;
     }
   }
 

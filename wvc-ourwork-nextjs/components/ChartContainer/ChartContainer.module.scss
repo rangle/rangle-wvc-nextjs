@@ -1,10 +1,19 @@
 @import '../../styles/lumen-tokens.scss';
+@import '../../styles/spacing';
 
 .chart-control-section-container {
-  padding: $size-xxxl 0;
+  padding: $section-margin-mobile 0;
 
   @media (min-width: 767px) {
-    padding: 6rem $size-xxxl;
+    padding: $section-margin-mobile $page-margin-tablet;
+  }
+
+  @media (min-width: 1024px) {
+    padding: $section-margin-desktop calc($column-desktop + $page-margin-desktop);
+  }
+
+  @media (min-width: 1366px) {
+    padding: $section-margin-desktop 0;
   }
 
   .chart-container {
@@ -12,6 +21,11 @@
     flex-wrap: wrap;
     position: relative;
     width: 100%;
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 10);
+      margin: 0 auto;
+    }
 
     &-control {
       background-color: #f6f2ec;

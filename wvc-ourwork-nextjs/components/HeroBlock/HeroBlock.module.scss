@@ -1,4 +1,5 @@
 @import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
 
 .hero-block {
   display: flex;
@@ -109,16 +110,29 @@
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
-    margin: -3rem 1rem 0;
     position: relative;
     z-index: 10;
+    margin: -3rem $page-margin-mobile 0;
+
+    @media (min-width: 768px) {
+      margin-left: $page-margin-tablet;
+      margin-left: $page-margin-tablet;
+    }
 
     @media (min-width: 1024px) {
-      width: 75%;
       position: absolute;
       top: -4rem;
-      left: 12.5%;
       padding: 2.625rem 3.5rem;
+      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .btn {
@@ -146,8 +160,15 @@
     }
   }
 
+  &__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: $space-xl
+  }
+
   &__summary-container {
     display: relative;
+    background-color: #fcf6f2;
   }
 
   &__summary-block {
@@ -221,11 +242,19 @@
   }
 
   &__children-container {
-    padding: 5rem 1rem;
-    background-color: #fcf6f2;
+    margin: $section-margin-mobile $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin: $section-margin-mobile $page-margin-tablet;
+    }
 
     @media (min-width: 1024px) {
-      padding: 5rem;
+      margin: $section-margin-desktop calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: $section-margin-desktop auto;
     }
   }
 }

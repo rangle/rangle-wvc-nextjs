@@ -1,0 +1,10 @@
+@import './lumen-tokens';
+
+$page-margin-desktop: $size-l;
+$page-margin-tablet: $size-l;
+$page-margin-mobile: $size-m;
+$column-desktop: calc((100% - $page-margin-desktop * 2) / 12);
+$column-max: calc((1366px - $page-margin-desktop * 2) / 12);
+
+$section-margin-desktop: 120px;
+$section-margin-mobile: 80px;

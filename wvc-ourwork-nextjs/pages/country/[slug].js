@@ -14,9 +14,11 @@ import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHigh
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { Item } from 'react-stately'
 
+import styles from './country.module.scss'
+
 export default function Country() {
   return (
-    <div>
+    <div className={styles['country-container']}>
       <EmergencyAlert
         body='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         buttonLabel='Close'
@@ -112,7 +114,7 @@ export default function Country() {
         src='/SectorHeaderSample.png'
         title='Country Details'
       >
-        <p>
+        <p className={styles['details-intro']}>
           The humanitarian situation in Kasai Central province, in the
           Democratic Republic of the Congo (DRC), has been characterized by
           massive population movements. The Angolan government had forced over
@@ -192,92 +194,98 @@ export default function Country() {
           <Item title='2023'>Alea jacta est.</Item>
         </Tabs>
       </SectionContainer>
-      <Carousel
-        cards={[
-          <MediaCard
-            alt='Children running down a street smiling'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-            labels={['Health, Water']}
-            title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-            url='http://worldvision.ca/our-work'
-          />,
-          <MediaCard
-            alt='Children running down a street smiling'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-            labels={['Health, Water']}
-            title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-            url='http://worldvision.ca/our-work'
-          />,
-          <MediaCard
-            alt='Children running down a street smiling'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-            labels={['Health, Water']}
-            title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-            url='http://worldvision.ca/our-work'
-          />,
-          <MediaCard
-            alt='Children running down a street smiling'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-            labels={['Health, Water']}
-            title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-            url='http://worldvision.ca/our-work'
-          />
-        ]}
-        title='Programs'
-      />
-      <Carousel
-        cards={[
-          <MediaCard
-            alt='/conference.svg'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            iconSrc='/conference.svg'
-            imageSrc=''
-            labels={['Conference']}
-            title='1 Vision for Vulnerable Youth Initiative'
-            url='https://worldvision.ca/'
-          />,
-          <MediaCard
-            alt='/conference.svg'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            iconSrc='/conference.svg'
-            imageSrc=''
-            labels={['Conference']}
-            title='2 Vision for Vulnerable Youth Initiative'
-            url='https://worldvision.ca/'
-          />,
-          <MediaCard
-            alt='/conference.svg'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            iconSrc='/conference.svg'
-            imageSrc=''
-            labels={['Conference']}
-            title='3 Vision for Vulnerable Youth Initiative'
-            url='https://worldvision.ca/'
-          />,
-          <MediaCard
-            alt='/conference.svg'
-            body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-            iconSrc='/conference.svg'
-            imageSrc=''
-            labels={['Conference']}
-            title='4 Vision for Vulnerable Youth Initiative'
-            url='https://worldvision.ca/'
-          />
-        ]}
-        title='Resources'
-      />
-      <CtaBlock
-        body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa. Sit blandit ullamcorper ipsum arcu. Ac eu ut enim pharetra tincidunt eu morbi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa.'
-        buttonLabel='Sponsor a child'
-        buttonUrl='http://worldvision.ca'
-        imageUrl='https://www.worldvision.ca/WorldVisionCanada/media/stories/child-rights-boy-writing-on-chalkboard.jpg'
-        imageUrlAlt='Boy writing on a chalkboard'
-        title='Building Sustainable Futures Together'
-      />
+      <div className={styles['program-container']}>
+        <Carousel
+          cards={[
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />,
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />,
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />,
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />
+          ]}
+          title='Programs'
+        />
+      </div>
+      <div className={styles['resource-container']}>
+        <Carousel
+          cards={[
+            <MediaCard
+              alt='/conference.svg'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              iconSrc='/conference.svg'
+              imageSrc=''
+              labels={['Conference']}
+              title='1 Vision for Vulnerable Youth Initiative'
+              url='https://worldvision.ca/'
+            />,
+            <MediaCard
+              alt='/conference.svg'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              iconSrc='/conference.svg'
+              imageSrc=''
+              labels={['Conference']}
+              title='2 Vision for Vulnerable Youth Initiative'
+              url='https://worldvision.ca/'
+            />,
+            <MediaCard
+              alt='/conference.svg'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              iconSrc='/conference.svg'
+              imageSrc=''
+              labels={['Conference']}
+              title='3 Vision for Vulnerable Youth Initiative'
+              url='https://worldvision.ca/'
+            />,
+            <MediaCard
+              alt='/conference.svg'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              iconSrc='/conference.svg'
+              imageSrc=''
+              labels={['Conference']}
+              title='4 Vision for Vulnerable Youth Initiative'
+              url='https://worldvision.ca/'
+            />
+          ]}
+          title='Resources'
+        />
+      </div>
+      <div className={styles['cta-block-container']}>
+        <CtaBlock
+          body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa. Sit blandit ullamcorper ipsum arcu. Ac eu ut enim pharetra tincidunt eu morbi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa.'
+          buttonLabel='Sponsor a child'
+          buttonUrl='http://worldvision.ca'
+          imageUrl='https://www.worldvision.ca/WorldVisionCanada/media/stories/child-rights-boy-writing-on-chalkboard.jpg'
+          imageUrlAlt='Boy writing on a chalkboard'
+          title='Building Sustainable Futures Together'
+        />
+      </div>
     </div>
   )
 }

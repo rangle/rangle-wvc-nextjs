@@ -1,4 +1,5 @@
 @import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
 
 .section-container {
   &__picture {
@@ -15,35 +16,31 @@
 
   &__content-wrapper {
     background-color: $sky-lighter;
-    padding-left: $space-m;
-    padding-bottom: $space-m;
-    padding-right: $space-m;
 
     &--dark {
       background-color: $charcoal;
-      padding-left: $space-m;
-      padding-bottom: $space-m;
-      padding-right: $space-m;
     }
   }
 
   &__heading-layout-wrapper {
     transform: translate(0, -50%);
+    margin: 0 $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin: 0 $page-margin-tablet;
+    }
 
     @media (min-width: 1024px) {
       display: flex;
       justify-content: flex-end;
-      transform: translate(16px, -50%);
+      margin: 0;
     }
   }
 
   &__heading-container {
     background: $white;
     text-align: center;
-    padding-bottom: $space-m;
-    padding-left: $space-m;
-    padding-right: $space-m;
-    padding-top: $space-m;
+    padding: $space-m;
     width: 100%;
 
     @media (min-width: 1024px) {
@@ -62,6 +59,25 @@
 
   &__content {
     @include typographylargeparagraphbodycopy_regular;
+    margin-left: $page-margin-mobile;
+    padding-bottom: $section-margin-mobile;
+    margin-right: $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
+      padding-bottom: $section-margin-desktop;
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 5rem auto;
+    }
 
     .section-container__content-wrapper--dark & {
       color: $white;

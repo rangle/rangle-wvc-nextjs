@@ -82,7 +82,7 @@ const HeroBlock = ({
           <div className={styles['hero-block__hero-content']}>
             <h1 className={styles['hero-block__title']}>{title}</h1>
             {body && <p className={styles['hero-block__body']}>{body}</p>}
-            <Button label={ctaLabel} url={ctaUrl} />
+            <div className={styles['hero-block__cta']}><Button label={ctaLabel} url={ctaUrl} /></div>
           </div>
         </div>
       </div>
