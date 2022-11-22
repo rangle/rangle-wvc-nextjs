@@ -1,7 +1,7 @@
 import { Chrono } from 'react-chrono'
 import { useEffect, useState } from 'react'
 import styles from './Timeline.module.scss'
-import filledCircleDot from '../../public/filledCircleDot.svg'
+// import filledCircleDot from '../../public/filledCircleDot.svg'
 
 export const Timeline = ({ data, isMobile }) => {
   const [smallScreen, setSmallScreen] = useState(
@@ -38,7 +38,7 @@ export const Timeline = ({ data, isMobile }) => {
       >
         <div className='chrono-icons'>
           {data.map((ea) => (
-            <img key={ea.title} src={filledCircleDot} alt={`Marker for ${ea.title}`} />
+            <img key={ea.title} src={'/filledCircleDot.svg'} alt={`Marker for ${ea.title}`} />
           ))}
         </div>
       </Chrono>
