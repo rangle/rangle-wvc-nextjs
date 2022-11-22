@@ -13,7 +13,7 @@ const data = [
   {
     title: "July 20 2008",
     cardTitle: "This Title",
-    cardDetailedText: "Lorem ipsum dolor sit amet goes here"
+    cardDetailedText: "Lorem ipsum dolor sit amet goes here lkasjdjk asdlkasdjj"
   },
   {
     title: "Aug 20 2012",

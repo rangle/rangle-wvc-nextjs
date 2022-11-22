@@ -1,7 +1,7 @@
 import { Chrono } from 'react-chrono'
 import { useEffect, useState } from 'react'
-import './Timeline.scss'
-import filledCircleDot from '../../assets/icons/filledCircleDot.svg'
+import styles from './Timeline.module.scss'
+import filledCircleDot from '../../public/filledCircleDot.svg'
 
 export const Timeline = ({ data, isMobile }) => {
   const [smallScreen, setSmallScreen] = useState(
@@ -16,8 +16,9 @@ export const Timeline = ({ data, isMobile }) => {
     window.addEventListener('resize', handleWindowSizeChange)
   }, [])
 
+
   return (
-    <div className='timeline-container'>
+    <div className={styles['timeline-container']}>
       <Chrono
         mode={smallScreen ? 'VERTICAL' : 'HORIZONTAL'}
         items={
