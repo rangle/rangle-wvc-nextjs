@@ -6,6 +6,8 @@
   padding-bottom: $space-xxxl;
   padding-top: $space-xxxl;
   text-align: center;
+  padding-left: $space-m;
+  padding-right: $space-m;
 
   &__title {
     @include typographylargeheadingh3;
