@@ -17,15 +17,13 @@ const LogoBlock = ({ ctaLabel, ctaUrl, logos, title }) => {
       <div className={styles['logo-block__logo-container']}>
         {logos.map((logo) => {
           return (
-            <div key={logo.src}>
-              <a href={logo.url}>
-                <img
-                  className={styles['logo-block__logo']}
-                  src={logo.src}
-                  alt={logo.alt}
-                />
-              </a>
-            </div>
+            <a
+              key={logo.src}
+              className={styles['logo-block__logo']}
+              href={logo.url}
+            >
+              <img src={logo.src} alt={logo.alt} />
+            </a>
           )
         })}
       </div>
