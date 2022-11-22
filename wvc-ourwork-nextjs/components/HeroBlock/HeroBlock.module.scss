@@ -242,19 +242,10 @@
   }
 
   &__children-container {
-    margin: $section-margin-mobile $page-margin-mobile;
-
-    @media (min-width: 767px) {
-      margin: $section-margin-mobile $page-margin-tablet;
-    }
+    margin: $section-margin-mobile 0;
 
     @media (min-width: 1024px) {
-      margin: $section-margin-desktop calc($column-desktop * 2 + $page-margin-desktop);
-    }
-
-    @media (min-width: 1366px) {
-      width: calc($column-max * 8);
-      margin: $section-margin-desktop auto;
+      margin: $section-margin-desktop 0;
     }
   }
 }

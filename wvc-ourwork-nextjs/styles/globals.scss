@@ -42,6 +42,10 @@ h2 {
   @include typographylargeheadingh2;
 }
 
+h3 {
+  @include typographylargeheadingh3;
+}
+
 h5 {
   @include typographylargeheadingh5;
 }
@@ -60,6 +64,7 @@ h5 {
 }
 
 /* Global Overrides */
+
 .swiper {
   .swiper-slide {
     margin-right: 1.5rem;

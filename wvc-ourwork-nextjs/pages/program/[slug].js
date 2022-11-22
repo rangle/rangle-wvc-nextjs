@@ -10,15 +10,15 @@ import HeroBlock from '../../components/HeroBlock/HeroBlock'
 import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
-import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
+import { BarChart } from '../../components/Charts/BarChart/BarChart'
 import { Item } from 'react-stately'
 
-import styles from './country.module.scss'
+import styles from './program.module.scss'
 
-export default function Country() {
+export default function Program() {
   return (
-    <div className={styles['country-container']}>
+    <div className={styles['program-container']}>
       <EmergencyAlert
         body='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         buttonLabel='Close'
@@ -26,62 +26,49 @@ export default function Country() {
         url='https://www.worldvision.ca/'
       />
       <HeroBlock
-        body='World Vision began emergency relief operations in Afghanistan in 2001, to address the urgent needs of children and families affected by natural disasters and decades of conflict. Today, programs have expanded to development sectors such as health, water and sanitation, child protection, education and empowering women to engage in civil and social change.'
-        countryCode='AFG'
         ctaLabel='donate'
         ctaUrl='https://worldvision.ca'
         highlights={[
           {
-            title: 'Partnering Since',
-            value: '1975'
+            title: 'Program Type',
+            value: 'Development'
           },
           {
-            title: 'Programs Supported',
-            value: '10'
+            title: 'Timing',
+            value: 'January 2020 - March 2023'
           },
           {
-            title: 'Children Sponsored',
-            value: '3,291'
+            title: 'Location',
+            value: 'Democratic Republic of the Congo | Myanmar'
           },
           {
-            title: 'Level of Fragility',
-            tooltip: 'Sample tooltip content',
-            value: 'Very low developing'
+            title: 'Areas of focus',
+            value: 'Education | Gender Equality and Social Inclusion'
           },
           {
-            title: 'Gender Equality Rank',
-            value: '115/144'
+            title: 'Total Program Cost',
+            value: '$432,231.76'
+          },
+          {
+            title: 'Lead Agency',
+            value: 'World Vision Canada'
+          },
+          {
+            title: 'Funding Partners',
+            value: 'Global Affairs Canada'
+          },
+          {
+            title: 'Implementing Partners',
+            value: 'University of Toronto'
           }
         ]}
-        page='country'
-        title='Afghanistan'
+        markerCoordinates={[[15.307045, -4.322447]]}
+        page='program'
+        summaryDirection='vertical'
+        title="Equality for Girls' Access to Learning (EGAL)"
       >
-        <div className={styles['summary-content-container']}>
-          <ImpactHighlightGrid
-            impactHighlights={[
-              {
-                firstLabel: '',
-                highlight: '1,024',
-                secondLabel:
-                  'deaths were prevented through the ENRICH program ',
-                title: 'Impact',
-                year: '2016-2021'
-              },
-              {
-                firstLabel:
-                  'In Ethiopia, women holding leadership positions on health committees increased from',
-                highlight: '15% to 56%',
-                secondLabel: '',
-                title: 'Change',
-                year: '2016-2021'
-              }
-            ]}
-          />
-          <div
-            style={{
-              marginTop: '6rem'
-            }}
-          >
+        <div>
+          <div className={styles['summary-statistic-container']}>
             <StatisticCardGrid
               cards={[
                 <StatisticCard
@@ -102,6 +89,74 @@ export default function Country() {
               ]}
             />
           </div>
+          <div className={styles['change-container']}>
+            <h2>Change</h2>
+            <div className={styles['change-container__chart-container']}>
+              <div
+                className={styles['change-container__chart-container__chart-1']}
+              >
+                <BarChart
+                  ariaLabel='Bar Chart Reading Comprehension'
+                  withAxes={false}
+                  aspectRatio={0.8}
+                  colours={[
+                    'rgb(231, 96, 12)',
+                    'rgb(255, 166, 102)',
+                    'rgb(255, 225, 204)'
+                  ]}
+                  data={['83.5%', '74.1%']}
+                  labels={['2021', '2013']}
+                  showTopBarLabels
+                  subTitle='Eravur Pattu, Sri Lanka'
+                  title='Reading Comprehension'
+                  titlePosition='bottom'
+                  yStepSize={10}
+                />
+              </div>
+              <div
+                className={styles['change-container__chart-container__chart-2']}
+              >
+                <BarChart
+                  ariaLabel='Bar Chart Reading Comprehension'
+                  withAxes={false}
+                  aspectRatio={0.8}
+                  colours={[
+                    'rgb(231, 96, 12)',
+                    'rgb(255, 166, 102)',
+                    'rgb(255, 225, 204)'
+                  ]}
+                  data={['83.5%', '74.1%']}
+                  labels={['2021', '2013']}
+                  showTopBarLabels
+                  subTitle='Eravur Pattu, Sri Lanka'
+                  title='Reading Comprehension'
+                  titlePosition='bottom'
+                  yStepSize={10}
+                />
+              </div>
+              <div
+                className={styles['change-container__chart-container__chart-3']}
+              >
+                <BarChart
+                  ariaLabel='Bar Chart Reading Comprehension'
+                  aspectRatio={0.8}
+                  withAxes={false}
+                  colours={[
+                    'rgb(231, 96, 12)',
+                    'rgb(255, 166, 102)',
+                    'rgb(255, 225, 204)'
+                  ]}
+                  data={['83.5%', '74.1%']}
+                  labels={['2021', '2013']}
+                  showTopBarLabels
+                  subTitle='Eravur Pattu, Sri Lanka'
+                  title='Reading Comprehension'
+                  titlePosition='bottom'
+                  yStepSize={10}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </HeroBlock>
       <ChartContainer
@@ -114,7 +169,7 @@ export default function Country() {
         src='/SectorHeaderSample.png'
         title='Country Details'
       >
-        <p className={styles['details-intro']}>
+        <p>
           The humanitarian situation in Kasai Central province, in the
           Democratic Republic of the Congo (DRC), has been characterized by
           massive population movements. The Angolan government had forced over
@@ -128,12 +183,67 @@ export default function Country() {
           children, including unaccompanied children, who required humanitarian
           assistance.{' '}
         </p>
-        <ExpandableTextBlock
-          body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-          footnote='Lorem ipsum footnote'
-          title='Early childhood development'
-        />
+        <div className={styles['details-section']}>
+          <ExpandableTextBlock
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+            footnote='Lorem ipsum footnote'
+            title='Early childhood development'
+          />
+        </div>
+        <div className={styles['details-section']}>
+          <ExpandableTextBlock
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+            footnote='Lorem ipsum footnote'
+            title='Early childhood development'
+          />
+        </div>
+        <div className={styles['details-section']}>
+          <ExpandableTextBlock
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+            footnote='Lorem ipsum footnote'
+            title='Early childhood development'
+          />
+        </div>
       </SectionContainer>
+      <div className={styles['from-field-container']}>
+        <Carousel
+          cards={[
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />,
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />,
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />,
+            <MediaCard
+              alt='Children running down a street smiling'
+              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+              labels={['Health, Water']}
+              title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+              url='http://worldvision.ca/our-work'
+            />
+          ]}
+          title='From the field'
+        />
+      </div>
       <SectionContainer
         alt='Children running down a street smiling'
         src='/SectorHeaderSample.png'
@@ -194,45 +304,6 @@ export default function Country() {
           <Item title='2023'>Alea jacta est.</Item>
         </Tabs>
       </SectionContainer>
-      <div className={styles['program-container']}>
-        <Carousel
-          cards={[
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />
-          ]}
-          title='Programs'
-        />
-      </div>
       <div className={styles['resource-container']}>
         <Carousel
           cards={[
@@ -293,7 +364,7 @@ export async function getStaticPaths() {
     paths: [
       {
         params: {
-          slug: 'afghanistan'
+          slug: 'egal'
         }
       }
     ],
