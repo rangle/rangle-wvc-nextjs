@@ -26,5 +26,6 @@ export const ImageBlock = Template.bind({})
 ImageBlock.args = {
   title: 'This community is graduating',
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque, turpis et hendrerit pulvinar, odio purus lacinia felis, a semper eros turpis quis turpis. Curabitur sodales velit at fusce.',
-  image: image.src
+  imageAlt: image.alt,
+  imageSrc: image.src
 }
