@@ -1,0 +1,65 @@
+@import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
+
+.country-container {
+  background-color: $sky-lighter;
+
+  .summary-content-container {
+    margin: 0 $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin: 0 $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 0 auto;
+    }
+  }
+
+  .details-intro {
+    margin-bottom: 55px;
+  }
+
+  .program-container {
+    padding: $section-margin-mobile 0;
+    margin-left: $page-margin-mobile;
+  
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+    }
+  
+    @media (min-width: 1024px) {
+      padding: $section-margin-desktop 0;
+      margin-left: $page-margin-desktop;
+    }
+  
+    @media (min-width: 1366px) {
+      width: calc($column-max * 12);
+      margin: 0 auto;
+    }
+  }
+  
+  .resource-container {
+    padding: $section-margin-mobile 0;
+    margin-left: $page-margin-mobile;
+  
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+    }
+  
+    @media (min-width: 1024px) {
+      padding: $section-margin-desktop 0;
+      margin-left: $page-margin-desktop;
+    }
+  
+    @media (min-width: 1366px) {
+      width: calc($column-max * 12);
+      margin: 0 auto;
+    }
+  }
+}

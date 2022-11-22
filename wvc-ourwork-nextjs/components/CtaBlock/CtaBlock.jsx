@@ -28,7 +28,7 @@ const CtaContainer = ({
           </h2>
         )}
         {showBody && <p className={styles['cta-block-body']}>{body}</p>}
-        <Button label={buttonLabel} url={buttonUrl} />
+        <div className={styles['cta-block-cta']}><Button label={buttonLabel} url={buttonUrl} /></div>
       </div>
     </>
   )

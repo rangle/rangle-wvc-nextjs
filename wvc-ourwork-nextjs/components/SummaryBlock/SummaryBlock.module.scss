@@ -1,4 +1,5 @@
 @import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
 
 .summary-block {
   background: $white;
@@ -8,12 +9,21 @@
   flex-direction: column;
   justify-content: space-around;
   padding: 2rem;
-  margin: 0 1rem;
+  margin: 0 $page-margin-mobile;
+
+  @media (min-width: 767px) {
+    margin: 0 $page-margin-tablet;
+  }
 
   @media (min-width: 1024px) {
     flex-direction: row;
     padding: 2.5rem;
-    margin: 0 4rem;
+    margin: 0 $page-margin-desktop;
+  }
+
+  @media (min-width: 1366px) {
+    width: calc($column-max * 12);
+    margin: 0 auto;
   }
 
   &__highlight {
