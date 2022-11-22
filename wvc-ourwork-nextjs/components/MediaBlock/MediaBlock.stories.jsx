@@ -14,11 +14,17 @@ const image = {
 
 const Template = (args) => <MediaBlock {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
+export const VideoBlock = Template.bind({})
+VideoBlock.args = {
   title: 'This community is graduating',
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque, turpis et hendrerit pulvinar, odio purus lacinia felis, a semper eros turpis quis turpis. Curabitur sodales velit at fusce.',
-  image: image.src,
   videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A',
   videoBackgroundImage: image.src
+}
+
+export const ImageBlock = Template.bind({})
+ImageBlock.args = {
+  title: 'This community is graduating',
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque, turpis et hendrerit pulvinar, odio purus lacinia felis, a semper eros turpis quis turpis. Curabitur sodales velit at fusce.',
+  image: image.src
 }

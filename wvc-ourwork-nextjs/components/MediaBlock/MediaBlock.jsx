@@ -1,4 +1,5 @@
 import styles from './MediaBlock.module.scss'
+import Video from '../Video/Video'
 
 const MediaBlock = ({ videoSrc, videoBackgroundImage, image, title, body }) => {
   return (
@@ -7,7 +8,12 @@ const MediaBlock = ({ videoSrc, videoBackgroundImage, image, title, body }) => {
         <h2 className={styles[`media-block__title`]}>{title}</h2>
         <p className={styles[`media-block__body`]}>{body}</p>
       </div>
-      <div>{image && <img src={image} />}</div>
+      <div className={styles[`media-block__media`]}>
+        {image && <img className={styles[`media-block__image`]} src={image} />}
+        {videoSrc && (
+          <Video src={videoSrc} backgroundImage={videoBackgroundImage} />
+        )}
+      </div>
     </div>
   )
 }
