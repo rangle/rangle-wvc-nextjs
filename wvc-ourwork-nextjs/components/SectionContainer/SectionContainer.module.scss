@@ -76,7 +76,7 @@
 
     @media (min-width: 1366px) {
       width: calc($column-max * 8);
-      margin: 5rem auto;
+      margin: 0 auto;
     }
 
     .section-container__content-wrapper--dark & {
