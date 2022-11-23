@@ -104,7 +104,6 @@ const SubNavItem = ({
             role='button'
             tabIndex='0'
             aria-label=''
-            aria-expanded='false'
             aria-haspopup='true'
             className={styles['sub-navigation__button']}
             onClick={() => openCloseSubMenu(label, false)}

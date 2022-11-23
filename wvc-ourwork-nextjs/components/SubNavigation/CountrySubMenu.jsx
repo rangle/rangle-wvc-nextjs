@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from './SubNavigation.module.scss'
 import { RegionImage } from './SubMenuIcons'
@@ -23,6 +23,7 @@ export const CountrySubMenuDesktop = ({
                   : ''
               }`}
               onClick={() => setActiveRegion(region.name)}
+              key={region.name}
             >
               <RegionImage name={region.name} />
               {region.name}
@@ -37,9 +38,11 @@ export const CountrySubMenuDesktop = ({
           {countryList
             ?.sort((a, b) => a.header_title.localeCompare(b.header_title))
             .map((country) => {
-              console.log({ country })
               return (
-                <li className={styles['sub-navigation__sub-menu-link']}>
+                <li
+                  className={styles['sub-navigation__sub-menu-link']}
+                  key={country?.header_title}
+                >
                   <Link
                     href={country?.URL ? country?.URL : `/our-work`}
                     passHref
@@ -84,7 +87,7 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                 )?.open
 
                 return (
-                  <>
+                  <React.Fragment key={menuItem.name}>
                     <button
                       className={
                         styles['sub-navigation__region-accordion--button']
@@ -116,6 +119,7 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                               className={
                                 styles['sub-navigation__sub-menu-link']
                               }
+                              key={country?.header_title}
                             >
                               <Link
                                 href={country?.URL ? country?.URL : `/our-work`}
@@ -128,7 +132,7 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                         })}
                       </ul>
                     )}
-                  </>
+                  </React.Fragment>
                 )
               })}
           </div>

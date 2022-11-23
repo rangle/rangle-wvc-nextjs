@@ -18,18 +18,15 @@
   }
 
   &__button {
+    @include typographysmalllinkinline;
     box-sizing: border-box;
     margin: 0;
-    font-family: Lato;
-    font-size: 16px;
-    line-height: 24px;
     height: 100%;
     cursor: pointer;
-    font-weight: 500;
     text-align: left;
     text-decoration: none;
     letter-spacing: normal;
-    color: #000;
+    color: $black;
     background: none;
     border: none;
     border-bottom: solid 4px transparent;
@@ -40,7 +37,7 @@
     padding: 1rem 0.5rem;
 
     @media (min-width: 768px) {
-      margin-right: 56px;
+      margin-right: 3.5rem;
       padding: 20px 0.5rem 20px;
     }
 
@@ -49,13 +46,13 @@
       cursor: pointer;
 
       path {
-        fill: #e7600c;
+        fill: $orange;
       }
     }
   }
 
   &__category-icons {
-    margin: 4px 8px 0 0;
+    margin: 0.25rem 0.5rem 0 0;
   }
 
   &__sub-nav-trigger {
@@ -64,15 +61,13 @@
   }
 
   &__sub-menu {
+    @include typographysmalllinkinline;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    font-size: 16px;
-    font-family: Lato, sans-serif;
     color: #333;
-    line-height: 16px;
     width: 100%;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    background-color: #f5f5f5;
+    background-color: $sky-lighter;
     padding: 2rem 2rem 1rem;
     display: flex;
     flex-direction: column;
@@ -125,7 +120,6 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-
       width: 100%;
 
       &:last-child {
@@ -152,7 +146,7 @@
       background: none;
       @include typographysmallheadingh6;
       text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 2rem;
     }
 
     &-icon {
@@ -176,26 +170,21 @@
     @media (min-width: 768px) {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 72px;
+      margin-bottom: 4.5rem;
 
       &--region {
-        background: #ffffff;
+        background: $white;
         display: block;
         width: 176px;
         height: 176px;
-        color: #333;
+        color: $charcoal;
         font-family: Karla;
         font-size: 18px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.33;
-        letter-spacing: normal;
         text-align: center;
         text-decoration: none;
         border-radius: 4px;
-        border: solid 2px #f5f5f5;
-        background-color: #fff;
+        border: solid 2px $sky-lighter;
+        background-color: $white;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -203,15 +192,15 @@
 
         &:hover {
           text-decoration: underline;
-          border: solid 2px #e7600c;
+          border: solid 2px $orange;
           box-shadow: 0 4px 6px 0 rgb(204 204 204 / 50%);
           cursor: pointer;
         }
 
         &:focus-visible {
           outline: none;
-          border-radius: 4px;
-          box-shadow: 0 0 0 4px #337ab7;
+          border-radius: $radius-default;
+          box-shadow: 0 0 0 4px $blue-light;
         }
       }
 
