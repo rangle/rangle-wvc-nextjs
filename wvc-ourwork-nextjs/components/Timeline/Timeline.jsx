@@ -1,34 +1,19 @@
 import { Chrono } from 'react-chrono'
-import { useEffect, useState } from 'react'
 import styles from './Timeline.module.scss'
+import { getScreenWidth } from '../../utils/getScreenWidth'
 
 export const Timeline = ({ data, isMobile }) => {
-  const [smallScreen, setSmallScreen] = useState(
-    isMobile || window.innerWidth < 768
-  )
-
-  function handleWindowSizeChange() {
-    setSmallScreen(window.innerWidth < 768 || isMobile)
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange)
-  }, [])
-
+  const screenWidth = getScreenWidth()
+  const smallScreen = isMobile || screenWidth < 768;
 
   return (
     <div className={styles['timeline-container']}>
       <Chrono
         mode={smallScreen ? 'VERTICAL' : 'HORIZONTAL'}
-        items={
-          smallScreen
-            ? data.map((ea) => ({
-                ...ea,
-                title: '',
-                cardSubtitle: ea.title
-              }))
-            : data
-        }
+        items={data.map((ea) => ({
+          ...ea,
+          cardSubtitle: ea.title
+        }))}
         showAllCardsHorizontal
         theme={{
           primary: '#E7600C'

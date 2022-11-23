@@ -9,6 +9,7 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import EmergencyAlert from '../../components/EmergencyAlert/EmergencyAlert'
 import HeroBlock from '../../components/HeroBlock/HeroBlock'
 import LogoBlock from '../../components/LogoBlock/LogoBlock'
+import { Timeline } from '../../components/Timeline/Timeline'
 import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
@@ -70,6 +71,100 @@ export default function Program() {
         title="Equality for Girls' Access to Learning (EGAL)"
       >
         <div>
+          <Timeline
+            data={[
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet goes here lkasjdjk asdlkasdjj',
+                cardTitle: 'This Title',
+                title: 'July 20 2008'
+              },
+              {
+                cardDetailedText: 'More text goes here',
+                cardTitle:
+                  'A very, very long title, to test how it looks like with a very, very long title',
+                title: 'Aug 20 2012'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardTitle:
+                  'A very, very long title, to test how it looks like with a very, very long title',
+                title: 'July 20 2013'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '7 December 1941'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle:
+                  'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '15 February 1942'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '4 June 1942'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '25 October 1942'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: 'February 1943'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '6 June 1944'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: 'February 1945'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '13/14 February 1945'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '8 May 1945'
+              },
+              {
+                cardDetailedText:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                cardSubtitle: 'Lorem ipsum dolor sit amet',
+                cardTitle: 'Lorem ipsum dolor sit amet',
+                title: '9 August 1945'
+              }
+            ]}
+          />
           <div className={styles['summary-statistic-container']}>
             <StatisticCardGrid
               cards={[

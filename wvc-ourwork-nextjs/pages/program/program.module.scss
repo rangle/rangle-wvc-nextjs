@@ -5,6 +5,7 @@
   background-color: $sky-lighter;
 
   .summary-statistic-container {
+    padding-top: $section-margin-mobile;
     margin: 0 $page-margin-mobile;
 
     @media (min-width: 767px) {
@@ -12,6 +13,7 @@
     }
 
     @media (min-width: 1024px) {
+      padding-top: $section-margin-desktop;
       margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
     }
 
