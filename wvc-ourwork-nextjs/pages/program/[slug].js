@@ -7,6 +7,7 @@ import CtaBlock from '../../components/CtaBlock/CtaBlock'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import EmergencyAlert from '../../components/EmergencyAlert/EmergencyAlert'
 import HeroBlock from '../../components/HeroBlock/HeroBlock'
+import LogoBlock from '../../components/LogoBlock/LogoBlock'
 import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
@@ -354,6 +355,31 @@ export default function Program() {
         imageUrl='https://www.worldvision.ca/WorldVisionCanada/media/stories/child-rights-boy-writing-on-chalkboard.jpg'
         imageUrlAlt='Boy writing on a chalkboard'
         title='Building Sustainable Futures Together'
+      />
+      <LogoBlock
+        title='Our Partners'
+        logos={[
+          {
+            alt: 'Logo alt text',
+            src: '/logo1.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo2.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo3.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo4.svg',
+            url: 'https://www.worldvision.ca'
+          }
+        ]}
       />
     </div>
   )
