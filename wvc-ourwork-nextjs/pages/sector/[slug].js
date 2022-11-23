@@ -6,6 +6,7 @@ import MediaCard from '../../components/MediaCard/MediaCard'
 import CtaBlock from '../../components/CtaBlock/CtaBlock'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import LogoBlock from '../../components/LogoBlock/LogoBlock'
+import { Goals } from '../../components/Goals/Goals'
 import { BarChart } from '../../components/Charts/BarChart/BarChart'
 import { DoughnutChart } from '../../components/Charts/DoughnutChart/DoughnutChart'
 import HeroBlock from '../../components/HeroBlock/HeroBlock'
@@ -221,12 +222,22 @@ export default function Sector() {
             Girls and boys have the knowledge and skills to lead fulfilling,
             productive lives.
           </h4>
+          <div className={styles['approach-diagram__goals']}>
+            <Goals
+              data={[
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+                'Diam quis enim lobortis scelerisque fermentum',
+                'Tortor vitae purus faucibus ornare suspendisse sed nisi lacus.',
+                'Consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat',
+                'Quisque egestas diam dolor in arcu cursus euismod quis viverra nibh et dolore magna aliqua.'
+              ]}
+            />
+          </div>
         </div>
         <div className={styles['approach-section']}>
           <ExpandableTextBlock
             body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
             footnote='Lorem ipsum footnote'
-            title='Early childhood development'
           />
         </div>
       </SectionContainer>
