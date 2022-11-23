@@ -39,6 +39,10 @@
         width: 50%;
       }
 
+      @media (min-width: 400px) {
+        height: 65vh;
+      }
+
       &__title {
         @include typographylargeheadingh2;
         margin-bottom: $size-m;
