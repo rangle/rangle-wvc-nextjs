@@ -6,6 +6,7 @@
   font-family: 'Lato';
   flex-direction: column;
   color: $charcoal;
+  align-content: center;
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
