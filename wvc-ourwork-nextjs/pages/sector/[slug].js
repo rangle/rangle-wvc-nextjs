@@ -5,6 +5,7 @@ import Carousel from '../../components/Carousel/Carousel'
 import MediaCard from '../../components/MediaCard/MediaCard'
 import CtaBlock from '../../components/CtaBlock/CtaBlock'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
+import LogoBlock from '../../components/LogoBlock/LogoBlock'
 import { BarChart } from '../../components/Charts/BarChart/BarChart'
 import { DoughnutChart } from '../../components/Charts/DoughnutChart/DoughnutChart'
 import HeroBlock from '../../components/HeroBlock/HeroBlock'
@@ -91,6 +92,28 @@ export default function Sector() {
           </div>
         </div>
       </HeroBlock>
+      <LogoBlock
+        ctaLabel='Learn more about our focus to achieve UN’s Sustainable Development Goals'
+        ctaUrl='https://www.worldvision.ca'
+        logos={[
+          {
+            alt: 'Logo alt text',
+            src: '/logo1.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo2.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo3.svg',
+            url: 'https://www.worldvision.ca'
+          }
+        ]}
+        title='Connnected Sustainable Development Goals'
+      />
       <ChartContainer
         chartType='line'
         controlTitle='Explore our investments and results'
