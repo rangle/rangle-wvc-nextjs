@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import ReactPlayer from 'react-player/lazy'
+import dynamic from 'next/dynamic'
 import styles from './Video.module.scss'
 
 const Video = ({ backgroundImage, src }) => {
+  const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
+
   const [playerState, setPlayerState] = useState({
     playing: false
   })
@@ -15,13 +17,13 @@ const Video = ({ backgroundImage, src }) => {
   return (
     <div className={styles['video']}>
       <ReactPlayer
+        className={styles['react-player']}
         controls={true}
         height='100%'
-        muted={true}
+        muted={false}
         playing={playing}
         url={src}
         width='100%'
-        className={styles['react-player']}
       />
       {/* PLAY BUTTON & BACKGROUND */}
       <div
