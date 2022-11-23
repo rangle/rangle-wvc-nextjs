@@ -363,9 +363,7 @@ export default function Sector() {
             are some education examples we gathered in 2021.
           </p>
           <div className={styles['change-container__chart-container']}>
-            <div
-              className={styles['change-container__chart-container__chart-1']}
-            >
+            <div className={styles['change-container__chart-container__chart']}>
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
@@ -384,9 +382,7 @@ export default function Sector() {
                 yStepSize={10}
               />
             </div>
-            <div
-              className={styles['change-container__chart-container__chart-2']}
-            >
+            <div className={styles['change-container__chart-container__chart']}>
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
@@ -405,9 +401,7 @@ export default function Sector() {
                 yStepSize={10}
               />
             </div>
-            <div
-              className={styles['change-container__chart-container__chart-3']}
-            >
+            <div className={styles['change-container__chart-container__chart']}>
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 aspectRatio={0.8}

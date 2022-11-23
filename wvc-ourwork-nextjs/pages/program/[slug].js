@@ -190,7 +190,7 @@ export default function Program() {
             <h2>Change</h2>
             <div className={styles['change-container__chart-container']}>
               <div
-                className={styles['change-container__chart-container__chart-1']}
+                className={styles['change-container__chart-container__chart']}
               >
                 <BarChart
                   ariaLabel='Bar Chart Reading Comprehension'
@@ -211,7 +211,7 @@ export default function Program() {
                 />
               </div>
               <div
-                className={styles['change-container__chart-container__chart-2']}
+                className={styles['change-container__chart-container__chart']}
               >
                 <BarChart
                   ariaLabel='Bar Chart Reading Comprehension'
@@ -232,7 +232,7 @@ export default function Program() {
                 />
               </div>
               <div
-                className={styles['change-container__chart-container__chart-3']}
+                className={styles['change-container__chart-container__chart']}
               >
                 <BarChart
                   ariaLabel='Bar Chart Reading Comprehension'

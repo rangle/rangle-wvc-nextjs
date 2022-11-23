@@ -42,20 +42,43 @@
     &__chart-container {
       margin-top: $space-xxxl;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: center;
+      // TODO: remove this when chart bug is fixed
+      overflow: hidden;
 
-      &__chart-2 {
-        display: none;
-        @media (min-width: 767px) {
-          display: block;
+      &__chart {
+        &:nth-child(1) {
+          border: none;
+          @media (min-width: 767px) {
+            padding-right: 50px;
+            border-right: #CAC4BB solid 1px;
+          }
         }
-      }
 
-      &__chart-3 {
-        display: none;
-        @media (min-width: 1024px) {
-          display: block;
+        &:nth-child(2) {
+          display: none;
+          border: none;
+          
+          @media (min-width: 767px) {
+            padding-left: 50px;
+            display: block;
+            border: 0;
+            padding-right: 0;
+          }
+
+          @media (min-width: 1024px) {
+            padding-right: 50px;
+            border-right: #CAC4BB solid 1px;
+          }
+        }
+  
+        &:nth-child(3) {
+          display: none;
+          border: none;
+          @media (min-width: 1024px) {
+            padding-left: 50px;
+            display: block;
+          }
         }
       }
     }
