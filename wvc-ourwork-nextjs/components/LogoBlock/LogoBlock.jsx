@@ -13,28 +13,30 @@ const ctaArrow = (
 const LogoBlock = ({ ctaLabel, ctaUrl, logos, title }) => {
   return (
     <div className={styles['logo-block']}>
-      <h3 className={styles['logo-block__title']}>{title}</h3>
-      <div className={styles['logo-block__logo-container']}>
-        {logos.map((logo) => {
-          return (
-            <a
-              key={logo.src}
-              className={styles['logo-block__logo']}
-              href={logo.url}
-            >
-              <img src={logo.src} alt={logo.alt} />
-            </a>
-          )
-        })}
-      </div>
-      {ctaLabel && ctaUrl && (
-        <div className={styles['logo-block__cta-container']}>
-          <a className={styles['logo-block__cta']} href={ctaUrl}>
-            {ctaLabel}
-            {ctaArrow}
-          </a>
+      <div className={styles['logo-block__container']}>
+        <h3 className={styles['logo-block__container__title']}>{title}</h3>
+        <div className={styles['logo-block__container__logo-container']}>
+          {logos.map((logo) => {
+            return (
+              <a
+                key={logo.src}
+                className={styles['logo-block__container__logo']}
+                href={logo.url}
+              >
+                <img src={logo.src} alt={logo.alt} />
+              </a>
+            )
+          })}
         </div>
-      )}
+        {ctaLabel && ctaUrl && (
+          <div className={styles['logo-block__container__cta-container']}>
+            <a className={styles['logo-block__container__cta']} href={ctaUrl}>
+              {ctaLabel}
+              {ctaArrow}
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

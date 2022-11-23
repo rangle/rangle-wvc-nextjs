@@ -135,7 +135,17 @@ h5 {
           font-size: 18px;
       }
   }
-}  
+}
+
+.vertical-item-row > div:first-of-type {
+  display: none; 
+}
+
+.vertical-item-row {
+  .card-content-wrapper {
+    width: 90%;
+  }
+}
 
 
 /* commenting out for now to not have dark mode as the default theme ** */

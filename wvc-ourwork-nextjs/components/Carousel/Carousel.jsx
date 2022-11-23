@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Navigation, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { resetId } from 'react-id-generator';
 
 import styles from './Carousel.module.scss'
 
@@ -71,9 +72,10 @@ export const NextIcon = () => {
 const Carousel = ({ cards, title }) => {
   const slideTotal = cards.length
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
+  const id = resetId()
 
   return (
-    <div id={`carousel-${title}`} className={styles['carousel']}>
+    <div id={`carousel-${id}`} className={styles['carousel']}>
       <div className={styles['carousel--header']}>
         {title && <h2>{title}</h2>}
         <div className={styles['carousel-nav-container-desktop']}>
@@ -99,12 +101,12 @@ const Carousel = ({ cards, title }) => {
         </div>
       </div>
       <Swiper
-        id={`swiper-${title}`}
+        id={`swiper-${id}`}
         modules={[Navigation, A11y]}
         allowTouchMove={false}
         navigation={{
-          prevEl: `#carousel-${title} #carousel-nav-button-previous`,
-          nextEl: `#carousel-${title} #carousel-nav-button-next`
+          prevEl: `#carousel-${id} #carousel-nav-button-previous`,
+          nextEl: `#carousel-${id} #carousel-nav-button-next`
         }}
         slidesPerView={'auto'}
         onSlideChange={(swiper) => {

@@ -23,7 +23,7 @@ Default.args = {
   title: 'Country Details',
   alt: image.alt,
   src: image.src,
-  children: <p>The humanitarian situation in Kasai Central province, in the Democratic Republic of the Congo (DRC), has been characterized by massive population movements. The Angolan government had forced over 650,000 Congolese nationals who had been living there for year to repatriate. While the Kamuina Nsapu refugees were not affected, the forced return ensured that the situation in Kasai province remained increasingly complex. There were over 57,000 forced returnees, including almost 15,000 children, who were registered at various borders, and almost 13,000 spontaneous refugees were identified by UNHCR in the community.An estimated 30% of these returnees were children, including unaccompanied children, who required humanitarian assistance.</p>,
+  children: <p style={{paddingLeft: '40px', paddingRight: '40px'}}>The humanitarian situation in Kasai Central province, in the Democratic Republic of the Congo (DRC), has been characterized by massive population movements. The Angolan government had forced over 650,000 Congolese nationals who had been living there for year to repatriate. While the Kamuina Nsapu refugees were not affected, the forced return ensured that the situation in Kasai province remained increasingly complex. There were over 57,000 forced returnees, including almost 15,000 children, who were registered at various borders, and almost 13,000 spontaneous refugees were identified by UNHCR in the community.An estimated 30% of these returnees were children, including unaccompanied children, who required humanitarian assistance.</p>,
   isDarkMode: false,
     
 }

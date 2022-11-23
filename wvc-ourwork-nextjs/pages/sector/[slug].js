@@ -5,6 +5,8 @@ import Carousel from '../../components/Carousel/Carousel'
 import MediaCard from '../../components/MediaCard/MediaCard'
 import CtaBlock from '../../components/CtaBlock/CtaBlock'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
+import LogoBlock from '../../components/LogoBlock/LogoBlock'
+import { Goals } from '../../components/Goals/Goals'
 import { BarChart } from '../../components/Charts/BarChart/BarChart'
 import { DoughnutChart } from '../../components/Charts/DoughnutChart/DoughnutChart'
 import HeroBlock from '../../components/HeroBlock/HeroBlock'
@@ -91,6 +93,28 @@ export default function Sector() {
           </div>
         </div>
       </HeroBlock>
+      <LogoBlock
+        ctaLabel='Learn more about our focus to achieve UN’s Sustainable Development Goals'
+        ctaUrl='https://www.worldvision.ca'
+        logos={[
+          {
+            alt: 'Logo alt text',
+            src: '/logo1.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo2.svg',
+            url: 'https://www.worldvision.ca'
+          },
+          {
+            alt: 'Logo alt text',
+            src: '/logo3.svg',
+            url: 'https://www.worldvision.ca'
+          }
+        ]}
+        title='Connnected Sustainable Development Goals'
+      />
       <ChartContainer
         chartType='line'
         controlTitle='Explore our investments and results'
@@ -156,33 +180,35 @@ export default function Sector() {
         src='/SectorHeaderSample.png'
         title='Global Challenges'
       >
-        <p>
-          The humanitarian situation in Kasai Central province, in the
-          Democratic Republic of the Congo (DRC), has been characterized by
-          massive population movements. The Angolan government had forced over
-          650,000 Congolese nationals who had been living there for year to
-          repatriate. While the Kamuina Nsapu refugees were not affected, the
-          forced return ensured that the situation in Kasai province remained
-          increasingly complex. There were over 57,000 forced returnees,
-          including almost 15,000 children, who were registered at various
-          borders, and almost 13,000 spontaneous refugees were identified by
-          UNHCR in the community.An estimated 30% of these returnees were
-          children, including unaccompanied children, who required humanitarian
-          assistance.{' '}
-        </p>
-        <div className={styles['challenges-section']}>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-            title='Early childhood development'
-          />
-        </div>
-        <div className={styles['challenges-section']}>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-            title='Early childhood development'
-          />
+        <div className={styles['challenges-content']}>
+          <p>
+            The humanitarian situation in Kasai Central province, in the
+            Democratic Republic of the Congo (DRC), has been characterized by
+            massive population movements. The Angolan government had forced over
+            650,000 Congolese nationals who had been living there for year to
+            repatriate. While the Kamuina Nsapu refugees were not affected, the
+            forced return ensured that the situation in Kasai province remained
+            increasingly complex. There were over 57,000 forced returnees,
+            including almost 15,000 children, who were registered at various
+            borders, and almost 13,000 spontaneous refugees were identified by
+            UNHCR in the community.An estimated 30% of these returnees were
+            children, including unaccompanied children, who required
+            humanitarian assistance.{' '}
+          </p>
+          <div className={styles['challenges-content__section']}>
+            <ExpandableTextBlock
+              body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+              footnote='Lorem ipsum footnote'
+              title='Early childhood development'
+            />
+          </div>
+          <div className={styles['challenges-content__section']}>
+            <ExpandableTextBlock
+              body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+              footnote='Lorem ipsum footnote'
+              title='Early childhood development'
+            />
+          </div>
         </div>
       </SectionContainer>
       <SectionContainer
@@ -190,16 +216,28 @@ export default function Sector() {
         src='/SectorHeaderSample.png'
         title='Our Approach'
       >
-        <h3>Our Goal</h3>
-        <h4 className={styles['approach-subheading']}>
-          Girls and boys have the knowledge and skills to lead fulfilling,
-          productive lives.
-        </h4>
+        <div className={styles['approach-diagram']}>
+          <h3>Our Goal</h3>
+          <h4 className={styles['approach-diagram__subheading']}>
+            Girls and boys have the knowledge and skills to lead fulfilling,
+            productive lives.
+          </h4>
+          <div className={styles['approach-diagram__goals']}>
+            <Goals
+              data={[
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+                'Diam quis enim lobortis scelerisque fermentum',
+                'Tortor vitae purus faucibus ornare suspendisse sed nisi lacus.',
+                'Consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat',
+                'Quisque egestas diam dolor in arcu cursus euismod quis viverra nibh et dolore magna aliqua.'
+              ]}
+            />
+          </div>
+        </div>
         <div className={styles['approach-section']}>
           <ExpandableTextBlock
             body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
             footnote='Lorem ipsum footnote'
-            title='Early childhood development'
           />
         </div>
       </SectionContainer>
@@ -208,7 +246,7 @@ export default function Sector() {
         src='/SectorHeaderSample.png'
         title='Breaking Down Expenditures'
       >
-        <p>
+        <p className={styles['expenditure-intro']}>
           We invest in and provide access to quality education for millions of
           girls and boys—including the most vulnerable, hardest to reach and
           those with disabilities—in safe and nurturing learning environments.
@@ -247,10 +285,12 @@ export default function Sector() {
             </Item>
           </Tabs>
         </div>
-        <ExpandableTextBlock
-          body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-          footnote='Lorem ipsum footnote'
-        />
+        <div className={styles['expenditures-section']}>
+          <ExpandableTextBlock
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+            footnote='Lorem ipsum footnote'
+          />
+        </div>
       </SectionContainer>
       <SectionContainer
         alt='Children running down a street smiling'
@@ -258,59 +298,61 @@ export default function Sector() {
         title='Progress'
         isDarkMode
       >
-        <Tabs isDarkMode>
-          <Item title='2021'>
-            <AccordionGroup
-              isDarkMode
-              items={[
-                {
-                  children: (
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Blanditiis id, quia odit soluta nemo quisquam modi!
-                      Reprehenderit dolore enim temporibus porro earum hic
-                      deserunt ducimus non eveniet, voluptatum nam quod aut
-                      assumenda iste est eius aliquid perspiciatis laborum nisi
-                      ratione, rem minima debitis? Aspernatur atque ut
-                      distinctio veritatis asperiores quisquam.
-                    </p>
-                  ),
-                  title: 'Item #1'
-                },
-                {
-                  children: (
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Blanditiis id, quia odit soluta nemo quisquam modi!
-                      Reprehenderit dolore enim temporibus porro earum hic
-                      deserunt ducimus non eveniet, voluptatum nam quod aut
-                      assumenda iste est eius aliquid perspiciatis laborum nisi
-                      ratione, rem minima debitis? Aspernatur atque ut
-                      distinctio veritatis asperiores quisquam.
-                    </p>
-                  ),
-                  title: 'Item #2'
-                },
-                {
-                  children: (
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Blanditiis id, quia odit soluta nemo quisquam modi!
-                      Reprehenderit dolore enim temporibus porro earum hic
-                      deserunt ducimus non eveniet, voluptatum nam quod aut
-                      assumenda iste est eius aliquid perspiciatis laborum nisi
-                      ratione, rem minima debitis? Aspernatur atque ut
-                      distinctio veritatis asperiores quisquam.
-                    </p>
-                  ),
-                  title: 'Item #3'
-                }
-              ]}
-            />
-          </Item>
-          <Item title='2022'>Senatus Populusque Romanus.</Item>
-          <Item title='2023'>Alea jacta est.</Item>
-        </Tabs>
+        <div className={styles['progress-content']}>
+          <Tabs isDarkMode>
+            <Item title='2021'>
+              <AccordionGroup
+                isDarkMode
+                items={[
+                  {
+                    children: (
+                      <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Blanditiis id, quia odit soluta nemo quisquam
+                        modi! Reprehenderit dolore enim temporibus porro earum
+                        hic deserunt ducimus non eveniet, voluptatum nam quod
+                        aut assumenda iste est eius aliquid perspiciatis laborum
+                        nisi ratione, rem minima debitis? Aspernatur atque ut
+                        distinctio veritatis asperiores quisquam.
+                      </p>
+                    ),
+                    title: 'Item #1'
+                  },
+                  {
+                    children: (
+                      <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Blanditiis id, quia odit soluta nemo quisquam
+                        modi! Reprehenderit dolore enim temporibus porro earum
+                        hic deserunt ducimus non eveniet, voluptatum nam quod
+                        aut assumenda iste est eius aliquid perspiciatis laborum
+                        nisi ratione, rem minima debitis? Aspernatur atque ut
+                        distinctio veritatis asperiores quisquam.
+                      </p>
+                    ),
+                    title: 'Item #2'
+                  },
+                  {
+                    children: (
+                      <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Blanditiis id, quia odit soluta nemo quisquam
+                        modi! Reprehenderit dolore enim temporibus porro earum
+                        hic deserunt ducimus non eveniet, voluptatum nam quod
+                        aut assumenda iste est eius aliquid perspiciatis laborum
+                        nisi ratione, rem minima debitis? Aspernatur atque ut
+                        distinctio veritatis asperiores quisquam.
+                      </p>
+                    ),
+                    title: 'Item #3'
+                  }
+                ]}
+              />
+            </Item>
+            <Item title='2022'>Senatus Populusque Romanus.</Item>
+            <Item title='2023'>Alea jacta est.</Item>
+          </Tabs>
+        </div>
       </SectionContainer>
       <div className={styles['change-container-wrapper']}>
         <div className={styles['change-container']}>
@@ -321,9 +363,7 @@ export default function Sector() {
             are some education examples we gathered in 2021.
           </p>
           <div className={styles['change-container__chart-container']}>
-            <div
-              className={styles['change-container__chart-container__chart-1']}
-            >
+            <div className={styles['change-container__chart-container__chart']}>
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
@@ -342,9 +382,7 @@ export default function Sector() {
                 yStepSize={10}
               />
             </div>
-            <div
-              className={styles['change-container__chart-container__chart-2']}
-            >
+            <div className={styles['change-container__chart-container__chart']}>
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
@@ -363,9 +401,7 @@ export default function Sector() {
                 yStepSize={10}
               />
             </div>
-            <div
-              className={styles['change-container__chart-container__chart-3']}
-            >
+            <div className={styles['change-container__chart-container__chart']}>
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 aspectRatio={0.8}

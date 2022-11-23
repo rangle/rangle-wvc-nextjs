@@ -71,27 +71,150 @@
     }
   }
 
-  .challenges-section{
-    margin-top: 55px;
-  }
-
-  .approach-subheading {
-    color: $orange-dark;
-    margin-top: $space-m;
+  .challenges-content {
+    margin-left: $page-margin-mobile;
+    margin-right: $page-margin-mobile;
 
     @media (min-width: 767px) {
-      width: 60%;
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 0 auto;
+    }
+
+    &__section {
+      margin-top: 55px;
+    }
+  }
+
+  .approach-diagram {
+    margin-left: $page-margin-mobile;
+    margin-right: $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: $page-margin-desktop;
+      margin-right: $page-margin-desktop;
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 12);
+      margin: 0 auto;
+    }
+
+    &__goals {
+      margin-top: 55px;
+    }
+
+    &__subheading {
+      color: $orange-dark;
+      margin-top: $space-m;
+
+      @media (min-width: 767px) {
+        width: 50%;
+      }
     }
   }
 
   .approach-section{
-    margin-top: 55px;
+    padding-top: 55px;
+    margin-left: $page-margin-mobile;
+    margin-right: $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 0 auto;
+    }
+
+    &__section {
+      margin-top: 55px;
+    }
+  }
+  
+  .expenditure-intro, .expenditures-section {
+    margin-left: $page-margin-mobile;
+    margin-right: $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 0 auto;
+    }
   }
 
   .expenditures-tabs {
-    padding: 80px 0;
+    padding: 80px 0 0;
+    margin-left: $page-margin-mobile;
+    margin-right: $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: calc($column-desktop * 3 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 3 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 6);
+      margin: 0 auto;
+    }
+
     &__content {
       padding: 60px 0;
+    }
+  }
+
+  .progress-content{
+    margin-left: $page-margin-mobile;
+    margin-right: $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin-left: $page-margin-tablet;
+      margin-right: $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
+      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 8);
+      margin: 0 auto;
     }
   }
 
@@ -131,20 +254,43 @@
       &__chart-container {
         margin-top: $space-xxxl;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-
-        &__chart-2 {
-          display: none;
-          @media (min-width: 767px) {
-            display: block;
+        justify-content: center;
+        // TODO: remove this when chart bug is fixed
+        overflow: hidden;
+  
+        &__chart {
+          &:nth-child(1) {
+            border: none;
+            @media (min-width: 767px) {
+              padding-right: 50px;
+              border-right: #CAC4BB solid 1px;
+            }
           }
-        }
-
-        &__chart-3 {
-          display: none;
-          @media (min-width: 1024px) {
-            display: block;
+  
+          &:nth-child(2) {
+            display: none;
+            border: none;
+            
+            @media (min-width: 767px) {
+              padding-left: 50px;
+              display: block;
+              border: 0;
+              padding-right: 0;
+            }
+  
+            @media (min-width: 1024px) {
+              padding-right: 50px;
+              border-right: #CAC4BB solid 1px;
+            }
+          }
+    
+          &:nth-child(3) {
+            display: none;
+            border: none;
+            @media (min-width: 1024px) {
+              padding-left: 50px;
+              display: block;
+            }
           }
         }
       }

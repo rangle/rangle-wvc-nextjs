@@ -11,21 +11,23 @@ const MediaBlock = ({
 }) => {
   return (
     <div className={styles[`media-block`]}>
-      <div className={styles[`media-block__content`]}>
-        <h2 className={styles[`media-block__title`]}>{title}</h2>
-        <p className={styles[`media-block__body`]}>{body}</p>
-      </div>
-      <div className={styles[`media-block__media`]}>
-        {imageSrc && (
-          <img
-            className={styles[`media-block__image`]}
-            src={imageSrc}
-            alt={imageAlt}
-          />
-        )}
-        {videoSrc && (
-          <Video src={videoSrc} backgroundImage={videoBackgroundImage} />
-        )}
+      <div className={styles['media-block__container']}>
+        <div className={styles[`media-block__container__content`]}>
+          <h2 className={styles[`media-block__container__title`]}>{title}</h2>
+          <p className={styles[`media-block__container__body`]}>{body}</p>
+        </div>
+        <div className={styles[`media-block__container__media`]}>
+          {imageSrc && (
+            <img
+              className={styles[`media-block__container__image`]}
+              src={imageSrc}
+              alt={imageAlt}
+            />
+          )}
+          {videoSrc && (
+            <Video src={videoSrc} backgroundImage={videoBackgroundImage} />
+          )}
+        </div>
       </div>
     </div>
   )
