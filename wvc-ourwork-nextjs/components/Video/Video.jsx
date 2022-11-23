@@ -39,7 +39,7 @@ const Video = ({ backgroundImage, src }) => {
         >
           <img
             className={styles['video__controls-play-icon']}
-            src='./play.svg'
+            src='/play.svg'
             alt=''
           />
         </button>

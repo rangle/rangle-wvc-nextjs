@@ -1,16 +1,18 @@
-import ExpandableTextBlock from '../../components/ExpandableTextBlock/ExpandableTextBlock'
-import Tabs from '../../components/Tabs/Tabs'
 import AccordionGroup from '../../components/AccordionGroup/AccordionGroup'
 import Carousel from '../../components/Carousel/Carousel'
-import MediaCard from '../../components/MediaCard/MediaCard'
 import CtaBlock from '../../components/CtaBlock/CtaBlock'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import EmergencyAlert from '../../components/EmergencyAlert/EmergencyAlert'
+import ExpandableTextBlock from '../../components/ExpandableTextBlock/ExpandableTextBlock'
 import HeroBlock from '../../components/HeroBlock/HeroBlock'
+import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
+import MediaBlock from '../../components/MediaBlock/MediaBlock'
+import MediaCard from '../../components/MediaCard/MediaCard'
+import SectionContainer from '../../components/SectionContainer/SectionContainer'
+import Tabs from '../../components/Tabs/Tabs'
+
 import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
-import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { Item } from 'react-stately'
 
@@ -108,6 +110,12 @@ export default function Country() {
         chartType='line'
         controlTitle='Explore our investments and results'
         footnote='Date as of footnote'
+      />
+      <MediaBlock
+        videoSrc='https://www.youtube.com/watch?v=RYTFzGkb-5A'
+        videoBackgroundImage='/MediaBlockBackground.png'
+        title='This community is graduating'
+        body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque, turpis et hendrerit pulvinar, odio purus lacinia felis, a semper eros turpis quis turpis. Curabitur sodales velit at fusce.'
       />
       <SectionContainer
         alt='Children running down a street smiling'
