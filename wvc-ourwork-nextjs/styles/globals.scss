@@ -112,6 +112,32 @@ h5 {
   border-right-color: $white;
 }
 
+.timeline-item-title.rc-title {
+  font-weight: normal;
+
+  &.active {
+      font-weight: bold;
+      background: $orange-lightest;
+      color: $black;
+  }
+}
+
+.timeline-card-content {
+  .rc-card-title {
+      color: $charcoal;
+      margin-bottom: 0;
+      @include typographylargeparagraphbodycopy_regular
+  }
+  .card-description {
+      padding: 0;
+      p {
+          color: $charcoal;
+          font-size: 18px;
+      }
+  }
+}  
+
+
 /* commenting out for now to not have dark mode as the default theme ** */
 /* @media (prefers-color-scheme: dark) {
   html {
