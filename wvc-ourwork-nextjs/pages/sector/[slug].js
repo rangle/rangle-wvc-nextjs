@@ -156,33 +156,35 @@ export default function Sector() {
         src='/SectorHeaderSample.png'
         title='Global Challenges'
       >
-        <p>
-          The humanitarian situation in Kasai Central province, in the
-          Democratic Republic of the Congo (DRC), has been characterized by
-          massive population movements. The Angolan government had forced over
-          650,000 Congolese nationals who had been living there for year to
-          repatriate. While the Kamuina Nsapu refugees were not affected, the
-          forced return ensured that the situation in Kasai province remained
-          increasingly complex. There were over 57,000 forced returnees,
-          including almost 15,000 children, who were registered at various
-          borders, and almost 13,000 spontaneous refugees were identified by
-          UNHCR in the community.An estimated 30% of these returnees were
-          children, including unaccompanied children, who required humanitarian
-          assistance.{' '}
-        </p>
-        <div className={styles['challenges-section']}>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-            title='Early childhood development'
-          />
-        </div>
-        <div className={styles['challenges-section']}>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-            title='Early childhood development'
-          />
+        <div className={styles['challenges-content']}>
+          <p>
+            The humanitarian situation in Kasai Central province, in the
+            Democratic Republic of the Congo (DRC), has been characterized by
+            massive population movements. The Angolan government had forced over
+            650,000 Congolese nationals who had been living there for year to
+            repatriate. While the Kamuina Nsapu refugees were not affected, the
+            forced return ensured that the situation in Kasai province remained
+            increasingly complex. There were over 57,000 forced returnees,
+            including almost 15,000 children, who were registered at various
+            borders, and almost 13,000 spontaneous refugees were identified by
+            UNHCR in the community.An estimated 30% of these returnees were
+            children, including unaccompanied children, who required
+            humanitarian assistance.{' '}
+          </p>
+          <div className={styles['challenges-content__section']}>
+            <ExpandableTextBlock
+              body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+              footnote='Lorem ipsum footnote'
+              title='Early childhood development'
+            />
+          </div>
+          <div className={styles['challenges-content__section']}>
+            <ExpandableTextBlock
+              body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+              footnote='Lorem ipsum footnote'
+              title='Early childhood development'
+            />
+          </div>
         </div>
       </SectionContainer>
       <SectionContainer
@@ -190,11 +192,13 @@ export default function Sector() {
         src='/SectorHeaderSample.png'
         title='Our Approach'
       >
-        <h3>Our Goal</h3>
-        <h4 className={styles['approach-subheading']}>
-          Girls and boys have the knowledge and skills to lead fulfilling,
-          productive lives.
-        </h4>
+        <div className={styles['approach-diagram']}>
+          <h3>Our Goal</h3>
+          <h4 className={styles['approach-diagram__subheading']}>
+            Girls and boys have the knowledge and skills to lead fulfilling,
+            productive lives.
+          </h4>
+        </div>
         <div className={styles['approach-section']}>
           <ExpandableTextBlock
             body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
@@ -208,7 +212,7 @@ export default function Sector() {
         src='/SectorHeaderSample.png'
         title='Breaking Down Expenditures'
       >
-        <p>
+        <p className={styles['expenditure-intro']}>
           We invest in and provide access to quality education for millions of
           girls and boys—including the most vulnerable, hardest to reach and
           those with disabilities—in safe and nurturing learning environments.
@@ -247,10 +251,12 @@ export default function Sector() {
             </Item>
           </Tabs>
         </div>
-        <ExpandableTextBlock
-          body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-          footnote='Lorem ipsum footnote'
-        />
+        <div className={styles['expenditures-section']}>
+          <ExpandableTextBlock
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
+            footnote='Lorem ipsum footnote'
+          />
+        </div>
       </SectionContainer>
       <SectionContainer
         alt='Children running down a street smiling'
@@ -258,59 +264,61 @@ export default function Sector() {
         title='Progress'
         isDarkMode
       >
-        <Tabs isDarkMode>
-          <Item title='2021'>
-            <AccordionGroup
-              isDarkMode
-              items={[
-                {
-                  children: (
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Blanditiis id, quia odit soluta nemo quisquam modi!
-                      Reprehenderit dolore enim temporibus porro earum hic
-                      deserunt ducimus non eveniet, voluptatum nam quod aut
-                      assumenda iste est eius aliquid perspiciatis laborum nisi
-                      ratione, rem minima debitis? Aspernatur atque ut
-                      distinctio veritatis asperiores quisquam.
-                    </p>
-                  ),
-                  title: 'Item #1'
-                },
-                {
-                  children: (
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Blanditiis id, quia odit soluta nemo quisquam modi!
-                      Reprehenderit dolore enim temporibus porro earum hic
-                      deserunt ducimus non eveniet, voluptatum nam quod aut
-                      assumenda iste est eius aliquid perspiciatis laborum nisi
-                      ratione, rem minima debitis? Aspernatur atque ut
-                      distinctio veritatis asperiores quisquam.
-                    </p>
-                  ),
-                  title: 'Item #2'
-                },
-                {
-                  children: (
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Blanditiis id, quia odit soluta nemo quisquam modi!
-                      Reprehenderit dolore enim temporibus porro earum hic
-                      deserunt ducimus non eveniet, voluptatum nam quod aut
-                      assumenda iste est eius aliquid perspiciatis laborum nisi
-                      ratione, rem minima debitis? Aspernatur atque ut
-                      distinctio veritatis asperiores quisquam.
-                    </p>
-                  ),
-                  title: 'Item #3'
-                }
-              ]}
-            />
-          </Item>
-          <Item title='2022'>Senatus Populusque Romanus.</Item>
-          <Item title='2023'>Alea jacta est.</Item>
-        </Tabs>
+        <div className={styles['progress-content']}>
+          <Tabs isDarkMode>
+            <Item title='2021'>
+              <AccordionGroup
+                isDarkMode
+                items={[
+                  {
+                    children: (
+                      <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Blanditiis id, quia odit soluta nemo quisquam
+                        modi! Reprehenderit dolore enim temporibus porro earum
+                        hic deserunt ducimus non eveniet, voluptatum nam quod
+                        aut assumenda iste est eius aliquid perspiciatis laborum
+                        nisi ratione, rem minima debitis? Aspernatur atque ut
+                        distinctio veritatis asperiores quisquam.
+                      </p>
+                    ),
+                    title: 'Item #1'
+                  },
+                  {
+                    children: (
+                      <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Blanditiis id, quia odit soluta nemo quisquam
+                        modi! Reprehenderit dolore enim temporibus porro earum
+                        hic deserunt ducimus non eveniet, voluptatum nam quod
+                        aut assumenda iste est eius aliquid perspiciatis laborum
+                        nisi ratione, rem minima debitis? Aspernatur atque ut
+                        distinctio veritatis asperiores quisquam.
+                      </p>
+                    ),
+                    title: 'Item #2'
+                  },
+                  {
+                    children: (
+                      <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Blanditiis id, quia odit soluta nemo quisquam
+                        modi! Reprehenderit dolore enim temporibus porro earum
+                        hic deserunt ducimus non eveniet, voluptatum nam quod
+                        aut assumenda iste est eius aliquid perspiciatis laborum
+                        nisi ratione, rem minima debitis? Aspernatur atque ut
+                        distinctio veritatis asperiores quisquam.
+                      </p>
+                    ),
+                    title: 'Item #3'
+                  }
+                ]}
+              />
+            </Item>
+            <Item title='2022'>Senatus Populusque Romanus.</Item>
+            <Item title='2023'>Alea jacta est.</Item>
+          </Tabs>
+        </div>
       </SectionContainer>
       <div className={styles['change-container-wrapper']}>
         <div className={styles['change-container']}>

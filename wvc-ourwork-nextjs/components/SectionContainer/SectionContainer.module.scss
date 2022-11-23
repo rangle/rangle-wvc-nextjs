@@ -59,24 +59,10 @@
 
   &__content {
     @include typographylargeparagraphbodycopy_regular;
-    margin-left: $page-margin-mobile;
     padding-bottom: $section-margin-mobile;
-    margin-right: $page-margin-mobile;
-
-    @media (min-width: 767px) {
-      margin-left: $page-margin-tablet;
-      margin-right: $page-margin-tablet;
-    }
 
     @media (min-width: 1024px) {
-      margin-left: calc($column-desktop * 2 + $page-margin-desktop);
-      margin-right: calc($column-desktop * 2 + $page-margin-desktop);
       padding-bottom: $section-margin-desktop;
-    }
-
-    @media (min-width: 1366px) {
-      width: calc($column-max * 8);
-      margin: 0 auto;
     }
 
     .section-container__content-wrapper--dark & {
