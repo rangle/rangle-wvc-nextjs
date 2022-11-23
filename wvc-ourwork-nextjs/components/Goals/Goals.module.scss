@@ -1,0 +1,50 @@
+@import '../../styles/lumen-tokens.scss';
+
+.goals-container {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $font-text;
+  flex-direction: column;
+  color: $charcoal;
+  align-content: center;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+  }
+
+  .goal {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    @media screen and (min-width: 767px) {
+      margin-bottom: $size-l;
+      flex-direction: row;
+    }
+
+    &--dark {
+        color: $white;
+    }
+
+    .goal-box {
+        outline: 1px solid $orange;
+        padding: $size-l;
+        width: 215px;
+        box-shadow: $spacing-xl $spacing-xl 16px rgba(0, 0, 0, 0.05);
+        border-radius: $radius-default;
+      }
+    
+      .connecting-line {
+        height: $size-l;
+        border-right: $spacing-xl solid $orange;
+        width: 107px;
+
+        @media screen and (min-width: 767px) {
+            border-right: 0;
+            border-bottom: $spacing-xl solid $orange;
+            height: 50%;
+            width: $size-l;
+          }
+      }
+  }
+}
