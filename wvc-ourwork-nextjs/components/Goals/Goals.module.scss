@@ -3,7 +3,7 @@
 .goals-container {
   display: flex;
   flex-wrap: wrap;
-  font-family: 'Lato';
+  font-family: $font-text;
   flex-direction: column;
   color: $charcoal;
   align-content: center;
