@@ -19,10 +19,7 @@
     padding: $size-m;
 
     span {
-      font-family: 'Lato';
-      font-style: normal;
-      font-weight: 800;
-      font-size: 36px;
+      @include typographylargeheadingh2;
       line-height: 48px;
       line-break: loose;
       display: flex;
