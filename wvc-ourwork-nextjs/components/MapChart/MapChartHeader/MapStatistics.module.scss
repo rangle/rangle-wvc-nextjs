@@ -1,0 +1,47 @@
+@import '../../../styles/lumen-tokens';
+
+.map-statistics-block-grid {
+  display: grid;
+  column-gap: $space-xl;
+  grid-template-columns: repeat(3, minmax(0, 600px));
+  justify-content: center;
+
+  &--duo {
+    grid-template-columns: repeat(2, minmax(275px, 600px));
+  }
+
+  &--single {
+    grid-template-columns: minmax(275px, 600px);
+  }
+}
+.map-statistics-block {
+  padding: $space-l;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+
+  &__title {
+    @include typographylargeparagraphsmallcopy_regular;
+
+    color: $white;
+    
+    margin-bottom: $space-s;
+    text-transform: uppercase;
+  }
+
+  &__statistic {
+    color: $orange;
+    display: block;
+    margin-bottom: $space-xs;
+    @include typographylargeheadingh5;
+    &--large {
+      @include typographylargeheadingh3;
+      color: $orange;
+    }
+  }
+
+  &__body {
+    @include typographylargeparagraphbodycopy_regular;
+    color: $black;
+  }
+}

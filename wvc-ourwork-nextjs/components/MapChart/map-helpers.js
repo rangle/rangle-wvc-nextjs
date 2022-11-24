@@ -1,5 +1,6 @@
 import { randomPoint } from '@turf/random'
 import { coordAll } from '@turf/meta'
+
 import pointsWithinPolygon from '@turf/points-within-polygon'
 
 function getRandomNumber(min, max) {
@@ -8,14 +9,15 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min) // The maximum is inclusive and the minimum is inclusive
 }
 
-function generateRandomCoordinates(allData, countryCode) {
+function generateRandomCoordinates(geoJson) {
   const max = getRandomNumber(5, 50)
-  if (allData[countryCode]?.features[0]?.properties) {
+  if (geoJson?.features[0]?.properties) {
     let randomPoints = randomPoint(max, {
-      bbox: allData[countryCode].features[0].properties.bbox
+      bbox: geoJson?.features[0].properties.bbox
     })
+    let x = pointsWithinPolygon(randomPoints, geoJson)
 
-    return coordAll(pointsWithinPolygon(randomPoints, allData[countryCode]))
+    return coordAll(pointsWithinPolygon(randomPoints, geoJson))
   } else {
     return []
   }

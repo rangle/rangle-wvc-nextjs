@@ -12,7 +12,8 @@ export interface DropdownProps {
   isDark: boolean
   options: Option[]
   updateSelection: (value: string) => void
-  hideLabel?: boolean;
+  hideLabel?: boolean
+  value: string
 }
 
 const Dropdown = ({
@@ -20,13 +21,19 @@ const Dropdown = ({
   id,
   isDark,
   options,
+  value,
   updateSelection,
   hideLabel
 }: DropdownProps) => {
   return (
     <div className={styles[`select-dropdown${isDark ? '--darkTheme' : ''}`]}>
       <div>
-        <label htmlFor={id} className={`${styles['select-dropdown__label']} ${hideLabel ? 'visually-hidden' : ''}`}>
+        <label
+          htmlFor={id}
+          className={`${styles['select-dropdown__label']} ${
+            hideLabel ? 'visually-hidden' : ''
+          }`}
+        >
           {dropdownLabel}
         </label>
       </div>
@@ -34,13 +41,18 @@ const Dropdown = ({
         <select
           className={styles['select-dropdown__select']}
           id={id}
+          value={value}
           onChange={(e) => {
             return updateSelection(e.target.value)
           }}
         >
           {options.map((option) => {
             return (
-              <option className={styles['select-dropdown__option']} value={option.value} key={option.label}>
+              <option
+                className={styles['select-dropdown__option']}
+                value={option.value}
+                key={option.label}
+              >
                 {option.label}
               </option>
             )

@@ -1,8 +1,8 @@
-import MapChartCountry from './MapChartCountry'
 import { useState, useCallback } from 'react'
-import { COUNTRY_CODES } from './MapConstants'
 
-import { generateRandomCoordinates } from './map-helpers'
+import { COUNTRY_CODES } from '../MapConstants'
+import MapChartCountry from './MapChartCountry'
+import { generateRandomCoordinates } from '../map-helpers'
 
 export default {
   title: 'Example/Maps',
@@ -11,8 +11,12 @@ export default {
 
 const Template = (args) => {
   const [markerCoordinates, setMarkerCoordinates] = useState([])
-  const onCountryChange = useCallback(({ allData, countryCode }) => {
-    setMarkerCoordinates(() => generateRandomCoordinates(allData, countryCode))
+  const onCountryDataLoaded = useCallback(({ countryData, countryCode }) => {
+    setMarkerCoordinates(() => {
+      let x = generateRandomCoordinates(countryData, countryCode)
+
+      return x
+    })
   })
 
   return (
@@ -30,8 +34,9 @@ const Template = (args) => {
         duration={args.duration}
         padding={args.padding}
         interactive={args.interactive}
-        onCountryChange={onCountryChange}
+        onCountryDataLoaded={onCountryDataLoaded}
         markerCoordinates={markerCoordinates}
+        color={args.color}
       />
     </div>
   )
@@ -40,6 +45,10 @@ const Template = (args) => {
 export const MapChartCountrySelect = Template.bind({})
 
 MapChartCountrySelect.argTypes = {
+  color: {
+    options: ['light', 'dark'],
+    control: { type: 'select' }
+  },
   countryCode: {
     options: Object.keys(COUNTRY_CODES),
 
@@ -72,5 +81,6 @@ MapChartCountrySelect.argTypes = {
 MapChartCountrySelect.args = {
   countryCode: 'CHN',
   duration: 1000,
-  padding: 40
+  padding: 40,
+  color: 'light'
 }

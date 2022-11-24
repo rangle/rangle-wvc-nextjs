@@ -1,0 +1,49 @@
+@import '../../../styles/lumen-tokens';
+
+.map-container {
+  position: relative;
+  display: block;
+  height: 500px;
+}
+
+.map-header-container {
+  background: $charcoal;
+  &__map-legend {
+    position: absolute;
+    display: flex;
+    height: 13.5rem;
+    width: 18.063;
+    background: $grey;
+
+    bottom: 0px;
+    padding: $size-m;
+
+    span {
+      @include typographylargeheadingh2;
+      line-height: 48px;
+      line-break: loose;
+      display: flex;
+      max-width: 257px;
+      color: $white;
+    }
+  }
+}
+
+.map-header__control-bar {
+  display: flex;
+  &--first {
+    flex: 1;
+    margin-right:  16px;
+    margin-left: 16px;
+
+  }
+  &__col--1 {
+    flex: 1;
+  }
+  &__col--2 {
+    flex: 2;
+  }
+  &__col--3 {
+    flex: 3;
+  }
+}

@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
 import { Source, Layer } from 'react-map-gl'
 import bbox from '@turf/bbox'
-
-import MapChart from './MapChart'
-import { useFetchGeoJson, useFitBounds, useMapMarkers } from './MapChatHooks'
+import { multiPoint } from '@turf/helpers'
+import MapChart from '../MapChart'
+import { useFetchGeoJson, useFitBounds, useMapMarkers } from '../mapHooks'
 
 const countryLayerStyle = {
   id: 'countryLayer',
@@ -17,29 +17,32 @@ const countryLayerStyle = {
 const MapChartCountries = ({
   countryCode,
   duration = 1000,
-  padding = 40,
+  padding = 200,
   markerCoordinates = [],
-  onCountryChange = (evt) => {},
+  onCountryDataLoaded = (evt) => {},
   ...props
 }) => {
   const mapRef = useRef()
-
   const [isMapLoaded, setIsMapLoaded] = useState(false)
-
-  const [allData, error] = useFetchGeoJson(countryCode)
+  const { geoJson: countryData, error } = useFetchGeoJson(countryCode)
   const mapMarkers = useMapMarkers(markerCoordinates)
 
   useEffect(() => {
-    onCountryChange({ allData, countryCode })
-  }, [allData, countryCode])
+    onCountryDataLoaded({ countryData, countryCode })
+  }, [countryData, countryCode])
 
   const boundingBox = useMemo(() => {
-    if (allData[countryCode]) {
-      const [minLng, minLat, maxLng, maxLat] = bbox(allData[countryCode])
+    if (countryData) {
+      const [minLng, minLat, maxLng, maxLat] = bbox(countryData)
+
+      return { minLng, minLat, maxLng, maxLat }
+    } else if (!countryData && markerCoordinates?.length > 0) {
+      const points = multiPoint(markerCoordinates)
+      const [minLng, minLat, maxLng, maxLat] = bbox(points)
 
       return { minLng, minLat, maxLng, maxLat }
     }
-  }, [allData, isMapLoaded, countryCode])
+  }, [countryData, isMapLoaded, countryCode, markerCoordinates])
 
   useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded)
 
@@ -51,8 +54,8 @@ const MapChartCountries = ({
       ref={mapRef}
     >
       {mapMarkers}
-      {allData[countryCode] && (
-        <Source id={`data-country`} type='geojson' data={allData[countryCode]}>
+      {countryData && (
+        <Source id={`data-country`} type='geojson' data={countryData}>
           <Layer {...countryLayerStyle} />
         </Source>
       )}
