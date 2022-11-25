@@ -135,7 +135,7 @@ const SubNavigation = ({ navItems }) => {
 
   useEffect(() => {
     if (navItems && navItems.length) {
-      const shapedData = navItems.map((item) => {
+      const navItemData = navItems.map((item) => {
         let subMenuData = []
         if (!!item?.subMenuItems) {
           const isAreasOfFocus = item?.subMenuItems?.areas_of_focus?.length > 0
@@ -148,7 +148,7 @@ const SubNavigation = ({ navItems }) => {
                 focusSubMenuItems?.map((menu) => menu.navigation_submenu)
               )
             ]
-            const shapedData = categories.map((subMenuCategory) => {
+            const navItemData = categories.map((subMenuCategory) => {
               return {
                 name: subMenuCategory,
                 list: focusSubMenuItems.filter(
@@ -157,15 +157,17 @@ const SubNavigation = ({ navItems }) => {
                 subMenu: focusSubMenuItems[0].navigation_menu
               }
             })
-            subMenuData = shapedData
-          } else if (isCountry) {
+            subMenuData = navItemData
+          }
+
+          if (isCountry) {
             const countrySubMenuItems = item?.subMenuItems?.countries
             const categories = [
               ...new Set(
                 countrySubMenuItems?.map((menu) => menu.navigation_regions)
               )
             ]
-            const shapedData = categories.map((subMenuCategory) => {
+            const navItemData = categories.map((subMenuCategory) => {
               return {
                 name: subMenuCategory,
                 list: countrySubMenuItems.filter(
@@ -174,8 +176,9 @@ const SubNavigation = ({ navItems }) => {
                 subMenu: countrySubMenuItems[0].navigation_menu
               }
             })
+            // TODO: sort regions alphabetically first and then set the active region to the first item in the array
             setActiveRegion('Africa')
-            subMenuData = shapedData
+            subMenuData = navItemData
           }
         }
 
@@ -183,12 +186,12 @@ const SubNavigation = ({ navItems }) => {
           label: item.label,
           hasSubMenu: !!item?.subMenuItems,
           isLink: !!item?.url,
-          url: item?.url ? item.url : null,
+          url: item?.url || null,
           subMenuData: subMenuData,
           subMenuOpen: false
         }
       })
-      setData(shapedData)
+      setData(navItemData)
     }
   }, [navItems])
 
