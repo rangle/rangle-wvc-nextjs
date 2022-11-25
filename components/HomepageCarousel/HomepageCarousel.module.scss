@@ -1,0 +1,62 @@
+@import '../../styles/lumen-tokens';
+
+.homepage-carousel {
+  .homepage-carousel-title {
+    @include typographylargeheadingh2;
+    text-align: center;
+    color: $orange-light;
+    font-size: 2.5rem;
+
+    @media (min-width: 768px) {
+      font-size: 3.875rem;
+    }
+  }
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .homepage-carousel-nav-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    circle {
+      fill: $white;
+      transition: all 280ms;
+    }
+
+    &:hover {
+      circle {
+        fill: $orange-lightest;
+        transition: all 280ms;
+      }
+    }
+
+    &--desktop {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+      }
+    }
+
+    &--mobile {
+      display: flex;
+
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  .mobile-nav-button-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    top: -45px;
+    z-index: 100;
+  }
+}

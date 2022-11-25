@@ -1,6 +1,7 @@
 /* Global styles */
 @import './lumen-tokens';
 @import 'swiper/scss';
+@import 'swiper/scss/pagination';
 @import 'tippy.js/dist/tippy.css';
 @import 'tippy.js/dist/border.css';
 
@@ -13,7 +14,6 @@ body {
   padding: 0;
   vertical-align: baseline;
 }
-
 
 a {
   color: inherit;
@@ -62,7 +62,7 @@ h5 {
   padding: 0 !important;
   margin: -1px !important;
   overflow: hidden !important;
-  clip: rect(0,0,0,0) !important;
+  clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
 }
@@ -74,14 +74,32 @@ h5 {
     margin-right: 1.5rem;
     width: auto;
     height: auto;
-  
-    @media (max-width: 767px) {
-      margin-right: 0.5rem;
-      width: calc(100% - 2rem);
-      position: relative;
-      left: 1rem;
+  }
+
+  .swiper-pagination {
+    .swiper-pagination-bullet {
+      width: 1rem;
+      height: 1rem;
+      background: $grey-lighter;
+      margin: 20px 20px 0;
+    }
+    .swiper-pagination-bullet-active {
+      background: $orange-light;
     }
   }
+}
+
+.swiper-slide-template {
+  @media (max-width: 767px) {
+    margin-right: 0.5rem !important;
+    width: calc(100% - 2rem) !important;
+    position: relative !important;
+    left: 1rem !important;
+  }
+}
+
+.swiper-padding {
+  padding-bottom: 4rem;
 }
 
 .tippy-box[data-theme~='info-light'] {
@@ -116,29 +134,29 @@ h5 {
   font-weight: normal;
 
   &.active {
-      font-weight: bold;
-      background: $orange-lightest;
-      color: $black;
+    font-weight: bold;
+    background: $orange-lightest;
+    color: $black;
   }
 }
 
 .timeline-card-content {
   .rc-card-title {
-      color: $charcoal;
-      margin-bottom: 0;
-      @include typographylargeparagraphbodycopy_regular
+    color: $charcoal;
+    margin-bottom: 0;
+    @include typographylargeparagraphbodycopy_regular;
   }
   .card-description {
-      padding: 0;
-      p {
-          color: $charcoal;
-          font-size: 18px;
-      }
+    padding: 0;
+    p {
+      color: $charcoal;
+      font-size: 18px;
+    }
   }
 }
 
 .vertical-item-row > div:first-of-type {
-  display: none; 
+  display: none;
 }
 
 .vertical-item-row {
@@ -146,7 +164,6 @@ h5 {
     width: 90%;
   }
 }
-
 
 /* commenting out for now to not have dark mode as the default theme ** */
 /* @media (prefers-color-scheme: dark) {
