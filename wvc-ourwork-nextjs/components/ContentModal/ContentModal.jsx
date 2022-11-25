@@ -13,6 +13,15 @@ const ctaArrow = (
   </svg>
 )
 
+const exitIcon = (
+  <svg xmlns='http://www.w3.org/2000/svg' fill='none'>
+    <path
+      fill='#fff'
+      d='M2.3 19.1.9 17.7 8.6 10 .9 2.3 2.3.9 10 8.6 17.7.9l1.4 1.4-7.7 7.7 7.7 7.7-1.4 1.4-7.7-7.7-7.7 7.7Z'
+    />
+  </svg>
+)
+
 const ContentModal = ({
   ctaLabel,
   ctaShortLabel,
@@ -54,6 +63,12 @@ const ContentModal = ({
       >
         <div className={styles['content-modal']}>
           <div className={styles['content-modal__heading-container']}>
+            <button
+              className={styles['content-modal__exit-button']}
+              onClick={closeModal}
+            >
+              {exitIcon}
+            </button>
             <h1 className={styles['content-modal__heading']}>{title}</h1>
           </div>
           <img
