@@ -1,8 +1,17 @@
-@import '../../styles/lumen-tokens';
+@import '../../../styles/lumen-tokens';
 
 .counter {
   @include typographylargeparagraphintro_strong;
+  height: 100%;
+  padding: 5rem 0;
   text-align: center;
+
+  @media (min-width: 768px) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
 
   &__intro {
     color: $orange;
@@ -28,11 +37,11 @@
     -webkit-text-stroke-color: $orange;
 
     @media (min-width: 768px) {
-      font-size: 30.75rem;
+      font-size: 37.5rem; // 600px
     }
   }
 
-  &__highlight {
+  &__total-descriptor {
     font-size: 40px;
     line-height: 1.05;
     text-transform: uppercase;
@@ -43,19 +52,20 @@
     transform: translate(-50%, 0);
 
     @media (min-width: 768px) {
-      width: 100%;
       font-size: 62px;
       font-weight: 800;
-      word-spacing: normal;
       transform: translate(-50%, 80%);
+      word-spacing: normal;
+      width: 100%;
     }
   }
 
   &__details {
-    margin-top: 1rem;
+    margin-top: $space-m;
 
     p {
-      font-size: 20px;
+      @include typographylargeparagraphintro_regular;
+      font-weight: 900;
     }
 
     span {

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Counter from '../components/Homepage/Counter'
+import Counter from '../components/Homepage/Counter/Counter'
 import styles from './Home.module.scss'
 
 export default function Home() {
@@ -18,7 +18,16 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--counter']}`}
         >
-          <Counter total={18} />
+          <Counter
+            introLine1='In 2021'
+            introLine2='we reached'
+            animatedTotal={18}
+            totalDescriptor='million people'
+            detailValue1='2,250,000'
+            detailDescriptor1='girls'
+            detailValue2='2,250,000'
+            detailDescriptor2='boys'
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--sticky-carousel']}`}
