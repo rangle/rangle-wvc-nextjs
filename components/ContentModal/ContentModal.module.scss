@@ -1,0 +1,210 @@
+@import '../../styles/lumen-tokens';
+
+.overlay {
+  padding: 0;
+}
+
+.content-modal {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  gap: 30vw;
+  flex-direction: column;
+  background-color: $charcoal;
+  z-index: 0;
+
+  @media (min-width: 1024px) {
+    gap: unset;
+    justify-content: space-between;
+  }
+
+  &__exit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    top: $space-xl;
+    right: $space-xl;
+    height: 1.25rem;
+    width: 1.25rem;
+
+    svg {
+      display: block;
+      height: 1.25rem;
+      width: 1.25rem;
+
+      @media (min-width: 1024px) {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      top: $space-xxxl;
+      right: $space-xxxl;
+    }
+  }
+
+  &__image {
+    display: block;
+    left: 0;
+    max-width: 100%;
+    min-width: 22.5rem; // 360px
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+
+    @media (min-width: 1024px) {
+      height: 100%;
+    }
+  }
+
+  &__heading-container {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: grayscale(1);
+    border-bottom: 1px solid $white;
+    padding-left: $size-l;
+    padding-top: $size-m;
+    position: relative;
+
+    @media (min-width: 1024px) {
+      border-bottom-width: 4px;
+      padding-left: 8.5rem; // 136px
+      padding-top: 5rem; // 80px
+    }
+  }
+
+  &__heading {
+    @include typographysmallheadingh1;
+    color: $white;
+    margin-bottom: $size-m;
+
+    @media (min-width: 1024px) {
+      font-size: 64px;
+    }
+  }
+
+  &__content-flex {
+    color: $white;
+
+    @media (min-width: 1024px) {
+      align-items: center;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: start;
+    }
+  }
+
+  &__text-container {
+    display: flex;
+    flex-direction: column;
+    gap: $size-m;
+    justify-content: space-between;
+    padding: 42px 1.5rem 60px 1.5rem;
+
+    @media (min-width: 1024px) {
+      margin-left: 5rem; // 80px
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-top: 0;
+      width: 66.66%;
+    }
+  }
+
+  &__text {
+    width: 100%;
+
+    p {
+      @include typographysmallheadingh5;
+      max-width: 17.25rem; // 276px
+
+      &:not(:last-child) {
+        margin-bottom: $space-xl;
+      }
+
+      @media (min-width: 1024px) {
+        @include typographylargeheadingh5;
+        margin-bottom: 0;
+      }
+    }
+
+    span {
+      @include typographysmallheadingh4;
+      color: $orange-light;
+      display: block;
+
+      @media (min-width: 1024px) {
+        @include typographylargeheadingh3;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      display: flex;
+      gap: 20%;
+    }
+  }
+
+  &__cta-container {
+    @include typographylargelinkinline;
+
+    a {
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    svg {
+      fill: $white;
+      margin-left: $space-xs;
+    }
+  }
+
+  &__cta {
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  &__cta-short {
+    display: block;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__media-container {
+    border: 1px solid $white;
+
+    @media (min-width: 1024px) {
+      border-width: 4px;
+      min-width: 421px;
+      width: 33.33%;
+    }
+  }
+
+  &__content-container {
+    border-top: 1px solid $white;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: grayscale(1);
+    background: linear-gradient(180deg, transparent 0%, $charcoal 10%);
+
+    @media (min-width: 1024px) {
+      border-top-width: 4px;
+      padding-bottom: 5rem; // 80px
+      padding-left: 8.5rem; // 136px
+      padding-right: $space-m;
+      padding-top: 5rem; // 80px
+    }
+
+    @media (min-width: 1024px) {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
