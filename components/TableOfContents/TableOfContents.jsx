@@ -2,8 +2,9 @@ import styles from './TableOfContents.module.scss'
 import Button from '../Button/Button'
 import React, { useEffect, useState, useRef } from 'react'
 import { getScreenWidth } from '../../utils/getScreenWidth'
+import { convertToKebabCase } from '../../utils/convertStrings'
 
-export const TableOfContents = ({ toc, isMobile }) => {
+export const TableOfContents = ({ contents, isMobile }) => {
   const buttonRef = useRef(null)
   const menuRef = useRef(null)
   const screenWidth = getScreenWidth()
@@ -12,13 +13,12 @@ export const TableOfContents = ({ toc, isMobile }) => {
   const [smallScreen, setSmallScreen] = useState(isMobile || screenWidth < 768)
 
   useEffect(() => {
-
     const checkIfClickedOutside = (e) => {
         // if the button is clicked
         if (!!buttonRef.current && buttonRef.current.contains(e.target)) {
             setIsExpanded(!isExpanded)
         }
-        // if you click outside the menu, close the toc menu
+        // if you click outside the menu, close the ToC menu
         if (!!menuRef.current && !menuRef.current.contains(e.target)) {
             setIsExpanded(false)
         }
@@ -33,11 +33,7 @@ export const TableOfContents = ({ toc, isMobile }) => {
 
 
   useEffect(() => {
-    if (screenWidth < 768) {
-      setSmallScreen(true)
-    } else {
-      setSmallScreen(false)
-    }
+    setSmallScreen(screenWidth < 768)
   }, [screenWidth])
 
   return (
@@ -58,12 +54,12 @@ export const TableOfContents = ({ toc, isMobile }) => {
       {isExpanded && (
         <div className={styles['table-of-contents']}>
           <ul ref={menuRef}>
-            {toc.map((item) => (
+            {contents.map(item => (
               <div
-                key={item.id}
+                key={convertToKebabCase(item)}
                 className={styles['table-of-contents__list-item']}
               >
-                <a href={`#${item.id}`}>{item.title}</a>
+                <a href={`#${convertToKebabCase(item)}`}>{item}</a>
               </div>
             ))}
           </ul>

@@ -6,7 +6,7 @@
 
   .table-of-contents {
     background-color: $sky-lighter;
-    box-shadow: 0px 0px 24px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 $size-l $space-xs rgba(0, 0, 0, 0.25); // no token for this shadow
     margin-top: 0;
     text-align: start;
     position: absolute;
@@ -19,18 +19,18 @@
   }
 
   ul {
-    padding: 4rem 2rem;
+    padding: $size-xxxl $space-xxxl;
   }
 
   .table-of-contents__list-item {
     @include typographylargeparagraphsmallcopy_regular;
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: $space-xxxl;
   }
 
   .cta-btn {
-    border-top: 1px solid $field-grey;
-    padding: 6px 8px;
+    border-top: $spacing-l solid $field-grey;
+    padding: 6px $space-xs;
 
     button {
       display: block;
