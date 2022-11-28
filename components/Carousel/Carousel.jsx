@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Navigation, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { resetId } from 'react-id-generator';
+import { useId } from 'react-id-generator'
 
 import styles from './Carousel.module.scss'
 
@@ -72,7 +72,7 @@ export const NextIcon = () => {
 const Carousel = ({ cards, title }) => {
   const slideTotal = cards.length
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
-  const id = resetId()
+  const id = useId()
 
   return (
     <div id={`carousel-${id}`} className={styles['carousel']}>
@@ -117,8 +117,13 @@ const Carousel = ({ cards, title }) => {
       >
         {cards &&
           cards.length &&
-          cards.map((card, i) => {
-            return <SwiperSlide key={i}>{card}</SwiperSlide>
+          cards.map((card) => {
+            const slideId = useId()
+            return (
+              <SwiperSlide key={slideId} className='swiper-slide-template'>
+                {card}
+              </SwiperSlide>
+            )
           })}
       </Swiper>
       <div className={styles['carousel-nav-container-mobile']}>
