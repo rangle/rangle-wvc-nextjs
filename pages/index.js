@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
+import Counter from '../components/Homepage/Counter'
+import styles from './Home.module.scss'
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--counter']}`}
         >
-          <h2>Counter</h2>
+          <Counter total={18} />
         </section>
         <section
           className={`${styles['section']} ${styles['section--sticky-carousel']}`}

@@ -1,0 +1,78 @@
+@import '../../styles/lumen-tokens';
+
+.counter {
+  @include typographylargeparagraphintro_strong;
+  text-align: center;
+
+  &__intro {
+    color: $orange;
+
+    p {
+      position: relative;
+    }
+  }
+
+  &__intro-text {
+    color: $orange;
+    display: block;
+  }
+
+  &__total {
+    color: transparent;
+    display: block;
+    font-family: Lato;
+    font-size: 18.75rem;
+    font-weight: 800;
+    line-height: 0.75;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: $orange;
+
+    @media (min-width: 768px) {
+      font-size: 30.75rem;
+    }
+  }
+
+  &__highlight {
+    font-size: 40px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    word-spacing: 9999px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    @media (min-width: 768px) {
+      width: 100%;
+      font-size: 62px;
+      font-weight: 800;
+      word-spacing: normal;
+      transform: translate(-50%, 80%);
+    }
+  }
+
+  &__details {
+    margin-top: 1rem;
+
+    p {
+      font-size: 20px;
+    }
+
+    span {
+      display: block;
+      font-size: 40px;
+      line-height: 1;
+
+      @media (min-width: 768px) {
+        font-size: 62px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      gap: 5vw;
+    }
+  }
+}
