@@ -1,0 +1,59 @@
+.main {
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  height: 100vh;
+  width: 100vw;
+
+  &--hero {
+    background-color: darkslateblue;
+  }
+
+  &--counter {
+    background-color: steelblue;
+  }
+
+  &--sticky-carousel {
+    background-color: lightgray;
+  }
+
+  &--1 {
+    background-color: powderblue;
+  }
+
+  &--map {
+    background-color: blanchedalmond;
+  }
+
+  &--rolling-credits {
+    background-color: pink;
+  }
+
+  &--did-you-know {
+    background-color: lavender;
+  }
+
+  &--pre-footer {
+    background-color: coral;
+  }
+}
+
+/* commenting out for now to not have dark mode as the default theme */
+/* @media (prefers-color-scheme: dark) {
+  .card,
+  .footer {
+    border-color: #222;
+  }
+  .code {
+    background: #111;
+  }
+  .logo img {
+    filter: invert(1);
+  }
+} */
