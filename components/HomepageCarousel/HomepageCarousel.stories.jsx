@@ -6,7 +6,10 @@ import HomepageCarousel from './HomepageCarousel'
 
 export default {
   title: 'Example/HomepageCarousel',
-  component: HomepageCarousel
+  component: HomepageCarousel,
+  parameters: {
+    layout: 'fullscreen'
+  }
 }
 
 const Template = (args) => <HomepageCarousel {...args} />
