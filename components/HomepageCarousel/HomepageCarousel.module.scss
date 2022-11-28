@@ -3,6 +3,7 @@
 .homepage-carousel {
   .homepage-carousel-title {
     @include typographylargeheadingh2;
+    margin-bottom: $size-m;
     text-align: center;
     color: $orange-light;
     font-size: 2.5rem;

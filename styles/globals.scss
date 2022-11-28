@@ -71,15 +71,15 @@ h5 {
 
 .swiper {
   .swiper-slide {
-    margin-right: 1.5rem;
+    margin-right: $size-l;
     width: auto;
     height: auto;
   }
 
   .swiper-pagination {
     .swiper-pagination-bullet {
-      width: 1rem;
-      height: 1rem;
+      width: $size-m;
+      height: $size-m;
       background: $grey-lighter;
       margin: 20px 20px 0;
     }
@@ -94,7 +94,7 @@ h5 {
     margin-right: 0.5rem !important;
     width: calc(100% - 2rem) !important;
     position: relative !important;
-    left: 1rem !important;
+    left: $size-m !important;
   }
 }
 
@@ -109,7 +109,7 @@ h5 {
   border: 2px solid $blue-light;
   color: $charcoal;
   box-shadow: 0 0 4px 1.3px rgba(0, 153, 204, 0.3);
-  line-height: 1.5rem;
+  line-height: $size-l;
   color: $charcoal;
 }
 

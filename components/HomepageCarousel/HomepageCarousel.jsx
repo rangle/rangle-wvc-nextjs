@@ -77,8 +77,9 @@ const HomepageCarousel = ({ cards, title }) => {
         >
           {cards &&
             cards.length &&
-            cards.map((card, i) => {
-              return <SwiperSlide key={i}>{card}</SwiperSlide>
+            cards.map((card) => {
+              const slideId = useId()
+              return <SwiperSlide key={slideId}>{card}</SwiperSlide>
             })}
         </Swiper>
         <button

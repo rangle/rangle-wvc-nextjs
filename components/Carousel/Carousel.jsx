@@ -117,9 +117,10 @@ const Carousel = ({ cards, title }) => {
       >
         {cards &&
           cards.length &&
-          cards.map((card, i) => {
+          cards.map((card) => {
+            const slideId = useId()
             return (
-              <SwiperSlide key={i} className='swiper-slide-template'>
+              <SwiperSlide key={slideId} className='swiper-slide-template'>
                 {card}
               </SwiperSlide>
             )
