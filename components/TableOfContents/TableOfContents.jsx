@@ -14,14 +14,14 @@ export const TableOfContents = ({ contents, isMobile }) => {
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
-        // if the button is clicked
-        if (!!buttonRef.current && buttonRef.current.contains(e.target)) {
-            setIsExpanded(!isExpanded)
-        }
-        // if you click outside the menu, close the ToC menu
-        if (!!menuRef.current && !menuRef.current.contains(e.target)) {
-            setIsExpanded(false)
-        }
+      // if the button is clicked
+      if (!!buttonRef.current && buttonRef.current.contains(e.target)) {
+        setIsExpanded(!isExpanded)
+      }
+      // if you click outside the expanded menu, close the menu
+      if (!!menuRef.current && !menuRef.current.contains(e.target)) {
+        setIsExpanded(false)
+      }
     }
 
     document.addEventListener('click', checkIfClickedOutside)
@@ -31,30 +31,20 @@ export const TableOfContents = ({ contents, isMobile }) => {
     }
   }, [isExpanded])
 
-
   useEffect(() => {
     setSmallScreen(screenWidth < 768)
   }, [screenWidth])
 
   return (
-    <div
-      className={[
-        styles['table-of-contents-container'],
-        smallScreen ? styles['small-screen'] : ''
-      ].join(' ')}
-    >
+    <div className={['table-of-contents-container']}>
       {!(smallScreen && isExpanded) && (
-        <Button
-          innerRef={buttonRef}
-          label='Jump to'
-          buttonType='secondary'
-        />
+        <Button innerRef={buttonRef} label='Jump to' buttonType='secondary' />
       )}
 
       {isExpanded && (
         <div className={styles['table-of-contents']}>
           <ul ref={menuRef}>
-            {contents.map(item => (
+            {contents.map((item) => (
               <div
                 key={convertToKebabCase(item)}
                 className={styles['table-of-contents__list-item']}
