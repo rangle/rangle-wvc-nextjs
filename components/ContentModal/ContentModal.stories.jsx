@@ -16,6 +16,9 @@ const Template = (args) => <ContentModal {...args} />
 export const Default = Template.bind({})
 Default.args = {
   title: 'Livelihoods',
+  ctaLabel: 'Learn more about  our livelihoods work',
+  ctaShortLabel: 'Learn more',
+  ctaUrl: 'https://www.worldvision.ca',
   imgSrc: '/modalImage.jpg',
   imgAlt: 'Alt text',
   label1: 'In partnership with the World Food Programme',
@@ -25,7 +28,6 @@ Default.args = {
   highlight1: '3,320,279 people',
   highlight2: '48,424',
   highlight3: '2951',
-  ctaLabel: 'Learn more about  our livelihoods work',
-  ctaShortLabel: 'Learn more',
-  ctaUrl: 'https://www.worldvision.ca'
+  modalAriaLabel: 'This aria label will describe the modal contents.',
+  videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
 }

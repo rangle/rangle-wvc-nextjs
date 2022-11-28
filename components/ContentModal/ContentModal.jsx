@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './ContentModal.module.scss'
 import Modal from 'react-modal'
 import Video from '../Video/Video'
+import Link from 'next/link'
 
 const ctaArrow = (
   <svg xmlns='http://www.w3.org/2000/svg' width='8' height='12'>
@@ -35,16 +36,14 @@ const ContentModal = ({
   highlight1,
   highlight2,
   highlight3,
-  title
+  modalAriaLabel,
+  title,
+  videoSrc
 }) => {
   const [modalIsOpen, setIsOpen] = React.useState(false)
 
   const openModal = () => {
     setIsOpen(true)
-  }
-
-  const afterOpenModal = () => {
-    subtitle.style.color = '#f00'
   }
 
   const closeModal = () => {
@@ -53,12 +52,13 @@ const ContentModal = ({
 
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
+      <button aria-haspopup='true' onClick={openModal}>
+        Open Modal
+      </button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        contentLabel='Example Modal'
+        contentLabel={modalAriaLabel}
         className={styles['overlay']}
       >
         <div className={styles['content-modal']}>
@@ -93,22 +93,23 @@ const ContentModal = ({
                   </p>
                 </div>
                 <div className={styles['content-modal__cta-container']}>
-                  <a
-                    className={styles['content-modal__cta-short']}
-                    href={ctaUrl}
-                  >
-                    {ctaShortLabel}
-                    {ctaArrow}
-                  </a>
-                  <a className={styles['content-modal__cta']} href={ctaUrl}>
-                    {ctaLabel}
-                    {ctaArrow}
-                  </a>
+                  <Link href={ctaUrl} passHref>
+                    <a className={styles['content-modal__cta-short']}>
+                      {ctaShortLabel}
+                      {ctaArrow}
+                    </a>
+                  </Link>
+                  <Link href={ctaUrl} passHref>
+                    <a className={styles['content-modal__cta']}>
+                      {ctaLabel}
+                      {ctaArrow}
+                    </a>
+                  </Link>
                 </div>
               </div>
               <div className={styles['content-modal__media-container']}>
                 <Video
-                  src='https://www.youtube.com/watch?v=RYTFzGkb-5A'
+                  src={videoSrc}
                   backgroundImage='/MediaBlockBackground.png'
                 />
               </div>
