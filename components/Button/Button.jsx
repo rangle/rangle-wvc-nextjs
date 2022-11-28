@@ -1,10 +1,16 @@
 import styles from './Button.module.scss'
 
-const Button = ({ label, disabled = false, url }) => {
+const Button = ({ label, disabled = false, url, buttonType, innerRef }) => {
   if (url) {
     return (
       <a
-        className={`${styles['btn']} ${disabled ? styles['btn-disabled'] : styles['btn-primary']}`}
+        className={`${styles['btn']} ${
+          disabled
+            ? styles['btn-disabled']
+            : buttonType
+            ? styles[`btn-${buttonType}`]
+            : styles['btn-primary']
+        }`}
         tabIndex={disabled ? -1 : 0}
         href={url}
       >
@@ -15,8 +21,15 @@ const Button = ({ label, disabled = false, url }) => {
 
   return (
     <button
-      className={`${styles['btn']} ${disabled ? styles['btn-disabled'] : styles['btn-primary']}`}
+      className={`${styles['btn']} ${
+        disabled
+          ? styles['btn-disabled']
+          : buttonType
+          ? styles[`btn-${buttonType}`]
+          : styles['btn-primary']
+      }`}
       tabIndex={disabled ? -1 : 0}
+      ref={innerRef}
     >
       {label}
     </button>

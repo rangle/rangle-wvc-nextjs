@@ -44,8 +44,33 @@
   }
 }
 
+.btn-secondary {
+  color: $white;
+  background-color: $orange;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+
+  &:hover {
+    background-color: $orange-dark;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus {
+    background-color: $orange-dark;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:active {
+    background-color: $orange-light;
+    box-shadow: none;
+    transition: none;
+  }
+}
+
+
 .btn-disabled {
   color: $grey;
-  background-color: #f5f5f5;
+  background-color: $sky-lighter;
   cursor: default;
 }

@@ -51,7 +51,7 @@
           border: none;
           @media (min-width: 767px) {
             padding-right: 50px;
-            border-right: #CAC4BB solid 1px;
+            border-right: $field-grey solid 1px;
           }
         }
 
@@ -68,7 +68,7 @@
 
           @media (min-width: 1024px) {
             padding-right: 50px;
-            border-right: #CAC4BB solid 1px;
+            border-right: $field-grey solid 1px;
           }
         }
   
