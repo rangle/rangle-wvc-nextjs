@@ -30,3 +30,22 @@ export const getSnowflakeData = async (options) => {
 
   return connExecuteAsync(options)
 }
+
+export const transformResultsData = (data) => {
+  const byYear = {}
+
+  data.forEach((result) => {
+    if (!byYear[result.YEAR]) {
+      byYear[result.YEAR] = {}
+    }
+
+    if (byYear[result.YEAR][result.AREA_OF_FOCUS]) {
+      byYear[result.YEAR][result.AREA_OF_FOCUS].push(result)
+    } else {
+      byYear[result.YEAR][result.AREA_OF_FOCUS] = [result]
+    }
+  })
+  return Object.keys(byYear)
+    .sort((a, b) => parseInt(b) - parseInt(a))
+    .map((year) => ({ year, areasOfFocus: byYear[year] }))
+}

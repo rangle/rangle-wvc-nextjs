@@ -1,3 +1,6 @@
+import parse from 'html-react-parser'
+import { titleCase } from 'title-case'
+
 import AccordionGroup from '../../components/AccordionGroup/AccordionGroup'
 import Carousel from '../../components/Carousel/Carousel'
 import CtaBlock from '../../components/CtaBlock/CtaBlock'
@@ -9,7 +12,7 @@ import MediaBlock from '../../components/MediaBlock/MediaBlock'
 import MediaCard from '../../components/MediaCard/MediaCard'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import Tabs from '../../components/Tabs/Tabs'
-import { getSnowflakeData } from '../../utils/snowflake'
+import { getSnowflakeData, transformResultsData } from '../../utils/snowflake'
 
 import StatisticCardGrid, {
   StatisticCard
@@ -22,14 +25,18 @@ import styles from './country.module.scss'
 export default function Country(props) {
   return (
     <div className={styles['country-container']}>
-      <EmergencyAlert
-        body='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-        buttonLabel='Close'
-        title='Important notice'
-        url='https://www.worldvision.ca/'
-      />
+      {props.EMERGENCY_BANNER_BODY && (
+        <EmergencyAlert
+          body={props.EMERGENCY_BANNER_BODY}
+          // TODO: need to add to snowflake table
+          buttonLabel='Close'
+          title='Important notice'
+          url={props.EMERGENCY_BANNER_URL}
+        />
+      )}
       <HeroBlock
         body={props.HEADER_BODY}
+        // TODO: need to add to snowflake table
         countryCode='AFG'
         ctaLabel={props.HEADER_CTA_LABEL}
         ctaUrl={props.HEADER_CTA_URL}
@@ -64,58 +71,51 @@ export default function Country(props) {
         title={props.HEADER_TITLE}
       >
         <div className={styles['summary-content-container']}>
-          <ImpactHighlightGrid
-            impactHighlights={[
-              {
-                firstLabel: '',
-                highlight: '1,024',
-                secondLabel:
-                  'deaths were prevented through the ENRICH program ',
-                title: 'Impact',
-                year: '2016-2021'
-              },
-              {
-                firstLabel:
-                  'In Ethiopia, women holding leadership positions on health committees increased from',
-                highlight: '15% to 56%',
-                secondLabel: '',
-                title: 'Change',
-                year: '2016-2021'
-              }
-            ]}
-          />
+          {props.PANEL_MID01_TITLE && (
+            <ImpactHighlightGrid
+              impactHighlights={[
+                {
+                  firstLabel: props.PANEL_MID01_FIRST_LABEL,
+                  highlight: props.PANEL_MID01_VALUE,
+                  secondLabel: props.PANEL_MID01_SECOND_LABEL,
+                  title: props.PANEL_MID01_TITLE,
+                  year: props.PANEL_MID01_YEAR
+                },
+                {
+                  firstLabel: props.PANEL_MID02_FIRST_LABEL,
+                  highlight: props.PANEL_MID02_VALUE,
+                  secondLabel: props.PANEL_MID02_SECOND_LABEL,
+                  title: props.PANEL_MID02_TITLE,
+                  year: props.PANEL_MID02_YEAR
+                }
+              ]}
+            />
+          )}
           <div
             style={{
               marginTop: '6rem'
             }}
           >
             <StatisticCardGrid
-              cards={[
+              cards={props.highlightedResults.map((result) => (
                 <StatisticCard
-                  body='people learned how to protect themselves against COVID-19'
-                  statistic='4,940,488'
-                  title='Progress'
-                />,
-                <StatisticCard
-                  body='malnourished children were admitted to nutrition programs'
-                  statistic='1,020'
-                  title='Progress'
-                />,
-                <StatisticCard
-                  body='communities updated their disaster preparedness plans to provide guidance during emergencies'
-                  statistic='242'
+                  body={result.STATEMENT_WITHOUT_VALUE}
+                  statistic={result.VALUE}
+                  // TODO: need to add to snowflake
                   title='Progress'
                 />
-              ]}
+              ))}
             />
           </div>
         </div>
       </HeroBlock>
+      {/* TODO: connect to snowflake */}
       <ChartContainer
         chartType='line'
-        controlTitle='Explore our investments and results'
+        controlTitle={props.GRAPHBOX_TITLE}
         footnote='Date as of footnote'
       />
+      {/* TODO: connect to snowflake */}
       <MediaBlock
         videoSrc='https://www.youtube.com/watch?v=RYTFzGkb-5A'
         videoBackgroundImage='/MediaBlockBackground.png'
@@ -123,94 +123,70 @@ export default function Country(props) {
         body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque, turpis et hendrerit pulvinar, odio purus lacinia felis, a semper eros turpis quis turpis. Curabitur sodales velit at fusce.'
       />
       <SectionContainer
-        alt='Children running down a street smiling'
-        src='/SectorHeaderSample.png'
-        title='Country Details'
+        alt={props.DETAILS_IMAGE_ALT}
+        src={props.DETAILS_IMAGE_URL}
+        title={props.DETAILS_TITLE}
       >
         <div className={styles['details-content']}>
           <p className={styles['details-content__intro']}>
-            The humanitarian situation in Kasai Central province, in the
-            Democratic Republic of the Congo (DRC), has been characterized by
-            massive population movements. The Angolan government had forced over
-            650,000 Congolese nationals who had been living there for year to
-            repatriate. While the Kamuina Nsapu refugees were not affected, the
-            forced return ensured that the situation in Kasai province remained
-            increasingly complex. There were over 57,000 forced returnees,
-            including almost 15,000 children, who were registered at various
-            borders, and almost 13,000 spontaneous refugees were identified by
-            UNHCR in the community.An estimated 30% of these returnees were
-            children, including unaccompanied children, who required
-            humanitarian assistance.{' '}
+            {parse(props.DETAILS_SUMMARY)}
           </p>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-            title='Early childhood development'
-          />
+          {props.DETAILS_SUBTITLE_01 && props.DETAILS_BODY_01 && (
+            <div className={styles['details-content__section']}>
+              <ExpandableTextBlock
+                body={props.DETAILS_BODY_01}
+                footnote={props.DETAILS_FOOTNOTE_01}
+                title={props.DETAILS_SUBTITLE_01}
+              />
+            </div>
+          )}
+
+          {props.DETAILS_SUBTITLE_02 && props.DETAILS_BODY_02 && (
+            <div className={styles['details-content__section']}>
+              <ExpandableTextBlock
+                body={props.DETAILS_BODY_02}
+                footnote={props.DETAILS_FOOTNOTE_02}
+                title={props.DETAILS_SUBTITLE_02}
+              />
+            </div>
+          )}
         </div>
       </SectionContainer>
       <SectionContainer
-        alt='Children running down a street smiling'
-        src='/SectorHeaderSample.png'
-        title='Results'
+        alt={props.RESULTS_IMAGE_ALT}
+        src={props.RESULTS_IMAGE_URL}
+        title={props.RESULTS_TITLE}
         isDarkMode
       >
         <div className={styles['results-content']}>
           <Tabs isDarkMode>
-            <Item title='2021'>
-              <AccordionGroup
-                isDarkMode
-                items={[
-                  {
-                    children: (
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis id, quia odit soluta nemo quisquam
-                        modi! Reprehenderit dolore enim temporibus porro earum
-                        hic deserunt ducimus non eveniet, voluptatum nam quod
-                        aut assumenda iste est eius aliquid perspiciatis laborum
-                        nisi ratione, rem minima debitis? Aspernatur atque ut
-                        distinctio veritatis asperiores quisquam.
-                      </p>
-                    ),
-                    title: 'Item #1'
-                  },
-                  {
-                    children: (
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis id, quia odit soluta nemo quisquam
-                        modi! Reprehenderit dolore enim temporibus porro earum
-                        hic deserunt ducimus non eveniet, voluptatum nam quod
-                        aut assumenda iste est eius aliquid perspiciatis laborum
-                        nisi ratione, rem minima debitis? Aspernatur atque ut
-                        distinctio veritatis asperiores quisquam.
-                      </p>
-                    ),
-                    title: 'Item #2'
-                  },
-                  {
-                    children: (
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis id, quia odit soluta nemo quisquam
-                        modi! Reprehenderit dolore enim temporibus porro earum
-                        hic deserunt ducimus non eveniet, voluptatum nam quod
-                        aut assumenda iste est eius aliquid perspiciatis laborum
-                        nisi ratione, rem minima debitis? Aspernatur atque ut
-                        distinctio veritatis asperiores quisquam.
-                      </p>
-                    ),
-                    title: 'Item #3'
-                  }
-                ]}
-              />
-            </Item>
-            <Item title='2022'>Senatus Populusque Romanus.</Item>
-            <Item title='2023'>Alea jacta est.</Item>
+            {props.results.map((result) => (
+              <Item title={result.year}>
+                <AccordionGroup
+                  isDarkMode
+                  items={Object.keys(result.areasOfFocus).map(
+                    (areaOfFocusTitle) => ({
+                      title: areaOfFocusTitle,
+                      children: (
+                        <p>
+                          <ul>
+                            {result.areasOfFocus[areaOfFocusTitle].map(
+                              (areaOfFocus) => (
+                                <li>{areaOfFocus.FULL_STATEMENT}</li>
+                              )
+                            )}
+                          </ul>
+                        </p>
+                      )
+                    })
+                  )}
+                />
+              </Item>
+            ))}
           </Tabs>
         </div>
       </SectionContainer>
+      {/* TODO: connect to snowflake */}
       <div className={styles['program-container']}>
         <Carousel
           cards={[
@@ -250,8 +226,11 @@ export default function Country(props) {
           title='Programs'
         />
       </div>
+      {/* TODO: add story grid */}
       <div className={styles['resource-container']}>
         <Carousel
+          title={props.RESULTS_TITLE}
+          // TODO: connect to snowflake
           cards={[
             <MediaCard
               alt='/conference.svg'
@@ -290,16 +269,15 @@ export default function Country(props) {
               url='https://worldvision.ca/'
             />
           ]}
-          title='Resources'
         />
       </div>
       <CtaBlock
-        body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa. Sit blandit ullamcorper ipsum arcu. Ac eu ut enim pharetra tincidunt eu morbi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa.'
-        buttonLabel='Sponsor a child'
-        buttonUrl='http://worldvision.ca'
-        imageUrl='https://www.worldvision.ca/WorldVisionCanada/media/stories/child-rights-boy-writing-on-chalkboard.jpg'
-        imageUrlAlt='Boy writing on a chalkboard'
-        title='Building Sustainable Futures Together'
+        body={props.CTA_BODY}
+        buttonLabel={props.CTA_BUTTON_LABEL}
+        buttonUrl={props.CTA_BUTTON_URL}
+        imageUrl={props.CTA_IMAGE_URL}
+        imageUrlAlt={props.CTA_IMAGE_ALT}
+        title={props.CTA_TITLE}
       />
     </div>
   )
@@ -332,7 +310,24 @@ export async function getStaticProps({ params }) {
     sqlText: `select * from COUNTRIES where URL = 'https://www.worldvision.ca/our-work/${params.slug}'`
   })
 
+  const { rows: resultsData } = await getSnowflakeData({
+    sqlText: `select * from STATEMENTS where LEVEL = 'countries' and COUNTRY = '${titleCase(
+      params.slug
+    )}'`
+  })
+
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'countries'`
+  })
+
   return {
-    props: { ...rows[0] }
+    props: {
+      ...rows[0],
+      results: transformResultsData(resultsData),
+      control: controlData,
+      highlightedResults: resultsData.filter(
+        (result) => result.DATA_PANEL === 'yes'
+      )
+    }
   }
 }
