@@ -167,5 +167,6 @@ const MapHeaderContainer = ({
 }
 
 export default MapHeaderContainer
+export { getCountryOptions, getProgramOptions, getMarkerCoordinates }
 
 MapHeaderContainer.displayName = 'MapHeaderContainer'
