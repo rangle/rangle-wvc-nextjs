@@ -73,7 +73,6 @@ const MapHeaderContainer = ({
   showEmptyPrograms = false,
   showHeaderControls = true,
   showMarkers = true,
-
   ...props
 }) => {
   const [selectedCountry, setSelectedCountry] = useState('All')
