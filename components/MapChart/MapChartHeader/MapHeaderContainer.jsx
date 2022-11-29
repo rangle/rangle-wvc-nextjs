@@ -69,7 +69,13 @@ const getMarkerCoordinates = (
       ]
     })
 }
-const MapHeaderContainer = ({ showEmptyPrograms = false, ...props }) => {
+const MapHeaderContainer = ({
+  showEmptyPrograms = false,
+  showHeaderControls = true,
+  showMarkers = true,
+
+  ...props
+}) => {
   const [selectedCountry, setSelectedCountry] = useState('All')
   const [selectedProgramType, setSelectedProgramType] = useState('All')
   const [countryData, setCountryData] = useState([])
@@ -144,6 +150,8 @@ const MapHeaderContainer = ({ showEmptyPrograms = false, ...props }) => {
     <>
       <MapChartHeader
         {...props}
+        showHeaderControls={showHeaderControls}
+        showMarkers={showMarkers}
         markerCoordinates={markerCoordinates}
         mapViewState={mapViewState}
         countryData={countryData}

@@ -17,6 +17,8 @@ const MapLegend = ({ text }) => {
 }
 
 function MapChartHeader({
+  showHeaderControls = true,
+  showMarkers = true,
   selectedCountry = 'All',
   selectedProgramType = 'All',
   onCountryDataLoaded = (evt) => {},
@@ -51,36 +53,38 @@ function MapChartHeader({
           color={isDark ? 'dark' : 'light'}
           countryCode={selectedCountry}
           onCountryDataLoaded={onCountryDataLoaded}
-          markerCoordinates={markerCoordinates}
+          markerCoordinates={showMarkers ? markerCoordinates : []}
         >
           {children}
         </MapChartCountries>
-        <MapLegend text={legendText} />
+        {showHeaderControls && <MapLegend text={legendText} />}
       </div>
 
-      <MapHeaderControlBar>
-        <div className={styles['map-header__control-bar--first']}>
-          <DropDown
-            isDark={true}
-            dropdownLabel={countryDropdownLabel}
-            options={countryOptions}
-            value={selectedCountry}
-            updateSelection={onSelectedCountryChange}
-          />
-        </div>
-        <div className={styles['map-header__control-bar__col--1']}>
-          <DropDown
-            isDark={true}
-            dropdownLabel={programDropdownLabel}
-            options={programOptions}
-            updateSelection={onSelectedProgramTypeChange}
-            value={selectedProgramType}
-          />
-        </div>
-        <div className={styles['map-header__control-bar__col--3']}>
-          <MapStatistics mapStatistics={mapStatistics} />
-        </div>
-      </MapHeaderControlBar>
+      {showHeaderControls && (
+        <MapHeaderControlBar>
+          <div className={styles['map-header__control-bar--first']}>
+            <DropDown
+              isDark={true}
+              dropdownLabel={countryDropdownLabel}
+              options={countryOptions}
+              value={selectedCountry}
+              updateSelection={onSelectedCountryChange}
+            />
+          </div>
+          <div className={styles['map-header__control-bar__col--1']}>
+            <DropDown
+              isDark={true}
+              dropdownLabel={programDropdownLabel}
+              options={programOptions}
+              updateSelection={onSelectedProgramTypeChange}
+              value={selectedProgramType}
+            />
+          </div>
+          <div className={styles['map-header__control-bar__col--3']}>
+            <MapStatistics mapStatistics={mapStatistics} />
+          </div>
+        </MapHeaderControlBar>
+      )}
     </div>
   )
 }

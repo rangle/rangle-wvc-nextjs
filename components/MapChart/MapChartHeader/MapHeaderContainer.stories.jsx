@@ -18,7 +18,7 @@ const Template = (args) => {
 export const MapHeaderContainer = Template.bind({})
 
 MapHeaderContainer.argTypes = {
-  countryCode: {
+  selectedCountry: {
     options: Object.keys(COUNTRY_CODES),
     table: {
       disable: true
@@ -50,6 +50,8 @@ MapHeaderContainer.argTypes = {
   }
 }
 MapHeaderContainer.args = {
+  showHeaderControls: true,
+  showMarkers: true,
   isDark: true,
   duration: 1000,
   padding: 40,
