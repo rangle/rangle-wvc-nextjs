@@ -14,11 +14,11 @@ const Hero = ({
   const { scrollYProgress } = useScroll()
   const scale1 = useTransform(scrollYProgress, [0, 0.4], [1, 2.5])
   const x1 = useTransform(scrollYProgress, [0, 0.1], [70, -70])
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1], [1, 0])
+  const opacity1 = useTransform(scrollYProgress, [0, 0.15], [1, 0])
 
   const scale2 = useTransform(scrollYProgress, [0, 0.2], [1, 2.5])
   const x2 = useTransform(scrollYProgress, [0, 0.2], [70, 140])
-  const opacity2 = useTransform(scrollYProgress, [0.1, 0.2], [1, 0])
+  const opacity2 = useTransform(scrollYProgress, [0, 0.1], [1, 0])
 
   return (
     <div
