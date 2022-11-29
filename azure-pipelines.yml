@@ -37,6 +37,6 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: static-next-web'
+  displayName: 'Publish Artifact: wvc-our-work'
   inputs:
-    ArtifactName: 'static-next-web'
+    ArtifactName: 'wvc-our-work'
