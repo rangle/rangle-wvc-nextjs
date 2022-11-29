@@ -1,0 +1,61 @@
+@import '../../../styles/lumen-tokens';
+
+.map-popup {
+  text-decoration: none;
+  display: block;
+  border: 1px solid $grey-lighter;
+  border-radius: $radius-default;
+  background-color: $white;
+  width: 100vh;
+
+  z-index: 1;
+
+  &__content {
+    margin-top: -0.8rem;
+  }
+
+  &__title {
+    padding-left: $space-s;
+    -webkit-line-clamp: 2;
+    margin-bottom: $space-m;
+    text-align: left;
+  }
+
+  &__link {
+    @include typographylargelinkanchor;
+    display: inline-block;
+
+    color: $grey;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__body {
+    @include typographylargeparagraphsmallcopy_regular;
+    color: $black;
+    font-weight: 400;
+    margin: $space-m 0;
+    -webkit-line-clamp: 4;
+  }
+
+  &__labels {
+    @include typographysmalllinklinkbtn_default;
+    padding-left: $space-s;
+    color: $grey;
+    font-weight: 400;
+    text-transform: uppercase;
+    -webkit-line-clamp: 1;
+  }
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
+}

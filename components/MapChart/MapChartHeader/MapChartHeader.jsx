@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React from 'react'
 import styles from './MapChartHeader.module.scss'
 import MapChartCountries from '../MapChartCountry/MapChartCountry'
 import DropDown from '../../Dropdown/Dropdown'
@@ -7,6 +7,15 @@ import { MapStatistics } from './MapStatistics'
 const MapHeaderControlBar = ({ children }) => {
   return <div className={styles['map-header__control-bar']}>{children}</div>
 }
+
+const MapLegend = ({ text }) => {
+  return (
+    <div className={styles['map-header-container__map-legend']}>
+      <span>{text}</span>
+    </div>
+  )
+}
+
 function MapChartHeader({
   selectedCountry = 'All',
   selectedProgramType = 'All',
@@ -22,12 +31,15 @@ function MapChartHeader({
   legendText,
   countryDropdownLabel,
   programDropdownLabel,
+  children,
   ...props
 }) {
   const mapViewState = {
     initialViewState: {
       zoom: 1
-    }
+    },
+    minZoom: 1,
+    maxZoom: 8
   }
 
   return (
@@ -40,10 +52,10 @@ function MapChartHeader({
           countryCode={selectedCountry}
           onCountryDataLoaded={onCountryDataLoaded}
           markerCoordinates={markerCoordinates}
-        />
-        <div className={styles['map-header-container__map-legend']}>
-          <span>{legendText}</span>
-        </div>
+        >
+          {children}
+        </MapChartCountries>
+        <MapLegend text={legendText} />
       </div>
 
       <MapHeaderControlBar>
@@ -74,4 +86,3 @@ function MapChartHeader({
 }
 
 export default MapChartHeader
-

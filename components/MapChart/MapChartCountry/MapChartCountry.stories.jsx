@@ -13,9 +13,7 @@ const Template = (args) => {
   const [markerCoordinates, setMarkerCoordinates] = useState([])
   const onCountryDataLoaded = useCallback(({ countryData, countryCode }) => {
     setMarkerCoordinates(() => {
-      let x = generateRandomCoordinates(countryData, countryCode)
-
-      return x
+      return generateRandomCoordinates(countryData, countryCode)
     })
   })
 

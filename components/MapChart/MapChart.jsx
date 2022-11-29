@@ -6,9 +6,9 @@ const MapChartGL = forwardRef(
     return (
       <>
         <Map
+          {...props}
           mapStyle={`mapbox://styles/mapbox/${color}-v10`}
           id={id}
-          {...props}
           ref={ref}
         >
           {children}

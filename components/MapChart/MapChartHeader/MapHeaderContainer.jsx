@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react'
-import MapHeader from './MapChartHeader'
+import MapChartHeader from './MapChartHeader'
 
 import { COUNTRY_CODES, COUNTRY_NAMES } from '../MapConstants'
 
@@ -51,33 +51,23 @@ const getMarkerCoordinates = (
 ) => {
   const selectedCountryName = COUNTRY_CODES[selectedCountry] || 'All'
   return allData
-    .filter((n) => n.level === 'programs')
     .filter(
-      (n) => n.country === selectedCountryName || selectedCountryName === 'All'
+      ({ country, programming_type, level }) =>
+        level === 'programs' &&
+        (country === selectedCountryName || selectedCountryName === 'All') &&
+        (programming_type === selectedProgramType ||
+          selectedProgramType === 'All')
     )
-    .filter(
-      (n) =>
-        n.programming_type === selectedProgramType ||
-        selectedProgramType === 'All'
-    )
-    .map(
-      ({
-        central_lat,
-        central_long,
-        country: programCountry,
-        programming_type: programmingType
-      }) => {
-        return [
-          central_long,
-          central_lat,
-          {
-            programmingType,
-            programCountry,
-            fill: PROGRAMMING_TYPE_FILL_COLOR[programmingType] || '#d00'
-          }
-        ]
-      }
-    )
+    .map((mapData) => {
+      return [
+        mapData.central_long,
+        mapData.central_lat,
+        {
+          ...mapData,
+          fill: PROGRAMMING_TYPE_FILL_COLOR[mapData.programming_type] || '#d00'
+        }
+      ]
+    })
 }
 const MapHeaderContainer = ({ showEmptyPrograms = false, ...props }) => {
   const [selectedCountry, setSelectedCountry] = useState('All')
@@ -152,7 +142,8 @@ const MapHeaderContainer = ({ showEmptyPrograms = false, ...props }) => {
   ]
   return (
     <>
-      <MapHeader
+      <MapChartHeader
+        {...props}
         markerCoordinates={markerCoordinates}
         mapViewState={mapViewState}
         countryData={countryData}
@@ -163,8 +154,7 @@ const MapHeaderContainer = ({ showEmptyPrograms = false, ...props }) => {
         countryOptions={countryOptions}
         programOptions={programOptions}
         mapStatistics={mapStatistics}
-        {...props}
-      />
+      ></MapChartHeader>
     </>
   )
 }

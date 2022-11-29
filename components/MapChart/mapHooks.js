@@ -4,7 +4,7 @@ import Pin from './Pin'
 import { fetcher } from './fetcher'
 import useSWRImmutable from 'swr/immutable'
 
-function useMapMarkers(markerCoordinates) {
+function useMapMarkers(markerCoordinates, setPopupInfo) {
   return useMemo(
     () =>
       markerCoordinates?.map((marker, index) => (
@@ -12,8 +12,23 @@ function useMapMarkers(markerCoordinates) {
           key={`marker-${index}`}
           longitude={marker[0]}
           latitude={marker[1]}
-          anchor='bottom'
-          
+          anchor='top'
+          onClick={(evt) => {
+            // currently the marker is an array of [long,lat, optional popupInfo object]
+            // might change this to be more
+            // { long: 22, lat: 33, options: { }}
+            // but for now, if there is no popup info - just return;
+            if (!marker[2]) {
+              return
+            }
+            evt.originalEvent.stopPropagation()
+            setPopupInfo(() => ({
+              evt,
+              markerInfo: marker[2],
+              longitude: marker[0],
+              latitude: marker[1]
+            }))
+          }}
         >
           <Pin fill={marker[2]?.fill} />
         </Marker>
@@ -36,7 +51,7 @@ function useFetchGeoJson(countryCode) {
   }
 }
 
-// Generate dummy markers for a given country
+// Update bounding box based on map markers
 function useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded) {
   useEffect(() => {
     if (isMapLoaded && boundingBox) {

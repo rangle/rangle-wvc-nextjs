@@ -1,5 +1,9 @@
 @import '../../../styles/lumen-tokens';
 
+.map-popup-container {
+  width: 500px;
+  height: 500px;
+}
 .map-container {
   position: relative;
   display: block;
@@ -33,9 +37,8 @@
   display: flex;
   &--first {
     flex: 1;
-    margin-right:  16px;
-    margin-left: 16px;
-
+    margin-right: $space-m;
+    margin-left: $space-m;
   }
   &__col--1 {
     flex: 1;

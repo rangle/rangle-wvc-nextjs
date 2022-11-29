@@ -2,21 +2,15 @@ import MapHeaderContainerComp from './MapHeaderContainer'
 
 import { COUNTRY_CODES } from '../MapConstants'
 
-
-
 export default {
   title: 'Example/Maps',
   component: MapHeaderContainerComp
 }
 
 const Template = (args) => {
-
-
   return (
     <div style={{ display: 'block' }}>
-      <MapHeaderContainerComp
-       {...args}
-      />
+      <MapHeaderContainerComp {...args} />
     </div>
   )
 }
@@ -60,7 +54,7 @@ MapHeaderContainer.args = {
   duration: 1000,
   padding: 40,
   showEmptyPrograms: false,
-  legendText:'Explore our work around the world',
+  legendText: 'Explore our work around the world',
   countryDropdownLabel: 'Countries',
   programDropdownLabel: 'Program Type'
 }
