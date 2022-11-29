@@ -59,8 +59,10 @@ const Hero = ({
               <a>{linkLabel}</a>
             </Link>
           </div>
-          <div className={styles['desktop-scroll-icon']}>
-            <img src='/homepage/hero/mouse-icon.png' alt='' />
+          <div className={styles['desktop-scroll-icon']} aria-hidden>
+            <div className={styles['mouse']}>
+              <div className={styles['scroller']}></div>
+            </div>
           </div>
         </div>
       </div>
