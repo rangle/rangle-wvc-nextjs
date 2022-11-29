@@ -1,7 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
+
 import Counter from '../components/Homepage/Counter/Counter'
 import styles from './Home.module.scss'
+
+const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 
 export default function Home() {
   return (
@@ -13,7 +15,23 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={`${styles['section']} ${styles['section--hero']}`}>
-          <h2>Hero</h2>
+          <Hero
+            backgroundImage={HeroBackgroundDefault}
+            heroText={'World Vision works alongside'}
+            highlightList={[
+              'communities',
+              'supporters',
+              'partners',
+              'government'
+            ]}
+            linkLabel={'Download the 2021 Annual Results Report'}
+            subtitleText={
+              'to change the way the world works for children - impacting lives for generations to come.'
+            }
+            url={
+              'https://www.worldvision.ca/WorldVisionCanada/media/annual-report-pdfs/World-Vision-Canada-Annual-Results-Report-FY2021-220509_AODA.pdf'
+            }
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--counter']}`}
