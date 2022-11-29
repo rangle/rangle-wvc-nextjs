@@ -9,6 +9,7 @@ import MediaBlock from '../../components/MediaBlock/MediaBlock'
 import MediaCard from '../../components/MediaCard/MediaCard'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import Tabs from '../../components/Tabs/Tabs'
+import { getSnowflakeData } from '../../utils/snowflake'
 
 import StatisticCardGrid, {
   StatisticCard
@@ -18,7 +19,7 @@ import { Item } from 'react-stately'
 
 import styles from './country.module.scss'
 
-export default function Country() {
+export default function Country(props) {
   return (
     <div className={styles['country-container']}>
       <EmergencyAlert
@@ -28,35 +29,39 @@ export default function Country() {
         url='https://www.worldvision.ca/'
       />
       <HeroBlock
-        body='World Vision began emergency relief operations in Afghanistan in 2001, to address the urgent needs of children and families affected by natural disasters and decades of conflict. Today, programs have expanded to development sectors such as health, water and sanitation, child protection, education and empowering women to engage in civil and social change.'
+        body={props.HEADER_BODY}
         countryCode='AFG'
-        ctaLabel='donate'
-        ctaUrl='https://worldvision.ca'
+        ctaLabel={props.HEADER_CTA_LABEL}
+        ctaUrl={props.HEADER_CTA_URL}
         highlights={[
-          {
-            title: 'Partnering Since',
-            value: '1975'
-          },
-          {
-            title: 'Programs Supported',
-            value: '10'
-          },
-          {
-            title: 'Children Sponsored',
-            value: '3,291'
-          },
-          {
-            title: 'Level of Fragility',
-            tooltip: 'Sample tooltip content',
-            value: 'Very low developing'
-          },
-          {
-            title: 'Gender Equality Rank',
-            value: '115/144'
-          }
-        ]}
+          props.SUMMARY_01_LABEL &&
+            props.SUMMARY_01_VALUE && {
+              title: props.SUMMARY_01_LABEL,
+              value: props.SUMMARY_01_VALUE
+            },
+          props.SUMMARY_02_LABEL &&
+            props.SUMMARY_02_VALUE && {
+              title: props.SUMMARY_02_LABEL,
+              value: props.SUMMARY_02_VALUE
+            },
+          props.SUMMARY_03_LABEL &&
+            props.SUMMARY_03_VALUE && {
+              title: props.SUMMARY_03_LABEL,
+              value: props.SUMMARY_03_VALUE
+            },
+          props.SUMMARY_04_LABEL &&
+            props.SUMMARY_04_VALUE && {
+              title: props.SUMMARY_04_LABEL,
+              value: props.SUMMARY_04_VALUE
+            },
+          props.SUMMARY_05_LABEL &&
+            props.SUMMARY_05_VALUE && {
+              title: props.SUMMARY_05_LABEL,
+              value: props.SUMMARY_05_VALUE
+            }
+        ].filter((summary) => summary)}
         page='country'
-        title='Afghanistan'
+        title={props.HEADER_TITLE}
       >
         <div className={styles['summary-content-container']}>
           <ImpactHighlightGrid
@@ -301,20 +306,33 @@ export default function Country() {
 }
 
 export async function getStaticPaths() {
+  const { rows } = await getSnowflakeData({
+    sqlText: 'select URL from COUNTRIES'
+  })
+
   return {
-    paths: [
-      {
-        params: {
-          slug: 'afghanistan'
+    paths: rows
+      .map((country) => {
+        if (country.URL) {
+          return {
+            params: {
+              // TODO: update when table gets updated
+              slug: country.URL.split('https://www.worldvision.ca/our-work/')[1]
+            }
+          }
         }
-      }
-    ],
+      })
+      .filter((path) => path),
     fallback: false
   }
 }
 
 export async function getStaticProps({ params }) {
+  const { rows } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES where URL = 'https://www.worldvision.ca/our-work/${params.slug}'`
+  })
+
   return {
-    props: {}
+    props: { ...rows[0] }
   }
 }
