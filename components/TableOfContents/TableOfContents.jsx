@@ -36,7 +36,7 @@ export const TableOfContents = ({ contents, isMobile }) => {
   }, [screenWidth])
 
   return (
-    <div className={['table-of-contents-container']}>
+    <div className={styles['table-of-contents-container']}>
       {!(smallScreen && isExpanded) && (
         <Button innerRef={buttonRef} label='Jump to' buttonType='secondary' />
       )}
