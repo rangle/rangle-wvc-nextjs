@@ -38,7 +38,6 @@ const TextLoop = ({ list }) => {
   return (
     <AnimatePresence>
       <motion.h1
-        style={{ position: 'absolute' }}
         className={styles['hero-title']}
         variants={variants}
         key={index}

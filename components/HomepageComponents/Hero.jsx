@@ -25,7 +25,7 @@ const Hero = ({
       className={styles['hero-wrapper']}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div>
+      <div className={styles['hero-floating-images']}>
         <motion.img
           src='/homepage/hero/hero-kid-default-left.png'
           className={styles['hero-image1']}
@@ -35,7 +35,6 @@ const Hero = ({
             opacity: opacity1
           }}
         />
-        <TextLoop list={highlightList} />
         <motion.img
           src='/homepage/hero/hero-kid-default-right.png'
           className={styles['hero-image2']}
@@ -48,6 +47,9 @@ const Hero = ({
       </div>
       <div className={styles['hero-content-container']}>
         <p className={styles['hero-text']}>{heroText}</p>
+        <div className={styles['looped-list']}>
+          <TextLoop list={highlightList} />
+        </div>
         <div className={styles['centered-column']}>
           <div
             className={`${styles['centered-column']} ${styles['subtitle-container']}`}
