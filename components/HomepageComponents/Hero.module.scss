@@ -15,15 +15,15 @@
   flex-direction: column;
   color: $white;
   text-align: center;
-  padding: 92px 0;
+  padding: 5.75rem 0;
   overflow: hidden;
 
   @media (min-width: 768px) {
-    padding: 127px 0 48px;
+    padding: 8rem 0 3rem;
   }
 
   @media (min-width: 768px) and (max-height: 750px) {
-    padding-top: 48px;
+    padding-top: 3rem;
   }
 }
 
@@ -66,7 +66,7 @@
 .hero-title {
   @include typographylargeheadingh1;
   font-size: 40px;
-  color: #ff6b00;
+  color: $orange-light;
   height: 100%;
   width: 100%;
   padding: 0;
@@ -122,7 +122,7 @@
   }
 
   @media (min-width: 768px) and (max-height: 750px) {
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
   }
 
   a {
@@ -132,7 +132,7 @@
     text-decoration: underline;
 
     &:hover {
-      cursor: pointer !important;
+      cursor: pointer;
     }
   }
 }
@@ -171,19 +171,20 @@
 }
 
 .mouse {
-  width: 3px;
-  padding: 8px 12px;
-  height: 30px;
+  width: 0.188rem;
+  padding: 0.5rem 0.75rem;
+  height: 1.875rem;
   border: 2px solid $orange;
+  background-color: $orange;
   border-radius: 25px;
   opacity: 0.75;
   box-sizing: content-box;
 }
 .scroller {
-  width: 3px;
-  height: 10px;
+  width: 0.188;
+  height: 0.625rem;
   border-radius: 25%;
-  background-color: $orange;
+  background-color: $white;
   animation-name: scroll;
   animation-duration: 2.2s;
   animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
