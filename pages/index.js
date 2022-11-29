@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import Counter from '../components/Homepage/Counter/Counter'
+import Hero from '../components/HomepageComponents/Hero'
 import styles from './Home.module.scss'
 
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
