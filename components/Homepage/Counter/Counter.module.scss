@@ -1,9 +1,10 @@
 @import '../../../styles/lumen-tokens';
+@import '../../../styles/spacing.scss';
 
 .counter {
   @include typographylargeparagraphintro_strong;
   height: 100%;
-  padding: 5rem 0;
+  padding: $section-margin-mobile 0;
   text-align: center;
 
   @media (min-width: 768px) {
@@ -31,7 +32,7 @@
     display: block;
     font-family: Lato;
     font-size: 18.75rem;
-    font-weight: 800;
+    font-weight: 900;
     line-height: 0.75;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: $orange;
@@ -53,7 +54,7 @@
 
     @media (min-width: 768px) {
       font-size: 62px;
-      font-weight: 800;
+      font-weight: 900;
       transform: translate(-50%, 80%);
       word-spacing: normal;
       width: 100%;
