@@ -6,8 +6,8 @@
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background-color: #fffbf4; //#LightBG
+  transform: translate(-50%, -50%);
+  background-color: $light-bg;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom center;
@@ -113,7 +113,7 @@
 .subtitle-container {
   max-width: 100%;
   padding: 0 3rem;
-  margin-top: 7rem;
+  margin-top: 6rem;
 
   @media (min-width: 768px) {
     max-width: 375px;
@@ -127,13 +127,10 @@
 
   a {
     @include typographylargelinkanchor;
-    margin-top: 2rem;
+    margin-top: $size-l;
     font-weight: 400;
     text-decoration: underline;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 }
 
