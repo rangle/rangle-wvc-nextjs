@@ -1,0 +1,65 @@
+@import '../styles/lumen-tokens';
+@import '../styles/spacing';
+
+.programs-container {
+  background-color: $sky-light;
+
+  .heading-content {
+    padding: 40px $page-margin-mobile;
+    background-color: #fffbf4; // no token for this
+
+    @media (min-width: 767px) {
+      padding: $size-xl $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      padding: $size-xl 396px $size-xl 95px;
+    }
+
+    .title {
+      @include typographysmallheadingh1;
+
+      @media (min-width: 1024px) {
+        @include typographylargeheadingh1;
+      }
+    }
+
+    .intro {
+      @include typographysmallparagraphbodycopy_regular;
+      margin: 0.5rem 0 0;
+
+      @media (min-width: 1024px) {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .result-body {
+    padding: 48px $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      padding: $size-xxxl $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      padding: $size-xxxl 95px;
+
+      a {
+        margin-bottom: $space-m;
+      }
+    }
+
+    .result-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $space-xl;
+    }
+
+    .show-more {
+      @include typographysmalllinkfiltertag;
+      text-decoration: underline;
+      text-align: center;
+      margin-top: $size-xxl;
+    }
+  }
+}
