@@ -1,0 +1,39 @@
+@import '../../styles/lumen-tokens';
+
+.table-of-contents-container {
+  text-align: end;
+  position: relative;
+
+  .table-of-contents {
+    background-color: $sky-lighter;
+    box-shadow: 0 0 $size-l $space-xs rgba(0, 0, 0, 0.25); // no token for this shadow
+    margin-top: 0;
+    text-align: start;
+    position: absolute;
+    right: 0;
+    width: 100%;
+
+    @media (min-width: 767px) {
+      width: 360px;
+    }
+  }
+
+  ul {
+    padding: $size-xxxl $space-xxxl;
+  }
+
+  .table-of-contents__list-item {
+    @include typographylargeparagraphsmallcopy_regular;
+    margin-bottom: $space-xxxl;
+  }
+
+  .cta-btn {
+    border-top: $spacing-l solid $field-grey;
+    padding: 6px $space-xs;
+
+    button {
+      display: block;
+      width: 100%;
+    }
+  }
+}
