@@ -1,0 +1,202 @@
+@import '../../../styles/lumen-tokens';
+
+.hero-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $light-bg;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  display: flex;
+  flex-direction: column;
+  color: $white;
+  text-align: center;
+  padding: 5.75rem 0;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0 3rem;
+  }
+
+  @media (min-width: 768px) and (max-height: 750px) {
+    padding-top: 3rem;
+  }
+}
+
+.hero-image1 {
+  position: absolute;
+  width: 260px;
+  height: 364px;
+  overflow: hidden;
+  bottom: 0;
+  left: -20%;
+  z-index: -1;
+
+  @media (min-width: 768px) {
+    width: 358px;
+    height: 537px;
+    left: 10%;
+  }
+}
+
+.hero-image2 {
+  position: absolute;
+  width: 234px;
+  height: 350px;
+  overflow: hidden;
+  bottom: -4%;
+  right: 20%;
+  z-index: -1;
+
+  @media (min-width: 768px) {
+    width: 333px;
+    height: 500px;
+    right: 20%;
+  }
+}
+
+.looped-list {
+  position: relative;
+}
+
+.hero-title {
+  @include typographylargeheadingh1;
+  font-size: 40px;
+  color: $orange-light;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  z-index: -1;
+  position: absolute;
+  top: 50px;
+
+  @media (min-width: 390px) {
+    font-size: 52px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 100px;
+    color: $white;
+    top: 50px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 140px;
+  }
+
+  @media (min-width: 1366px) {
+    font-size: 180px;
+  }
+
+  @media (min-width: 768px) and (max-height: 750px) {
+    font-size: 100px;
+    color: $white;
+  }
+}
+
+.hero-text {
+  @include typographylargeheadingh4;
+
+  @media (min-width: 768px) {
+    @include typographylargeheadingh2;
+  }
+}
+
+.subtitle-container {
+  max-width: 100%;
+  padding: 0 3rem;
+  margin-top: 6rem;
+
+  @media (min-width: 768px) {
+    max-width: 375px;
+    margin-bottom: 100px;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) and (max-height: 750px) {
+    margin-bottom: 2.5rem;
+  }
+
+  a {
+    @include typographylargelinkanchor;
+    margin-top: $size-l;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.hero-subtitle {
+  @include typographylargeheadingh5;
+}
+
+.hero-content-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    justify-content: space-between;
+  }
+}
+
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop-scroll-icon {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.mouse {
+  width: 0.188rem;
+  padding: 0.5rem 0.75rem;
+  height: 1.875rem;
+  border: 2px solid $orange;
+  background-color: $orange;
+  border-radius: 25px;
+  opacity: 0.75;
+  box-sizing: content-box;
+}
+.scroller {
+  width: 0.188rem;
+  height: 0.625rem;
+  border-radius: 25%;
+  background-color: $white;
+  animation-name: scroll;
+  animation-duration: 2.2s;
+  animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
+  animation-iteration-count: infinite;
+}
+@keyframes scroll {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}

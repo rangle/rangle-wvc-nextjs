@@ -1,3 +1,5 @@
+@import '../styles/lumen-tokens';
+
 .main {
   align-items: center;
   display: flex;
@@ -10,12 +12,11 @@
   width: 100vw;
 
   &--hero {
-    min-height: 100vh;
-    background-color: darkslateblue;
+    height: 100vh;
   }
 
   &--counter {
-    background-color: #fffbf4;
+    background-color: $light-bg;
 
     @media (min-width: 768px) {
       height: 100vh;
