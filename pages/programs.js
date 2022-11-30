@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import styles from './programs.module.scss'
 import MediaCard from '../components/MediaCard/MediaCard'
+import Dropdown from '../components/Dropdown/Dropdown'
 import { getScreenWidth } from '../utils/getScreenWidth'
 
 export default function ProgramFilter() {
   const DEFAULT_DESKTOP_INITIAL_RESULT = 9
   const DEFAULT_MOBILE_INITIAL_RESULT = 6
+  const DEFAULT_MOBILE_INITIAL_FILTERS = 2
 
   const [resultsToShowDesktop, setResultsToShowDesktop] = useState(
     DEFAULT_DESKTOP_INITIAL_RESULT
@@ -13,14 +15,22 @@ export default function ProgramFilter() {
   const [resultsToShowMobile, setResultsToShowMobile] = useState(
     DEFAULT_MOBILE_INITIAL_RESULT
   )
+  const [filtersToShowMobile, setFiltersToShowMobile] = useState(DEFAULT_MOBILE_INITIAL_FILTERS)
 
   const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  const filters = [1, 2, 3, 4, 5]
   const screenWidth = getScreenWidth()
   const smallScreen = screenWidth < 768
 
-  const showMore = () => {
-    setResultsToShowDesktop(resultsToShowDesktop + 9)
-    setResultsToShowMobile(resultsToShowMobile + 6)
+  const showMoreResults = () => {
+    setResultsToShowDesktop(
+      resultsToShowDesktop + DEFAULT_DESKTOP_INITIAL_RESULT
+    )
+    setResultsToShowMobile(resultsToShowMobile + DEFAULT_MOBILE_INITIAL_RESULT)
+  }
+
+  const showMoreFilters = () => {
+    setFiltersToShowMobile(filters.length)
   }
 
   return (
@@ -36,6 +46,44 @@ export default function ProgramFilter() {
           ut aliquam purus sit amet luctus. Nullam non nisi est sit amet
           facilisis.
         </p>
+        <div className={styles['filters-container']}>
+          <div className={styles['filter-container']}>
+            {filters
+              .slice(0, smallScreen ? filtersToShowMobile : filters.length)
+              .map((filter, index) => (
+                <div className={styles['filter-dropdown']}>
+                  <Dropdown
+                    dropdownLabel='Dropdown Label'
+                    id='selectId'
+                    options={[
+                      {
+                        label: 'Option 1',
+                        value: 'option 1'
+                      },
+                      {
+                        label: 'Option 2',
+                        value: 'option 2'
+                      },
+                      {
+                        label: 'Option 3',
+                        value: 'option 3'
+                      },
+                      {
+                        label: 'Option 4',
+                        value: 'option 4'
+                      }
+                    ]}
+                    updateSelection={() => {}}
+                  />{' '}
+                </div>
+              ))}
+          </div>
+          {smallScreen && filtersToShowMobile < filters.length && (
+            <div className={styles['show-more']}>
+              <a onClick={showMoreFilters}> More filters </a>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={styles['result-body']}>
@@ -56,7 +104,7 @@ export default function ProgramFilter() {
         {(smallScreen ? resultsToShowMobile : resultsToShowDesktop) <
           results.length && (
           <div className={styles['show-more']}>
-            <a onClick={showMore}> Show more </a>
+            <a onClick={showMoreResults}> Show more </a>
           </div>
         )}
       </div>
