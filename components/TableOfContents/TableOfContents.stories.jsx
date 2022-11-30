@@ -16,5 +16,6 @@ Default.args = {
     'Results',
     'Stories',
     'Resources'
-  ]
+  ],
+  ctaText: 'Donate'
 }

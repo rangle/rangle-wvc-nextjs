@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { getScreenWidth } from '../../utils/getScreenWidth'
 import { convertToKebabCase } from '../../utils/convertStrings'
 
-export const TableOfContents = ({ contents, isMobile }) => {
+export const TableOfContents = ({ contents, isMobile, ctaText }) => {
   const buttonRef = useRef(null)
   const menuRef = useRef(null)
   const screenWidth = getScreenWidth()
@@ -54,7 +54,7 @@ export const TableOfContents = ({ contents, isMobile }) => {
             ))}
           </ul>
           <div className={styles['cta-btn']}>
-            <Button label='Donate' />
+            <Button label={ctaText} />
           </div>
         </div>
       )}
