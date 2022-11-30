@@ -67,7 +67,27 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--sticky-carousel']}`}
         >
-          <StickyCarousel />
+          <StickyCarousel
+            pretext={'In all their'}
+            subtext={
+              'along with the families, communities and structures that affect their lives'
+            }
+            backgroundImage={'/homepage/stickyCarousel/background-default.png'}
+            content={[
+              {
+                image: '/homepage/stickyCarousel/default-kid-1.png',
+                text: 'Talent'
+              },
+              {
+                image: '/homepage/stickyCarousel/default-kid-2.png',
+                text: 'Strength'
+              },
+              {
+                image: '/homepage/stickyCarousel/default-kid-3.png',
+                text: 'Spirit'
+              }
+            ]}
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--video-carousel']}`}

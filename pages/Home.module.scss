@@ -19,12 +19,11 @@
     background-color: $light-bg;
 
     @media (min-width: 768px) {
-      height: 100vh;
+      padding-top: 15rem;
     }
   }
 
   &--sticky-carousel {
-    height: 100vh;
     background-color: #fffbf4;
   }
 

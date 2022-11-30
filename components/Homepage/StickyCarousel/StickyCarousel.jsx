@@ -2,24 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion, useScroll } from 'framer-motion'
 import styles from './StickyCarousel.module.scss'
 
-const content = [
-  {
-    image: '/homepage/stickyCarousel/default-kid-1.png',
-    text: 'Talent',
-    subtext: 'ghaosne;rgubw'
-  },
-  {
-    image: '/homepage/stickyCarousel/default-kid-2.png',
-    text: 'Intelligence',
-    subtext: 'qlubqerug;qureg'
-  },
-  {
-    image: '/homepage/stickyCarousel/default-kid-3.png',
-    text: 'Spirit',
-    subtext: 'oppwrubpwuwbpu'
-  }
-]
-
 const fadeIn = {
   variants: {
     hidden: { opacity: 0, y: 20 },
@@ -57,13 +39,15 @@ const slideIn = {
   }
 }
 
-const StickyCarousel = () => {
+const StickyCarousel = ({ backgroundImage, content, pretext, subtext }) => {
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(0)
-  const middleSection = (end - start) / 3
-  const ref = useRef(null)
   const [index, setIndex] = useState(0)
+
   const { scrollYProgress } = useScroll()
+  const ref = useRef(null)
+
+  const middleSection = (end - start) / 3
 
   scrollYProgress.onChange((y) => {
     if (y > start + 2 * middleSection) {
@@ -92,37 +76,28 @@ const StickyCarousel = () => {
 
   return (
     <AnimatePresence>
-      <div
-        ref={ref}
-        className={styles['container']}
-        style={{ height: '400vh' }}
-      >
+      <div ref={ref} className={styles['container']}>
         <div className={styles['sticky-wrapper']}>
           <motion.div
             {...slideIn}
-            style={{ position: 'absolute' }}
             className={styles['rolling-text']}
             key={index}
           >
-            <motion.img
-              {...fadeIn}
-              style={{ display: 'block', margin: 'auto', width: '30%' }}
-              src={content[index].image}
-            />
-            <motion.h1 {...fadeIn} style={{ display: 'block', margin: 'auto' }}>
-              {content[index].text}
-            </motion.h1>
-            <motion.p
-              {...fadeIn}
-              style={{ margin: 'auto', textAlign: 'center' }}
-            >
-              {content[index].subtext}
-            </motion.p>
+            <div className={styles['hidden-desktop']}>
+              <p className={styles['pretext']}>{pretext}</p>
+              <motion.h3 {...fadeIn}>{content[index].text}</motion.h3>
+            </div>
+            <motion.img {...fadeIn} src={content[index].image} />
+            <div className={styles['hidden-mobile']}>
+              <p className={styles['pretext']}>{pretext}</p>
+              <motion.h3 {...fadeIn}>{content[index].text}</motion.h3>
+            </div>
+            <p className={styles['subtext']}>{subtext}</p>
           </motion.div>
           <motion.img
             {...fadeIn}
-            style={{ width: '50%', margin: '4px auto' }}
-            src='https://i.pinimg.com/474x/30/cf/21/30cf21f2a0005d74b9595c92292a3540.jpg'
+            className={styles['background-image']}
+            src={backgroundImage}
           />
         </div>
       </div>
