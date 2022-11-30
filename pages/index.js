@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
+import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
 
 const videoData = [
@@ -66,7 +67,7 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--sticky-carousel']}`}
         >
-          <h2>Sticky Carousel</h2>
+          <StickyCarousel />
         </section>
         <section
           className={`${styles['section']} ${styles['section--video-carousel']}`}
