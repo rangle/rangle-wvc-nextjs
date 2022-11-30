@@ -2,8 +2,23 @@ import Head from 'next/head'
 
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
+import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import styles from './Home.module.scss'
 
+const videoData = [
+  {
+    img: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
+    src: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  },
+  {
+    img: 'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/wvc-homepage-supporting-banner-gift-impact-three-frames-chickens.jpg',
+    src: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4'
+  },
+  {
+    img: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
+    src: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  }
+]
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 
 export default function Home() {
@@ -56,7 +71,7 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--video-carousel']}`}
         >
-          <h2>Video Carousel</h2>
+          <VideoCarousel videos={videoData} />
         </section>
         <section className={`${styles['section']} ${styles['section--map']}`}>
           <h2>Map</h2>
