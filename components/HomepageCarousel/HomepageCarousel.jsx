@@ -41,6 +41,7 @@ export const NextIcon = () => {
 
 const HomepageCarousel = ({ cards, title }) => {
   const id = useId()
+
   return (
     <div id={`carousel-${id}`} className={styles['homepage-carousel']}>
       {title && <h2 className={styles['homepage-carousel-title']}>{title}</h2>}
@@ -53,7 +54,7 @@ const HomepageCarousel = ({ cards, title }) => {
           <PrevIcon className={styles['carousel-nav-button--icon']} />
         </button>
         <Swiper
-          className={'swiper-padding'}
+          className={styles['homepage-carousel__swiper']}
           id={`swiper-${id}`}
           navigation={{
             prevEl: `#carousel-${id} #carousel-nav-button-previous`,
@@ -64,16 +65,6 @@ const HomepageCarousel = ({ cards, title }) => {
           slidesPerView={1}
           centeredSlides={true}
           spaceBetween={20}
-          breakpoints={{
-            1024: {
-              slidesPerView: 1.2,
-              spaceBetween: 40
-            },
-            1366: {
-              slidesPerView: 1.4,
-              spaceBetween: 100
-            }
-          }}
         >
           {cards &&
             cards.length &&

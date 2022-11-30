@@ -16,12 +16,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   .homepage-carousel-nav-button {
     background: none;
     border: none;
     cursor: pointer;
+    margin: 0 2rem;
 
     circle {
       fill: $white;
@@ -45,6 +47,7 @@
 
     &--mobile {
       display: flex;
+      margin: 0 1rem;
 
       @media (min-width: 768px) {
         display: none;
@@ -59,5 +62,13 @@
     position: relative;
     top: -45px;
     z-index: 100;
+
+    @media (min-width: 768px) {
+      justify-content: space-around;
+    }
   }
+}
+
+.homepage-carousel__swiper {
+  padding-bottom: 4rem;
 }

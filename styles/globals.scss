@@ -98,8 +98,15 @@ h5 {
   }
 }
 
-.swiper-padding {
-  padding-bottom: 4rem;
+.swiper-button-disabled {
+  cursor: not-allowed !important;
+  path {
+    fill: $grey-light !important;
+  }
+
+  circle {
+    fill: $white !important;
+  }
 }
 
 .tippy-box[data-theme~='info-light'] {

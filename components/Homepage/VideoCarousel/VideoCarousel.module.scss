@@ -1,0 +1,38 @@
+@import '../../../styles/lumen-tokens';
+@import '../../../styles/spacing';
+
+.video-carousel {
+  padding-top: 2.5rem;
+
+  @media (min-width: 768px) {
+    padding-top: 6.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: 9.375rem;
+  }
+}
+
+.slide-container {
+  @media (min-width: 768px) {
+    margin: 0 $page-margin-tablet;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
+  }
+}
+
+.background-img-container {
+  width: 100%;
+  padding-top: 0;
+  display: block;
+
+  @media (min-width: 768px) {
+    padding-top: 6.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: 9.375rem;
+  }
+}
