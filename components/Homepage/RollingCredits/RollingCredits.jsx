@@ -12,8 +12,8 @@ const HomepageCarouselNoSSR = dynamic(
   }
 )
 
-const RollingCredits = ({ featuredCardData }) => {
-  const cards = featuredCardData.map((card) => (
+const RollingCredits = ({ credits, imgAlt, imageSrc, featureCardData }) => {
+  const cards = featureCardData.map((card) => (
     <FeatureCard
       title={card.title}
       description={card.description}
@@ -29,29 +29,24 @@ const RollingCredits = ({ featuredCardData }) => {
           <div className={styles['rolling-credits__bg-inner']}>
             <img
               className={styles['rolling-credits__bg-image']}
-              src='/homepage/rollingCredits/rolling-credits-background.jpg'
-              alt=''
+              src={imageSrc}
+              alt={imgAlt}
             />
           </div>
         </div>
         <div>
-          <div className={styles['rolling-credits__content']}>
-            <h2 className={styles['rolling-credits__text']}>
-              Canadians know us best for our community-based child sponsorship
-              programs.
-            </h2>
-          </div>
-          <div className={styles['rolling-credits__content']}>
-            <h2 className={styles['rolling-credits__text']}>
-              We’re proud of our sponsorship programs. And we do so much more!
-            </h2>
-          </div>
-          <div className={styles['rolling-credits__content']}>
-            <h2 className={styles['rolling-credits__text']}>
-              Canadians know us best for our community-based child sponsorship
-              programs.
-            </h2>
-          </div>
+          {credits &&
+            credits.map((credit) => {
+              return (
+                <div className={styles['rolling-credits__content']}>
+                  <h2 className={styles['rolling-credits__text']}>
+                    {credit.pretext}
+                    <span>{credit.highlight}</span>
+                    {credit.subtext}
+                  </h2>
+                </div>
+              )
+            })}
 
           {/* CAROUSEL */}
           <div className={styles['rolling-credits__content']}>

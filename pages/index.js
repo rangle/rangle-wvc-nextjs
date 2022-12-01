@@ -22,7 +22,7 @@ const videoData = [
   }
 ]
 
-const featuredCardData = [
+const featureCardData = [
   {
     title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
     description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
@@ -43,6 +43,26 @@ const featuredCardData = [
     imgSrc:
       'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
     imgAlt: 'sample alt text'
+  }
+]
+
+const creditsData = [
+  {
+    pretext: 'In 2021, we invested',
+    highlight: '43%',
+    subtext:
+      'of our program funding in the most fragile countries -- up from 34% in the previous year, as we shift our priority to helping the most vulnerable children'
+  },
+  {
+    pretext: 'Responded to',
+    highlight: '25 emergencies',
+    subtext:
+      'including fragile contexts, in 25 countries, reaching over 6.6 million people'
+  },
+  {
+    pretext: 'Implemented over',
+    highlight: '$70 million',
+    subtext: 'in grant funding from government and institutional partners'
   }
 ]
 
@@ -131,7 +151,12 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
-          <RollingCredits featuredCardData={featuredCardData} />
+          <RollingCredits
+            credits={creditsData}
+            imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
+            imageAlt=''
+            featureCardData={featureCardData}
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
