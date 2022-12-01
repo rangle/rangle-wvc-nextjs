@@ -22,13 +22,7 @@ export default function ProgramFilter(props) {
   )
 
   const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  const filters = [
-    'Country',
-    'Area of Focus',
-    'Partner',
-    'Status',
-    'Program Type'
-  ]
+  const filters = ['Country', 'Area of Focus', 'Partner', 'Year']
   const screenWidth = getScreenWidth()
   const smallScreen = screenWidth < 768
 
@@ -47,14 +41,15 @@ export default function ProgramFilter(props) {
     Country: [...new Set(props.countries)],
     'Area of Focus': [...new Set(props.areasOfFocus)],
     Partner: [...new Set(props.partners)],
-    Status: [...new Set(props.programs.map((ea) => ea.PROGRAM_STATUS_VALUE))],
-    'Program Type': [...new Set(props.programs.map((ea) => ea.HEADER_TITLE))]
+    Year: [...new Set(props.programs.map((ea) => ea.TIMELINE_TAG_02))]
   }
 
   return (
     <div className={styles['programs-container']}>
-      <div className={styles['heading-content']}>
-        <h1 className={styles['title']}>Programs</h1>
+      <div
+        className={[styles['heading-content'], styles['resources']].join(' ')}
+      >
+        <h1 className={styles['title']}>Resources</h1>
 
         <p className={styles['intro']}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -117,6 +112,7 @@ export default function ProgramFilter(props) {
 }
 
 export async function getStaticProps() {
+
   const countries = await getSnowflakeData({
     sqlText: `select HEADER_TITLE from COUNTRIES`
   })
