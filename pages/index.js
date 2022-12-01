@@ -260,7 +260,7 @@ export default function Home() {
         </section>
         <section className={`${styles['section']} ${styles['section--map']}`}>
           <RollingCreditsMap
-            imageSrc={'/homepage/rollingCredits/rolling-credits-background.png'}
+            imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
             mapCreditsData={mapCreditsData}
           />
         </section>
