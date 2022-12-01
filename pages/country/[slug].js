@@ -12,7 +12,6 @@ import MediaBlock from '../../components/MediaBlock/MediaBlock'
 import MediaCard from '../../components/MediaCard/MediaCard'
 import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import Tabs from '../../components/Tabs/Tabs'
-import { getSnowflakeData, transformResultsData } from '../../utils/snowflake'
 
 import StatisticCardGrid, {
   StatisticCard
@@ -37,7 +36,7 @@ export default function Country(props) {
       <HeroBlock
         body={props.HEADER_BODY}
         // TODO: need to add to snowflake table
-        countryCode='AFG'
+        countryCode='PSE'
         ctaLabel={props.HEADER_CTA_LABEL}
         ctaUrl={props.HEADER_CTA_URL}
         highlights={[
@@ -284,6 +283,7 @@ export default function Country(props) {
 }
 
 export async function getStaticPaths() {
+  const { getSnowflakeData } = require('../../utils/snowflake')
   const { rows } = await getSnowflakeData({
     sqlText: 'select URL from COUNTRIES'
   })
@@ -306,6 +306,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const {
+    getSnowflakeData,
+    transformResultsData
+  } = require('../../utils/snowflake')
   const { rows } = await getSnowflakeData({
     sqlText: `select * from COUNTRIES where URL = 'https://www.worldvision.ca/our-work/${params.slug}'`
   })
