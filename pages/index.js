@@ -7,6 +7,7 @@ import SectorOverview from '../components/Homepage/SectorOverview/SectorOverview
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
+import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 
 const videoData = [
   {
@@ -65,6 +66,12 @@ const creditsData = [
     highlight: '$70 million',
     subtext: 'in grant funding from government and institutional partners'
   }
+]
+
+const mapCreditsData = [
+  `Canadians know us best for our community-based child sponsorship
+programs.`,
+  `We’re proud of our sponsorship programs. And we do so much more!`
 ]
 
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
@@ -252,7 +259,10 @@ export default function Home() {
           <VideoCarousel videos={videoData} />
         </section>
         <section className={`${styles['section']} ${styles['section--map']}`}>
-          <h2>Map</h2>
+          <RollingCreditsMap
+            imageSrc={'/homepage/rollingCredits/rolling-credits-background.png'}
+            mapCreditsData={mapCreditsData}
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--sector-overview']}`}
