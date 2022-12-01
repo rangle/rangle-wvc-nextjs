@@ -43,10 +43,12 @@ const RollingCredits = ({ children }) => {
               programs.
             </h2>
           </div>
+
+          {/* CAROUSEL */}
           <div className={styles['rolling-credits__content']}>
-            <div>
+            <div className={styles['rolling-credits__carousel-container']}>
               <HomepageCarouselNoSSR
-                title='1Did you know?'
+                title='Did you know?'
                 cards={[
                   <FeatureCard
                     title={

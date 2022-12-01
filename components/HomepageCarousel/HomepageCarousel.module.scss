@@ -12,11 +12,14 @@
       font-size: 3.875rem;
     }
   }
+
   &__container {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    margin: 0 auto;
+    max-width: 1126px;
   }
 
   .homepage-carousel-nav-button {
