@@ -3,8 +3,10 @@ import styles from './programs.module.scss'
 import MediaCard from '../components/MediaCard/MediaCard'
 import Dropdown from '../components/Dropdown/Dropdown'
 import { getScreenWidth } from '../utils/getScreenWidth'
+import { getSnowflakeData } from '../utils/snowflake'
 
-export default function ProgramFilter() {
+export default function ProgramFilter(props) {
+  console.log('props', props)
   const DEFAULT_DESKTOP_INITIAL_RESULT = 9
   const DEFAULT_MOBILE_INITIAL_RESULT = 6
   const DEFAULT_MOBILE_INITIAL_FILTERS = 2
@@ -15,12 +17,40 @@ export default function ProgramFilter() {
   const [resultsToShowMobile, setResultsToShowMobile] = useState(
     DEFAULT_MOBILE_INITIAL_RESULT
   )
-  const [filtersToShowMobile, setFiltersToShowMobile] = useState(DEFAULT_MOBILE_INITIAL_FILTERS)
+  const [filtersToShowMobile, setFiltersToShowMobile] = useState(
+    DEFAULT_MOBILE_INITIAL_FILTERS
+  )
 
   const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  const filters = [1, 2, 3, 4, 5]
+  const filters = [
+    'Country',
+    'Area of Focus',
+    'Partner',
+    'Status',
+    'Program Type'
+  ]
   const screenWidth = getScreenWidth()
   const smallScreen = screenWidth < 768
+
+  //   const countryOptions = [...new Set(props.countries)]
+  const defaultOptions = [
+    {
+      label: 'Option 1',
+      value: 'option 1'
+    },
+    {
+      label: 'Option 2',
+      value: 'option 2'
+    },
+    {
+      label: 'Option 3',
+      value: 'option 3'
+    },
+    {
+      label: 'Option 4',
+      value: 'option 4'
+    }
+  ]
 
   const showMoreResults = () => {
     setResultsToShowDesktop(
@@ -31,6 +61,14 @@ export default function ProgramFilter() {
 
   const showMoreFilters = () => {
     setFiltersToShowMobile(filters.length)
+  }
+
+  const options = {
+    Country: [...new Set(props.countries)],
+    'Area of Focus': [...new Set(props.areasOfFocus)],
+    Partner: [...new Set(props.partners)],
+    Status: [...new Set(props.programs.map((ea) => ea.PROGRAM_STATUS_VALUE))],
+    'Program Type': [...new Set(props.programs.map((ea) => ea.HEADER_TITLE))]
   }
 
   return (
@@ -53,26 +91,13 @@ export default function ProgramFilter() {
               .map((filter, index) => (
                 <div className={styles['filter-dropdown']}>
                   <Dropdown
-                    dropdownLabel='Dropdown Label'
+                    dropdownLabel={filter}
                     id='selectId'
-                    options={[
-                      {
-                        label: 'Option 1',
-                        value: 'option 1'
-                      },
-                      {
-                        label: 'Option 2',
-                        value: 'option 2'
-                      },
-                      {
-                        label: 'Option 3',
-                        value: 'option 3'
-                      },
-                      {
-                        label: 'Option 4',
-                        value: 'option 4'
-                      }
-                    ]}
+                    // options={filter === 'Country' ? countryOptions.map(ea => ({label: ea, value: ea})) : defaultOptions}
+                    options={options[filter].map((ea) => ({
+                      label: ea,
+                      value: ea
+                    }))}
                     updateSelection={() => {}}
                   />{' '}
                 </div>
@@ -110,4 +135,53 @@ export default function ProgramFilter() {
       </div>
     </div>
   )
+}
+
+export async function getStaticProps() {
+
+//   const countries = await getSnowflakeData({
+//     sqlText: `select HEADER_TITLE from COUNTRIES`
+//   })
+
+//   const areasOfFocus = await getSnowflakeData({
+//     sqlText: `select HEADER_TITLE from AREAS_OF_FOCUS`
+//   })
+
+//   const partners = await getSnowflakeData({
+//     sqlText: `select PARTNER_NAME from PARTNERS`
+//   })
+
+//   const programs = await getSnowflakeData({
+//     sqlText: `select * from PROGRAMS`
+//   })
+
+const countries = await getSnowflakeData({
+    sqlText: `select HEADER_TITLE from COUNTRIES`
+  })
+
+  const areasOfFocus = await getSnowflakeData({
+    sqlText: `select HEADER_TITLE from AREAS_OF_FOCUS`
+  })
+
+  const partners = await getSnowflakeData({
+    sqlText: `select PARTNER_NAME from PARTNERS`
+  })
+
+  const programs = await getSnowflakeData({
+    sqlText: `select * from PROGRAMS`
+  })
+
+  return {
+    props: {
+    //   countries: countries.rows.map((ea) => ea.HEADER_TITLE),
+    //   areasOfFocus: areasOfFocus.rows.map((ea) => ea.HEADER_TITLE),
+    //   partners: partners.rows.map((ea) => ea.PARTNER_NAME),
+    //   programs: programs.rows
+
+    countries: countries.rows.map((ea) => ea.HEADER_TITLE),
+    areasOfFocus: areasOfFocus.rows.map((ea) => ea.HEADER_TITLE),
+    partners: partners.rows.map((ea) => ea.PARTNER_NAME),
+    programs: programs.rows
+    }
+  }
 }
