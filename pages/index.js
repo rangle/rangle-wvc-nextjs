@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
+import RollingCredits from '../components/Homepage/RollingCredits/RollingCredits'
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
@@ -105,12 +106,7 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
-          <h2>Rolling Credits</h2>
-        </section>
-        <section
-          className={`${styles['section']} ${styles['section--did-you-know']}`}
-        >
-          <h2>Did you know carousel</h2>
+          <RollingCredits />
         </section>
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
