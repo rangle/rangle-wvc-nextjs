@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
+import RollingCredits from '../components/Homepage/RollingCredits/RollingCredits'
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
@@ -20,6 +21,51 @@ const videoData = [
     src: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
   }
 ]
+
+const featureCardData = [
+  {
+    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
+    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
+    imgSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    imgAlt: 'sample alt text'
+  },
+  {
+    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
+    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
+    imgSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    imgAlt: 'sample alt text'
+  },
+  {
+    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
+    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
+    imgSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    imgAlt: 'sample alt text'
+  }
+]
+
+const creditsData = [
+  {
+    pretext: 'In 2021, we invested',
+    highlight: '43%',
+    subtext:
+      'of our program funding in the most fragile countries -- up from 34% in the previous year, as we shift our priority to helping the most vulnerable children'
+  },
+  {
+    pretext: 'Responded to',
+    highlight: '25 emergencies',
+    subtext:
+      'including fragile contexts, in 25 countries, reaching over 6.6 million people'
+  },
+  {
+    pretext: 'Implemented over',
+    highlight: '$70 million',
+    subtext: 'in grant funding from government and institutional partners'
+  }
+]
+
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 
 export default function Home() {
@@ -105,12 +151,12 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
-          <h2>Rolling Credits</h2>
-        </section>
-        <section
-          className={`${styles['section']} ${styles['section--did-you-know']}`}
-        >
-          <h2>Did you know carousel</h2>
+          <RollingCredits
+            title={'Did you know?'}
+            credits={creditsData}
+            imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
+            featureCardData={featureCardData}
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
