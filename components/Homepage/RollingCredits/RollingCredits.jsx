@@ -12,7 +12,16 @@ const HomepageCarouselNoSSR = dynamic(
   }
 )
 
-const RollingCredits = ({ children }) => {
+const RollingCredits = ({ featuredCardData }) => {
+  const cards = featuredCardData.map((card) => (
+    <FeatureCard
+      title={card.title}
+      description={card.description}
+      imgSrc={card.imgSrc}
+      imgAlt={card.imgAlt}
+    />
+  ))
+
   return (
     <div className={styles['rolling-credits']}>
       <div className={styles['rolling-credits__relative-wrapper']}>
@@ -47,47 +56,7 @@ const RollingCredits = ({ children }) => {
           {/* CAROUSEL */}
           <div className={styles['rolling-credits__content']}>
             <div className={styles['rolling-credits__carousel-container']}>
-              <HomepageCarouselNoSSR
-                title='Did you know?'
-                cards={[
-                  <FeatureCard
-                    title={
-                      "Our Christian faith is an essential part of World Vision's holistic approach."
-                    }
-                    description={
-                      "84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups."
-                    }
-                    imgSrc={
-                      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg'
-                    }
-                    imgAlt={'sample alt text'}
-                  />,
-                  <FeatureCard
-                    title={
-                      "Our Christian faith is an essential part of World Vision's holistic approach."
-                    }
-                    description={
-                      "84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups."
-                    }
-                    imgSrc={
-                      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg'
-                    }
-                    imgAlt={'sample alt text'}
-                  />,
-                  <FeatureCard
-                    title={
-                      "Our Christian faith is an essential part of World Vision's holistic approach."
-                    }
-                    description={
-                      "84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups."
-                    }
-                    imgSrc={
-                      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg'
-                    }
-                    imgAlt={'sample alt text'}
-                  />
-                ]}
-              />
+              <HomepageCarouselNoSSR title='Did you know?' cards={cards} />
             </div>
           </div>
         </div>

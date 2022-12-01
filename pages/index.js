@@ -21,6 +21,31 @@ const videoData = [
     src: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
   }
 ]
+
+const featuredCardData = [
+  {
+    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
+    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
+    imgSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    imgAlt: 'sample alt text'
+  },
+  {
+    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
+    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
+    imgSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    imgAlt: 'sample alt text'
+  },
+  {
+    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
+    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
+    imgSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    imgAlt: 'sample alt text'
+  }
+]
+
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 
 export default function Home() {
@@ -106,7 +131,7 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
-          <RollingCredits />
+          <RollingCredits featuredCardData={featuredCardData} />
         </section>
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
