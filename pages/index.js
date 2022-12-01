@@ -152,9 +152,9 @@ export default function Home() {
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
           <RollingCredits
+            title={'Did you know?'}
             credits={creditsData}
             imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
-            imageAlt=''
             featureCardData={featureCardData}
           />
         </section>

@@ -12,9 +12,10 @@ const HomepageCarouselNoSSR = dynamic(
   }
 )
 
-const RollingCredits = ({ credits, imgAlt, imageSrc, featureCardData }) => {
+const RollingCredits = ({ title, credits, imageSrc, featureCardData }) => {
   const cards = featureCardData.map((card) => (
     <FeatureCard
+      key={card.title}
       title={card.title}
       description={card.description}
       imgSrc={card.imgSrc}
@@ -30,7 +31,7 @@ const RollingCredits = ({ credits, imgAlt, imageSrc, featureCardData }) => {
             <img
               className={styles['rolling-credits__bg-image']}
               src={imageSrc}
-              alt={imgAlt}
+              alt=''
             />
           </div>
         </div>
@@ -38,7 +39,10 @@ const RollingCredits = ({ credits, imgAlt, imageSrc, featureCardData }) => {
           {credits &&
             credits.map((credit) => {
               return (
-                <div className={styles['rolling-credits__content']}>
+                <div
+                  key={credit.highlight}
+                  className={styles['rolling-credits__content']}
+                >
                   <h2 className={styles['rolling-credits__text']}>
                     {credit.pretext}
                     <span>{credit.highlight}</span>
@@ -51,7 +55,7 @@ const RollingCredits = ({ credits, imgAlt, imageSrc, featureCardData }) => {
           {/* CAROUSEL */}
           <div className={styles['rolling-credits__content']}>
             <div className={styles['rolling-credits__carousel-container']}>
-              <HomepageCarouselNoSSR title='Did you know?' cards={cards} />
+              <HomepageCarouselNoSSR title={title} cards={cards} />
             </div>
           </div>
         </div>
