@@ -55,7 +55,7 @@ const Hero = ({
             className={`${styles['centered-column']} ${styles['subtitle-container']}`}
           >
             <p className={styles['hero-subtitle']}>{subtitleText}</p>
-            <Link href={url} passHref>
+            <Link href={url} passHref legacyBehavior>
               <a>{linkLabel}</a>
             </Link>
           </div>

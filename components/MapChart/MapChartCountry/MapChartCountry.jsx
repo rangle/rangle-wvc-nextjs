@@ -21,7 +21,7 @@ const MapPopupTitle = ({ markerInfo }) => {
   return (
     <h5 className={`${styles['map-popup__title']}`}>
       {markerInfo?.card_url?.length > 0 ? (
-        <Link href={markerInfo?.card_url} passHref>
+        <Link href={markerInfo?.card_url} passHref legacyBehavior>
           <a className={styles['map-popup__link']}>
             {markerInfo?.name} - {markerInfo?.card_url}
           </a>

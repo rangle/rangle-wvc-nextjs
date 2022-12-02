@@ -24,7 +24,7 @@ const ExpandableTextBlock = ({
         }
         className={`${styles['expandable-text-block__body']} ${styles['expandable-text-block__body--closed']}`}
       >
-        <p className={styles['expandable-text-block__body']}>{parse(body || '')}</p>
+        <span className={styles['expandable-text-block__body']}>{parse(body || '')}</span>
         {footnote && (
           <p className={styles['expandable-text-block__footnote']}>{parse(footnote)}</p>
         )}
