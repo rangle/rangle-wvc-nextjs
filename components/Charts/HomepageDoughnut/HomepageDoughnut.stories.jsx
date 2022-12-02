@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { DoughnutChart } from './TestDoughnut'
+import { HomepageDoughnutChart } from './HomepageDoughnut'
 
 export default {
-  title: 'Example/Charts/TestDoughnut',
+  title: 'Example/Charts/HomepageDoughnut',
   argTypes: {
     titlePosition: {
       options: ['top', 'bottom'],
@@ -15,10 +15,10 @@ export default {
       control: { type: 'select' }
     }
   },
-  component: DoughnutChart
+  component: HomepageDoughnutChart
 }
 
-const Template = (args) => <DoughnutChart {...args} />
+const Template = (args) => <HomepageDoughnutChart {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -28,7 +28,7 @@ Default.args = {
   legendPosition: 'right',
   aspectRatio: 2,
   cutout: 90,
-  colours: [
+  colors: [
     'rgb(231, 96, 12)',
     'rgb(255, 166, 102)',
     'rgb(255, 195, 153)',

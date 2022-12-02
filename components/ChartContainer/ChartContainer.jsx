@@ -18,7 +18,7 @@ export const ChartContainer = ({
 
   // The below are hardcoded `-Sample` data for now so we can see the charts
   // The [real] data will be coming from an api, and it will be formatted
-  // in a way that is specific to the chart type. 
+  // in a way that is specific to the chart type.
   // We will create this data transform function once we have the api data received
 
   const controlOptionsSample = [
@@ -43,7 +43,7 @@ export const ChartContainer = ({
   let controlOptions = controlOptionsProp || controlOptionsSample
 
   const chartArgsSample = {
-    colours: ['rgb(231, 96, 12)'],
+    colors: ['rgb(231, 96, 12)'],
     labels: ['Girls', 'Boys', 'Women', 'Men'],
     data: [48000, 41000, 99000, 20000],
     withAxes: true,
@@ -58,7 +58,7 @@ export const ChartContainer = ({
 
   const doughnutArgsSample = {
     ...chartArgsSample,
-    colours: [
+    colors: [
       'rgb(153, 153, 153)',
       'rgb(102, 102, 102)',
       'rgb(255, 136, 51)',
@@ -70,7 +70,7 @@ export const ChartContainer = ({
 
   const stackedBarArgsSample = {
     ...chartArgsSample,
-    colours: [
+    colors: [
       'rgb(153, 153, 153)',
       'rgb(102, 102, 102)',
       'rgb(255, 136, 51)',
@@ -103,7 +103,10 @@ export const ChartContainer = ({
   }
 
   return (
-    <div className={styles['chart-control-section-container']} style={{backgroundImage: `url('/D155.png')`}}>
+    <div
+      className={styles['chart-control-section-container']}
+      style={{ backgroundImage: `url('/D155.png')` }}
+    >
       <div className={styles['chart-container']}>
         <div className={styles['chart-container-control']}>
           <h2 className={styles['chart-title']}>{controlTitle}</h2>

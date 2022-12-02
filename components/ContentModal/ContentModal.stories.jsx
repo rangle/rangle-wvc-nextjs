@@ -11,7 +11,29 @@ export default {
   }
 }
 
-const Template = (args) => <ContentModal {...args} />
+const Template = (args) => {
+  const [modalIsOpen, setIsOpen] = React.useState(false)
+
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+  return (
+    <div>
+      <button aria-haspopup='true' onClick={openModal}>
+        Open Modal
+      </button>
+      <ContentModal
+        {...args}
+        closeModal={closeModal}
+        modalIsOpen={modalIsOpen}
+      />
+    </div>
+  )
+}
 
 export const Default = Template.bind({})
 Default.args = {

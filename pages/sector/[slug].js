@@ -246,7 +246,7 @@ export default function Sector(props) {
                 <DoughnutChart
                   ariaLabel='Doughnut chart for development program'
                   aspectRatio={2}
-                  colours={[
+                  colors={[
                     'rgb(231, 96, 12)',
                     'rgb(255, 166, 102)',
                     'rgb(255, 195, 153)',
@@ -351,7 +351,7 @@ export default function Sector(props) {
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
                 aspectRatio={0.8}
-                colours={[
+                colors={[
                   'rgb(231, 96, 12)',
                   'rgb(255, 166, 102)',
                   'rgb(255, 225, 204)'
@@ -370,7 +370,7 @@ export default function Sector(props) {
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
                 aspectRatio={0.8}
-                colours={[
+                colors={[
                   'rgb(231, 96, 12)',
                   'rgb(255, 166, 102)',
                   'rgb(255, 225, 204)'
@@ -389,7 +389,7 @@ export default function Sector(props) {
                 ariaLabel='Bar Chart Reading Comprehension'
                 aspectRatio={0.8}
                 withAxes={false}
-                colours={[
+                colors={[
                   'rgb(231, 96, 12)',
                   'rgb(255, 166, 102)',
                   'rgb(255, 225, 204)'

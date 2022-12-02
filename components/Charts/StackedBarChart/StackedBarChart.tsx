@@ -27,7 +27,7 @@ ChartJS.register(
 export function StackedBarChart({
   data,
   labels,
-  colours,
+  colors,
   withAxes,
   yStepSize,
   aspectRatio = 1,
@@ -127,7 +127,7 @@ export function StackedBarChart({
       return {
         label: legends[idx],
         data: eaData.map((ea) => parseFloat(ea)),
-        backgroundColor: colours[idx],
+        backgroundColor: colors[idx],
         maxBarThickness: 40
       }
     })

@@ -3,14 +3,13 @@ import { Chart as ChartJS, ArcElement } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Doughnut } from 'react-chartjs-2'
-import { Options } from '../charts.type'
 
 ChartJS.register(ArcElement, ChartDataLabels)
 
 export const DoughnutChart = ({
   data,
   labels,
-  colours,
+  colors,
   aspectRatio = 1,
   title = '',
   subTitle = '',
@@ -24,7 +23,7 @@ export const DoughnutChart = ({
 }) => {
   const fullTitle = [title, subTitle]
 
-  const options: Options = {
+  const options = {
     responsive: true,
     aspectRatio: aspectRatio,
     maintainAspectRatio: maintainAspectRatio,
@@ -54,6 +53,9 @@ export const DoughnutChart = ({
       datalabels: {
         display: false
       }
+    },
+    layout: {
+      padding: 10
     }
   }
 
@@ -62,7 +64,7 @@ export const DoughnutChart = ({
     datasets: [
       {
         data: data.map((ea) => parseFloat(ea)),
-        backgroundColor: colours,
+        backgroundColor: colors,
         hoverOffset: 8,
         borderWidth: 0,
         tooltip: {

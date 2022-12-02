@@ -7,9 +7,9 @@ import Link from 'next/link'
 const ctaArrow = (
   <svg xmlns='http://www.w3.org/2000/svg' width='8' height='12'>
     <path
-      fill-rule='evenodd'
+      fillRule='evenodd'
       d='M4.823 6 0 1.487 1.589 0 8 6l-6.411 6L0 10.513 4.823 6Z'
-      clip-rule='evenodd'
+      clipRule='evenodd'
     />
   </svg>
 )
@@ -24,6 +24,7 @@ const exitIcon = (
 )
 
 const ContentModal = ({
+  closeModal,
   ctaLabel,
   ctaShortLabel,
   ctaUrl,
@@ -37,29 +38,30 @@ const ContentModal = ({
   highlight2,
   highlight3,
   modalAriaLabel,
+  modalIsOpen,
   title,
   videoSrc
 }) => {
-  const [modalIsOpen, setIsOpen] = React.useState(false)
-
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
-  const closeModal = () => {
-    setIsOpen(false)
-  }
-
   return (
     <div>
-      <button aria-haspopup='true' onClick={openModal}>
-        Open Modal
-      </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel={modalAriaLabel}
         className={styles['overlay']}
+        onAfterOpen={() => {
+          document.body.style.top = `-${window.scrollY}px`
+          document.body.style.position = 'fixed'
+        }}
+        onAfterClose={() => {
+          const scrollY = document.body.style.top
+          document.body.style.position = ''
+          document.body.style.top = ''
+          window.scrollTo(0, parseInt(scrollY || '0') * -1)
+        }}
+        style={{
+          overlay: { zIndex: 100 }
+        }}
       >
         <div className={styles['content-modal']}>
           <div className={styles['content-modal__heading-container']}>
@@ -92,20 +94,22 @@ const ContentModal = ({
                     {label4}
                   </p>
                 </div>
-                <div className={styles['content-modal__cta-container']}>
-                  <Link href={ctaUrl} passHref>
-                    <a className={styles['content-modal__cta-short']}>
-                      {ctaShortLabel}
-                      {ctaArrow}
-                    </a>
-                  </Link>
-                  <Link href={ctaUrl} passHref>
-                    <a className={styles['content-modal__cta']}>
-                      {ctaLabel}
-                      {ctaArrow}
-                    </a>
-                  </Link>
-                </div>
+                {ctaUrl && (
+                  <div className={styles['content-modal__cta-container']}>
+                    <Link href={ctaUrl} passHref>
+                      <a className={styles['content-modal__cta-short']}>
+                        {ctaShortLabel}
+                        {ctaArrow}
+                      </a>
+                    </Link>
+                    <Link href={ctaUrl} passHref>
+                      <a className={styles['content-modal__cta']}>
+                        {ctaLabel}
+                        {ctaArrow}
+                      </a>
+                    </Link>
+                  </div>
+                )}
               </div>
               <div className={styles['content-modal__media-container']}>
                 <Video
@@ -120,5 +124,7 @@ const ContentModal = ({
     </div>
   )
 }
+
+Modal.setAppElement('body')
 
 export default ContentModal

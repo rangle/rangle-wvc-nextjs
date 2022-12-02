@@ -13,7 +13,7 @@ window.ResizeObserver =
 describe('DoughnutChart', () => {
   it('renders a doughnut chart', () => {
     const args = {
-      colours: ['rgb(231, 96, 12)'],
+      colors: ['rgb(231, 96, 12)'],
       labels: ['2019', '2020', '2021'],
       data: [50000, 76000, 170000],
       withAxes: true,

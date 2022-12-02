@@ -41,7 +41,7 @@ Default.args = {
   yStepSize: 25000,
   aspectRatio: 0.8,
   ariaLabel: 'Bar chart People Reached',
-  colours: [
+  colors: [
     'rgb(153, 153, 153)',
     'rgb(102, 102, 102)',
     'rgb(255, 136, 51)',
@@ -69,7 +69,7 @@ Darkmode.args = {
   yStepSize: 25000,
   aspectRatio: 0.8,
   ariaLabel: 'Bar chart People Reached',
-  colours: [
+  colors: [
     'rgb(153, 153, 153)',
     'rgb(102, 102, 102)',
     'rgb(255, 136, 51)',

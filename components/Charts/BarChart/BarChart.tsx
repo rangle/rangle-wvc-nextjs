@@ -27,7 +27,7 @@ ChartJS.register(
 export function BarChart({
   data,
   labels,
-  colours,
+  colors,
   withAxes,
   yStepSize,
   aspectRatio = 1,
@@ -54,13 +54,13 @@ export function BarChart({
         color:
           titlePosition === 'top'
             ? // if the title is on the top, just change the darkmode color
-              !isDarkMode
+            !isDarkMode
               ? ''
               : '#ffffff'
             : // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
             !isDarkMode
-            ? '#666666'
-            : '#cccccc',
+              ? '#666666'
+              : '#cccccc',
         font: {
           size: titlePosition === 'top' ? 18 : 12,
           weight: titlePosition === 'top' ? 'bold' : 'normal'
@@ -77,13 +77,13 @@ export function BarChart({
         color:
           titlePosition === 'top'
             ? // if the subtitle is on the top, just change the darkmode color
-              !isDarkMode
+            !isDarkMode
               ? ''
               : '#cccccc'
             : // if subtitle is on the bottom, this becomes the title, so change colors to match title
             !isDarkMode
-            ? '#333333'
-            : '#ffffff',
+              ? '#333333'
+              : '#ffffff',
         font: {
           size: titlePosition === 'top' ? 12 : 18,
           weight: titlePosition === 'top' ? 'normal' : 'bold'
@@ -157,7 +157,7 @@ export function BarChart({
     datasets: [
       {
         data: data.map((ea) => parseFloat(ea)),
-        backgroundColor: colours,
+        backgroundColor: colors,
         maxBarThickness: 40
       }
     ]

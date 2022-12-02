@@ -32,7 +32,7 @@ ChartJS.register(
 export function LineChart({
   data,
   labels,
-  colours,
+  colors,
   withAxes,
   yStepSize,
   aspectRatio = 1,
@@ -71,11 +71,11 @@ export function LineChart({
     elements: {
       line: {
         borderWidth: 2,
-        borderColor: colours
+        borderColor: colors
       },
       point: {
         radius: 5,
-        backgroundColor: colours
+        backgroundColor: colors
       }
     },
     scales: {
@@ -129,7 +129,7 @@ export function LineChart({
         data: withAxes
           ? [null].concat(data).map((ea) => parseFloat(ea))
           : data.map((ea) => parseFloat(ea)),
-        borderColor: colours
+        borderColor: colors
       }
     ]
   }
