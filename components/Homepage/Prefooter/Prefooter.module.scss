@@ -1,0 +1,48 @@
+@import '../../../styles/lumen-tokens';
+@import '../../../styles/spacing';
+
+.prefooter {
+  position: relative;
+
+  .prefooter-background {
+    position: absolute;
+    width: 100%;
+    top: -50%;
+  }
+}
+
+.prefooter-content {
+  margin: 0 $page-margin-mobile;
+  color: $white;
+  text-align: left;
+
+  @media (min-width: 768px) {
+    margin: 0 $page-margin-tablet;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
+  }
+
+  @media (min-width: 1366px) {
+    width: calc($column-max * 8);
+    margin: 0 auto;
+  }
+}
+
+.prefooter-carousel-title {
+  @include typographysmallheadingh2;
+
+  @media (min-width: 768px) {
+    @include typographylargeheadingh2;
+  }
+}
+
+.prefooter-carousel-subtitle {
+  @include typographylargeparagraphsmallcopy_regular;
+
+  @media (min-width: 768px) {
+    @include typographylargeparagraphintro_regular;
+  }
+}

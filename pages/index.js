@@ -8,6 +8,7 @@ import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
+import Prefooter from '../components/Homepage/Prefooter/Prefooter'
 
 const videoData = [
   {
@@ -289,7 +290,7 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
         >
-          <h2>Pre footer catchall</h2>
+          <Prefooter />
         </section>
       </main>
     </div>
