@@ -21,13 +21,19 @@
 
   &--light {
     color: $white;
+
+    .carousel-nav-button {
+      &:hover {
+        .carousel-nav-button--label {
+          border-bottom: 1px solid $white;
+          // line-height: normal;
+        }
+      }
+    }
   }
 }
 
 .carousel-nav-container-desktop {
-  border: 1px solid red;
-  width: 100%;
-
   @media (max-width: 767px) {
     display: none;
   }

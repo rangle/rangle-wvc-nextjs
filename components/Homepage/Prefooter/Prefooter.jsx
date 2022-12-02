@@ -1,8 +1,14 @@
+import dynamic from 'next/dynamic'
 import styles from './Prefooter.module.scss'
 import MediaBlock from '../../MediaBlock/MediaBlock'
 import AccordionGroup from '../../AccordionGroup/AccordionGroup'
 import Carousel from '../../Carousel/Carousel'
 import MediaCard from '../../MediaCard/MediaCard'
+
+// The carousel is imported without SSR to ensure the id of the carousel matches on both client & server
+const CarouselNoSSR = dynamic(() => import('../../Carousel/Carousel'), {
+  ssr: false
+})
 
 const sampleItems = [
   {
@@ -123,11 +129,18 @@ const Prefooter = ({ cards = sampleMediaCards }) => {
       </div>
       {caseStudyCards && caseStudyCards.length && (
         <div className={styles['carousel-container']}>
-          <Carousel cards={caseStudyCards} controlsTheme={'light'} />
+          <CarouselNoSSR cards={caseStudyCards} controlsTheme={'light'} />
         </div>
       )}
-      <div className={styles['prefooter-content']}>
+      <div
+        className={`${styles['prefooter-content']} ${styles['prefooter-accordion']}`}
+      >
         <AccordionGroup items={sampleItems} isDarkMode />
+      </div>
+      <div
+        className={`${styles['prefooter-content']} ${styles['prefooter-report-cards']}`}
+      >
+        cards go here
       </div>
     </div>
   )

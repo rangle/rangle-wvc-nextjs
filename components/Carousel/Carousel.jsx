@@ -77,7 +77,7 @@ const Carousel = ({ cards, controlsTheme, title }) => {
   return (
     <div id={`carousel-${id}`} className={styles['carousel']}>
       <div className={styles['carousel--header']}>
-        {title && <h2>{title}</h2>}
+        <div>{title && <h2>{title}</h2>}</div>
         <div
           className={`${styles['carousel-nav-container-desktop']} ${
             styles[`carousel-nav-container-desktop--${controlsTheme}`]

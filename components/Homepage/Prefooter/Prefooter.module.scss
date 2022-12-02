@@ -3,11 +3,9 @@
 
 .prefooter {
   position: relative;
-
   .prefooter-background {
-    position: absolute;
     width: 100%;
-    top: -50%;
+    margin-top: -350px;
   }
 }
 
@@ -36,6 +34,7 @@
 
   @media (min-width: 768px) {
     @include typographylargeheadingh2;
+    margin-bottom: $size-m;
   }
 }
 
@@ -55,11 +54,20 @@
   }
 
   @media (min-width: 1024px) {
-    margin: 0 $page-margin-desktop;
+    margin: 60px $page-margin-desktop 180px;
   }
 
   @media (min-width: 1366px) {
     width: calc($column-max * 12);
-    margin: 0 auto;
+    margin: 60px auto 180px;
   }
+}
+
+.prefooter-accordion {
+  text-align: left;
+  margin-bottom: 60px;
+}
+
+.prefooter-report-cards {
+  margin-bottom: 100px;
 }
