@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
 import RollingCredits from '../components/Homepage/RollingCredits/RollingCredits'
+import SectorOverview from '../components/Homepage/SectorOverview/SectorOverview'
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
@@ -67,6 +68,116 @@ const creditsData = [
 ]
 
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
+
+const sampleSectorData = [
+  {
+    title: 'Livelihoods',
+    percentage: 59,
+    color: '#E7600C', // $orange
+    ctaLabel: 'Learn more about  our livelihoods work',
+    ctaShortLabel: 'Learn more',
+    ctaUrl: 'https://www.worldvision.ca',
+    imgSrc: '/modalImage.jpg',
+    imgAlt: 'Alt text',
+    label1: 'In partnership with the World Food Programme',
+    label2: 'received food assistance',
+    label3: 'people were active members in',
+    label4: 'savings groups',
+    highlight1: '3,320,279 people',
+    highlight2: '48,424',
+    highlight3: '2951',
+    modalAriaLabel: 'This aria label will describe the modal contents.',
+    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  },
+  {
+    title: 'Health',
+    percentage: 19,
+    color: '#9054A1', // $purple
+    ctaLabel: 'Learn more about  our livelihoods work',
+    ctaShortLabel: 'Learn more',
+    ctaUrl: 'https://www.worldvision.ca',
+    imgSrc: '/modalImage.jpg',
+    imgAlt: 'Alt text',
+    label1: 'In partnership with the World Food Programme',
+    label2: 'received food assistance',
+    label3: 'people were active members in',
+    label4: 'savings groups',
+    highlight1: '3,320,279 people',
+    highlight2: '48,424',
+    highlight3: '2951',
+    modalAriaLabel: 'This aria label will describe the modal contents.',
+    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  },
+  {
+    title: 'Education',
+    percentage: 11,
+    color: '#006661', // $teal
+    ctaLabel: 'Learn more about  our livelihoods work',
+    ctaShortLabel: 'Learn more',
+    ctaUrl: 'https://www.worldvision.ca',
+    imgSrc: '/modalImage.jpg',
+    imgAlt: 'Alt text',
+    label1: 'In partnership with the World Food Programme',
+    label2: 'received food assistance',
+    label3: 'people were active members in',
+    label4: 'savings groups',
+    highlight1: '3,320,279 people',
+    highlight2: '48,424',
+    highlight3: '2951',
+    modalAriaLabel: 'This aria label will describe the modal contents.',
+    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  },
+  {
+    title: 'Child Protection + Participation',
+    percentage: 9,
+    color: '#FDD25F', // $yellow
+    ctaLabel: 'Learn more about  our livelihoods work',
+    ctaShortLabel: 'Learn more',
+    ctaUrl: 'https://www.worldvision.ca',
+    imgSrc: '/modalImage.jpg',
+    imgAlt: 'Alt text',
+    label1: 'In partnership with the World Food Programme',
+    label2: 'received food assistance',
+    label3: 'people were active members in',
+    label4: 'savings groups',
+    highlight1: '3,320,279 people',
+    highlight2: '48,424',
+    highlight3: '2951',
+    modalAriaLabel: 'This aria label will describe the modal contents.',
+    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  },
+  {
+    title: 'Water, Sanitation + Hygiene',
+    percentage: 2,
+    color: '#0C6699', // $blue
+    ctaLabel: 'Learn more about  our livelihoods work',
+    ctaShortLabel: 'Learn more',
+    ctaUrl: 'https://www.worldvision.ca',
+    imgSrc: '/modalImage.jpg',
+    imgAlt: 'Alt text',
+    label1: 'In partnership with the World Food Programme',
+    label2: 'received food assistance',
+    label3: 'people were active members in',
+    label4: 'savings groups',
+    highlight1: '3,320,279 people',
+    highlight2: '48,424',
+    highlight3: '2951',
+    modalAriaLabel: 'This aria label will describe the modal contents.',
+    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+  }
+]
+
+const sampleSectorHighlights = [
+  {
+    value: '18 million',
+    title: 'People reached',
+    tooltip: 'sample tooltip content wooooooo'
+  },
+  {
+    value: '$226 million',
+    title: 'Total spent'
+  }
+]
 
 export default function Home() {
   return (
@@ -146,7 +257,14 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--sector-overview']}`}
         >
-          <h2>Sector Overview w modal</h2>
+          <SectorOverview
+            sectorData={sampleSectorData}
+            sectorHighlights={sampleSectorHighlights}
+            text1={
+              'Poverty is complex and multi-layered—so we use a holistic approach as we partner with communities to find sustainable solutions.'
+            }
+            text2={'World Vision integrates projects across 5 main sectors:'}
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--rolling-credits']}`}

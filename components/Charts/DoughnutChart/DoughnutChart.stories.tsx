@@ -37,11 +37,10 @@ Default.args = {
   legendPosition: 'right',
   aspectRatio: 2,
   cutout: 90,
-  colours: [
+  colors: [
     'rgb(231, 96, 12)',
     'rgb(255, 166, 102)',
     'rgb(255, 195, 153)',
-    'rgb(231, 96, 12)'
   ],
   labels: [
     'Development Programming',
@@ -60,7 +59,7 @@ Darkmode.args = {
   displayLegend: true,
   legendPosition: 'left',
   aspectRatio: 2,
-  colours: [
+  colors: [
     'rgb(231, 96, 12)',
     'rgb(255, 166, 102)',
     'rgb(255, 195, 153)',
@@ -83,7 +82,7 @@ isMobile.args = {
   displayLegend: true,
   legendPosition: 'left',
   aspectRatio: 0.8,
-  colours: [
+  colors: [
     'rgb(231, 96, 12)',
     'rgb(255, 166, 102)',
     'rgb(255, 195, 153)',

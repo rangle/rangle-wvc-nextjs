@@ -36,7 +36,7 @@ WithAxes.args = {
   subTitle: 'Eravur Pattu, Sri Lanka',
   titlePosition: 'top',
   ariaLabel: 'Bar Chart Reading Comprehension',
-  colours: ['rgb(231, 96, 12)'],
+  colors: ['rgb(231, 96, 12)'],
   labels: ['Girls', 'Boys', 'Women', 'Men'],
   data: [480000, 410000, 250000, 220000]
 }
@@ -52,7 +52,7 @@ WithoutAxesWithIndvTopBarLabel.args = {
   subTitle: 'Eravur Pattu, Sri Lanka',
   titlePosition: 'bottom',
   ariaLabel: 'Bar Chart Reading Comprehension',
-  colours: ['rgb(231, 96, 12)', 'rgb(255, 166, 102)', 'rgb(255, 225, 204)'],
+  colors: ['rgb(231, 96, 12)', 'rgb(255, 166, 102)', 'rgb(255, 225, 204)'],
   labels: ['2021', '2013'],
   data: ['83.5%', '74.1%']
 }
@@ -68,7 +68,7 @@ Darkmode.args = {
   subTitle: 'Eravur Pattu, Sri Lanka',
   titlePosition: 'top',
   ariaLabel: 'Bar Chart Reading Comprehension',
-  colours: ['rgb(231, 96, 12)'],
+  colors: ['rgb(231, 96, 12)'],
   labels: ['Girls', 'Boys', 'Women', 'Men'],
   data: [480000, 410000, 250000, 220000]
 }

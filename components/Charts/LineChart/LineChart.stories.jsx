@@ -31,7 +31,7 @@ WithAxes.args = {
   titlePosition: 'top',
   isDarkMode: false,
   ariaLabel: 'People Reached Line Chart',
-  colours: ['rgb(231, 96, 12)'],
+  colors: ['rgb(231, 96, 12)'],
   labels: ['2019', '2020', '2021'],
   data: [50000, 76000, 170000]
 }
@@ -45,7 +45,7 @@ DarkMode.args = {
   titlePosition: 'top',
   isDarkMode: true,
   ariaLabel: 'People Reached Line Chart',
-  colours: ['rgb(231, 96, 12)'],
+  colors: ['rgb(231, 96, 12)'],
   labels: ['2019', '2020', '2021'],
   data: [50000, 76000, 170000]
 }
@@ -59,7 +59,7 @@ WithoutAxes.args = {
   titlePosition: 'top',
   isDarkMode: true,
   ariaLabel: 'People Reached Line Chart',
-  colours: ['rgb(231, 96, 12)'],
+  colors: ['rgb(231, 96, 12)'],
   labels: ['2019', '2020', '2021'],
   data: [50000, 76000, 170000]
 }

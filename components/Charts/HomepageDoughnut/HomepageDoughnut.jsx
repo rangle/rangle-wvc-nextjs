@@ -1,21 +1,15 @@
-import React, { MouseEvent, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Chart as ChartJS, ArcElement } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
-import {
-  Doughnut,
-  getDatasetAtEvent,
-  getElementAtEvent,
-  getElementsAtEvent
-} from 'react-chartjs-2'
-// import { Options } from '../BarChart/BarChart.type'
+import { Doughnut, getElementAtEvent } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, ChartDataLabels)
 
-export const DoughnutChart = ({
+export const HomepageDoughnutChart = ({
   data,
   labels,
-  colours,
+  colors,
   aspectRatio = 1,
   title = '',
   subTitle = '',
@@ -24,47 +18,20 @@ export const DoughnutChart = ({
   legendPosition = 'right',
   cutout = 90,
   isDarkMode = false,
-  ariaLabel = 'Doughnut Chart'
+  ariaLabel = 'Doughnut Chart',
+  openModal
 }) => {
   const fullTitle = [title, subTitle]
-
-  const [display, setDisplay] = useState('First nothing')
-
-  const printElementAtEvent = (element) => {
-    if (!element.length) return
-
-    // console.log('element', element)
-
-    const { datasetIndex, index } = element[0]
-
-    // console.log('element[0]', element[0])
-
-    // console.log('datasetIndex', datasetIndex)
-    // console.log('index', index)
-
-    console.log(
-      chartData.labels[index],
-      chartData.datasets[datasetIndex].data[index]
-    )
-    // console.log('chartData.labels[index]', chartData.labels[index])
-    // console.log('chartData.datasets[datasetIndex].data[index]', chartData.datasets[datasetIndex].data[index])
-
-    setDisplay(`OPEN MODAL FOR ${chartData.labels[index]}`)
-  }
 
   const chartRef = useRef(null)
 
   const onClick = (event) => {
-    console.log('onClick')
     const { current: chart } = chartRef
+    const element = getElementAtEvent(chart, event)
+    if (!element.length) return
+    const { index } = element[0]
 
-    console.log('chart', chart)
-
-    if (!chart) {
-      return
-    }
-
-    printElementAtEvent(getElementAtEvent(chart, event))
+    openModal(chartData.labels[index].split('  ')[0])
   }
 
   const options = {
@@ -95,7 +62,10 @@ export const DoughnutChart = ({
         display: false
       }
     },
-    cutout: cutout
+    cutout: cutout,
+    layout: {
+      padding: 10
+    }
   }
 
   const chartData = {
@@ -103,7 +73,7 @@ export const DoughnutChart = ({
     datasets: [
       {
         data: data.map((ea) => parseFloat(ea)),
-        backgroundColor: colours,
+        backgroundColor: colors,
         hoverOffset: 8,
         borderWidth: 0,
         tooltip: {
@@ -117,7 +87,6 @@ export const DoughnutChart = ({
 
   return (
     <div>
-      <div style={{ fontSize: '22px' }}> {display}</div>
       <Doughnut
         ref={chartRef}
         options={options}

@@ -15,7 +15,7 @@ describe('StackedBarChart', () => {
     const args = {
       yStepSize: 25000,
       ariaLabel: 'Bar chart People Reached',
-      colours: [
+      colors: [
         'rgb(153, 153, 153)',
         'rgb(102, 102, 102)',
         'rgb(255, 136, 51)',
