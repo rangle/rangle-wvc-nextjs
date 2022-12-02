@@ -4,6 +4,8 @@ import MediaBlock from '../../MediaBlock/MediaBlock'
 import AccordionGroup from '../../AccordionGroup/AccordionGroup'
 import Carousel from '../../Carousel/Carousel'
 import MediaCard from '../../MediaCard/MediaCard'
+import ReportCardGrid from '../../ReportCardGrid/ReportCardGrid'
+import ReportCard from '../../ReportCard/ReportCard'
 
 // The carousel is imported without SSR to ensure the id of the carousel matches on both client & server
 const CarouselNoSSR = dynamic(() => import('../../Carousel/Carousel'), {
@@ -87,7 +89,27 @@ const sampleMediaCards = [
   }
 ]
 
-const Prefooter = ({ cards = sampleMediaCards }) => {
+const sampleReportCards = [
+  {
+    title: 'Report',
+    url: 'https://worldvision.ca/',
+    imageSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
+    alt: 'My image alt text.'
+  },
+  {
+    title: 'Report',
+    url: 'https://worldvision.ca/',
+    imageSrc:
+      'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
+    alt: 'My image alt text.'
+  }
+]
+
+const Prefooter = ({
+  cards = sampleMediaCards,
+  reportCardData = sampleReportCards
+}) => {
   const caseStudyCards = cards.map((card) => (
     <MediaCard
       key={card.title}
@@ -96,6 +118,17 @@ const Prefooter = ({ cards = sampleMediaCards }) => {
       labels={card.labels}
       url={card.url}
       iconSrc={card.iconSrc}
+      alt={card.alt}
+    />
+  ))
+
+  // must use index as key as all other props may be the same on multiple cards
+  const reportCards = reportCardData.map((card, i) => (
+    <ReportCard
+      key={i}
+      title={card.title}
+      url={card.url}
+      imageSrc={card.imageSrc}
       alt={card.alt}
     />
   ))
@@ -140,7 +173,7 @@ const Prefooter = ({ cards = sampleMediaCards }) => {
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-report-cards']}`}
       >
-        cards go here
+        <ReportCardGrid cards={reportCards} />
       </div>
     </div>
   )

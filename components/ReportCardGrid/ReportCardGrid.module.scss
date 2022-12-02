@@ -1,0 +1,29 @@
+@import '../../styles/lumen-tokens';
+
+.report-card-grid {
+  display: grid;
+  column-gap: $space-xl;
+  row-gap: $space-xl;
+  grid-template-columns: minmax(275px, 600px);
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(275px, 600px));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(0, 600px));
+  }
+
+  &--duo {
+    grid-template-columns: minmax(275px, 600px);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, minmax(275px, 600px));
+    }
+  }
+
+  &--single {
+    grid-template-columns: minmax(275px, 600px);
+  }
+}

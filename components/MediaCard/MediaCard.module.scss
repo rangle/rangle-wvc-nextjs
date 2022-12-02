@@ -16,9 +16,12 @@
   background-color: $white;
   height: 100%;
   width: 100%;
-  max-width: 25rem;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 768px) {
+    max-width: 25rem;
+  }
 
   &:hover {
     box-shadow: 2px 2px 8px rgba(51, 51, 51, 0.25);

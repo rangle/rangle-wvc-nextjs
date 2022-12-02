@@ -31,10 +31,10 @@
 
 .prefooter-carousel-title {
   @include typographysmallheadingh2;
+  margin-bottom: $size-m;
 
   @media (min-width: 768px) {
     @include typographylargeheadingh2;
-    margin-bottom: $size-m;
   }
 }
 
@@ -47,10 +47,10 @@
 }
 
 .carousel-container {
-  margin: 0 $page-margin-mobile;
+  margin: 32px $page-margin-mobile 0;
 
-  @media (min-width: 767px) {
-    margin: 0 $page-margin-tablet;
+  @media (min-width: 768px) {
+    margin: 60px $page-margin-tablet 0;
   }
 
   @media (min-width: 1024px) {
@@ -65,7 +65,12 @@
 
 .prefooter-accordion {
   text-align: left;
+  margin-top: 60px;
   margin-bottom: 60px;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+  }
 }
 
 .prefooter-report-cards {
