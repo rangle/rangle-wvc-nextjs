@@ -290,7 +290,19 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
         >
-          <Prefooter />
+          <Prefooter
+            title={
+              'Commitment to learning, and sharing what we’ve learned, keep us accountable.'
+            }
+            subtitle={'Four case studies of wisdom gained in 2021:'}
+            mediaBlockTitle={
+              "As we partner with communities, we're focused on creating real impact."
+            }
+            mediaBlockSrc={'https://www.youtube.com/watch?v=RYTFzGkb-5A'}
+            mediaBlockBackground={
+              'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+            }
+          />
         </section>
       </main>
     </div>

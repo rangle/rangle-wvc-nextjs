@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 import styles from './Prefooter.module.scss'
 import MediaBlock from '../../MediaBlock/MediaBlock'
 import AccordionGroup from '../../AccordionGroup/AccordionGroup'
-import Carousel from '../../Carousel/Carousel'
 import MediaCard from '../../MediaCard/MediaCard'
 import ReportCardGrid from '../../ReportCardGrid/ReportCardGrid'
 import ReportCard from '../../ReportCard/ReportCard'
@@ -12,7 +11,7 @@ const CarouselNoSSR = dynamic(() => import('../../Carousel/Carousel'), {
   ssr: false
 })
 
-const sampleItems = [
+const sampleAccordionItems = [
   {
     children: (
       <p>
@@ -107,10 +106,16 @@ const sampleReportCards = [
 ]
 
 const Prefooter = ({
-  cards = sampleMediaCards,
-  reportCardData = sampleReportCards
+  accordionItems = sampleAccordionItems,
+  mediaBlockBackground,
+  mediaBlockSrc,
+  mediaBlockTitle,
+  mediaCardData = sampleMediaCards,
+  reportCardData = sampleReportCards,
+  subtitle,
+  title
 }) => {
-  const caseStudyCards = cards.map((card) => (
+  const caseStudyCards = mediaCardData.map((card) => (
     <MediaCard
       key={card.title}
       title={card.title}
@@ -143,22 +148,13 @@ const Prefooter = ({
         />
       </div>
       <MediaBlock
-        title={
-          'As we partner with communities, we’re focused on creating real impact.'
-        }
-        videoSrc={'https://www.youtube.com/watch?v=RYTFzGkb-5A'}
-        videoBackgroundImage={
-          'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-        }
+        title={mediaBlockTitle}
+        videoSrc={mediaBlockSrc}
+        videoBackgroundImage={mediaBlockBackground}
       />
       <div className={styles['prefooter-content']}>
-        <h2 className={styles['prefooter-carousel-title']}>
-          Commitment to learning, and sharing what we’ve learned, keep us
-          accountable.
-        </h2>
-        <p className={styles['prefooter-carousel-subtitle']}>
-          Four case studies of wisdom gained in 2021:
-        </p>
+        <h2 className={styles['prefooter-carousel-title']}>{title}</h2>
+        <p className={styles['prefooter-carousel-subtitle']}>{subtitle}</p>
       </div>
       {caseStudyCards && caseStudyCards.length && (
         <div className={styles['carousel-container']}>
@@ -168,7 +164,7 @@ const Prefooter = ({
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-accordion']}`}
       >
-        <AccordionGroup items={sampleItems} isDarkMode />
+        <AccordionGroup items={accordionItems} isDarkMode />
       </div>
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-report-cards']}`}
