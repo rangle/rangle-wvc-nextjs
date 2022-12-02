@@ -46,3 +46,20 @@
     @include typographylargeparagraphintro_regular;
   }
 }
+
+.carousel-container {
+  margin: 0 $page-margin-mobile;
+
+  @media (min-width: 767px) {
+    margin: 0 $page-margin-tablet;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 0 $page-margin-desktop;
+  }
+
+  @media (min-width: 1366px) {
+    width: calc($column-max * 12);
+    margin: 0 auto;
+  }
+}

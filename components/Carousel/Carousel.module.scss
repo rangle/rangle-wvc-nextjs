@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+    width: 100%;
 
     h2 {
       @include typographylargeheadingh2;
@@ -17,9 +18,16 @@
 .carousel-nav-container-mobile {
   display: flex;
   padding-top: 1rem;
+
+  &--light {
+    color: $white;
+  }
 }
 
 .carousel-nav-container-desktop {
+  border: 1px solid red;
+  width: 100%;
+
   @media (max-width: 767px) {
     display: none;
   }

@@ -1,7 +1,8 @@
 import styles from './Prefooter.module.scss'
 import MediaBlock from '../../MediaBlock/MediaBlock'
 import AccordionGroup from '../../AccordionGroup/AccordionGroup'
-import AccordionItem from '../../AccordionItem/AccordionItem'
+import Carousel from '../../Carousel/Carousel'
+import MediaCard from '../../MediaCard/MediaCard'
 
 const sampleItems = [
   {
@@ -45,7 +46,53 @@ const sampleItems = [
   }
 ]
 
-const Prefooter = () => {
+const sampleMediaCards = [
+  {
+    title: 'COVID-19',
+    body: 'How the pandemic is changing the way we teach our youth ready curriculum',
+    labels: ['Paper'],
+    url: 'https://worldvision.ca/',
+    iconSrc: '/conference.svg',
+    alt: 'sample alt text'
+  },
+  {
+    title: 'Gender Equality',
+    body: 'Five key pillars for effective programming.',
+    labels: ['Paper'],
+    url: 'https://worldvision.ca/',
+    iconSrc: '/conference.svg',
+    alt: 'sample alt text'
+  },
+  {
+    title: 'Data Challenges',
+    body: 'Lessons learned with sex-disaggregation.',
+    labels: ['Paper'],
+    url: 'https://worldvision.ca/',
+    iconSrc: '/conference.svg',
+    alt: 'sample alt text'
+  },
+  {
+    title: 'Impact Measurement',
+    body: 'What we’ve learned through World Vision’s Agile transformation.',
+    labels: ['Paper'],
+    url: 'https://worldvision.ca/',
+    iconSrc: '/conference.svg',
+    alt: 'sample alt text'
+  }
+]
+
+const Prefooter = ({ cards = sampleMediaCards }) => {
+  const caseStudyCards = cards.map((card) => (
+    <MediaCard
+      key={card.title}
+      title={card.title}
+      body={card.body}
+      labels={card.labels}
+      url={card.url}
+      iconSrc={card.iconSrc}
+      alt={card.alt}
+    />
+  ))
   return (
     <div className={styles['prefooter']}>
       <div>
@@ -74,6 +121,11 @@ const Prefooter = () => {
           Four case studies of wisdom gained in 2021:
         </p>
       </div>
+      {caseStudyCards && caseStudyCards.length && (
+        <div className={styles['carousel-container']}>
+          <Carousel cards={caseStudyCards} controlsTheme={'light'} />
+        </div>
+      )}
       <div className={styles['prefooter-content']}>
         <AccordionGroup items={sampleItems} isDarkMode />
       </div>
