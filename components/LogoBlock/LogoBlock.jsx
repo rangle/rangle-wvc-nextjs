@@ -17,7 +17,7 @@ const LogoBlock = ({ ctaLabel, ctaUrl, logos, title }) => {
         <h3 className={styles['logo-block__container__title']}>{title}</h3>
         <div className={styles['logo-block__container__logo-container']}>
           {logos.map((logo) => {
-            return (
+            return logo.src ? (
               <a
                 key={logo.src}
                 className={styles['logo-block__container__logo']}
@@ -25,7 +25,7 @@ const LogoBlock = ({ ctaLabel, ctaUrl, logos, title }) => {
               >
                 <img src={logo.src} alt={logo.alt} />
               </a>
-            )
+            ) : null
           })}
         </div>
         {ctaLabel && ctaUrl && (

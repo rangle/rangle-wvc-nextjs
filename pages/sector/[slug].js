@@ -1,3 +1,5 @@
+import { titleCase } from 'title-case'
+
 import ExpandableTextBlock from '../../components/ExpandableTextBlock/ExpandableTextBlock'
 import Tabs from '../../components/Tabs/Tabs'
 import AccordionGroup from '../../components/AccordionGroup/AccordionGroup'
@@ -16,56 +18,55 @@ import StatisticCardGrid, {
 import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { Item } from 'react-stately'
+// import { getSnowflakeData, transformResultsData } from '../../utils/snowflake'
 
 import styles from './sector.module.scss'
 
-export default function Sector() {
+export default function Sector(props) {
   return (
     <div className={styles['sector-container']}>
       <HeroBlock
-        sectorImgSrc='/SectorHeaderSample.png'
-        body='World Vision began emergency relief operations in Afghanistan in 2001, to address the urgent needs of children and families affected by natural disasters and decades of conflict. Today, programs have expanded to development sectors such as health, water and sanitation, child protection, education and empowering women to engage in civil and social change.'
-        countryCode='AFG'
-        ctaLabel='donate'
-        ctaUrl='https://worldvision.ca'
+        sectorImgSrc={props.HEADER_IMAGE_URL}
+        body={props.HEADER_BODY}
+        ctaLabel={props.HEADER_CTABUTTON_LABEL}
+        ctaUrl={props.HEADER_CTABUTTON_URL}
         highlights={[
           {
-            title: 'Invested',
-            value: '$74 Million'
+            title: props.PANEL_TOP01_VALUE,
+            value: props.PANEL_TOP01_LABEL
           },
           {
-            title: 'Focused on health',
-            value: '112 Programs'
+            title: props.PANEL_TOP02_VALUE,
+            value: props.PANEL_TOP02_LABEL
           },
           {
-            title: 'People reached',
-            value: '10,817,381'
+            title: props.PANEL_TOP03_VALUE,
+            value: props.PANEL_TOP03_LABEL
           }
         ]}
         page='sector'
-        title='Health'
+        title={props.HEADER_TITLE}
       >
         <div className={styles['summary-content-container']}>
           <ImpactHighlightGrid
             impactHighlights={[
               {
-                firstLabel: '',
-                highlight: '1,024',
-                secondLabel:
-                  'deaths were prevented through the ENRICH program ',
-                title: 'Impact',
-                year: '2016-2021'
+                firstLabel: props.PANEL_TOP04_FIRST_LABEL,
+                highlight: props.PANEL_TOP04_VALUE,
+                secondLabel: props.PANEL_TOP04_SECOND_LABEL,
+                title: props.PANEL_TOP04_TITLE,
+                year: props.PANEL_TOP04_YEAR
               },
               {
-                firstLabel:
-                  'In Ethiopia, women holding leadership positions on health committees increased from',
-                highlight: '15% to 56%',
-                secondLabel: '',
-                title: 'Change',
-                year: '2016-2021'
+                firstLabel: props.PANEL_TOP05_FIRST_LABEL,
+                highlight: props.PANEL_TOP05_VALUE,
+                secondLabel: props.PANEL_TOP05_SECOND_LABEL,
+                title: props.PANEL_TOP05_TITLE,
+                year: props.PANEL_TOP05_YEAR
               }
             ]}
           />
+          {/* TODO: connect to snowflake */}
           <div
             style={{
               marginTop: '6rem'
@@ -94,164 +95,151 @@ export default function Sector() {
         </div>
       </HeroBlock>
       <LogoBlock
-        ctaLabel='Learn more about our focus to achieve UN’s Sustainable Development Goals'
-        ctaUrl='https://www.worldvision.ca'
+        ctaLabel={props.SDG_LINK_LABEL}
+        ctaUrl={props.SDG_LINK_URL}
         logos={[
           {
             alt: 'Logo alt text',
-            src: '/logo1.svg',
-            url: 'https://www.worldvision.ca'
+            src: props.SDG_01_URL,
+            url: props.SDG_01_LINK
           },
           {
             alt: 'Logo alt text',
-            src: '/logo2.svg',
-            url: 'https://www.worldvision.ca'
+            src: props.SDG_02_URL,
+            url: props.SDG_02_LINK
           },
           {
             alt: 'Logo alt text',
-            src: '/logo3.svg',
-            url: 'https://www.worldvision.ca'
+            src: props.SDG_03_URL,
+            url: props.SDG_03_LINK
+          },
+          {
+            alt: 'Logo alt text',
+            src: props.SDG_04_URL,
+            url: props.SDG_04_LINK
+          },
+          {
+            alt: 'Logo alt text',
+            src: props.SDG_05_URL,
+            url: props.SDG_05_LINK
           }
         ]}
-        title='Connnected Sustainable Development Goals'
+        title={props.SDG_TITLE}
       />
       <ChartContainer
         chartType='line'
-        controlTitle='Explore our investments and results'
+        controlTitle={props.GRAPHBOX_TITLE}
         footnote='Date as of footnote'
       />
-      <div className={styles['impact-container-wrapper']}>
-        <div className={styles['impact-container']}>
-          <h3>Impact</h3>
-          <p className={styles['impact-intro']}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa
-            nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non
-            adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl
-            pellentesque elementum tortor massa sit. Tellus arcu facilisis
-            turpis fermentum libero vulputate mauris amet sit. Ac tortor
-            suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi
-            nisl id et. Sed interdum eget lacus interdum tincidunt duis orci
-            enim.
-          </p>
+      {props.IMPACT_TITLE && props.IMPACT_BODY && (
+        <div className={styles['impact-container-wrapper']}>
+          <div className={styles['impact-container']}>
+            <h3>{props.IMPACT_TITLE}</h3>
+            <p className={styles['impact-intro']}>{props.IMPACT_BODY}</p>
+          </div>
+          {/* TODO: connect to snowflake, need columns */}
+          <div className={styles['from-field-container']}>
+            <Carousel
+              cards={[
+                <MediaCard
+                  alt='Children running down a street smiling'
+                  body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+                  imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+                  labels={['Health, Water']}
+                  title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+                  url='http://worldvision.ca/our-work'
+                />,
+                <MediaCard
+                  alt='Children running down a street smiling'
+                  body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+                  imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+                  labels={['Health, Water']}
+                  title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+                  url='http://worldvision.ca/our-work'
+                />,
+                <MediaCard
+                  alt='Children running down a street smiling'
+                  body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+                  imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+                  labels={['Health, Water']}
+                  title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+                  url='http://worldvision.ca/our-work'
+                />,
+                <MediaCard
+                  alt='Children running down a street smiling'
+                  body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
+                  imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+                  labels={['Health, Water']}
+                  title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
+                  url='http://worldvision.ca/our-work'
+                />
+              ]}
+              title='From the field'
+            />
+          </div>
         </div>
-        <div className={styles['from-field-container']}>
-          <Carousel
-            cards={[
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />,
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />,
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />,
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />
-            ]}
-            title='From the field'
-          />
-        </div>
-      </div>
+      )}
 
       <SectionContainer
-        alt='Children running down a street smiling'
-        src='/SectorHeaderSample.png'
-        title='Global Challenges'
+        alt={props.CHALLENGES_ALT}
+        src={props.CHALLENGES_URL}
+        title={props.CHALLENGES_TITLE}
       >
         <div className={styles['challenges-content']}>
-          <p>
-            The humanitarian situation in Kasai Central province, in the
-            Democratic Republic of the Congo (DRC), has been characterized by
-            massive population movements. The Angolan government had forced over
-            650,000 Congolese nationals who had been living there for year to
-            repatriate. While the Kamuina Nsapu refugees were not affected, the
-            forced return ensured that the situation in Kasai province remained
-            increasingly complex. There were over 57,000 forced returnees,
-            including almost 15,000 children, who were registered at various
-            borders, and almost 13,000 spontaneous refugees were identified by
-            UNHCR in the community.An estimated 30% of these returnees were
-            children, including unaccompanied children, who required
-            humanitarian assistance.{' '}
-          </p>
-          <div className={styles['challenges-content__section']}>
-            <ExpandableTextBlock
-              body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-              footnote='Lorem ipsum footnote'
-              title='Early childhood development'
-            />
-          </div>
-          <div className={styles['challenges-content__section']}>
-            <ExpandableTextBlock
-              body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-              footnote='Lorem ipsum footnote'
-              title='Early childhood development'
-            />
-          </div>
+          <p>{props.CHALLENGES_SUMMARY}</p>
+          {Array(5)
+            .fill(0)
+            .map((item, index) => {
+              return props[`CHALLENGES_SUBSECTOR_${index + 1}_TITLE`] ? (
+                <div className={styles['challenges-content__section']}>
+                  <ExpandableTextBlock
+                    body={props[`CHALLENGES_SUBSECTOR_${index + 1}_BODY`]}
+                    footnote={
+                      props[`CHALLENGES_SUBSECTOR_${index + 1}_FOOTNOTE`]
+                    }
+                    title={props[`CHALLENGES_SUBSECTOR_${index + 1}_TITLE`]}
+                  />
+                </div>
+              ) : null
+            })}
         </div>
       </SectionContainer>
       <SectionContainer
-        alt='Children running down a street smiling'
-        src='/SectorHeaderSample.png'
-        title='Our Approach'
+        alt={props.APPROACHES_IMAGE_ALT}
+        src={props.APPROACHES_IMAGE_URL}
+        title={props.APPROACH_TITLE}
       >
         <div className={styles['approach-diagram']}>
           <h3>Our Goal</h3>
           <h4 className={styles['approach-diagram__subheading']}>
-            Girls and boys have the knowledge and skills to lead fulfilling,
-            productive lives.
+            {props.APPROACH_GOAL}
           </h4>
           <div className={styles['approach-diagram__goals']}>
             <Goals
               data={[
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
-                'Diam quis enim lobortis scelerisque fermentum',
-                'Tortor vitae purus faucibus ornare suspendisse sed nisi lacus.',
-                'Consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat',
-                'Quisque egestas diam dolor in arcu cursus euismod quis viverra nibh et dolore magna aliqua.'
-              ]}
+                props.APPROACH_STEP_1,
+                props.APPROACH_STEP_2,
+                props.APPROACH_STEP_3,
+                props.APPROACH_STEP_4,
+                props.APPROACH_STEP_5
+              ].filter((goal) => goal)}
             />
           </div>
         </div>
         <div className={styles['approach-section']}>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-          />
+          <ExpandableTextBlock body={props.APPROACH_BODY} />
         </div>
       </SectionContainer>
       <SectionContainer
-        alt='Children running down a street smiling'
-        src='/SectorHeaderSample.png'
-        title='Breaking Down Expenditures'
+        alt={props.EXPENDITURE_IMAGE_ALT}
+        src={props.EXPENDITURE_IMAGE_URL}
+        title={props.EXPENDITURE_TITLE}
       >
         <p className={styles['expenditure-intro']}>
-          We invest in and provide access to quality education for millions of
-          girls and boys—including the most vulnerable, hardest to reach and
-          those with disabilities—in safe and nurturing learning environments.
+          {props.EXPENDITURE_DISCUSSION}
         </p>
         <div className={styles['expenditures-tabs']}>
+          {/* TODO: connect to snowflake API */}
           <Tabs>
             <Item title='Programming Type'>
               <div className={styles['expenditures-tabs__content']}>
@@ -286,18 +274,16 @@ export default function Sector() {
           </Tabs>
         </div>
         <div className={styles['expenditures-section']}>
-          <ExpandableTextBlock
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nullam nunc ac vel justo scelerisque. Ipsum eget aliquam non adipiscing odio ornare in. Sed feugiat ultricies adipiscing nisl pellentesque elementum tortor massa sit. Tellus arcu facilisis turpis fermentum libero vulputate mauris amet sit. Ac tortor suspendisse aliquam volutpat dolor eget arcu. Sed quis vitae leo mi nisl id et. Sed interdum eget lacus interdum tincidunt duis orci enim.'
-            footnote='Lorem ipsum footnote'
-          />
+          <ExpandableTextBlock body={props.EXPENDITURE_PLANS} />
         </div>
       </SectionContainer>
       <SectionContainer
-        alt='Children running down a street smiling'
-        src='/SectorHeaderSample.png'
-        title='Progress'
+        alt={props.RESULTS_IMAGE_ALT}
+        src={props.RESULTS_IMAGE_URL}
+        title={props.RESULTS_TITLE}
         isDarkMode
       >
+        {/* TODO: connect to snowflake */}
         <div className={styles['progress-content']}>
           <Tabs isDarkMode>
             <Item title='2021'>
@@ -356,14 +342,11 @@ export default function Sector() {
       </SectionContainer>
       <div className={styles['change-container-wrapper']}>
         <div className={styles['change-container']}>
-          <h2>Change</h2>
-          <p className={styles['change-intro']}>
-            Efforts put in by schools, families and communities over the past
-            several years have contributed to measurable positive change. Here
-            are some education examples we gathered in 2021.
-          </p>
+          <h2>{props.CHANGE_TITLE}</h2>
+          <p className={styles['change-intro']}>{props.CHANGE_BODY}</p>
           <div className={styles['change-container__chart-container']}>
             <div className={styles['change-container__chart-container__chart']}>
+              {/* TODO: connect to snowflake */}
               <BarChart
                 ariaLabel='Bar Chart Reading Comprehension'
                 withAxes={false}
@@ -425,6 +408,7 @@ export default function Sector() {
       </div>
 
       <div className={styles['program-container']}>
+        {/* TODO: connect to snowflake */}
         <Carousel
           cards={[
             <MediaCard
@@ -434,36 +418,13 @@ export default function Sector() {
               labels={['Health, Water']}
               title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
               url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
             />
           ]}
           title='Programs'
         />
       </div>
       <div className={styles['resource-container']}>
+        {/* TODO: connect to snowflake */}
         <Carousel
           cards={[
             <MediaCard
@@ -507,32 +468,70 @@ export default function Sector() {
         />
       </div>
       <CtaBlock
-        body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa. Sit blandit ullamcorper ipsum arcu. Ac eu ut enim pharetra tincidunt eu morbi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, viverra eget interdum porttitor pretium purus imperdiet interdum massa.'
-        buttonLabel='Sponsor a child'
-        buttonUrl='http://worldvision.ca'
-        imageUrl='https://www.worldvision.ca/WorldVisionCanada/media/stories/child-rights-boy-writing-on-chalkboard.jpg'
-        imageUrlAlt='Boy writing on a chalkboard'
-        title='Building Sustainable Futures Together'
+        body={props.CTA_BODY}
+        buttonLabel={props.CTA_BUTTON_LABEL}
+        buttonUrl={props.CTA_BUTTON_URL}
+        imageUrl={props.CTA_IMAGE_URL}
+        imageUrlAlt={props.CTA_IMAGE_URL_ALT}
+        title={props.CTA_TITLE}
       />
     </div>
   )
 }
 
 export async function getStaticPaths() {
+  const { getSnowflakeData } = require('../../utils/snowflake')
+  const { rows } = await getSnowflakeData({
+    sqlText: 'select CURRENT_URL from AREAS_OF_FOCUS'
+  })
+
   return {
-    paths: [
-      {
-        params: {
-          slug: 'health'
+    paths: rows
+      .map((areaOfFocus) => {
+        if (areaOfFocus.CURRENT_URL) {
+          return {
+            params: {
+              // TODO: update when table gets updated
+              slug: areaOfFocus.CURRENT_URL.split(
+                'https://www.worldvision.ca/our-work/'
+              )[1]
+            }
+          }
         }
-      }
-    ],
+      })
+      .filter((path) => path),
     fallback: false
   }
 }
 
 export async function getStaticProps({ params }) {
+  const {
+    getSnowflakeData,
+    transformResultsData
+  } = require('../../utils/snowflake')
+  const { rows } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS where CURRENT_URL = 'https://www.worldvision.ca/our-work/${params.slug}'`
+  })
+
+  // TODO: statement table doesn't match url
+  // const { rows: resultsData } = await getSnowflakeData({
+  //   sqlText: `select * from STATEMENTS where LEVEL = 'areas_of_focus' and AREA_OF_FOCUS = '${titleCase(
+  //     params.slug
+  //   )}'`
+  // })
+
+  // const { rows: controlData } = await getSnowflakeData({
+  //   sqlText: `select * from CONTROL where LEVEL = 'countries'`
+  // })
+
   return {
-    props: {}
+    props: {
+      ...rows[0]
+      // results: transformResultsData(resultsData),
+      // control: controlData,
+      // highlightedResults: resultsData.filter(
+      //   (result) => result.DATA_PANEL === 'yes'
+      // )
+    }
   }
 }

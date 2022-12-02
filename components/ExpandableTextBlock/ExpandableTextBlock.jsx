@@ -1,4 +1,6 @@
 import ShowMoreText from 'react-show-more-text'
+import parse from 'html-react-parser'
+
 import styles from './ExpandableTextBlock.module.scss'
 
 const ExpandableTextBlock = ({
@@ -22,9 +24,9 @@ const ExpandableTextBlock = ({
         }
         className={`${styles['expandable-text-block__body']} ${styles['expandable-text-block__body--closed']}`}
       >
-        <p className={styles['expandable-text-block__body']}>{body}</p>
+        <p className={styles['expandable-text-block__body']}>{parse(body || '')}</p>
         {footnote && (
-          <p className={styles['expandable-text-block__footnote']}>{footnote}</p>
+          <p className={styles['expandable-text-block__footnote']}>{parse(footnote)}</p>
         )}
       </ShowMoreText>
     </div>
