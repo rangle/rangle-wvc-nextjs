@@ -17,14 +17,25 @@ import StatisticCardGrid, {
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
 import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
+import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { Item } from 'react-stately'
-// import { getSnowflakeData, transformResultsData } from '../../utils/snowflake'
 
 import styles from './sector.module.scss'
 
 export default function Sector(props) {
   return (
     <div className={styles['sector-container']}>
+      <TableOfContents
+        contents={[
+          'Overview',
+          'Program Details',
+          'From the Field',
+          'Results',
+          'Stories',
+          'Resources'
+        ]}
+        ctaText='Donate'
+      />
       <HeroBlock
         sectorImgSrc={props.HEADER_IMAGE_URL}
         body={props.HEADER_BODY}
@@ -482,7 +493,7 @@ export default function Sector(props) {
 export async function getStaticPaths() {
   const { getSnowflakeData } = require('../../utils/snowflake')
   const { rows } = await getSnowflakeData({
-    sqlText: 'select CURRENT_URL from AREAS_OF_FOCUS'
+    sqlText: `select CURRENT_URL from AREAS_OF_FOCUS where CURRENT_URL != '\n'`
   })
 
   return {
@@ -492,9 +503,7 @@ export async function getStaticPaths() {
           return {
             params: {
               // TODO: update when table gets updated
-              slug: areaOfFocus.CURRENT_URL.split(
-                'https://www.worldvision.ca/our-work/'
-              )[1]
+              slug: areaOfFocus.CURRENT_URL.split('\nareas-of-focus/')[1]
             }
           }
         }
@@ -507,11 +516,21 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const {
     getSnowflakeData,
-    transformResultsData
+    transformResultsData,
+    transformNavigationData
   } = require('../../utils/snowflake')
-  const { rows } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS where CURRENT_URL = 'https://www.worldvision.ca/our-work/${params.slug}'`
+  const { rows: areasOfFocusData } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
   })
+
+  const { rows: countriesData } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+  })
+
+  const currentAreaOfFocus = areasOfFocusData.find(
+    (areaOfFocus) =>
+      areaOfFocus.CURRENT_URL === `\nareas-of-focus/${params.slug}`
+  )
 
   // TODO: statement table doesn't match url
   // const { rows: resultsData } = await getSnowflakeData({
@@ -520,13 +539,18 @@ export async function getStaticProps({ params }) {
   //   )}'`
   // })
 
-  // const { rows: controlData } = await getSnowflakeData({
-  //   sqlText: `select * from CONTROL where LEVEL = 'countries'`
-  // })
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+  })
 
   return {
     props: {
-      ...rows[0]
+      ...currentAreaOfFocus,
+      navigation: transformNavigationData(
+        controlData,
+        areasOfFocusData,
+        countriesData
+      )
       // results: transformResultsData(resultsData),
       // control: controlData,
       // highlightedResults: resultsData.filter(

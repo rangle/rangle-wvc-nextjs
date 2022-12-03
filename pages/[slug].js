@@ -1,22 +1,23 @@
 import parse from 'html-react-parser'
 import { titleCase } from 'title-case'
 
-import AccordionGroup from '../../components/AccordionGroup/AccordionGroup'
-import Carousel from '../../components/Carousel/Carousel'
-import CtaBlock from '../../components/CtaBlock/CtaBlock'
-import EmergencyAlert from '../../components/EmergencyAlert/EmergencyAlert'
-import ExpandableTextBlock from '../../components/ExpandableTextBlock/ExpandableTextBlock'
-import HeroBlock from '../../components/HeroBlock/HeroBlock'
-import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
-import MediaBlock from '../../components/MediaBlock/MediaBlock'
-import MediaCard from '../../components/MediaCard/MediaCard'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
-import Tabs from '../../components/Tabs/Tabs'
+import AccordionGroup from '../components/AccordionGroup/AccordionGroup'
+import Carousel from '../components/Carousel/Carousel'
+import CtaBlock from '../components/CtaBlock/CtaBlock'
+import EmergencyAlert from '../components/EmergencyAlert/EmergencyAlert'
+import ExpandableTextBlock from '../components/ExpandableTextBlock/ExpandableTextBlock'
+import HeroBlock from '../components/HeroBlock/HeroBlock'
+import ImpactHighlightGrid from '../components/ImpactHighlightGrid/ImpactHighlightGrid'
+import MediaBlock from '../components/MediaBlock/MediaBlock'
+import MediaCard from '../components/MediaCard/MediaCard'
+import SectionContainer from '../components/SectionContainer/SectionContainer'
+import Tabs from '../components/Tabs/Tabs'
+import { TableOfContents } from '../components/TableOfContents/TableOfContents'
 
 import StatisticCardGrid, {
   StatisticCard
-} from '../../components/StatisticCardGrid/StatisticCardGrid'
-import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
+} from '../components/StatisticCardGrid/StatisticCardGrid'
+import { ChartContainer } from '../components/ChartContainer/ChartContainer'
 import { Item } from 'react-stately'
 
 import styles from './country.module.scss'
@@ -33,10 +34,21 @@ export default function Country(props) {
           url={props.EMERGENCY_BANNER_URL}
         />
       )}
+      {/* TODO: connect to snowflake data */}
+      <TableOfContents
+        contents={[
+          'Overview',
+          'Program Details',
+          'From the Field',
+          'Results',
+          'Stories',
+          'Resources'
+        ]}
+        ctaText='Donate'
+      />
       <HeroBlock
         body={props.HEADER_BODY}
-        // TODO: need to add to snowflake table
-        countryCode='PSE'
+        countryCode={props.COUNTRY_CODE}
         ctaLabel={props.HEADER_CTA_LABEL}
         ctaUrl={props.HEADER_CTA_URL}
         highlights={[
@@ -287,9 +299,9 @@ export default function Country(props) {
 }
 
 export async function getStaticPaths() {
-  const { getSnowflakeData } = require('../../utils/snowflake')
+  const { getSnowflakeData } = require('../utils/snowflake')
   const { rows } = await getSnowflakeData({
-    sqlText: 'select URL from COUNTRIES'
+    sqlText: `select URL from COUNTRIES where URL != '\n'`
   })
 
   return {
@@ -299,7 +311,7 @@ export async function getStaticPaths() {
           return {
             params: {
               // TODO: update when table gets updated
-              slug: country.URL.split('https://www.worldvision.ca/our-work/')[1]
+              slug: country.URL.split('\n')[1]
             }
           }
         }
@@ -312,10 +324,24 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const {
     getSnowflakeData,
-    transformResultsData
-  } = require('../../utils/snowflake')
-  const { rows } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL = 'https://www.worldvision.ca/our-work/${params.slug}'`
+    transformResultsData,
+    transformNavigationData
+  } = require('../utils/snowflake')
+
+  const { rows: areasOfFocusData } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
+  })
+
+  const { rows: countriesData } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+  })
+
+  const currentCountry = countriesData.find(
+    (country) => country.URL === `\n${params.slug}`
+  )
+
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
   })
 
   const { rows: resultsData } = await getSnowflakeData({
@@ -324,15 +350,16 @@ export async function getStaticProps({ params }) {
     )}'`
   })
 
-  const { rows: controlData } = await getSnowflakeData({
-    sqlText: `select * from CONTROL where LEVEL = 'countries'`
-  })
-
   return {
     props: {
-      ...rows[0],
+      ...currentCountry,
       results: transformResultsData(resultsData),
-      control: controlData,
+      control: controlData.filter((control) => control.LEVEL === 'countries'),
+      navigation: transformNavigationData(
+        controlData,
+        areasOfFocusData,
+        countriesData
+      ),
       highlightedResults: resultsData.filter(
         (result) => result.DATA_PANEL === 'yes'
       )
