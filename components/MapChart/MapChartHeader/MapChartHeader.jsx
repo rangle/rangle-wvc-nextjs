@@ -3,15 +3,34 @@ import styles from './MapChartHeader.module.scss'
 import MapChartCountries from '../MapChartCountry/MapChartCountry'
 import DropDown from '../../Dropdown/Dropdown'
 import { MapStatistics } from './MapStatistics'
+import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
+import { COUNTRY_NAMES } from '../MapConstants'
 
 const MapHeaderControlBar = ({ children }) => {
   return <div className={styles['map-header__control-bar']}>{children}</div>
 }
 
-const MapLegend = ({ text }) => {
+const MapLegend = ({
+  text,
+  selectedYear,
+  yearOptions,
+  updateSelection,
+  yearDropdownLabel
+}) => {
   return (
     <div className={styles['map-header-container__map-legend']}>
       <span>{text}</span>
+      {yearOptions ? (
+        <DropDown
+          dropdownLabel={yearDropdownLabel}
+          options={yearOptions}
+          isDark={true}
+          updateSelection={updateSelection}
+          value={selectedYear}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
@@ -22,6 +41,9 @@ function MapChartHeader({
   selectedCountry = 'All',
   selectedProgramType = 'All',
   onCountryDataLoaded = (evt) => {},
+  selectedYear = 'All',
+  yearOptions = [],
+  onSelectedYearChange = (evt) => {},
   countryOptions = [],
   programOptions = [],
   onSelectedCountryChange = (evt) => {},
@@ -33,6 +55,7 @@ function MapChartHeader({
   legendText,
   countryDropdownLabel,
   programDropdownLabel,
+  yearDropdownLabel,
   children,
   ...props
 }) {
@@ -51,13 +74,21 @@ function MapChartHeader({
           {...props}
           {...mapViewState}
           color={isDark ? 'dark' : 'light'}
-          countryCode={selectedCountry}
+          countryCode={COUNTRY_NAMES[selectedCountry] || 'All'}
           onCountryDataLoaded={onCountryDataLoaded}
           markerCoordinates={showMarkers ? markerCoordinates : []}
         >
           {children}
         </MapChartCountries>
-        {showHeaderControls && <MapLegend text={legendText} />}
+        {showHeaderControls && (
+          <MapLegend
+            text={legendText}
+            selectedYear={selectedYear}
+            yearDropdownLabel={yearDropdownLabel}
+            yearOptions={yearOptions}
+            updateSelection={onSelectedYearChange}
+          />
+        )}
       </div>
 
       {showHeaderControls && (
