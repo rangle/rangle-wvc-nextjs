@@ -7,6 +7,9 @@ import SectorOverview from '../components/Homepage/SectorOverview/SectorOverview
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
+import MapHeaderContainer from '../components/MapChart/MapChartHeader/MapHeaderContainer'
+import { getSnowflakeData } from '../utils/snowflake'
+import { COUNTRY_NAMES } from '../components/MapChart/MapConstants'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 
 const videoData = [
@@ -75,7 +78,6 @@ programs.`,
 ]
 
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
-
 const sampleSectorData = [
   {
     title: 'Livelihoods',
@@ -186,7 +188,7 @@ const sampleSectorHighlights = [
   }
 ]
 
-export default function Home() {
+export default function Home({ programData, countryData }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -263,6 +265,19 @@ export default function Home() {
             imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
             mapCreditsData={mapCreditsData}
           />
+          <MapHeaderContainer
+            duration={1000}
+            isDark
+            legendText='Explore our work around the world'
+            padding={40}
+            countryDropdownLabel='Country'
+            programDropdownLabel='Program Type'
+            yearDropdownLabel='Year'
+            programData={programData}
+            countryData={countryData}
+            showHeaderControls
+            showMarkers
+          />
         </section>
         <section
           className={`${styles['section']} ${styles['section--sector-overview']}`}
@@ -294,4 +309,30 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export async function getStaticProps({ params }) {
+  const { rows } = await getSnowflakeData({
+    sqlText: 'SELECT * FROM STAGE.MAP'
+  })
+
+  const programData = rows.filter((n) => n['LEVEL'] === 'programs')
+
+  const countryData = rows
+    .filter((n) => n['LEVEL'] === 'countries')
+    .map((item) => {
+      return {
+        ...item,
+        country_code: COUNTRY_NAMES[item['NAME']]
+          ? COUNTRY_NAMES[item['NAME']]
+          : 'undefined',
+        programs: programData.filter(
+          (program) => program['COUNTRY'] === item['NAME']
+        )
+      }
+    })
+
+  return {
+    props: { programData: programData, countryData: countryData }
+  }
 }

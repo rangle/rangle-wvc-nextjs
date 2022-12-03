@@ -21,13 +21,13 @@ const MapPopupTitle = ({ markerInfo }) => {
   return (
     <h5 className={`${styles['map-popup__title']}`}>
       {markerInfo?.card_url?.length > 0 ? (
-        <Link href={markerInfo?.card_url} passHref>
+        <Link href={markerInfo['CARD_URL']} passHref>
           <a className={styles['map-popup__link']}>
-            {markerInfo?.name} - {markerInfo?.card_url}
+            {markerInfo['NAME']} - {markerInfo['CARD_URL']}
           </a>
         </Link>
       ) : (
-        `${markerInfo?.name}`
+        `${markerInfo['NAME']}`
       )}
     </h5>
   )
@@ -40,7 +40,7 @@ const MapPopup = ({ popupInfo, ...props }) => {
         <MapPopupTitle markerInfo={markerInfo} />
 
         <p className={`${styles['map-popup__labels']} `}>
-          {`${markerInfo?.card_value_1}`}
+          {`${markerInfo['CARD_VALUE_1']}`}
         </p>
       </div>
     </Popup>
@@ -57,31 +57,32 @@ const MapChartCountries = ({
 }) => {
   const mapRef = useRef()
   const [isMapLoaded, setIsMapLoaded] = useState(false)
-  const { geoJson: countryData, error } = useFetchGeoJson(countryCode)
+  const { geoJson, error: geoDataError } = useFetchGeoJson(countryCode)
   const [popupInfo, setPopupInfo] = useState()
   const mapMarkers = useMapMarkers(markerCoordinates, setPopupInfo)
-  useEffect(() => {
-    setPopupInfo('')
-  }, [markerCoordinates])
+
+  if (geoDataError) {
+    console.error('Something went wrong retrieving the geodata')
+  }
 
   useEffect(() => {
-    onCountryDataLoaded({ countryData, countryCode })
-  }, [countryData, countryCode])
+    onCountryDataLoaded({ countryData: geoJson, countryCode })
+  }, [geoJson, countryCode])
 
   const boundingBox = useMemo(() => {
-    if (countryData) {
-      const [minLng, minLat, maxLng, maxLat] = bbox(countryData)
+    if (geoJson) {
+      const [minLng, minLat, maxLng, maxLat] = bbox(geoJson)
 
       return { minLng, minLat, maxLng, maxLat }
-    } else if (!countryData && markerCoordinates?.length > 0) {
+    } else if (!geoJson && markerCoordinates?.length > 0) {
       const points = multiPoint(markerCoordinates)
       const [minLng, minLat, maxLng, maxLat] = bbox(points)
 
       return { minLng, minLat, maxLng, maxLat }
     }
-  }, [countryData, isMapLoaded, countryCode, markerCoordinates])
+  }, [geoJson, isMapLoaded, countryCode, markerCoordinates])
 
-  useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded)
+  useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded, countryCode)
 
   return (
     <MapChart
@@ -100,8 +101,8 @@ const MapChartCountries = ({
           className={styles['map-popup']}
         />
       )}
-      {countryData && (
-        <Source id={`data-country`} type='geojson' data={countryData}>
+      {geoJson && (
+        <Source id={`data-country`} type='geojson' data={geoJson}>
           <Layer {...countryLayerStyle} />
         </Source>
       )}

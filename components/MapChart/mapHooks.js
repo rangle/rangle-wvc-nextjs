@@ -1,4 +1,4 @@
-import Reat, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Marker } from 'react-map-gl'
 import Pin from './Pin'
 import { fetcher } from './fetcher'
@@ -52,20 +52,34 @@ function useFetchGeoJson(countryCode) {
 }
 
 // Update bounding box based on map markers
-function useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded) {
+function useFitBounds(
+  mapRef,
+  boundingBox,
+  padding,
+  duration,
+  isMapLoaded,
+  countryCode
+) {
   useEffect(() => {
     if (isMapLoaded && boundingBox) {
       const { minLng, minLat, maxLng, maxLat } = boundingBox
-      mapRef?.current.fitBounds(
-        [
-          [minLng, minLat],
-          [maxLng, maxLat]
-        ],
-        { padding: padding, duration: duration }
-      )
+      const fitMap = (opts) => {
+        mapRef?.current.fitBounds(
+          [
+            [minLng, minLat],
+            [maxLng, maxLat]
+          ],
+          { padding: padding, duration: duration, ...opts }
+        )
+      }
+      if (countryCode === 'All') {
+        fitMap({ zoom: 1 })
+      } else {
+        fitMap()
+      }
     } else if (isMapLoaded) {
       mapRef?.current.setZoom(1)
     }
-  }, [boundingBox, isMapLoaded, padding, duration])
+  }, [boundingBox, isMapLoaded, padding, duration, countryCode])
 }
 export { useFetchGeoJson, useFitBounds, useMapMarkers }
