@@ -308,3 +308,32 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getStaticProps() {
+  const {
+    getSnowflakeData,
+    transformNavigationData
+  } = require('../utils/snowflake')
+
+  const { rows: areasOfFocusData } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
+  })
+
+  const { rows: countriesData } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES order by HEADER_TITLE ASC`
+  })
+
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+  })
+
+  return {
+    props: {
+      navigation: transformNavigationData(
+        controlData,
+        areasOfFocusData,
+        countriesData
+      )
+    }
+  }
+}

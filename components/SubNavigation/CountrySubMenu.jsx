@@ -36,19 +36,18 @@ export const CountrySubMenuDesktop = ({
       >
         <ul>
           {countryList
-            ?.sort((a, b) => a.header_title.localeCompare(b.header_title))
             .map((country) => {
               return (
                 <li
                   className={styles['sub-navigation__sub-menu-link']}
-                  key={country?.header_title}
+                  key={country?.label}
                 >
                   <Link
-                    href={country?.URL ? country?.URL : `/our-work`}
+                    href={country?.url ? `/${country?.url}` : `/our-work`}
                     passHref
                     legacyBehavior
                   >
-                    <a>{country?.header_title}</a>
+                    <a>{country?.label}</a>
                   </Link>
                 </li>
               )
@@ -81,7 +80,6 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
         <>
           <div className={styles['sub-navigation__region-accordion']}>
             {subMenuItems
-              ?.sort((a, b) => a.name.localeCompare(b.name))
               .map((menuItem) => {
                 const openCountryList = mobileCountryList?.find(
                   (region) => region.name === menuItem.name
@@ -120,14 +118,14 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                               className={
                                 styles['sub-navigation__sub-menu-link']
                               }
-                              key={country?.header_title}
+                              key={country?.label}
                             >
                               <Link
-                                href={country?.URL ? country?.URL : `/our-work`}
+                                href={country?.url ? country?.url : `/our-work`}
                                 passHref
                                 legacyBehavior
                               >
-                                <a>{country?.header_title}</a>
+                                <a>{country?.label}</a>
                               </Link>
                             </li>
                           )

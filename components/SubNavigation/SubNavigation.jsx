@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './SubNavigation.module.scss'
 import { SubMenuIcon, SubMenuOpenIcon } from './SubMenuIcons'
 import { CountrySubMenuDesktop, CountrySubMenuMobile } from './CountrySubMenu'
@@ -27,15 +27,15 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
                     {item?.list?.map((link) => (
                       <li
                         className={styles['sub-navigation__sub-menu-link']}
-                        key={link?.header_title}
+                        key={link?.label}
                       >
                         <Link
                           href={
-                            link?.current_URL ? link.current_URL : '/our-work'
+                            link?.url ? `/${link.url}` : '/our-work'
                           }
                           legacyBehavior
                         >
-                          <a>{link?.header_title}</a>
+                          <a>{link?.label}</a>
                         </Link>
                       </li>
                     ))}
@@ -131,70 +131,8 @@ const SubNavItem = ({
 }
 
 const SubNavigation = ({ navItems }) => {
-  const [activeRegion, setActiveRegion] = useState(undefined)
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    if (navItems && navItems.length) {
-      const navItemData = navItems.map((item) => {
-        let subMenuData = []
-        if (!!item?.subMenuItems) {
-          const isAreasOfFocus = item?.subMenuItems?.areas_of_focus?.length > 0
-          const isCountry = item?.subMenuItems?.countries?.length > 0
-
-          if (isAreasOfFocus) {
-            const focusSubMenuItems = item?.subMenuItems?.areas_of_focus
-            const categories = [
-              ...new Set(
-                focusSubMenuItems?.map((menu) => menu.navigation_submenu)
-              )
-            ]
-            const navItemData = categories.map((subMenuCategory) => {
-              return {
-                name: subMenuCategory,
-                list: focusSubMenuItems.filter(
-                  (item) => item.navigation_submenu === subMenuCategory
-                ),
-                subMenu: focusSubMenuItems[0].navigation_menu
-              }
-            })
-            subMenuData = navItemData
-          }
-
-          if (isCountry) {
-            const countrySubMenuItems = item?.subMenuItems?.countries
-            const categories = [
-              ...new Set(
-                countrySubMenuItems?.map((menu) => menu.navigation_regions)
-              )
-            ]
-            const navItemData = categories.map((subMenuCategory) => {
-              return {
-                name: subMenuCategory,
-                list: countrySubMenuItems.filter(
-                  (item) => item.navigation_regions === subMenuCategory
-                ),
-                subMenu: countrySubMenuItems[0].navigation_menu
-              }
-            })
-            // TODO: sort regions alphabetically first and then set the active region to the first item in the array
-            setActiveRegion('Africa')
-            subMenuData = navItemData
-          }
-        }
-
-        return {
-          label: item.label,
-          hasSubMenu: !!item?.subMenuItems,
-          isLink: !!item?.url,
-          url: item?.url || null,
-          subMenuData: subMenuData,
-          subMenuOpen: false
-        }
-      })
-      setData(navItemData)
-    }
-  }, [navItems])
+  const [activeRegion, setActiveRegion] = useState('Africa')
+  const [data, setData] = useState(navItems)
 
   function openCloseSubMenu(label, isOpen) {
     const newArr = data.map((el) => {

@@ -1,3 +1,4 @@
+import parse from 'html-react-parser'
 import React, { useState } from 'react'
 import styles from './EmergencyAlert.module.scss'
 import { ExclamationMark } from './ExclamationMark'
@@ -15,7 +16,7 @@ const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
           <div>
             <h4 className={styles['emergency-alert__title']}>{title}</h4>
             <p className={styles['emergency-alert__body']}>
-              {body}
+              {parse(body)}
               {url && (
                 <a target='_blank' className={styles['emergency-alert__link']} href={url}>
                   Learn more

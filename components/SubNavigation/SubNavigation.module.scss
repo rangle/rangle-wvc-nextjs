@@ -4,7 +4,7 @@
 .sub-navigation {
   background: $white;
   position: relative;
-  z-index: $z-index-sticky;
+  z-index: $z-index-sticky + 1;
   border-width: 1px 0px;
   border-style: solid;
   border-color: #d9d9d9;

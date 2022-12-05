@@ -15,6 +15,7 @@ import StatisticCardGrid, {
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { BarChart } from '../../components/Charts/BarChart/BarChart'
+import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { Item } from 'react-stately'
 
 import styles from './program.module.scss'
@@ -27,6 +28,17 @@ export default function Program() {
         buttonLabel='Close'
         title='Important notice'
         url='https://www.worldvision.ca/'
+      />
+      <TableOfContents
+        contents={[
+          'Overview',
+          'Program Details',
+          'From the Field',
+          'Results',
+          'Stories',
+          'Resources'
+        ]}
+        ctaText='Donate'
       />
       <HeroBlock
         ctaLabel='donate'
@@ -506,7 +518,30 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const {
+    getSnowflakeData,
+    transformResultsData,
+    transformNavigationData
+  } = require('../../utils/snowflake')
+  const { rows: areasOfFocusData } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
+  })
+
+  const { rows: countriesData } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+  })
+
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+  })
+
   return {
-    props: {}
+    props: {
+      navigation: transformNavigationData(
+        controlData,
+        areasOfFocusData,
+        countriesData
+      )
+    }
   }
 }
