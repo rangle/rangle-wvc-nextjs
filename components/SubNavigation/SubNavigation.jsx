@@ -94,7 +94,7 @@ const SubNavItem = ({
             onMouseOver={() => openCloseSubMenu(label, false)}
             className={styles['sub-navigation__nav-item-container']}
           >
-            <Link href={url} passHref legacyBehavior>
+            <Link href={`/${url}`} passHref legacyBehavior>
               <a className={styles['sub-navigation__button']} tabIndex={0}>
                 {label}
               </a>
