@@ -8,7 +8,6 @@ import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
 import MapHeaderContainer from '../components/MapChart/MapChartHeader/MapHeaderContainer'
-import { getSnowflakeData } from '../utils/snowflake'
 import { COUNTRY_NAMES } from '../components/MapChart/MapConstants'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 import Prefooter from '../components/Homepage/Prefooter/Prefooter'
@@ -205,7 +204,23 @@ export default function Home({
   )
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
+  const {
+    getSnowflakeData,
+    transformNavigationData
+  } = require('../utils/snowflake')
+  const { rows: areasOfFocusData } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
+  })
+
+  const { rows: countriesData } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+  })
+
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'navigation'`
+  })
+
   const { rows: mapData } = await getSnowflakeData({
     sqlText: 'SELECT * FROM STAGE.MAP'
   })
@@ -239,7 +254,17 @@ export async function getStaticProps({ params }) {
   const chartData = sectorData(translation, graphData)
 
   return {
-    props: { programData, countryData, translation, chartData }
+    props: {
+      programData,
+      countryData,
+      translation,
+      chartData,
+      navigation: transformNavigationData(
+        controlData,
+        areasOfFocusData,
+        countriesData
+      )
+    }
   }
 }
 
