@@ -37,13 +37,17 @@ const Video = ({ backgroundImage, src }) => {
           className={styles['video__controls-button']}
           aria-label='Play video'
           onClick={playVideo}
-          style={{ backgroundImage: `url(${backgroundImage})` }}
+          style={{
+            backgroundImage: `url(${backgroundImage})`
+          }}
         >
-          <img
-            className={styles['video__controls-play-icon']}
-            src='/play.svg'
-            alt=''
-          />
+          <div className={styles['video__controls-img-container']}>
+            <img
+              className={styles['video__controls-play-icon']}
+              src='/play.svg'
+              alt=''
+            />
+          </div>
         </button>
       </div>
     </div>
