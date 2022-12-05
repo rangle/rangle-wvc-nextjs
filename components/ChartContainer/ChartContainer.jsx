@@ -98,7 +98,7 @@ export const ChartContainer = ({
       case 'stackedBar':
         return <StackedBarChart {...stackedBarArgsSample} />
       default:
-        chartComponent = <BarChart {...chartArgsSample} />
+        return <BarChart {...chartArgsSample} />
     }
   }
 

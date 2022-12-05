@@ -33,6 +33,7 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
                           href={
                             link?.current_URL ? link.current_URL : '/our-work'
                           }
+                          legacyBehavior
                         >
                           <a>{link?.header_title}</a>
                         </Link>
@@ -93,7 +94,7 @@ const SubNavItem = ({
             onMouseOver={() => openCloseSubMenu(label, false)}
             className={styles['sub-navigation__nav-item-container']}
           >
-            <Link href={url} passHref>
+            <Link href={url} passHref legacyBehavior>
               <a className={styles['sub-navigation__button']} tabIndex={0}>
                 {label}
               </a>

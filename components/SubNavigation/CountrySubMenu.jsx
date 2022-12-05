@@ -46,6 +46,7 @@ export const CountrySubMenuDesktop = ({
                   <Link
                     href={country?.URL ? country?.URL : `/our-work`}
                     passHref
+                    legacyBehavior
                   >
                     <a>{country?.header_title}</a>
                   </Link>
@@ -124,6 +125,7 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                               <Link
                                 href={country?.URL ? country?.URL : `/our-work`}
                                 passHref
+                                legacyBehavior
                               >
                                 <a>{country?.header_title}</a>
                               </Link>

@@ -96,13 +96,13 @@ const ContentModal = ({
                 </div>
                 {ctaUrl && (
                   <div className={styles['content-modal__cta-container']}>
-                    <Link href={ctaUrl} passHref>
+                    <Link href={ctaUrl} passHref legacyBehavior>
                       <a className={styles['content-modal__cta-short']}>
                         {ctaShortLabel}
                         {ctaArrow}
                       </a>
                     </Link>
-                    <Link href={ctaUrl} passHref>
+                    <Link href={ctaUrl} passHref legacyBehavior>
                       <a className={styles['content-modal__cta']}>
                         {ctaLabel}
                         {ctaArrow}

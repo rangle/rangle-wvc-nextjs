@@ -90,22 +90,24 @@ export default function Country(props) {
               ]}
             />
           )}
-          <div
-            style={{
-              marginTop: '6rem'
-            }}
-          >
-            <StatisticCardGrid
-              cards={props.highlightedResults.map((result) => (
-                <StatisticCard
-                  body={result.STATEMENT_WITHOUT_VALUE}
-                  statistic={result.VALUE}
-                  // TODO: need to add to snowflake
-                  title='Progress'
-                />
-              ))}
-            />
-          </div>
+          {props.highlightedResults.length > 0 && (
+            <div
+              style={{
+                marginTop: '6rem'
+              }}
+            >
+              <StatisticCardGrid
+                cards={props.highlightedResults.map((result) => (
+                  <StatisticCard
+                    body={result.STATEMENT_WITHOUT_VALUE}
+                    statistic={result.VALUE}
+                    // TODO: need to add to snowflake
+                    title='Progress'
+                  />
+                ))}
+              />
+            </div>
+          )}
         </div>
       </HeroBlock>
       {/* TODO: connect to snowflake */}
@@ -127,9 +129,9 @@ export default function Country(props) {
         title={props.DETAILS_TITLE}
       >
         <div className={styles['details-content']}>
-          <p className={styles['details-content__intro']}>
+          <span className={styles['details-content__intro']}>
             {parse(props.DETAILS_SUMMARY)}
-          </p>
+          </span>
           {props.DETAILS_SUBTITLE_01 && props.DETAILS_BODY_01 && (
             <div className={styles['details-content__section']}>
               <ExpandableTextBlock
@@ -157,33 +159,35 @@ export default function Country(props) {
         title={props.RESULTS_TITLE}
         isDarkMode
       >
-        <div className={styles['results-content']}>
-          <Tabs isDarkMode>
-            {props.results.map((result) => (
-              <Item title={result.year}>
-                <AccordionGroup
-                  isDarkMode
-                  items={Object.keys(result.areasOfFocus).map(
-                    (areaOfFocusTitle) => ({
-                      title: areaOfFocusTitle,
-                      children: (
-                        <p>
-                          <ul>
-                            {result.areasOfFocus[areaOfFocusTitle].map(
-                              (areaOfFocus) => (
-                                <li>{areaOfFocus.FULL_STATEMENT}</li>
-                              )
-                            )}
-                          </ul>
-                        </p>
-                      )
-                    })
-                  )}
-                />
-              </Item>
-            ))}
-          </Tabs>
-        </div>
+        {props.results.length > 0 && (
+          <div className={styles['results-content']}>
+            <Tabs isDarkMode>
+              {props.results.map((result) => (
+                <Item title={result.year}>
+                  <AccordionGroup
+                    isDarkMode
+                    items={Object.keys(result.areasOfFocus).map(
+                      (areaOfFocusTitle) => ({
+                        title: areaOfFocusTitle,
+                        children: (
+                          <p>
+                            <ul>
+                              {result.areasOfFocus[areaOfFocusTitle].map(
+                                (areaOfFocus) => (
+                                  <li>{areaOfFocus.FULL_STATEMENT}</li>
+                                )
+                              )}
+                            </ul>
+                          </p>
+                        )
+                      })
+                    )}
+                  />
+                </Item>
+              ))}
+            </Tabs>
+          </div>
+        )}
       </SectionContainer>
       {/* TODO: connect to snowflake */}
       <div className={styles['program-container']}>

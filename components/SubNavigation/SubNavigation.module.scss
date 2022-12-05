@@ -1,16 +1,31 @@
 @import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
 
 .sub-navigation {
   background: $white;
   position: relative;
+  z-index: $z-index-sticky;
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #d9d9d9;
 
   &__items {
     display: flex;
-    width: 100%;
-    border-width: 1px 0px;
-    border-style: solid;
-    border-color: #d9d9d9;
     overflow-x: scroll;
+    margin: 0 $page-margin-mobile;
+
+    @media (min-width: 767px) {
+      margin: 0 $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0 $page-margin-desktop;
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 12);
+      margin: 0 auto;
+    }
   }
 
   &__nav-item-container {

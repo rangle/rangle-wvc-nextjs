@@ -1,8 +1,12 @@
 @import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
 
 .table-of-contents-container {
   text-align: end;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  margin-bottom: -48px;
 
   .table-of-contents {
     background-color: $sky-lighter;
