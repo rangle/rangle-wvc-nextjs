@@ -6,7 +6,6 @@ import { getScreenWidth } from '../utils/getScreenWidth'
 import { getSnowflakeData } from '../utils/snowflake'
 
 export default function ProgramFilter(props) {
-  console.log('props', props)
   const DEFAULT_DESKTOP_INITIAL_RESULT = 9
   const DEFAULT_MOBILE_INITIAL_RESULT = 6
   const DEFAULT_MOBILE_INITIAL_FILTERS = 2
@@ -21,7 +20,8 @@ export default function ProgramFilter(props) {
     DEFAULT_MOBILE_INITIAL_FILTERS
   )
 
-  const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+// TODO: results below would come from filtering actual data
+  const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] 
   const filters = ['Country', 'Area of Focus', 'Partner', 'Year']
   const screenWidth = getScreenWidth()
   const smallScreen = screenWidth < 768
