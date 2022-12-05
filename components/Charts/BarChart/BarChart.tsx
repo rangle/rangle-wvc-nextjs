@@ -95,7 +95,7 @@ export function BarChart({
         anchor: 'end',
         align: 'end',
         font: {
-          size: 20,
+          size: 18,
           weight: '400',
           family: 'Lato'
         },

@@ -23,6 +23,10 @@ export const ChartContainer = ({
 
   const controlOptionsSample = [
     {
+      title: 'Reading Comprehension / StackedBar',
+      chartType: 'stackedBar'
+    },
+    {
       title: 'People Reached / Line',
       chartType: 'line'
     },
@@ -34,10 +38,6 @@ export const ChartContainer = ({
       title: 'People Reached / Doughnut',
       chartType: 'doughnut'
     },
-    {
-      title: 'Reading Comprehension / StackedBar',
-      chartType: 'stackedBar'
-    }
   ]
 
   let controlOptions = controlOptionsProp || controlOptionsSample
