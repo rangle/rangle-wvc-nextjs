@@ -5,29 +5,22 @@
   @include typographylargeparagraphbodycopy_regular;
   background-color: $charcoal;
 
-  &__main-th,
-  &__main-th-highlight {
-    background: #ffe1cc;
-    color: $charcoal;
-    text-transform: uppercase;
-  }
-
-  &__sub-th {
-    font-weight: 900;
-
-    &-data td:first-of-type {
-      padding-left: 50px;
-    }
+  &__intro {
+    margin-bottom: 32px;
   }
 
   table {
     border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
     width: 100%;
-    text-align: left;
   }
 
-  p {
-    color: $white;
+  &__year {
+    text-align: right;
+  }
+  &__data-th {
+    font-weight: 400;
   }
 
   tr {
@@ -40,7 +33,34 @@
     padding: 12px 24px;
   }
 
+  // ie. Revenue, Expenditures, Excess
+  &__main-th,
+  &__main-th-highlight {
+    @include typographylargeheadingh5;
+    background: #ffe1cc;
+    color: $charcoal;
+    text-transform: uppercase;
+  }
+
+  // ie. Total revenue & amounts
   &__td-highlight {
-    font-weight: 900;
+    font-weight: 700;
+  }
+
+  // ie. $226,267
+  &__amount {
+    text-align: right;
+  }
+
+  // ie. Program, Fundraising
+  &__sub-th {
+    font-weight: 700;
+  }
+
+  // ie. int'l relief, development & advocacy
+  &__sub-th-data {
+    th {
+      padding-left: 50px;
+    }
   }
 }

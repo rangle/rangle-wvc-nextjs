@@ -1,6 +1,7 @@
 @import '../../styles/lumen-tokens';
 
 .accordion-item-container {
+  @include typographylargeparagraphsxsmallcopy_regular;
   margin-bottom: 2rem;
   background-color: $white;
   color: $charcoal;
@@ -13,10 +14,6 @@
     @media (max-width: 896px) {
       @include typographysmallheadingh5;
     }
-  }
-
-  p {
-    @include typographylargeparagraphsxsmallcopy_regular;
   }
 
   .accordion-title-container {
