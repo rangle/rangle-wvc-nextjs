@@ -1,11 +1,12 @@
+// Styles from World Vision for the global components
+import '../_wvc/dist/css/styles.css'
+
 import '../styles/globals.scss'
 import SubNavigation from '../components/SubNavigation/SubNavigation'
 import { TableOfContents } from '../components/TableOfContents/TableOfContents'
 import Script from 'next/script'
 import GlobalNavBar from '../components/Global/NavBar/NavBar'
 import GlobalFooter from '../components/Global/Footer/Footer'
-
-import '../_wvc/dist/css/styles.css'
 
 function MyApp({ Component, pageProps }) {
   return (
