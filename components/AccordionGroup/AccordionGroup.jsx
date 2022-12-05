@@ -9,6 +9,7 @@ const AccordionGroup = ({ items, isDarkMode = false }) => {
         items.map((item) => {
           return (
             <AccordionItem
+              key={item.title}
               title={item.title}
               children={item.children}
               isDarkMode={isDarkMode}

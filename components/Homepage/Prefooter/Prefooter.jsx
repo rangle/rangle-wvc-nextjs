@@ -5,6 +5,7 @@ import AccordionGroup from '../../AccordionGroup/AccordionGroup'
 import MediaCard from '../../MediaCard/MediaCard'
 import ReportCardGrid from '../../ReportCardGrid/ReportCardGrid'
 import ReportCard from '../../ReportCard/ReportCard'
+import Table from '../Table/Table'
 
 // The carousel is imported without SSR to ensure the id of the carousel matches on both client & server
 const CarouselNoSSR = dynamic(() => import('../../Carousel/Carousel'), {
@@ -13,6 +14,7 @@ const CarouselNoSSR = dynamic(() => import('../../Carousel/Carousel'), {
 
 const sampleAccordionItems = [
   {
+    title: 'Meet our partners',
     children: (
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis id,
@@ -22,23 +24,18 @@ const sampleAccordionItems = [
         ratione, rem minima debitis? Aspernatur atque ut distinctio veritatis
         asperiores quisquam.
       </p>
-    ),
-    title: 'Meet our partners'
+    )
   },
   {
+    title: 'Review our financials',
     children: (
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis id,
-        quia odit soluta nemo quisquam modi! Reprehenderit dolore enim
-        temporibus porro earum hic deserunt ducimus non eveniet, voluptatum nam
-        quod aut assumenda iste est eius aliquid perspiciatis laborum nisi
-        ratione, rem minima debitis? Aspernatur atque ut distinctio veritatis
-        asperiores quisquam.
-      </p>
-    ),
-    title: 'Review our financials'
+      <Table
+        introText={`World Vision Canada is committed to wisely stewarding the resources at our disposal. These resources are not our own—they’ve been entrusted to us from God through our partners and donors, and we are responsible for managing them in a way that brings maximum benefit for the people we serve. Inviting accountability through financial transparency is an important part of our stewardship. We follow best practices by sharing our financial statements and donation breakdowns below. For external reviews of World Vision, visit Imagine Canada, Charity Intelligence Canada and the Canadian Centre for Christian Charities.`}
+      />
+    )
   },
   {
+    title: 'View our reports',
     children: (
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis id,
@@ -48,8 +45,7 @@ const sampleAccordionItems = [
         ratione, rem minima debitis? Aspernatur atque ut distinctio veritatis
         asperiores quisquam.
       </p>
-    ),
-    title: 'View our reports'
+    )
   }
 ]
 
