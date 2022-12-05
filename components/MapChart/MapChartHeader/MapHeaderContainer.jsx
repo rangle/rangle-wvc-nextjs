@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import MapChartHeader from './MapChartHeader'
 import { COUNTRY_CODES } from '../MapConstants'
 
@@ -13,19 +13,22 @@ const PROGRAMMING_TYPE_FILL_COLOR = {
 }
 
 const getCountryOptions = (countryData, showEmptyPrograms, selectedYear) => {
-  return countryData
+  const data = countryData
     .filter(
       (country) =>
         showEmptyPrograms ||
         (showEmptyPrograms === false && country?.programs?.length > 0) ||
-        (selectedYear ? selectedYear === country['YEAR'] : true)
+        selectedYear === 'All' ||
+        selectedYear === country['YEAR']
     )
     .reduce(
-      (acc, { NAME: label, programs }) => {
+      (acc, { COUNTRY: label, programs }) => {
+        if (!label) return acc
         return [...acc, { label: label, value: label, programs }]
       },
       [{ value: 'All', label: 'All' }]
     )
+  return [...new Map(data.map((i) => [i['label'], i])).values()]
 }
 
 const getProgramOptions = (programData, selectedCountry, selectedYear) => {
@@ -35,13 +38,14 @@ const getProgramOptions = (programData, selectedCountry, selectedYear) => {
       (n) =>
         n.country === countryName ||
         selectedCountry === 'All' ||
-        (selectedYear ? selectedYear === n['YEAR'] : true)
+        selectedYear === 'All' ||
+        selectedYear === n['YEAR']
     )
     .reduce(
-      (acc, { PROGRAMMING_TYPE: programming_type }) => {
-        return acc.find((n) => n.value === programming_type) !== undefined
+      (acc, { PROGRAM_TYPE }) => {
+        return acc.find((n) => n.value === PROGRAM_TYPE) !== undefined
           ? acc
-          : [...acc, { label: programming_type, value: programming_type }]
+          : [...acc, { label: PROGRAM_TYPE, value: PROGRAM_TYPE }]
       },
       [{ value: 'All', label: 'All' }]
     )
@@ -66,10 +70,9 @@ const getMarkerCoordinates = (
   const selectedCountryName = COUNTRY_CODES[selectedCountry] || 'All'
   return programData
     .filter(
-      ({ COUNTRY: country, PROGRAMMING_TYPE: programming_type }) =>
-        (country === selectedCountryName || selectedCountryName === 'All') &&
-        (programming_type === selectedProgramType ||
-          selectedProgramType === 'All')
+      ({ COUNTRY, PROGRAM_TYPE }) =>
+        (COUNTRY === selectedCountryName || selectedCountryName === 'All') &&
+        (PROGRAM_TYPE === selectedProgramType || selectedProgramType === 'All')
     )
     .map((mapData) => {
       return [
