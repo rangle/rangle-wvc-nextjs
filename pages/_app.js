@@ -3,7 +3,6 @@ import '../_wvc/dist/css/styles.css'
 
 import '../styles/globals.scss'
 import SubNavigation from '../components/SubNavigation/SubNavigation'
-import { TableOfContents } from '../components/TableOfContents/TableOfContents'
 import Script from 'next/script'
 import GlobalNavBar from '../components/Global/NavBar/NavBar'
 import GlobalFooter from '../components/Global/Footer/Footer'
@@ -27,17 +26,20 @@ function MyApp({ Component, pageProps }) {
       <GlobalNavBar />
       <SubNavigation navItems={pageProps.navigation} />
       <Component {...pageProps} />
-      <iframe
-        data-gtm-yt-inspected-1_25='true'
-        data-gtm-yt-inspected-9483441_46='true'
-        id='newsletter-subscription2'
-        onload="javascript: if(typeof ewt != 'undefined' &amp;&amp; ewt &amp;&amp; ewt.setIFrameSrc) ewt.setIFrameSrc(this, 'https://site3.worldvision.ca/Double_Optin/newsletter'); else if(this.src != 'https://site3.worldvision.ca/Double_Optin/newsletter') this.src = 'https://site3.worldvision.ca/Double_Optin/newsletter';"
-        scrolling='no'
-        src='https://site3.worldvision.ca/Double_Optin/newsletter'
-        // style='border: none !important;'
-        title='Newsletter Signup'
-        width='100%'
-      ></iframe>
+
+      <div className='newsletter-container'>
+        <iframe
+          data-gtm-yt-inspected-1_25='true'
+          data-gtm-yt-inspected-9483441_46='true'
+          id='newsletter-subscription2'
+          onload="javascript: if(typeof ewt != 'undefined' &amp;&amp; ewt &amp;&amp; ewt.setIFrameSrc) ewt.setIFrameSrc(this, 'https://site3.worldvision.ca/Double_Optin/newsletter'); else if(this.src != 'https://site3.worldvision.ca/Double_Optin/newsletter') this.src = 'https://site3.worldvision.ca/Double_Optin/newsletter';"
+          scrolling='no'
+          src='https://site3.worldvision.ca/Double_Optin/newsletter'
+          className='newsletter-iframe'
+          title='Newsletter Signup'
+          width='100%'
+        ></iframe>
+      </div>
       <GlobalFooter />
     </div>
   )
