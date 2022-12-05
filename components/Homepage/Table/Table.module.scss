@@ -1,0 +1,46 @@
+@import '../../../styles/lumen-tokens';
+@import '../../../styles/spacing.scss';
+
+.table {
+  @include typographylargeparagraphbodycopy_regular;
+  background-color: $charcoal;
+
+  &__main-th,
+  &__main-th-highlight {
+    background: #ffe1cc;
+    color: $charcoal;
+    text-transform: uppercase;
+  }
+
+  &__sub-th {
+    font-weight: 900;
+
+    &-data td:first-of-type {
+      padding-left: 50px;
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+  }
+
+  p {
+    color: $white;
+  }
+
+  tr {
+    border-bottom: 1px solid #f7c193;
+    color: $white;
+  }
+
+  th,
+  td {
+    padding: 12px 24px;
+  }
+
+  &__td-highlight {
+    font-weight: 900;
+  }
+}
