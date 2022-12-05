@@ -3,8 +3,8 @@ const footerHTML = `<footer class="siteFooter">
     <div class="siteFooter-navigation">	<div class="sitefooter-navitem-group"><ul>
 <li><a class="siteFooter-title" href="/about-us">about us</a></li>
 <li><a href="https://www.worldvision.ca/about-us/financial-accountability">Our Accountability</a></li>
-<li><a href="/about-us/careers">Careers</a> <a href="/about-us/media-centre"> Media Centre</a></li>
-<li><a href="/site-map">Site Map</a> <a aria-label="Open World Vision International page in a new tab" href="https://www.wvi.org/" rel="nofollow" target="_blank">World Vision International</a></li>
+<li><a href="https://www.worldvision.ca/about-us/careers">Careers</a> <a href="https://www.worldvision.ca/about-us/media-centre"> Media Centre</a></li>
+<li><a href="https://www.worldvision.ca/site-map">Site Map</a> <a aria-label="Open World Vision International page in a new tab" href="https://www.wvi.org/" rel="nofollow" target="_blank">World Vision International</a></li>
 <li><a href="https://my.worldvision.ca/home?Lang=en">My World Vision</a></li>
 </ul>
 
@@ -14,16 +14,16 @@ const footerHTML = `<footer class="siteFooter">
 </div><div class="sitefooter-navitem-group"><div class="siteFooter-navListItems">
 <ul>
 <li><a class="siteFooter-title " href="https://donate.worldvision.ca/collections/sponsorships">sponsorship</a></li>
-<li><a href="/sponsor-a-child/support-centre/resources-for-sponsors/sponsorship-faq">Sponsorship FAQ</a></li>
-<li><a href="/sponsor-a-child/support-centre/resources-for-sponsors">Resources for Sponsors</a></li>
+<li><a href="https://www.worldvision.ca/sponsor-a-child/support-centre/resources-for-sponsors/sponsorship-faq">Sponsorship FAQ</a></li>
+<li><a href="https://www.worldvision.ca/sponsor-a-child/support-centre/resources-for-sponsors">Resources for Sponsors</a></li>
 </ul>
 </div>
 
 <div class="siteFooter-navListItems">
 <ul>
 <li><a class="siteFooter-title " href="https://donate.worldvision.ca/collections/donations">Other ways to give</a></li>
-<li><a href="/get-involved/corporate-partnerships">Corporate Partnerships</a> <a href="/get-involved/group-fundraising">Group Fundraiser</a></li>
-<li><a href="/donate/planned-giving">Legacy Giving</a></li>
+<li><a href="https://www.worldvision.ca/get-involved/corporate-partnerships">Corporate Partnerships</a> <a href="/get-involved/group-fundraising">Group Fundraiser</a></li>
+<li><a href="https://www.worldvision.ca/donate/planned-giving">Legacy Giving</a></li>
 </ul>
 </div>
 
@@ -34,7 +34,7 @@ const footerHTML = `<footer class="siteFooter">
 <li><a class="siteFooter-title " href="https://donate.worldvision.ca/pages/gift-catalogue">gift catalogue</a></li>
 <li><a href="https://cdn.shopify.com/s/files/1/0592/4254/5339/files/World_Vision_Gift_Catalogue_2021-2022_English.pdf?v=1632850210" target="_self">Download the Gift Catalogue</a></li>
 <!--<li><a aria-label="Open Gift Catalogue in a new tab" href="https://cdn.shopify.com/s/files/1/1786/1839/files/World_Vision_Gift_Catalogue_2020-2021_EN.pdf?v=1601999562" target="_blank">Download Gift Catalogue</a></li>-->
-<li><a href="/shop-gifts/gift-impact">Gift Impact</a></li>
+<li><a href="https://www.worldvision.ca/shop-gifts/gift-impact">Gift Impact</a></li>
 <li><a href="https://donate.worldvision.ca/pages/gift-catalogue-frequently-asked-questions">Gift Catalogue FAQ</a></li>
 </ul>
 
