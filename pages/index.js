@@ -13,38 +13,13 @@ import { COUNTRY_NAMES } from '../components/MapChart/MapConstants'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 import Prefooter from '../components/Homepage/Prefooter/Prefooter'
 
-const featureCardData = (t) => [
-  {
-    title: t.did_know_title_01,
-    description: t.did_know_body_01,
-    imgSrc: t.did_know_image_url_01,
+const featureCardData = (t, max) =>
+  Array.from(Array(max).keys(), (_, index) => ({
+    title: t[`did_know_title_0${index + 1}`],
+    description: t[`did_know_body_0${index + 1}`],
+    imgSrc: t[`did_know_image_url_0${index + 1}`],
     imgAlt: 'sample alt text'
-  },
-  {
-    title: t.did_know_title_02,
-    description: t.did_know_body_02,
-    imgSrc: t.did_know_image_url_02,
-    imgAlt: 'sample alt text'
-  },
-  {
-    title: t.did_know_title_03,
-    description: t.did_know_body_03,
-    imgSrc: t.did_know_image_url_03,
-    imgAlt: 'sample alt text'
-  },
-  {
-    title: t.did_know_title_04,
-    description: t.did_know_body_04,
-    imgSrc: t.did_know_image_url_04,
-    imgAlt: 'sample alt text'
-  },
-  {
-    title: t.did_know_title_05,
-    description: t.did_know_body_05,
-    imgSrc: t.did_know_image_url_05,
-    imgAlt: 'sample alt text'
-  }
-]
+  }))
 
 const creditsData = (t) => [
   {
@@ -65,133 +40,25 @@ const creditsData = (t) => [
 ]
 
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
-const sectorData = (t) => [
-  {
-    title: t.sector_01_title,
-    percentage: 59,
-    color: t.sector_01_color,
-    ctaLabel: t.sector_01_link_label,
-    ctaShortLabel: 'Learn more',
-    ctaUrl: t.sector_01_link_url,
-    imgSrc: t.sector_01_img_src,
-    imgAlt: 'Alt text',
-    label1: t.sector_01_statement_intro_01,
-    label2: t.sector_01_statement_01,
-    label3: t.sector_01_statement_02,
-    label4: t.sector_01_statement_03,
-    highlight1: t.sector_01_value_01,
-    highlight2: t.sector_01_value_02,
-    highlight3: t.sector_01_value_03,
-    modalAriaLabel: t.sector_01_modal_aria_label,
-    videoSrc: t.sector_01_video_url
-  },
-  {
-    title: t.sector_02_title,
-    percentage: 19,
-    color: t.sector_02_color,
-    ctaLabel: t.sector_02_link_label,
-    ctaShortLabel: 'Learn more',
-    ctaUrl: t.sector_02_link_url,
-    imgSrc: t.sector_02_img_src,
-    imgAlt: 'Alt text',
-    label1: t.sector_02_statement_intro_01,
-    label2: t.sector_02_statement_01,
-    label3: t.sector_02_statement_02,
-    label4: t.sector_02_statement_03,
-    highlight1: t.sector_02_value_01,
-    highlight2: t.sector_02_value_02,
-    highlight3: t.sector_02_value_03,
-    modalAriaLabel: t.sector_02_modal_aria_label,
-    videoSrc: t.sector_02_video_url
-  },
-  {
-    title: t.sector_03_title,
-    percentage: 11,
-    color: t.sector_03_color,
-    ctaLabel: t.sector_03_link_label,
-    ctaShortLabel: 'Learn more',
-    ctaUrl: t.sector_03_link_url,
-    imgSrc: t.sector_03_img_src,
-    imgAlt: 'Alt text',
-    label1: t.sector_03_statement_intro_01,
-    label2: t.sector_03_statement_01,
-    label3: t.sector_03_statement_02,
-    label4: t.sector_03_statement_03,
-    highlight1: t.sector_03_value_01,
-    highlight2: t.sector_03_value_02,
-    highlight3: t.sector_03_value_03,
-    modalAriaLabel: t.sector_03_modal_aria_label,
-    videoSrc: t.sector_03_video_url
-  },
-  {
-    title: t.sector_04_title,
-    percentage: 9,
-    color: t.sector_04_color,
-    ctaLabel: t.sector_04_link_label,
-    ctaShortLabel: 'Learn more',
-    ctaUrl: t.sector_04_link_url,
-    imgSrc: t.sector_04_img_src,
-    imgAlt: 'Alt text',
-    label1: t.sector_04_statement_intro_01,
-    label2: t.sector_04_statement_01,
-    label3: t.sector_04_statement_02,
-    label4: t.sector_04_statement_03,
-    highlight1: t.sector_04_value_01,
-    highlight2: t.sector_04_value_02,
-    highlight3: t.sector_04_value_03,
-    modalAriaLabel: t.sector_04_modal_aria_label,
-    videoSrc: t.sector_04_video_url
-  },
-  {
-    title: t.sector_05_title,
-    percentage: 2,
-    color: t.sector_05_color,
-    ctaLabel: t.sector_05_link_label,
-    ctaShortLabel: 'Learn more',
-    ctaUrl: t.sector_05_link_url,
-    imgSrc: t.sector_05_img_src,
-    imgAlt: 'Alt text',
-    label1: t.sector_05_statement_intro_01,
-    label2: t.sector_05_statement_01,
-    label3: t.sector_05_statement_02,
-    label4: t.sector_05_statement_03,
-    highlight1: t.sector_05_value_01,
-    highlight2: t.sector_05_value_02,
-    highlight3: t.sector_05_value_03,
-    modalAriaLabel: t.sector_05_modal_aria_label,
-    videoSrc: t.sector_05_video_url
-  }
-]
 
-//FIXME currently only a couple highlights are shown
+//FIXME should come from graph table but doesn't seem to be there
 const sectorHighlights = (t) => [
   {
-    value: t.highlights_value_01,
-    title: t.highlights_text_01
+    value: '18 million',
+    title: 'people reached'
   },
   {
-    value: t.highlights_value_02,
-    title: t.highlights_text_02
-  },
-  {
-    value: t.highlights_value_03,
-    title: t.highlights_text_03
-  },
-  {
-    value: t.highlights_value_04,
-    title: t.highlights_text_04
-  },
-  {
-    value: t.highlights_value_05,
-    title: t.highlights_text_05
-  },
-  {
-    value: t.highlights_value_06,
-    title: t.highlights_text_06
+    value: '$226 million',
+    title: 'total spent'
   }
 ]
 
-export default function Home({ programData, countryData, translation: t }) {
+export default function Home({
+  programData,
+  countryData,
+  translation: t,
+  chartData
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -300,7 +167,7 @@ export default function Home({ programData, countryData, translation: t }) {
           className={`${styles['section']} ${styles['section--sector-overview']}`}
         >
           <SectorOverview
-            sectorData={sectorData(t)}
+            sectorData={chartData}
             sectorHighlights={sectorHighlights(t)}
             text1={t.sector_text_01}
             text2={t.sector_text_02}
@@ -313,7 +180,7 @@ export default function Home({ programData, countryData, translation: t }) {
             title={t.did_you_know_header}
             credits={creditsData(t)}
             imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
-            featureCardData={featureCardData(t)}
+            featureCardData={featureCardData(t, 5)}
           />
         </section>
         <section
@@ -365,8 +232,14 @@ export async function getStaticProps({ params }) {
   const translateKeys = mainPage[0]
   const translation = translateOrFallback(translateKeys)
 
+  const { rows: graphData } = await getSnowflakeData({
+    sqlText:
+      "SELECT * FROM STAGE.GRAPHS WHERE LEVEL='main_page' AND CHART_TYPE='pie_chart' AND GRAPH_STATEMENT='Program expenditures by Sector' AND UNIT_OF_MEASUREMENT='percentage'"
+  })
+  const chartData = sectorData(translation, graphData)
+
   return {
-    props: { programData, countryData, translation }
+    props: { programData, countryData, translation, chartData }
   }
 }
 
@@ -402,6 +275,10 @@ function translateOrFallback(t) {
   obj.sector_text_01 =
     obj.sector_text_01 ||
     'We partner with communities to address the root causes of poverty using holistic approaches across 5 main sectors. See our 2021 investments and results.'
+
+  //FIXME this needs to match the value from the graph table
+  // the '&' sign and the word 'and' is different between tables
+  obj.sector_04_title = 'Child Protection & Participation'
 
   //FIXME these keys do not exist in DB but were filled in on the frontend,
   // could be expected values, could be very wrong
@@ -453,4 +330,38 @@ function translateOrFallback(t) {
   obj.people_text_01_last = `${spaces[2]} ${spaces[3]}`
 
   return obj
+}
+
+//FIXME super inefficient but if it works... then for now during build time...
+// at least while a better solution is in the works
+const sectorData = (t, chartData) => {
+  const arr = []
+  for (let i = 0; i < chartData.length; i++) {
+    for (let j = 1; j <= 5; j++) {
+      const title = t[`sector_0${j}_title`]
+      const dissagregation = chartData[i]['DISAGGREGATION']
+      if (dissagregation === title) {
+        arr.push({
+          title: t[`sector_0${j}_title`],
+          percentage: chartData[i]['VALUE'],
+          color: t[`sector_0${j}_color`],
+          ctaLabel: t[`sector_0${j}_link_label`],
+          ctaShortLabel: 'Learn more',
+          ctaUrl: t[`sector_0${j}_link_url`],
+          imgSrc: t[`sector_0${j}_img_src`],
+          imgAlt: 'Alt text',
+          label1: t[`sector_0${j}_statement_intro_01`],
+          label2: t[`sector_0${j}_statement_01`],
+          label3: t[`sector_0${j}_statement_02`],
+          label4: t[`sector_0${j}_statement_03`],
+          highlight1: t[`sector_0${j}_value_01`],
+          highlight2: t[`sector_0${j}_value_02`],
+          highlight3: t[`sector_0${j}_value_03`],
+          modalAriaLabel: t[`sector_0${j}_modal_aria_label`],
+          videoSrc: t[`sector_0${j}_video_url`]
+        })
+      }
+    }
+  }
+  return arr
 }

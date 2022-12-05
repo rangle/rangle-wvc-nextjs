@@ -95,7 +95,9 @@ const SectorOverview = ({
                       className={styles['legend-color']}
                       style={{ backgroundColor: item.color }}
                     />
-                    <p>{item.title}</p>
+                    <p>
+                      {item.title} {item.percentage * 100}%
+                    </p>
                   </div>
                   <ChevronRight />
                 </button>
