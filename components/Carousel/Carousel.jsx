@@ -69,7 +69,7 @@ export const NextIcon = () => {
   )
 }
 
-const Carousel = ({ cards, title }) => {
+const Carousel = ({ cards, controlsTheme, title }) => {
   const slideTotal = cards.length
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
   const id = useId()
@@ -77,8 +77,12 @@ const Carousel = ({ cards, title }) => {
   return (
     <div id={`carousel-${id}`} className={styles['carousel']}>
       <div className={styles['carousel--header']}>
-        {title && <h2>{title}</h2>}
-        <div className={styles['carousel-nav-container-desktop']}>
+        <div>{title && <h2>{title}</h2>}</div>
+        <div
+          className={`${styles['carousel-nav-container-desktop']} ${
+            styles[`carousel-nav-container-desktop--${controlsTheme}`]
+          }`}
+        >
           <p className={styles['carousel-pagination']}>
             Slide {activeSlideNumber}/{slideTotal}
           </p>
@@ -126,7 +130,11 @@ const Carousel = ({ cards, title }) => {
             )
           })}
       </Swiper>
-      <div className={styles['carousel-nav-container-mobile']}>
+      <div
+        className={`${styles['carousel-nav-container-mobile']} ${
+          styles[`carousel-nav-container-mobile--${controlsTheme}`]
+        }`}
+      >
         <div
           id='carousel-nav-button-previous'
           className={`${styles['carousel-nav-button']} ${styles['carousel-nav-button-previous']} ${styles['carousel-nav-button-previous--mobile']}`}

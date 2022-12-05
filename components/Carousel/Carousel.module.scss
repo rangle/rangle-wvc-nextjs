@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+    width: 100%;
 
     h2 {
       @include typographylargeheadingh2;
@@ -17,6 +18,18 @@
 .carousel-nav-container-mobile {
   display: flex;
   padding-top: 1rem;
+
+  &--light {
+    color: $white;
+
+    .carousel-nav-button {
+      &:hover {
+        .carousel-nav-button--label {
+          border-bottom: 1px solid $white;
+        }
+      }
+    }
+  }
 }
 
 .carousel-nav-container-desktop {

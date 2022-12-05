@@ -2,12 +2,13 @@ import Head from 'next/head'
 
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
-import RollingCredits from '../components/Homepage/RollingCredits/RollingCredits'
 import SectorOverview from '../components/Homepage/SectorOverview/SectorOverview'
+import RollingCredits from '../components/Homepage/RollingCredits/RollingCredits'
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
+import Prefooter from '../components/Homepage/Prefooter/Prefooter'
 
 const videoData = [
   {
@@ -289,7 +290,19 @@ export default function Home() {
         <section
           className={`${styles['section']} ${styles['section--pre-footer']}`}
         >
-          <h2>Pre footer catchall</h2>
+          <Prefooter
+            title={
+              'Commitment to learning, and sharing what we’ve learned, keep us accountable.'
+            }
+            subtitle={'Four case studies of wisdom gained in 2021:'}
+            mediaBlockTitle={
+              "As we partner with communities, we're focused on creating real impact."
+            }
+            mediaBlockSrc={'https://www.youtube.com/watch?v=RYTFzGkb-5A'}
+            mediaBlockBackground={
+              'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+            }
+          />
         </section>
       </main>
     </div>

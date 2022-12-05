@@ -1,0 +1,78 @@
+@import '../../../styles/lumen-tokens';
+@import '../../../styles/spacing';
+
+.prefooter {
+  position: relative;
+  .prefooter-background {
+    width: 100%;
+    margin-top: -22rem;
+  }
+}
+
+.prefooter-content {
+  margin: 0 $page-margin-mobile;
+  color: $white;
+  text-align: left;
+
+  @media (min-width: 768px) {
+    margin: 0 $page-margin-tablet;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
+  }
+
+  @media (min-width: 1366px) {
+    width: calc($column-max * 8);
+    margin: 0 auto;
+  }
+}
+
+.prefooter-carousel-title {
+  @include typographysmallheadingh2;
+  margin-bottom: $size-m;
+
+  @media (min-width: 768px) {
+    @include typographylargeheadingh2;
+  }
+}
+
+.prefooter-carousel-subtitle {
+  @include typographylargeparagraphsmallcopy_regular;
+
+  @media (min-width: 768px) {
+    @include typographylargeparagraphintro_regular;
+  }
+}
+
+.carousel-container {
+  margin: 2rem $page-margin-mobile 0;
+
+  @media (min-width: 768px) {
+    margin: 3.75rem $page-margin-tablet 0;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 3.75rem $page-margin-desktop 11.25rem;
+  }
+
+  @media (min-width: 1366px) {
+    width: calc($column-max * 12);
+    margin: 3.75rem auto 11.25rem;
+  }
+}
+
+.prefooter-accordion {
+  text-align: left;
+  margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+  }
+}
+
+.prefooter-report-cards {
+  margin-bottom: 6.25rem;
+}
