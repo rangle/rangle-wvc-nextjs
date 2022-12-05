@@ -26,21 +26,6 @@ const RollingCreditsMap = ({ mapCreditsData }) => {
             })}
         </div>
       </div>
-      <div>
-        <MapHeaderContainer
-          showHeaderControls={true}
-          showMarkers={false}
-          isDark={true}
-          duration={1000}
-          padding={40}
-          showEmptyPrograms={false}
-          legendText={'Explore our work around the world'}
-          countryDropdownLabel={'Countries'}
-          programDropdownLabel={'Program Type'}
-          interactive={false}
-          zoom={1.25}
-        />
-      </div>
     </div>
   )
 }

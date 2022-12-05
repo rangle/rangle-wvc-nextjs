@@ -13,183 +13,185 @@ import { COUNTRY_NAMES } from '../components/MapChart/MapConstants'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 import Prefooter from '../components/Homepage/Prefooter/Prefooter'
 
-const videoData = [
+const featureCardData = (t) => [
   {
-    img: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
-    src: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
-  },
-  {
-    img: 'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/wvc-homepage-supporting-banner-gift-impact-three-frames-chickens.jpg',
-    src: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4'
-  },
-  {
-    img: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
-    src: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
-  }
-]
-
-const featureCardData = [
-  {
-    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
-    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
-    imgSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    title: t.did_know_title_01,
+    description: t.did_know_body_01,
+    imgSrc: t.did_know_image_url_01,
     imgAlt: 'sample alt text'
   },
   {
-    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
-    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
-    imgSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    title: t.did_know_title_02,
+    description: t.did_know_body_02,
+    imgSrc: t.did_know_image_url_02,
     imgAlt: 'sample alt text'
   },
   {
-    title: `Our Christian faith is an essential part of World Vision's holistic approach.`,
-    description: `84% of the world's population identifies with a religious group, so our faith often brings us credibility in local communities, creating trust and mutual respect within diverse faith groups.`,
-    imgSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/homepage-girl-Katia-Honduras_optimized.jpg?ext=.jpg',
+    title: t.did_know_title_03,
+    description: t.did_know_body_03,
+    imgSrc: t.did_know_image_url_03,
+    imgAlt: 'sample alt text'
+  },
+  {
+    title: t.did_know_title_04,
+    description: t.did_know_body_04,
+    imgSrc: t.did_know_image_url_04,
+    imgAlt: 'sample alt text'
+  },
+  {
+    title: t.did_know_title_05,
+    description: t.did_know_body_05,
+    imgSrc: t.did_know_image_url_05,
     imgAlt: 'sample alt text'
   }
 ]
 
-const creditsData = [
+const creditsData = (t) => [
   {
-    pretext: 'In 2021, we invested',
-    highlight: '43%',
-    subtext:
-      'of our program funding in the most fragile countries -- up from 34% in the previous year, as we shift our priority to helping the most vulnerable children'
+    pretext: t.highlights_text_01,
+    highlight: t.highlights_value_01,
+    subtext: t.highlights_text_02
   },
   {
-    pretext: 'Responded to',
-    highlight: '25 emergencies',
-    subtext:
-      'including fragile contexts, in 25 countries, reaching over 6.6 million people'
+    pretext: t.highlights_text_03,
+    highlight: t.highlights_value_03,
+    subtext: t.highlights_text_04
   },
   {
-    pretext: 'Implemented over',
-    highlight: '$70 million',
-    subtext: 'in grant funding from government and institutional partners'
+    pretext: t.highlights_text_05,
+    highlight: t.highlights_value_05,
+    subtext: t.highlights_text_06
   }
-]
-
-const mapCreditsData = [
-  `Canadians know us best for our community-based child sponsorship
-programs.`,
-  `We’re proud of our sponsorship programs. And we do so much more!`
 ]
 
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
-const sampleSectorData = [
+const sectorData = (t) => [
   {
-    title: 'Livelihoods',
+    title: t.sector_01_title,
     percentage: 59,
-    color: '#E7600C', // $orange
-    ctaLabel: 'Learn more about  our livelihoods work',
+    color: t.sector_01_color,
+    ctaLabel: t.sector_01_link_label,
     ctaShortLabel: 'Learn more',
-    ctaUrl: 'https://www.worldvision.ca',
-    imgSrc: '/modalImage.jpg',
+    ctaUrl: t.sector_01_link_url,
+    imgSrc: t.sector_01_img_src,
     imgAlt: 'Alt text',
-    label1: 'In partnership with the World Food Programme',
-    label2: 'received food assistance',
-    label3: 'people were active members in',
-    label4: 'savings groups',
-    highlight1: '3,320,279 people',
-    highlight2: '48,424',
-    highlight3: '2951',
-    modalAriaLabel: 'This aria label will describe the modal contents.',
-    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+    label1: t.sector_01_statement_intro_01,
+    label2: t.sector_01_statement_01,
+    label3: t.sector_01_statement_02,
+    label4: t.sector_01_statement_03,
+    highlight1: t.sector_01_value_01,
+    highlight2: t.sector_01_value_02,
+    highlight3: t.sector_01_value_03,
+    modalAriaLabel: t.sector_01_modal_aria_label,
+    videoSrc: t.sector_01_video_url
   },
   {
-    title: 'Health',
+    title: t.sector_02_title,
     percentage: 19,
-    color: '#9054A1', // $purple
-    ctaLabel: 'Learn more about  our livelihoods work',
+    color: t.sector_02_color,
+    ctaLabel: t.sector_02_link_label,
     ctaShortLabel: 'Learn more',
-    ctaUrl: 'https://www.worldvision.ca',
-    imgSrc: '/modalImage.jpg',
+    ctaUrl: t.sector_02_link_url,
+    imgSrc: t.sector_02_img_src,
     imgAlt: 'Alt text',
-    label1: 'In partnership with the World Food Programme',
-    label2: 'received food assistance',
-    label3: 'people were active members in',
-    label4: 'savings groups',
-    highlight1: '3,320,279 people',
-    highlight2: '48,424',
-    highlight3: '2951',
-    modalAriaLabel: 'This aria label will describe the modal contents.',
-    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+    label1: t.sector_02_statement_intro_01,
+    label2: t.sector_02_statement_01,
+    label3: t.sector_02_statement_02,
+    label4: t.sector_02_statement_03,
+    highlight1: t.sector_02_value_01,
+    highlight2: t.sector_02_value_02,
+    highlight3: t.sector_02_value_03,
+    modalAriaLabel: t.sector_02_modal_aria_label,
+    videoSrc: t.sector_02_video_url
   },
   {
-    title: 'Education',
+    title: t.sector_03_title,
     percentage: 11,
-    color: '#006661', // $teal
-    ctaLabel: 'Learn more about  our livelihoods work',
+    color: t.sector_03_color,
+    ctaLabel: t.sector_03_link_label,
     ctaShortLabel: 'Learn more',
-    ctaUrl: 'https://www.worldvision.ca',
-    imgSrc: '/modalImage.jpg',
+    ctaUrl: t.sector_03_link_url,
+    imgSrc: t.sector_03_img_src,
     imgAlt: 'Alt text',
-    label1: 'In partnership with the World Food Programme',
-    label2: 'received food assistance',
-    label3: 'people were active members in',
-    label4: 'savings groups',
-    highlight1: '3,320,279 people',
-    highlight2: '48,424',
-    highlight3: '2951',
-    modalAriaLabel: 'This aria label will describe the modal contents.',
-    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+    label1: t.sector_03_statement_intro_01,
+    label2: t.sector_03_statement_01,
+    label3: t.sector_03_statement_02,
+    label4: t.sector_03_statement_03,
+    highlight1: t.sector_03_value_01,
+    highlight2: t.sector_03_value_02,
+    highlight3: t.sector_03_value_03,
+    modalAriaLabel: t.sector_03_modal_aria_label,
+    videoSrc: t.sector_03_video_url
   },
   {
-    title: 'Child Protection + Participation',
+    title: t.sector_04_title,
     percentage: 9,
-    color: '#FDD25F', // $yellow
-    ctaLabel: 'Learn more about  our livelihoods work',
+    color: t.sector_04_color,
+    ctaLabel: t.sector_04_link_label,
     ctaShortLabel: 'Learn more',
-    ctaUrl: 'https://www.worldvision.ca',
-    imgSrc: '/modalImage.jpg',
+    ctaUrl: t.sector_04_link_url,
+    imgSrc: t.sector_04_img_src,
     imgAlt: 'Alt text',
-    label1: 'In partnership with the World Food Programme',
-    label2: 'received food assistance',
-    label3: 'people were active members in',
-    label4: 'savings groups',
-    highlight1: '3,320,279 people',
-    highlight2: '48,424',
-    highlight3: '2951',
-    modalAriaLabel: 'This aria label will describe the modal contents.',
-    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+    label1: t.sector_04_statement_intro_01,
+    label2: t.sector_04_statement_01,
+    label3: t.sector_04_statement_02,
+    label4: t.sector_04_statement_03,
+    highlight1: t.sector_04_value_01,
+    highlight2: t.sector_04_value_02,
+    highlight3: t.sector_04_value_03,
+    modalAriaLabel: t.sector_04_modal_aria_label,
+    videoSrc: t.sector_04_video_url
   },
   {
-    title: 'Water, Sanitation + Hygiene',
+    title: t.sector_05_title,
     percentage: 2,
-    color: '#0C6699', // $blue
-    ctaLabel: 'Learn more about  our livelihoods work',
+    color: t.sector_05_color,
+    ctaLabel: t.sector_05_link_label,
     ctaShortLabel: 'Learn more',
-    ctaUrl: 'https://www.worldvision.ca',
-    imgSrc: '/modalImage.jpg',
+    ctaUrl: t.sector_05_link_url,
+    imgSrc: t.sector_05_img_src,
     imgAlt: 'Alt text',
-    label1: 'In partnership with the World Food Programme',
-    label2: 'received food assistance',
-    label3: 'people were active members in',
-    label4: 'savings groups',
-    highlight1: '3,320,279 people',
-    highlight2: '48,424',
-    highlight3: '2951',
-    modalAriaLabel: 'This aria label will describe the modal contents.',
-    videoSrc: 'https://www.youtube.com/watch?v=RYTFzGkb-5A'
+    label1: t.sector_05_statement_intro_01,
+    label2: t.sector_05_statement_01,
+    label3: t.sector_05_statement_02,
+    label4: t.sector_05_statement_03,
+    highlight1: t.sector_05_value_01,
+    highlight2: t.sector_05_value_02,
+    highlight3: t.sector_05_value_03,
+    modalAriaLabel: t.sector_05_modal_aria_label,
+    videoSrc: t.sector_05_video_url
   }
 ]
 
-const sampleSectorHighlights = [
+//FIXME currently only a couple highlights are shown
+const sectorHighlights = (t) => [
   {
-    value: '18 million',
-    title: 'People reached',
-    tooltip: 'sample tooltip content wooooooo'
+    value: t.highlights_value_01,
+    title: t.highlights_text_01
   },
   {
-    value: '$226 million',
-    title: 'Total spent'
+    value: t.highlights_value_02,
+    title: t.highlights_text_02
+  },
+  {
+    value: t.highlights_value_03,
+    title: t.highlights_text_03
+  },
+  {
+    value: t.highlights_value_04,
+    title: t.highlights_text_04
+  },
+  {
+    value: t.highlights_value_05,
+    title: t.highlights_text_05
+  },
+  {
+    value: t.highlights_value_06,
+    title: t.highlights_text_06
   }
 ]
 
-export default function Home({ programData, countryData }) {
+export default function Home({ programData, countryData, translation: t }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -201,57 +203,51 @@ export default function Home({ programData, countryData }) {
         <section className={`${styles['section']} ${styles['section--hero']}`}>
           <Hero
             backgroundImage={HeroBackgroundDefault}
-            heroText={'World Vision works alongside'}
+            heroText={t.text_01}
             highlightList={[
-              'communities',
-              'supporters',
-              'partners',
-              'government'
+              t.highlight_top_01,
+              t.highlight_top_02,
+              t.highlight_top_03,
+              t.highlight_top_04
             ]}
-            linkLabel={'Download the 2021 Annual Results Report'}
-            subtitleText={
-              'to change the way the world works for children - impacting lives for generations to come.'
-            }
-            url={
-              'https://www.worldvision.ca/WorldVisionCanada/media/annual-report-pdfs/World-Vision-Canada-Annual-Results-Report-FY2021-220509_AODA.pdf'
-            }
+            linkLabel={t.label_01}
+            subtitleText={t.text_02}
+            url={t.url_label_01}
           />
         </section>
         <section
           className={`${styles['section']} ${styles['section--counter']}`}
         >
           <Counter
-            introLine1='In 2021'
-            introLine2='we reached'
-            animatedTotal={18}
-            totalDescriptor='million people'
-            detailValue1='2,250,000'
-            detailDescriptor1='girls'
-            detailValue2='2,250,000'
-            detailDescriptor2='boys'
+            introLine1={t.people_text_01_first}
+            introLine2={t.people_text_01_last}
+            animatedTotal={parseInt(t.people_value)}
+            totalDescriptor={t.people_text_02}
+            detailValue1={t.people_girls_value}
+            detailDescriptor1={t.people_girls_label}
+            detailValue2={t.people_boys_value}
+            detailDescriptor2={t.people_boys_label}
           />
         </section>
         <section
           className={`${styles['section']} ${styles['section--sticky-carousel']}`}
         >
           <StickyCarousel
-            pretext={'In all their'}
-            subtext={
-              'along with the families, communities and structures that affect their lives'
-            }
-            backgroundImage={'/homepage/stickyCarousel/background-default.png'}
+            pretext={t.text_03}
+            subtext={t.text_04}
+            backgroundImage={t.highlight_mid_background_image_url}
             content={[
               {
-                image: '/homepage/stickyCarousel/default-kid-1.png',
-                text: 'Talent'
+                image: t.highlight_mid_01_image_url,
+                text: t.highlight_mid_01
               },
               {
-                image: '/homepage/stickyCarousel/default-kid-2.png',
-                text: 'Strength'
+                image: t.highlight_mid_02_image_url,
+                text: t.highlight_mid_02
               },
               {
-                image: '/homepage/stickyCarousel/default-kid-3.png',
-                text: 'Spirit'
+                image: t.highlight_mid_03_image_url,
+                text: t.highlight_mid_03
               }
             ]}
           />
@@ -259,20 +255,40 @@ export default function Home({ programData, countryData }) {
         <section
           className={`${styles['section']} ${styles['section--video-carousel']}`}
         >
-          <VideoCarousel videos={videoData} />
+          <VideoCarousel
+            videos={[
+              {
+                img: t.main_video_01_img,
+                src: t.main_video_01_url
+              },
+              {
+                img: t.main_video_02_img,
+                src: t.main_video_02_url
+              },
+              {
+                img: t.main_video_03_img,
+                src: t.main_video_03_url
+              }
+            ]}
+          />
         </section>
         <section className={`${styles['section']} ${styles['section--map']}`}>
           <RollingCreditsMap
-            imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
-            mapCreditsData={mapCreditsData}
+            imageSrc={t.map_background_01_url}
+            mapCreditsData={[t.map_text_01]}
           />
+          <RollingCreditsMap
+            imageSrc={t.map_background_02_url}
+            mapCreditsData={[t.map_text_02]}
+          />
+          {/*FIXME ish very very big*/}
           <MapHeaderContainer
             duration={1000}
             isDark
-            legendText='Explore our work around the world'
+            legendText={t.map_title}
             padding={40}
-            countryDropdownLabel='Country'
-            programDropdownLabel='Program Type'
+            countryDropdownLabel={t.map_country_label}
+            programDropdownLabel={t.map_program_type_label}
             yearDropdownLabel='Year'
             programData={programData}
             countryData={countryData}
@@ -284,22 +300,20 @@ export default function Home({ programData, countryData }) {
           className={`${styles['section']} ${styles['section--sector-overview']}`}
         >
           <SectorOverview
-            sectorData={sampleSectorData}
-            sectorHighlights={sampleSectorHighlights}
-            text1={
-              'Poverty is complex and multi-layered—so we use a holistic approach as we partner with communities to find sustainable solutions.'
-            }
-            text2={'World Vision integrates projects across 5 main sectors:'}
+            sectorData={sectorData(t)}
+            sectorHighlights={sectorHighlights(t)}
+            text1={t.sector_text_01}
+            text2={t.sector_text_02}
           />
         </section>
         <section
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
           <RollingCredits
-            title={'Did you know?'}
-            credits={creditsData}
+            title={t.did_you_know_header}
+            credits={creditsData(t)}
             imageSrc={'/homepage/rollingCredits/rolling-credits-background.jpg'}
-            featureCardData={featureCardData}
+            featureCardData={featureCardData(t)}
           />
         </section>
         <section
@@ -325,13 +339,13 @@ export default function Home({ programData, countryData }) {
 }
 
 export async function getStaticProps({ params }) {
-  const { rows } = await getSnowflakeData({
+  const { rows: mapData } = await getSnowflakeData({
     sqlText: 'SELECT * FROM STAGE.MAP'
   })
 
-  const programData = rows.filter((n) => n['LEVEL'] === 'programs')
+  const programData = mapData.filter((n) => n['LEVEL'] === 'programs')
 
-  const countryData = rows
+  const countryData = mapData
     .filter((n) => n['LEVEL'] === 'countries')
     .map((item) => {
       return {
@@ -345,7 +359,98 @@ export async function getStaticProps({ params }) {
       }
     })
 
+  const { rows: mainPage } = await getSnowflakeData({
+    sqlText: 'SELECT * FROM STAGE.MAIN_PAGE'
+  })
+  const translateKeys = mainPage[0]
+  const translation = translateOrFallback(translateKeys)
+
   return {
-    props: { programData: programData, countryData: countryData }
+    props: { programData, countryData, translation }
   }
+}
+
+function translateOrFallback(t) {
+  const obj = Object.keys(t).reduce((acc, key) => {
+    acc[key.toLowerCase()] = t[key]
+    return acc
+  }, {})
+
+  // Show a warning in the console for all the keys that are untranslated
+  Object.entries(t).forEach(([key, val]) => {
+    if (val === null) {
+      console.warn(`${key} is not translated`)
+    }
+  })
+
+  // Fallback for known untranslated keys and probable values
+  obj.highlight_mid_01_image_url =
+    obj.highlight_mid_01_image_url ||
+    '/homepage/stickyCarousel/default-kid-1.png'
+  obj.highlight_mid_02_image_url =
+    obj.highlight_mid_02_image_url ||
+    '/homepage/stickyCarousel/default-kid-2.png'
+  obj.highlight_mid_03_image_url =
+    obj.highlight_mid_03_image_url ||
+    '/homepage/stickyCarousel/default-kid-3.png'
+  obj.highlight_mid_background_image_url =
+    obj.highlight_mid_background_image_url ||
+    '/homepage/stickyCarousel/background-default.png'
+  obj.sector_text_02 =
+    obj.sector_text_02 ||
+    'World Vision integrates projects across 5 main sectors:'
+  obj.sector_text_01 =
+    obj.sector_text_01 ||
+    'We partner with communities to address the root causes of poverty using holistic approaches across 5 main sectors. See our 2021 investments and results.'
+
+  //FIXME these keys do not exist in DB but were filled in on the frontend,
+  // could be expected values, could be very wrong
+  obj.main_video_01_img =
+    obj.main_video_01_img ||
+    'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+  obj.main_video_02_img =
+    obj.main_video_02_img ||
+    'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/wvc-homepage-supporting-banner-gift-impact-three-frames-chickens.jpg'
+  obj.main_video_03_img =
+    obj.main_video_03_img ||
+    'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
+  obj.map_background_01_url =
+    obj.map_background_01_url ||
+    '/homepage/rollingCredits/rolling-credits-background.jpg'
+  obj.map_background_02_url =
+    obj.map_background_02_url ||
+    '/homepage/rollingCredits/rolling-credits-background.jpg'
+  obj.sector_01_modal_aria_label =
+    obj.sector_01_modal_aria_label ||
+    'This aria label will describe the modal contents.'
+  obj.sector_02_modal_aria_label =
+    obj.sector_02_modal_aria_label ||
+    'This aria label will describe the modal contents.'
+  obj.sector_03_modal_aria_label =
+    obj.sector_03_modal_aria_label ||
+    'This aria label will describe the modal contents.'
+  obj.sector_04_modal_aria_label =
+    obj.sector_04_modal_aria_label ||
+    'This aria label will describe the modal contents.'
+  obj.sector_05_modal_aria_label =
+    obj.sector_05_modal_aria_label ||
+    'This aria label will describe the modal contents.'
+  obj.sector_01_img_src = obj.sector_01_img_src || '/modalImage.jpg'
+  obj.sector_02_img_src = obj.sector_02_img_src || '/modalImage.jpg'
+  obj.sector_03_img_src = obj.sector_03_img_src || '/modalImage.jpg'
+  obj.sector_04_img_src = obj.sector_04_img_src || '/modalImage.jpg'
+  obj.sector_05_img_src = obj.sector_05_img_src || '/modalImage.jpg'
+  obj.sector_01_color = obj.sector_01_color || '#E7600C'
+  obj.sector_02_color = obj.sector_02_color || '#9054A1'
+  obj.sector_03_color = obj.sector_03_color || '#006661'
+  obj.sector_04_color = obj.sector_04_color || '#FDD25F'
+  obj.sector_05_color = obj.sector_05_color || '#0C6699'
+
+  //FIXME in the design `people_text_01` is two lines, but in DB single line
+  // solving in stupid way for now
+  const spaces = obj.people_text_01.split(' ')
+  obj.people_text_01_first = `${spaces[0]} ${spaces[1]}`
+  obj.people_text_01_last = `${spaces[2]} ${spaces[3]}`
+
+  return obj
 }
