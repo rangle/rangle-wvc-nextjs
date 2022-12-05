@@ -3,7 +3,6 @@ import styles from './filter-pages.module.scss'
 import MediaCard from '../components/MediaCard/MediaCard'
 import Dropdown from '../components/Dropdown/Dropdown'
 import { getScreenWidth } from '../utils/getScreenWidth'
-import { getSnowflakeData } from '../utils/snowflake'
 
 export default function ProgramFilter(props) {
   const DEFAULT_DESKTOP_INITIAL_RESULT = 9
@@ -20,8 +19,8 @@ export default function ProgramFilter(props) {
     DEFAULT_MOBILE_INITIAL_FILTERS
   )
 
-// TODO: results below would come from filtering actual data
-  const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] 
+  // TODO: results below would come from filtering actual data
+  const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
   const filters = ['Country', 'Area of Focus', 'Partner', 'Year']
   const screenWidth = getScreenWidth()
   const smallScreen = screenWidth < 768
@@ -112,13 +111,21 @@ export default function ProgramFilter(props) {
 }
 
 export async function getStaticProps() {
+  const {
+    getSnowflakeData,
+    transformNavigationData
+  } = require('../utils/snowflake')
 
-  const countries = await getSnowflakeData({
-    sqlText: `select HEADER_TITLE from COUNTRIES`
+  const { rows: areasOfFocusData } = await getSnowflakeData({
+    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
   })
 
-  const areasOfFocus = await getSnowflakeData({
-    sqlText: `select HEADER_TITLE from AREAS_OF_FOCUS`
+  const { rows: countriesData } = await getSnowflakeData({
+    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+  })
+
+  const { rows: controlData } = await getSnowflakeData({
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
   })
 
   const partners = await getSnowflakeData({
@@ -131,10 +138,15 @@ export async function getStaticProps() {
 
   return {
     props: {
-      countries: countries.rows.map((ea) => ea.HEADER_TITLE),
-      areasOfFocus: areasOfFocus.rows.map((ea) => ea.HEADER_TITLE),
+      countries: countriesData.map((ea) => ea.HEADER_TITLE),
+      areasOfFocus: areasOfFocusData.map((ea) => ea.HEADER_TITLE),
       partners: partners.rows.map((ea) => ea.PARTNER_NAME),
-      programs: programs.rows
+      programs: programs.rows,
+      navigation: transformNavigationData(
+        controlData,
+        areasOfFocusData,
+        countriesData
+      )
     }
   }
 }
