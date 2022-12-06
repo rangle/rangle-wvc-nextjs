@@ -104,7 +104,11 @@ export const ChartContainer = ({
   return (
     <div
       className={styles['chart-control-section-container']}
-      style={{ backgroundImage: `url('/D155.png')` }}
+      style={{
+        backgroundImage: `url('/D155.png')`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}
     >
       <div className={styles['chart-container']}>
         <div className={styles['chart-container-control']}>
