@@ -1,0 +1,91 @@
+@import '../../styles/lumen-tokens';
+@import '../../styles/spacing';
+
+.story-card-grid {
+  h3 {
+    @include typographylargeheadingh3;
+    margin-bottom: $space-xl;
+  }
+}
+
+.story-card {
+  border: 1px solid $grey-lighter;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.05);
+  margin-bottom: $space-xl;
+
+  @media (min-width: 768px) {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    height: 208px;
+    max-width: none;
+  }
+
+  &__content-container {
+    flex: 1;
+    padding-bottom: $space-xl;
+    padding-left: $space-m:;
+    padding-right: $space-m:;
+    padding-top: $space-m:;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (min-width: 768px) {
+      padding: $space-xxxl $space-m:;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__img-container {
+    @media (min-width: 768px) {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  img {
+    border-radius: 4px;
+    display: block;
+    height: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  p {
+    @include typographylargeparagraphbodycopy_regular;
+    margin-bottom: $space-m:;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    display: -webkit-box;
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+
+    @media (min-width: 768px) {
+      -webkit-line-clamp: 3;
+    }
+  }
+  a {
+    @include typographylargelinktextlink_default;
+    color: $blue;
+    display: block;
+    text-transform: uppercase;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  svg {
+    fill: $blue;
+    margin-left: $space-xs;
+  }
+}
