@@ -42,6 +42,10 @@
     text-transform: uppercase;
   }
 
+  &__main-th-highlight {
+    text-align: right;
+  }
+
   // ie. Total revenue & amounts
   &__td-highlight {
     font-weight: 700;

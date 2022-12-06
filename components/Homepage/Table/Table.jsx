@@ -84,13 +84,13 @@ const Table = ({ introText }) => {
           </tr>
           <tr className={styles['table__sub-th-data']}>
             <th className={styles['table__data-th']}>Domestic</th>
-            <td>$15,517</td>
-            <td>$19,636</td>
+            <td className={styles['table__amount']}>$15,517</td>
+            <td className={styles['table__amount']}>$19,636</td>
           </tr>
           <tr className={styles['table__sub-th-data']}>
             <th className={styles['table__data-th']}>International</th>
-            <td>$4,212</td>
-            <td>$4,560</td>
+            <td className={styles['table__amount']}>$4,212</td>
+            <td className={styles['table__amount']}>$4,560</td>
           </tr>
         </tbody>
         <tfoot>
