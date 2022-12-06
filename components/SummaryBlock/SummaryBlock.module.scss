@@ -43,14 +43,16 @@
         margin-top: 0;
       }
     }
+  }
 
-    &--title {
+  &__highlight--title-first {
+    p:nth-child(1) {
       @include typographysmallheadingh6;
-      color: $charcoal;
+      color: $grey;
       line-height: 2rem;
     }
 
-    &--value {
+    p:nth-child(2) {
       @include typographysmallheadingh4;
       color: $black;
       line-height: 1.78;
@@ -58,7 +60,17 @@
   }
 
   &__highlight--reverse {
-    flex-direction: column-reverse;
+    p:nth-child(1) {
+      @include typographysmallheadingh4;
+      color: $black;
+      line-height: 1.78;
+    }
+
+    p:nth-child(2) {
+      @include typographysmallheadingh6;
+      color: $grey;
+      line-height: 2rem;
+    }
   }
 
   .summary-block__highlight-title-container {
