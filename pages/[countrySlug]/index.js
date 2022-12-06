@@ -84,8 +84,8 @@ const OverviewSection = (props) => {
           )}
         </div>
       </HeroBlock>
-      {/* TODO: connect to snowflake */}
       <ChartContainer
+        chartData={props.resultInvestmentGraphs}
         chartType='line'
         controlTitle={props.GRAPHBOX_TITLE}
         footnote='Date as of footnote'
@@ -364,6 +364,12 @@ export async function getStaticProps({ params }) {
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
+  const { rows: resultInvestmentGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where level = 'countries'
+    and ID_COUNTRY = '${currentCountry.COUNTRY_CODE}'`
+  })
+
   return {
     props: {
       ...currentCountry,
@@ -378,7 +384,8 @@ export async function getStaticProps({ params }) {
       highlightedResults:
         resultsData.filter((result) => result.DATA_PANEL === 'yes') || [],
       resources: resourcesData || [],
-      disclaimer: disclaimerData[0].TEXT
+      disclaimer: disclaimerData[0].TEXT,
+      resultInvestmentGraphs: [ ...resultInvestmentGraphs]
     }
   }
 }

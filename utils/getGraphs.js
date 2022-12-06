@@ -3,20 +3,18 @@ import { LineChart } from '../components/Charts/LineChart/LineChart'
 import { StackedBarChart } from '../components/Charts/StackedBarChart/StackedBarChart'
 import { DoughnutChart } from '../components/Charts/DoughnutChart/DoughnutChart'
 
-export const getGraph = (graphNumber, props) => {
-  // get the chart (indicator code) to plot from the first unique three
-  let graphToPlot = [
-    ...new Set(
-      props.changeGraphs.map(
-        (ea, idx) => props.changeGraphs[idx].INDICATOR_CODE
-      )
-    )
-  ].slice(0, 3)[graphNumber]
+export const getGraph = (graphNumber, graphData, idCode) => {
+  // get the indicator code (/chart) to plot
+  let graphToPlot =
+    idCode ||
+    [...new Set(graphData.map((ea, idx) => graphData[idx].INDICATOR_CODE))][
+      graphNumber
+    ]
 
   // get the rows to be plotted for one chart
-  let rowsToPlot = Object.keys(props.changeGraphs)
-    .map((ea) => props.changeGraphs[ea])
-    .filter((ea) => ea.INDICATOR_CODE == graphToPlot)
+  let rowsToPlot = Object.keys(graphData)
+    .map((ea) => graphData[ea])
+    .filter((ea) => ea.INDICATOR_CODE === graphToPlot)
     // sort with TARGET at the end
     .sort((a, b) => a.YEAR_OR_TARGET.localeCompare(b.YEAR_OR_TARGET))
 
@@ -24,7 +22,7 @@ export const getGraph = (graphNumber, props) => {
     title: `${rowsToPlot[0].GRAPH_STATEMENT}`,
     aspectRatio: 0.8,
     ariaLabe: 'Bar Chart Reading Comprehension',
-    withAxes: false,
+    withAxes: !!idCode,
     aspectRatio: 0.8,
     colors: [
       'rgb(255, 166, 102)',
@@ -39,8 +37,8 @@ export const getGraph = (graphNumber, props) => {
     labels: rowsToPlot.map((ea) => ea.YEAR_OR_TARGET),
     showTopBarLabels: true,
     subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
-      rowsToPlot[0].COUNTRY ? ', ' + rowsToPlot[0].COUNTRY : ' '
-    }`,
+      rowsToPlot[0].LOCATION && rowsToPlot[0].COUNTRY ? ', ' : ''
+    }${rowsToPlot[0].COUNTRY ? rowsToPlot[0].COUNTRY : ' '}`,
     // TODO: They might divide this title into three,
     // so if so it will become an array:
     // title: [`${rowsToPlot[0].GRAPH_STATEMENT_1}`, ${rowsToPlot[0].GRAPH_STATEMENT_2}, ${rowsToPlot[0].GRAPH_STATEMENT_3}]
