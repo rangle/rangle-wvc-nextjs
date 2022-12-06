@@ -14,13 +14,14 @@ import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
-import { BarChart } from '../../components/Charts/BarChart/BarChart'
 import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { Item } from 'react-stately'
+import { getGraph } from '../../utils/getGraphs'
 
 import styles from './program.module.scss'
 
-export default function Program() {
+export default function Program(props) {
+
   return (
     <div className={styles['program-container']}>
       <EmergencyAlert
@@ -197,77 +198,29 @@ export default function Program() {
             />
           </div>
           <div className={styles['change-container']}>
-            <h2>Change</h2>
+            {props.changeGraphs.length > 0 && <h2>Change</h2>}
             <div className={styles['change-container__chart-container']}>
               <div
                 className={styles['change-container__chart-container__chart']}
               >
-                <BarChart
-                  ariaLabel='Bar Chart Reading Comprehension'
-                  withAxes={false}
-                  aspectRatio={0.8}
-                  colors={[
-                    'rgb(231, 96, 12)',
-                    'rgb(255, 166, 102)',
-                    'rgb(255, 225, 204)'
-                  ]}
-                  data={['83.5%', '74.1%']}
-                  labels={['2021', '2013']}
-                  showTopBarLabels
-                  subTitle='Eravur Pattu, Sri Lanka'
-                  title='Reading Comprehension'
-                  titlePosition='bottom'
-                  yStepSize={10}
-                />
+                {getGraph(0, props)}
               </div>
               <div
                 className={styles['change-container__chart-container__chart']}
               >
-                <BarChart
-                  ariaLabel='Bar Chart Reading Comprehension'
-                  withAxes={false}
-                  aspectRatio={0.8}
-                  colors={[
-                    'rgb(231, 96, 12)',
-                    'rgb(255, 166, 102)',
-                    'rgb(255, 225, 204)'
-                  ]}
-                  data={['83.5%', '74.1%']}
-                  labels={['2021', '2013']}
-                  showTopBarLabels
-                  subTitle='Eravur Pattu, Sri Lanka'
-                  title='Reading Comprehension'
-                  titlePosition='bottom'
-                  yStepSize={10}
-                />
+                {props.changeGraphs.length > 1 && getGraph(1, props)}
               </div>
               <div
                 className={styles['change-container__chart-container__chart']}
               >
-                <BarChart
-                  ariaLabel='Bar Chart Reading Comprehension'
-                  aspectRatio={0.8}
-                  withAxes={false}
-                  colors={[
-                    'rgb(231, 96, 12)',
-                    'rgb(255, 166, 102)',
-                    'rgb(255, 225, 204)'
-                  ]}
-                  data={['83.5%', '74.1%']}
-                  labels={['2021', '2013']}
-                  showTopBarLabels
-                  subTitle='Eravur Pattu, Sri Lanka'
-                  title='Reading Comprehension'
-                  titlePosition='bottom'
-                  yStepSize={10}
-                />
+                {props.changeGraphs.length > 2 && getGraph(2, props)}
               </div>
             </div>
           </div>
         </div>
       </HeroBlock>
       <ChartContainer
-        chartType='line'
+        chartType='stackedBar'
         controlTitle='Explore our investments and results'
         footnote='Date as of footnote'
       />
@@ -503,6 +456,7 @@ export default function Program() {
 }
 
 export async function getStaticPaths() {
+
   return {
     paths: [
       {
@@ -521,6 +475,7 @@ export async function getStaticProps({ params }) {
     transformResultsData,
     transformNavigationData
   } = require('../../utils/snowflake')
+
   const { rows: areasOfFocusData } = await getSnowflakeData({
     sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
   })
@@ -536,6 +491,14 @@ export async function getStaticProps({ params }) {
   const { rows: disclaimerData } = await getSnowflakeData({
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
+  
+  const changeGraphs = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'change_graph'`
+    // TODO: add the program code filter
+    // and IVS_PROGRAM_CODE is '....' 
+  })
 
   return {
     props: {
@@ -544,7 +507,8 @@ export async function getStaticProps({ params }) {
         areasOfFocusData,
         countriesData
       ),
-      disclaimer: disclaimerData[0].TEXT
+      disclaimer: disclaimerData[0].TEXT,
+      changeGraphs: [ ...changeGraphs.rows ]
     }
   }
 }

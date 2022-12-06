@@ -95,14 +95,14 @@ export function BarChart({
         anchor: 'end',
         align: 'end',
         font: {
-          size: 20,
+          size: 18,
           weight: '400',
           family: 'Lato'
         },
         formatter: function (value, context) {
           // if the data received ends with %, add "%" to the top bar labels
           if (data[0][data[0].length - 1] === '%') {
-            return value + '%'
+            return `${value * 100}%`
           }
           return value
         }
