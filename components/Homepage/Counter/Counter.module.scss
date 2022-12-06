@@ -25,6 +25,14 @@
   &__intro-text {
     color: $orange;
     display: block;
+
+    &--first {
+      @include typographylargeheadingh4;
+
+      @media (min-width: 768px) {
+        @include typographylargeheadingh2;
+      }
+    }
   }
 
   &__total {

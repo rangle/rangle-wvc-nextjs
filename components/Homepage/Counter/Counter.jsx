@@ -44,7 +44,11 @@ const Counter = ({
       <div>
         <div className={styles['counter__intro']}>
           <p>
-            <span className={styles['counter__intro-text']}>{introLine1}</span>
+            <span
+              className={`${styles['counter__intro-text']} ${styles['counter__intro-text--first']}`}
+            >
+              {introLine1}
+            </span>
             <span className={styles['counter__intro-text']}>{introLine2}</span>
             <span className={styles['counter__total']}>
               <CounterUtil total={animatedTotal} />

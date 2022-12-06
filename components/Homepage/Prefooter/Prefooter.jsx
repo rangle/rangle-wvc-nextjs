@@ -135,14 +135,6 @@ const Prefooter = ({
   ))
   return (
     <div className={styles['prefooter']}>
-      <div>
-        <img
-          src={'./homepage/prefooter/background.png'}
-          alt=''
-          aria-hidden
-          className={styles['prefooter-background']}
-        />
-      </div>
       <MediaBlock
         title={mediaBlockTitle}
         videoSrc={mediaBlockSrc}

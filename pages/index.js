@@ -289,16 +289,16 @@ function translateOrFallback(t) {
   // Fallback for known untranslated keys and probable values
   obj.highlight_mid_01_image_url =
     obj.highlight_mid_01_image_url ||
-    '/homepage/stickyCarousel/default-kid-1.png'
+    '/homepage/stickyCarousel/option-kid-1.png'
   obj.highlight_mid_02_image_url =
     obj.highlight_mid_02_image_url ||
-    '/homepage/stickyCarousel/default-kid-2.png'
+    '/homepage/stickyCarousel/option-kid-2.png'
   obj.highlight_mid_03_image_url =
     obj.highlight_mid_03_image_url ||
-    '/homepage/stickyCarousel/default-kid-3.png'
+    '/homepage/stickyCarousel/option-kid-3.png'
   obj.highlight_mid_background_image_url =
     obj.highlight_mid_background_image_url ||
-    '/homepage/stickyCarousel/background-default.png'
+    '/homepage/stickyCarousel/background-option.png'
   obj.sector_text_02 =
     obj.sector_text_02 ||
     'World Vision integrates projects across 5 main sectors:'

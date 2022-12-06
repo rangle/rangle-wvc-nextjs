@@ -12,12 +12,12 @@ const Hero = ({
   url
 }) => {
   const { scrollYProgress } = useScroll()
-  const scale1 = useTransform(scrollYProgress, [0, 0.4], [1, 2.5])
-  const x1 = useTransform(scrollYProgress, [0, 0.1], [70, -70])
+  const scale1 = useTransform(scrollYProgress, [0, 0.2], [1, 8])
+  const x1 = useTransform(scrollYProgress, [0, 0.1], [70, -700])
   const opacity1 = useTransform(scrollYProgress, [0, 0.15], [1, 0])
 
-  const scale2 = useTransform(scrollYProgress, [0, 0.2], [1, 2.5])
-  const x2 = useTransform(scrollYProgress, [0, 0.2], [70, 140])
+  const scale2 = useTransform(scrollYProgress, [0, 0.2], [1, 6])
+  const x2 = useTransform(scrollYProgress, [0, 0.2], [70, 1200])
   const opacity2 = useTransform(scrollYProgress, [0, 0.1], [1, 0])
 
   return (
@@ -54,9 +54,9 @@ const Hero = ({
           <div
             className={`${styles['centered-column']} ${styles['subtitle-container']}`}
           >
-            <p className={styles['hero-subtitle']}>{subtitleText}</p>
+            <p className={styles['hero-text']}>{subtitleText}</p>
             <Link href={url} passHref legacyBehavior>
-              <a>{linkLabel}</a>
+              <a className={styles['hero-text']}>{linkLabel}</a>
             </Link>
           </div>
           <div className={styles['desktop-scroll-icon']} aria-hidden>
