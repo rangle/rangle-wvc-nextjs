@@ -65,7 +65,6 @@ export const ChartContainer = ({
       'rgb(231, 96, 12)'
     ],
     legendPosition: 'bottom',
-    displayLegend: true
   }
 
   const stackedBarArgsSample = {
