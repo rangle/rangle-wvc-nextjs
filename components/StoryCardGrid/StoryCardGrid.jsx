@@ -13,7 +13,7 @@ const ctaArrow = (
   </svg>
 )
 
-export const StoryCard = ({ body, imgSrc, imgAlt, storyUrl }) => {
+export const StoryCard = ({ body, imgSrc, imgAlt, linkUrl, linkLabel }) => {
   return (
     <div className={styles['story-card']}>
       <div className={styles['story-card__img-container']}>
@@ -21,8 +21,8 @@ export const StoryCard = ({ body, imgSrc, imgAlt, storyUrl }) => {
       </div>
       <div className={styles['story-card__content-container']}>
         <p>{body}</p>
-        <Link href={storyUrl}>
-          Read more
+        <Link href={linkUrl}>
+          {linkLabel}
           {ctaArrow}
         </Link>
       </div>
