@@ -1,0 +1,27 @@
+@import '../styles/lumen-tokens';
+@import '../styles/spacing';
+
+.page-container {
+  background-color: $sky-lighter;
+  .disclaimer {
+    @include typographysmallparagraphbodycopy_italic;
+    display: flex;
+    justify-content: center;
+    margin: 0 $page-margin-mobile;
+    padding: $section-margin-mobile 0;
+
+    @media (min-width: 767px) {
+      margin:0 $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0 calc($column-desktop * 3 + $page-margin-desktop);
+      padding: $section-margin-desktop 0;
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 6);
+      margin: 0 auto;
+    }
+  }
+}

@@ -3,9 +3,7 @@
 
 .emergency-alert {
   background: #3c6f99;
-  position: sticky;
-  top: 0;
-  z-index: $z-index-sticky;
+  position: relative;
 
   &__content-container {
     margin: 0 $page-margin-mobile;

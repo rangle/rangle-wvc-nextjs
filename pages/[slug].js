@@ -1,5 +1,4 @@
 import parse from 'html-react-parser'
-import { titleCase } from 'title-case'
 
 import AccordionGroup from '../components/AccordionGroup/AccordionGroup'
 import Carousel from '../components/Carousel/Carousel'
@@ -8,11 +7,11 @@ import EmergencyAlert from '../components/EmergencyAlert/EmergencyAlert'
 import ExpandableTextBlock from '../components/ExpandableTextBlock/ExpandableTextBlock'
 import HeroBlock from '../components/HeroBlock/HeroBlock'
 import ImpactHighlightGrid from '../components/ImpactHighlightGrid/ImpactHighlightGrid'
-import MediaBlock from '../components/MediaBlock/MediaBlock'
 import MediaCard from '../components/MediaCard/MediaCard'
 import SectionContainer from '../components/SectionContainer/SectionContainer'
 import Tabs from '../components/Tabs/Tabs'
 import { TableOfContents } from '../components/TableOfContents/TableOfContents'
+import { convertToKebabCase } from '../utils/convertStrings'
 
 import StatisticCardGrid, {
   StatisticCard
@@ -22,62 +21,25 @@ import { Item } from 'react-stately'
 
 import styles from './country.module.scss'
 
-export default function Country(props) {
+const OverviewSection = (props) => {
   return (
-    <div className={styles['country-container']}>
-      {props.EMERGENCY_BANNER_BODY && (
-        <EmergencyAlert
-          body={props.EMERGENCY_BANNER_BODY}
-          // TODO: need to add to snowflake table
-          buttonLabel='Close'
-          title='Important notice'
-          url={props.EMERGENCY_BANNER_URL}
-        />
-      )}
-      {/* TODO: connect to snowflake data */}
-      <TableOfContents
-        contents={[
-          'Overview',
-          'Program Details',
-          'From the Field',
-          'Results',
-          'Stories',
-          'Resources'
-        ]}
-        ctaText='Donate'
-      />
+    <section id={props.sectionId}>
       <HeroBlock
         body={props.HEADER_BODY}
         countryCode={props.COUNTRY_CODE}
         ctaLabel={props.HEADER_CTA_LABEL}
         ctaUrl={props.HEADER_CTA_URL}
-        highlights={[
-          props.SUMMARY_01_LABEL &&
-            props.SUMMARY_01_VALUE && {
-              title: props.SUMMARY_01_LABEL,
-              value: props.SUMMARY_01_VALUE
-            },
-          props.SUMMARY_02_LABEL &&
-            props.SUMMARY_02_VALUE && {
-              title: props.SUMMARY_02_LABEL,
-              value: props.SUMMARY_02_VALUE
-            },
-          props.SUMMARY_03_LABEL &&
-            props.SUMMARY_03_VALUE && {
-              title: props.SUMMARY_03_LABEL,
-              value: props.SUMMARY_03_VALUE
-            },
-          props.SUMMARY_04_LABEL &&
-            props.SUMMARY_04_VALUE && {
-              title: props.SUMMARY_04_LABEL,
-              value: props.SUMMARY_04_VALUE
-            },
-          props.SUMMARY_05_LABEL &&
-            props.SUMMARY_05_VALUE && {
-              title: props.SUMMARY_05_LABEL,
-              value: props.SUMMARY_05_VALUE
-            }
-        ].filter((summary) => summary)}
+        highlights={Array(5)
+          .fill('')
+          .map(
+            (val, index) =>
+              props[`SUMMARY_0${index + 1}_LABEL`] &&
+              props[`SUMMARY_0${index + 1}_VALUE`] && {
+                title: props[`SUMMARY_0${index + 1}_LABEL`],
+                value: props[`SUMMARY_0${index + 1}_VALUE`]
+              }
+          )
+          .filter((summary) => summary)}
         page='country'
         title={props.HEADER_TITLE}
       >
@@ -113,8 +75,7 @@ export default function Country(props) {
                   <StatisticCard
                     body={result.STATEMENT_WITHOUT_VALUE}
                     statistic={result.VALUE}
-                    // TODO: need to add to snowflake
-                    title='Progress'
+                    title={props.PROGRESS_CARD_LABEL}
                   />
                 ))}
               />
@@ -128,13 +89,13 @@ export default function Country(props) {
         controlTitle={props.GRAPHBOX_TITLE}
         footnote='Date as of footnote'
       />
-      {/* TODO: connect to snowflake */}
-      <MediaBlock
-        videoSrc='https://www.youtube.com/watch?v=RYTFzGkb-5A'
-        videoBackgroundImage='/MediaBlockBackground.png'
-        title='This community is graduating'
-        body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque, turpis et hendrerit pulvinar, odio purus lacinia felis, a semper eros turpis quis turpis. Curabitur sodales velit at fusce.'
-      />
+    </section>
+  )
+}
+
+const DetailsSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.DETAILS_IMAGE_ALT}
         src={props.DETAILS_IMAGE_URL}
@@ -142,7 +103,7 @@ export default function Country(props) {
       >
         <div className={styles['details-content']}>
           <span className={styles['details-content__intro']}>
-            {parse(props.DETAILS_SUMMARY)}
+            {parse(props.DETAILS_SUMMARY || '')}
           </span>
           {props.DETAILS_SUBTITLE_01 && props.DETAILS_BODY_01 && (
             <div className={styles['details-content__section']}>
@@ -165,6 +126,13 @@ export default function Country(props) {
           )}
         </div>
       </SectionContainer>
+    </section>
+  )
+}
+
+const ResultsSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.RESULTS_IMAGE_ALT}
         src={props.RESULTS_IMAGE_URL}
@@ -201,7 +169,14 @@ export default function Country(props) {
           </div>
         )}
       </SectionContainer>
-      {/* TODO: connect to snowflake */}
+    </section>
+  )
+}
+
+const ProgramsSection = (props) => {
+  // TODO: connect to snowflake
+  return (
+    <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel
           cards={[
@@ -241,51 +216,78 @@ export default function Country(props) {
           title='Programs'
         />
       </div>
-      {/* TODO: add story grid */}
-      <div className={styles['resource-container']}>
-        <Carousel
-          title={props.RESULTS_TITLE}
-          // TODO: connect to snowflake
-          cards={[
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='1 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />,
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='2 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />,
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='3 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />,
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='4 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />
-          ]}
+    </section>
+  )
+}
+
+const StoriesSection = (props) => {
+  // TODO: add story grid
+  return <section id={props.sectionId}></section>
+}
+
+const ResourcesSection = (props) => {
+  return (
+    <section id={props.sectionId}>
+      {props.resources.length > 0 && (
+        <div className={styles['resource-container']}>
+          <Carousel
+            title={props.RESULTS_TITLE}
+            cards={props.resources.map((resource) => (
+              <MediaCard
+                alt={resource.ICON_ALT}
+                body={resource.RESOURCE_BODY}
+                iconSrc={resource.ICON_URL}
+                labels={[resource.RESOURCE_TYPE]}
+                title={resource.RESOURCE_TITLE}
+                url={resource.RESOURCE_URL}
+              />
+            ))}
+          />
+        </div>
+      )}
+    </section>
+  )
+}
+
+const componentMap = {
+  section_order_summary: OverviewSection,
+  section_order_details: DetailsSection,
+  section_order_results: ResultsSection,
+  section_order_programs: ProgramsSection,
+  section_order_stories: StoriesSection,
+  section_order_resources: ResourcesSection
+}
+
+export default function Country(props) {
+  const sectionsData = props.controls.filter((control) => control.VALUE)
+  return (
+    <div className={styles['country-container']}>
+      {props.EMERGENCY_BANNER_BODY && (
+        <EmergencyAlert
+          body={props.EMERGENCY_BANNER_BODY}
+          // TODO: need to add to snowflake table
+          buttonLabel='Close'
+          url={props.EMERGENCY_BANNER_URL}
         />
-      </div>
+      )}
+      <TableOfContents
+        contents={sectionsData.map((control) => control.TEXT)}
+        ctaText={
+          props.controls.find((control) => control.ITEM === 'donate_label').TEXT
+        }
+      />
+      {sectionsData.map((section) => {
+        if (componentMap[section.ITEM]) {
+          const Component = componentMap[section.ITEM]
+          return (
+            <Component
+              {...props}
+              sectionId={convertToKebabCase(section.TEXT)}
+            />
+          )
+        }
+        return null
+      })}
       <CtaBlock
         body={props.CTA_BODY}
         buttonLabel={props.CTA_BUTTON_LABEL}
@@ -301,7 +303,7 @@ export default function Country(props) {
 export async function getStaticPaths() {
   const { getSnowflakeData } = require('../utils/snowflake')
   const { rows } = await getSnowflakeData({
-    sqlText: `select URL from COUNTRIES where URL != '\n'`
+    sqlText: `select URL from COUNTRIES where URL is not null`
   })
 
   return {
@@ -310,8 +312,7 @@ export async function getStaticPaths() {
         if (country.URL) {
           return {
             params: {
-              // TODO: update when table gets updated
-              slug: country.URL.split('\n')[1]
+              slug: country.URL
             }
           }
         }
@@ -333,36 +334,50 @@ export async function getStaticProps({ params }) {
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const currentCountry = countriesData.find(
-    (country) => country.URL === `\n${params.slug}`
+    (country) => country.URL === params.slug
   )
 
   const { rows: controlData } = await getSnowflakeData({
-    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation' order by VALUE ASC`
   })
 
   const { rows: resultsData } = await getSnowflakeData({
-    sqlText: `select * from STATEMENTS where LEVEL = 'countries' and COUNTRY = '${titleCase(
-      params.slug
-    )}'`
+    sqlText: `select * from STATEMENTS where LEVEL = 'countries' and ID_COUNTRY = '${currentCountry.COUNTRY_CODE}'`
+  })
+
+  const { rows: resourcesData } = await getSnowflakeData({
+    sqlText: `select * from RESOURCES where ${Array(4)
+      .fill('')
+      .map((val, index) => {
+        const resourceId = currentCountry[`RESOURCEID_0${index + 1}`]
+        return `RESOURCEID = '${resourceId}'`
+      })
+      .join(' or ')}`
+  })
+
+  const { rows: disclaimerData } = await getSnowflakeData({
+    sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
   return {
     props: {
       ...currentCountry,
       results: transformResultsData(resultsData),
-      control: controlData.filter((control) => control.LEVEL === 'countries'),
+      controls:
+        controlData.filter((control) => control.LEVEL === 'countries') || [],
       navigation: transformNavigationData(
         controlData,
         areasOfFocusData,
         countriesData
       ),
-      highlightedResults: resultsData.filter(
-        (result) => result.DATA_PANEL === 'yes'
-      )
+      highlightedResults:
+        resultsData.filter((result) => result.DATA_PANEL === 'yes') || [],
+      resources: resourcesData || [],
+      disclaimer: disclaimerData[0].TEXT
     }
   }
 }

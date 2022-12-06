@@ -26,8 +26,6 @@ export default function Program() {
       <EmergencyAlert
         body='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         buttonLabel='Close'
-        title='Important notice'
-        url='https://www.worldvision.ca/'
       />
       <TableOfContents
         contents={[
@@ -528,11 +526,15 @@ export async function getStaticProps({ params }) {
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const { rows: controlData } = await getSnowflakeData({
     sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+  })
+
+  const { rows: disclaimerData } = await getSnowflakeData({
+    sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
   return {
@@ -541,7 +543,8 @@ export async function getStaticProps({ params }) {
         controlData,
         areasOfFocusData,
         countriesData
-      )
+      ),
+      disclaimer: disclaimerData[0].TEXT
     }
   }
 }

@@ -2,14 +2,23 @@
 import '../_wvc/dist/css/styles.css'
 
 import '../styles/globals.scss'
+import styles from './app.module.scss'
 import SubNavigation from '../components/SubNavigation/SubNavigation'
 import Script from 'next/script'
 import GlobalNavBar from '../components/Global/NavBar/NavBar'
 import GlobalFooter from '../components/Global/Footer/Footer'
+import { convertToKebabCase } from '../utils/convertStrings'
 
 function MyApp({ Component, pageProps }) {
+  const newsletterId =
+    pageProps.controls &&
+    convertToKebabCase(
+      pageProps.controls.find(
+        (control) => control.ITEM === 'section_order_newsletter'
+      )?.TEXT
+    )
   return (
-    <div>
+    <div className={styles['page-container']}>
       <Script src='../_wvc/dist/js/lazy-loading.js' />
       <Script src='../_wvc/dist/js/header.min.js' />
       <Script src='../_wvc/dist/js/jssocials.min.js' />
@@ -26,8 +35,9 @@ function MyApp({ Component, pageProps }) {
       <GlobalNavBar />
       <SubNavigation navItems={pageProps.navigation} />
       <Component {...pageProps} />
+      <div className={styles['disclaimer']}>{pageProps.disclaimer}</div>
 
-      <div className='newsletter-container'>
+      <div className='newsletter-container' id={newsletterId}>
         <iframe
           data-gtm-yt-inspected-1_25='true'
           data-gtm-yt-inspected-9483441_46='true'
