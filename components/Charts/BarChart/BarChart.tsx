@@ -102,7 +102,7 @@ export function BarChart({
         formatter: function (value, context) {
           // if the data received ends with %, add "%" to the top bar labels
           if (data[0][data[0].length - 1] === '%') {
-            return value + '%'
+            return `${value * 100}%`
           }
           return value
         }

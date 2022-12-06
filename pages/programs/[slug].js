@@ -14,101 +14,13 @@ import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
-import { BarChart } from '../../components/Charts/BarChart/BarChart'
-import { LineChart } from '../../components/Charts/LineChart/LineChart'
-import { DoughnutChart } from '../../components/Charts/DoughnutChart/DoughnutChart'
-import { StackedBarChart } from '../../components/Charts/StackedBarChart/StackedBarChart'
 import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { Item } from 'react-stately'
+import { getGraph } from '../../utils/getGraphs'
 
 import styles from './program.module.scss'
 
 export default function Program(props) {
-  // console.log('props', props)
-
-  const getChangeGraph = (graphNumber) => {
-    // get the chart (indicator code) to plot from the first unique three
-    let graphToPlot = [
-      ...new Set(
-        Object.keys(props.changeGraphs).map(
-          (ea) => props.changeGraphs[ea].INDICATOR_CODE
-        )
-      )
-    ].slice(0, 3)[graphNumber]
-    // console.log('graphToPlot:', graphToPlot)
-
-    // get the rows to be plotted for one chart
-    let rowsToPlot = Object.keys(props.changeGraphs)
-      .map((ea) => props.changeGraphs[ea])
-      .filter((ea) => ea.INDICATOR_CODE == graphToPlot)
-      // sort and with TARGET at the end
-      .sort((a, b) => a.YEAR_OR_TARGET.localeCompare(b.YEAR_OR_TARGET))
-    // console.log('rowsToPlot', rowsToPlot)
-
-    let args = {
-      title: `${rowsToPlot[0].GRAPH_STATEMENT}`,
-      aspectRatio: 0.8,
-      ariaLabe: 'Bar Chart Reading Comprehension',
-      withAxes: false,
-      aspectRatio: 0.8,
-      colors: [
-        'rgb(255, 166, 102)',
-        'rgb(231, 96, 12)',
-        // 'rgb(255, 136, 51)',
-        'rgb(102, 102, 102)',
-        'rgb(153, 153, 153)'
-      ],
-      data: rowsToPlot.map((ea) =>
-        ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
-      ),
-      labels: rowsToPlot.map((ea) => ea.YEAR_OR_TARGET),
-      showTopBarLabels: true,
-      subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
-        rowsToPlot[0].COUNTRY ? ', ' + rowsToPlot[0].COUNTRY : ' '
-      }`,
-      title: `${rowsToPlot[0].GRAPH_STATEMENT}`
-    }
-
-    let legends = {}
-    let data
-
-    const transformStackedData = () => {
-      // NOTE: # of legends should match the number of arrays inside data
-      // NOTE: # of labels should match the number of VALUES inside each array
-
-      rowsToPlot.forEach((ea) => {
-        if (legends[ea.DISAGGREGATION]) {
-          legends[ea.DISAGGREGATION] = legends[ea.DISAGGREGATION].concat(
-            ea.VALUE
-          )
-        } else {
-          legends[ea.DISAGGREGATION] = [ea.VALUE]
-        }
-      })
-
-      data = Object.values(legends).map((ea) => ea)
-
-      return { data, legends }
-    }
-
-    switch (rowsToPlot[0].CHART_TYPE) {
-      case 'bar_chart':
-        return <BarChart {...args} />
-      case 'line':
-        return <LineChart {...args} />
-      case 'pie_chart':
-        transformStackedData()
-        return <DoughnutChart {...args} />
-      case 'stacked_chart':
-        transformStackedData()
-        args.legends = Object.keys(legends)
-        args.data = data
-        args.subTitle = ''
-        return <StackedBarChart {...args} />
-      default:
-        return <BarChart {...args} />
-    }
-  }
 
   return (
     <div className={styles['program-container']}>
@@ -286,22 +198,22 @@ export default function Program(props) {
             />
           </div>
           <div className={styles['change-container']}>
-            <h2>Change</h2>
+            {props.changeGraphs.length > 0 && <h2>Change</h2>}
             <div className={styles['change-container__chart-container']}>
               <div
                 className={styles['change-container__chart-container__chart']}
               >
-                {getChangeGraph(0)}
+                {getGraph(0, props)}
               </div>
               <div
                 className={styles['change-container__chart-container__chart']}
               >
-                {getChangeGraph(1)}
+                {props.changeGraphs.length > 1 && getGraph(1, props)}
               </div>
               <div
                 className={styles['change-container__chart-container__chart']}
               >
-                {getChangeGraph(2)}
+                {props.changeGraphs.length > 2 && getGraph(2, props)}
               </div>
             </div>
           </div>
@@ -544,7 +456,6 @@ export default function Program(props) {
 }
 
 export async function getStaticPaths() {
-  // const { getSnowflakeData } = require('../../utils/snowflake')
 
   return {
     paths: [
@@ -583,11 +494,10 @@ export async function getStaticProps({ params }) {
   
   const changeGraphs = await getSnowflakeData({
     sqlText: `select * from GRAPHS
-    where LEVEL = 'areas_of_focus'
-    and CHART_TYPE = 'bar_chart'`
-    // and IVS_PROGRAM_CODE is 'egal'
-    // and DATA_PANEL is 'change'
-    // and INDICATOR_CODE = 'C5A.24867'`
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'change_graph'`
+    // TODO: add the program code filter
+    // and IVS_PROGRAM_CODE is '....' 
   })
 
   return {
@@ -598,7 +508,7 @@ export async function getStaticProps({ params }) {
         countriesData
       ),
       disclaimer: disclaimerData[0].TEXT,
-      changeGraphs: { ...changeGraphs.rows }
+      changeGraphs: [ ...changeGraphs.rows ]
     }
   }
 }
