@@ -26,16 +26,16 @@
   &__content-container {
     flex: 1;
     padding-bottom: $space-xl;
-    padding-left: $space-m:;
-    padding-right: $space-m:;
-    padding-top: $space-m:;
+    padding-left: $space-m;
+    padding-right: $space-m;
+    padding-top: $space-m;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     @media (min-width: 768px) {
-      padding: $space-xxxl $space-m:;
+      padding: $space-xxxl $space-m;
     }
   }
 
@@ -62,7 +62,7 @@
 
   p {
     @include typographylargeparagraphbodycopy_regular;
-    margin-bottom: $space-m:;
+    margin-bottom: $space-m;
     -webkit-line-clamp: 5;
     overflow: hidden;
     display: -webkit-box;
