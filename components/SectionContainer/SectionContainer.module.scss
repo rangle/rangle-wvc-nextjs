@@ -2,6 +2,8 @@
 @import '../../styles/spacing';
 
 .section-container {
+  color: $charcoal;
+
   &__picture {
     display: block;
   }
@@ -55,6 +57,10 @@
 
   &__heading {
     @include typographysmallheadingh2;
+
+    @media (min-width: 768px) {
+      @include typographylargeheadingh1;
+    }
   }
 
   &__content {
