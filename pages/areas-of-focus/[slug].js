@@ -512,7 +512,6 @@ export async function getStaticPaths() {
         if (areaOfFocus.CURRENT_URL) {
           return {
             params: {
-              // TODO: update when table gets updated
               slug: areaOfFocus.CURRENT_URL.split('areas-of-focus/')[1]
             }
           }

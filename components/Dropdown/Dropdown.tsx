@@ -51,7 +51,7 @@ const Dropdown = ({
               <option
                 className={styles['select-dropdown__option']}
                 value={option.value}
-                key={option.label}
+                key={option.value}
               >
                 {option.label}
               </option>

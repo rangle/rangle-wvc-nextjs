@@ -1,3 +1,5 @@
+import parse from 'html-react-parser'
+
 import Tooltip from '../Tooltip/Tooltip'
 import styles from './SummaryBlock.module.scss'
 
@@ -24,7 +26,7 @@ const SummaryBlock = ({
               <p>{highlight.title}</p>
               {highlight.tooltip && <Tooltip content={highlight.tooltip} />}
             </div>
-            <p>{highlight.value}</p>
+            <p>{parse(highlight.value || '')}</p>
           </div>
         )
       })}
