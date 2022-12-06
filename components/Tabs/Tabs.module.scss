@@ -16,10 +16,9 @@ $focus-outline: 4px solid $blue-light;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: $space-s 0;
     gap: $space-xs;
     isolation: isolate;
-    width: 8rem; // 128px
+    padding: $space-s 2.25rem;
 
     &:focus,
     &:focus-visible {
@@ -34,14 +33,14 @@ $focus-outline: 4px solid $blue-light;
     @media (min-width: 768px) {
       @include typographylargekarladefault;
 
-      padding: $space-xl 0;
-      width: 12rem; // 192px
+      padding: $space-xl 4.75rem;
     }
   }
 
   [role='tablist'] {
     display: flex;
     justify-content: center;
+    overflow-x: scroll;
   }
 
   [role='tablist'][aria-orientation='horizontal'] [role='tab'] {
