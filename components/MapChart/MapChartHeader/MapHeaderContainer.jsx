@@ -87,6 +87,17 @@ const getMarkerCoordinates = (
     })
 }
 
+const MAP_OPTIONS = {
+  boxZoom: false,
+  doubleClickZoom: false,
+  dragRotate: false,
+  dragPan: false,
+  keyboard: false,
+  scrollZoom: false,
+  touchPitch: false,
+  touchZoomRotate: false
+}
+
 //FIXME: storybook of this component is broken
 const MapHeaderContainer = ({
   showEmptyPrograms = false,
@@ -164,6 +175,7 @@ const MapHeaderContainer = ({
         onSelectedProgramTypeChange={setSelectedProgramType}
         programOptions={programOptions}
         mapStatistics={mapStatistics}
+        mapOptions={MAP_OPTIONS}
       />
     </>
   )
