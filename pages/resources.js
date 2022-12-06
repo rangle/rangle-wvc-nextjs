@@ -121,7 +121,7 @@ export async function getStaticProps() {
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const { rows: controlData } = await getSnowflakeData({
@@ -136,6 +136,10 @@ export async function getStaticProps() {
     sqlText: `select * from PROGRAMS`
   })
 
+  const { rows: disclaimerData } = await getSnowflakeData({
+    sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
+  })
+
   return {
     props: {
       countries: countriesData.map((ea) => ea.HEADER_TITLE),
@@ -146,7 +150,8 @@ export async function getStaticProps() {
         controlData,
         areasOfFocusData,
         countriesData
-      )
+      ),
+      disclaimer: disclaimerData[0].TEXT
     }
   }
 }

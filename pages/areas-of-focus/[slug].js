@@ -1,4 +1,4 @@
-import { titleCase } from 'title-case'
+import parse from 'html-react-parser'
 
 import ExpandableTextBlock from '../../components/ExpandableTextBlock/ExpandableTextBlock'
 import Tabs from '../../components/Tabs/Tabs'
@@ -19,42 +19,24 @@ import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHigh
 import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { Item } from 'react-stately'
+import { convertToKebabCase } from '../../utils/convertStrings'
 
 import styles from './sector.module.scss'
 
-export default function Sector(props) {
+const OverviewSection = (props) => {
   return (
-    <div className={styles['sector-container']}>
-      <TableOfContents
-        contents={[
-          'Overview',
-          'Program Details',
-          'From the Field',
-          'Results',
-          'Stories',
-          'Resources'
-        ]}
-        ctaText='Donate'
-      />
+    <section id={props.sectionId}>
       <HeroBlock
         sectorImgSrc={props.HEADER_IMAGE_URL}
         body={props.HEADER_BODY}
         ctaLabel={props.HEADER_CTABUTTON_LABEL}
         ctaUrl={props.HEADER_CTABUTTON_URL}
-        highlights={[
-          {
-            title: props.PANEL_TOP01_VALUE,
-            value: props.PANEL_TOP01_LABEL
-          },
-          {
-            title: props.PANEL_TOP02_VALUE,
-            value: props.PANEL_TOP02_LABEL
-          },
-          {
-            title: props.PANEL_TOP03_VALUE,
-            value: props.PANEL_TOP03_LABEL
-          }
-        ]}
+        highlights={Array(3)
+          .fill('')
+          .map((val, index) => ({
+            title: props[`PANEL_TOP0${index + 1}_VALUE`],
+            value: props[`PANEL_TOP0${index + 1}_LABEL`]
+          }))}
         page='sector'
         title={props.HEADER_TITLE}
       >
@@ -62,79 +44,50 @@ export default function Sector(props) {
           <ImpactHighlightGrid
             impactHighlights={[
               {
-                firstLabel: props.PANEL_TOP04_FIRST_LABEL,
-                highlight: props.PANEL_TOP04_VALUE,
-                secondLabel: props.PANEL_TOP04_SECOND_LABEL,
-                title: props.PANEL_TOP04_TITLE,
-                year: props.PANEL_TOP04_YEAR
+                firstLabel: props.PANEL_MID01_FIRST_LABEL,
+                highlight: props.PANEL_MID01_VALUE,
+                secondLabel: props.PANEL_MID01_SECOND_LABEL,
+                title: props.PANEL_MID01_TITLE,
+                year: props.PANEL_MID01_YEAR
               },
               {
-                firstLabel: props.PANEL_TOP05_FIRST_LABEL,
-                highlight: props.PANEL_TOP05_VALUE,
-                secondLabel: props.PANEL_TOP05_SECOND_LABEL,
-                title: props.PANEL_TOP05_TITLE,
-                year: props.PANEL_TOP05_YEAR
+                firstLabel: props.PANEL_MID02_FIRST_LABEL,
+                highlight: props.PANEL_MID02_VALUE,
+                secondLabel: props.PANEL_MID02_SECOND_LABEL,
+                title: props.PANEL_MID02_TITLE,
+                year: props.PANEL_MID02_YEAR
               }
             ]}
           />
-          {/* TODO: connect to snowflake */}
-          <div
-            style={{
-              marginTop: '6rem'
-            }}
-          >
-            <StatisticCardGrid
-              cards={[
-                <StatisticCard
-                  body='people learned how to protect themselves against COVID-19'
-                  statistic='4,940,488'
-                  title='Progress'
-                />,
-                <StatisticCard
-                  body='malnourished children were admitted to nutrition programs'
-                  statistic='1,020'
-                  title='Progress'
-                />,
-                <StatisticCard
-                  body='communities updated their disaster preparedness plans to provide guidance during emergencies'
-                  statistic='242'
-                  title='Progress'
-                />
-              ]}
-            />
-          </div>
+          {props.highlightedResults.length > 0 && (
+            <div
+              style={{
+                marginTop: '6rem'
+              }}
+            >
+              <StatisticCardGrid
+                cards={props.highlightedResults.map((result) => (
+                  <StatisticCard
+                    body={result.STATEMENT_WITHOUT_VALUE}
+                    statistic={result.VALUE}
+                    title={props.PROGRESS_CARD_LABEL}
+                  />
+                ))}
+              />
+            </div>
+          )}
         </div>
       </HeroBlock>
       <LogoBlock
         ctaLabel={props.SDG_LINK_LABEL}
         ctaUrl={props.SDG_LINK_URL}
-        logos={[
-          {
-            alt: 'Logo alt text',
-            src: props.SDG_01_URL,
-            url: props.SDG_01_LINK
-          },
-          {
-            alt: 'Logo alt text',
-            src: props.SDG_02_URL,
-            url: props.SDG_02_LINK
-          },
-          {
-            alt: 'Logo alt text',
-            src: props.SDG_03_URL,
-            url: props.SDG_03_LINK
-          },
-          {
-            alt: 'Logo alt text',
-            src: props.SDG_04_URL,
-            url: props.SDG_04_LINK
-          },
-          {
-            alt: 'Logo alt text',
-            src: props.SDG_05_URL,
-            url: props.SDG_05_LINK
-          }
-        ]}
+        logos={Array(5)
+          .fill('')
+          .map((val, index) => ({
+            alt: props[`SDG_0${index + 1}_ALT`],
+            src: props[`SDG_0${index + 1}_URL`],
+            url: props[`SDG_0${index + 1}_LINK`]
+          }))}
         title={props.SDG_TITLE}
       />
       <ChartContainer
@@ -142,11 +95,20 @@ export default function Sector(props) {
         controlTitle={props.GRAPHBOX_TITLE}
         footnote='Date as of footnote'
       />
+    </section>
+  )
+}
+
+const ImpactSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       {props.IMPACT_TITLE && props.IMPACT_BODY && (
         <div className={styles['impact-container-wrapper']}>
           <div className={styles['impact-container']}>
             <h3>{props.IMPACT_TITLE}</h3>
-            <p className={styles['impact-intro']}>{props.IMPACT_BODY}</p>
+            <p className={styles['impact-intro']}>
+              {parse(props.IMPACT_BODY || '')}
+            </p>
           </div>
           {/* TODO: connect to snowflake, need columns */}
           <div className={styles['from-field-container']}>
@@ -190,7 +152,14 @@ export default function Sector(props) {
           </div>
         </div>
       )}
+    </section>
+  )
+}
 
+const ChallengesSection = (props) => {
+  return (
+    <section id={props.sectionId}>
+      {' '}
       <SectionContainer
         alt={props.CHALLENGES_ALT}
         src={props.CHALLENGES_URL}
@@ -215,6 +184,13 @@ export default function Sector(props) {
             })}
         </div>
       </SectionContainer>
+    </section>
+  )
+}
+
+const ApproachSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.APPROACHES_IMAGE_ALT}
         src={props.APPROACHES_IMAGE_URL}
@@ -227,13 +203,10 @@ export default function Sector(props) {
           </h4>
           <div className={styles['approach-diagram__goals']}>
             <Goals
-              data={[
-                props.APPROACH_STEP_1,
-                props.APPROACH_STEP_2,
-                props.APPROACH_STEP_3,
-                props.APPROACH_STEP_4,
-                props.APPROACH_STEP_5
-              ].filter((goal) => goal)}
+              data={Array(5)
+                .fill('')
+                .map((val, index) => props[`APPROACH_STEP_${index + 1}`])
+                .filter((goal) => goal)}
             />
           </div>
         </div>
@@ -241,6 +214,13 @@ export default function Sector(props) {
           <ExpandableTextBlock body={props.APPROACH_BODY} />
         </div>
       </SectionContainer>
+    </section>
+  )
+}
+
+const ExpenditureSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.EXPENDITURE_IMAGE_ALT}
         src={props.EXPENDITURE_IMAGE_URL}
@@ -288,73 +268,62 @@ export default function Sector(props) {
           <ExpandableTextBlock body={props.EXPENDITURE_PLANS} />
         </div>
       </SectionContainer>
+    </section>
+  )
+}
+
+const ProgressSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.RESULTS_IMAGE_ALT}
         src={props.RESULTS_IMAGE_URL}
         title={props.RESULTS_TITLE}
         isDarkMode
       >
-        {/* TODO: connect to snowflake */}
-        <div className={styles['progress-content']}>
-          <Tabs isDarkMode>
-            <Item title='2021'>
-              <AccordionGroup
-                isDarkMode
-                items={[
-                  {
-                    children: (
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis id, quia odit soluta nemo quisquam
-                        modi! Reprehenderit dolore enim temporibus porro earum
-                        hic deserunt ducimus non eveniet, voluptatum nam quod
-                        aut assumenda iste est eius aliquid perspiciatis laborum
-                        nisi ratione, rem minima debitis? Aspernatur atque ut
-                        distinctio veritatis asperiores quisquam.
-                      </p>
-                    ),
-                    title: 'Item #1'
-                  },
-                  {
-                    children: (
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis id, quia odit soluta nemo quisquam
-                        modi! Reprehenderit dolore enim temporibus porro earum
-                        hic deserunt ducimus non eveniet, voluptatum nam quod
-                        aut assumenda iste est eius aliquid perspiciatis laborum
-                        nisi ratione, rem minima debitis? Aspernatur atque ut
-                        distinctio veritatis asperiores quisquam.
-                      </p>
-                    ),
-                    title: 'Item #2'
-                  },
-                  {
-                    children: (
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis id, quia odit soluta nemo quisquam
-                        modi! Reprehenderit dolore enim temporibus porro earum
-                        hic deserunt ducimus non eveniet, voluptatum nam quod
-                        aut assumenda iste est eius aliquid perspiciatis laborum
-                        nisi ratione, rem minima debitis? Aspernatur atque ut
-                        distinctio veritatis asperiores quisquam.
-                      </p>
-                    ),
-                    title: 'Item #3'
-                  }
-                ]}
-              />
-            </Item>
-            <Item title='2022'>Senatus Populusque Romanus.</Item>
-            <Item title='2023'>Alea jacta est.</Item>
-          </Tabs>
-        </div>
+        {props.results.length > 0 && (
+          <div className={styles['progress-content']}>
+            <Tabs isDarkMode>
+              {props.results.map((result) => (
+                <Item title={result.year}>
+                  <AccordionGroup
+                    isDarkMode
+                    items={Object.keys(result.areasOfFocus).map(
+                      (areaOfFocusTitle) => ({
+                        title: areaOfFocusTitle,
+                        children: (
+                          <p>
+                            <ul>
+                              {result.areasOfFocus[areaOfFocusTitle].map(
+                                (areaOfFocus) => (
+                                  <li>{areaOfFocus.FULL_STATEMENT}</li>
+                                )
+                              )}
+                            </ul>
+                          </p>
+                        )
+                      })
+                    )}
+                  />
+                </Item>
+              ))}
+            </Tabs>
+          </div>
+        )}
       </SectionContainer>
+    </section>
+  )
+}
+
+const ChangeSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <div className={styles['change-container-wrapper']}>
         <div className={styles['change-container']}>
           <h2>{props.CHANGE_TITLE}</h2>
-          <p className={styles['change-intro']}>{props.CHANGE_BODY}</p>
+          <p className={styles['change-intro']}>
+            {parse(props.CHANGE_BODY || '')}
+          </p>
           <div className={styles['change-container__chart-container']}>
             <div className={styles['change-container__chart-container__chart']}>
               {/* TODO: connect to snowflake */}
@@ -417,7 +386,13 @@ export default function Sector(props) {
           </div>
         </div>
       </div>
+    </section>
+  )
+}
 
+const ProgramsSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <div className={styles['program-container']}>
         {/* TODO: connect to snowflake */}
         <Carousel
@@ -434,50 +409,74 @@ export default function Sector(props) {
           title='Programs'
         />
       </div>
-      <div className={styles['resource-container']}>
-        {/* TODO: connect to snowflake */}
-        <Carousel
-          cards={[
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='1 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />,
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='2 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />,
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='3 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
-            />,
-            <MediaCard
-              alt='/conference.svg'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              iconSrc='/conference.svg'
-              imageSrc=''
-              labels={['Conference']}
-              title='4 Vision for Vulnerable Youth Initiative'
-              url='https://worldvision.ca/'
+    </section>
+  )
+}
+
+const StoriesSection = (props) => {
+  // TODO: add story grid
+  return <section id={props.sectionId}></section>
+}
+
+const ResourcesSection = (props) => {
+  return (
+    <section id={props.sectionId}>
+      {props.resources.length > 0 && (
+        <div className={styles['resource-container']}>
+          <Carousel
+            title={props.RESULTS_TITLE}
+            cards={props.resources.map((resource) => (
+              <MediaCard
+                alt={resource.ICON_ALT}
+                body={resource.RESOURCE_BODY}
+                iconSrc={resource.ICON_URL}
+                labels={[resource.RESOURCE_TYPE]}
+                title={resource.RESOURCE_TITLE}
+                url={resource.RESOURCE_URL}
+              />
+            ))}
+          />
+        </div>
+      )}
+    </section>
+  )
+}
+
+const componentMap = {
+  section_order_summary: OverviewSection,
+  section_order_impact: ImpactSection,
+  section_order_challenges: ChallengesSection,
+  section_order_approach: ApproachSection,
+  section_order_expenditure: ExpenditureSection,
+  section_order_progress: ProgressSection,
+  section_order_change: ChangeSection,
+  section_order_programs: ProgramsSection,
+  section_order_stories: StoriesSection,
+  section_order_resources: ResourcesSection
+}
+
+export default function Sector(props) {
+  const sectionsData = props.controls.filter((control) => control.VALUE)
+  return (
+    <div className={styles['sector-container']}>
+      <TableOfContents
+        contents={sectionsData.map((control) => control.TEXT)}
+        ctaText={
+          props.controls.find((control) => control.ITEM === 'donate_label').TEXT
+        }
+      />
+      {sectionsData.map((section) => {
+        if (componentMap[section.ITEM]) {
+          const Component = componentMap[section.ITEM]
+          return (
+            <Component
+              {...props}
+              sectionId={convertToKebabCase(section.TEXT)}
             />
-          ]}
-          title='Resources'
-        />
-      </div>
+          )
+        }
+        return null
+      })}
       <CtaBlock
         body={props.CTA_BODY}
         buttonLabel={props.CTA_BUTTON_LABEL}
@@ -486,6 +485,17 @@ export default function Sector(props) {
         imageUrlAlt={props.CTA_IMAGE_URL_ALT}
         title={props.CTA_TITLE}
       />
+      {/* TODO: connect to snowflake data */}
+      <LogoBlock
+        logos={Array(5)
+          .fill('')
+          .map((val, index) => ({
+            alt: props[`SDG_0${index + 1}_ALT`],
+            src: props[`SDG_0${index + 1}_URL`],
+            url: props[`SDG_0${index + 1}_LINK`]
+          }))}
+        title={props.SDG_TITLE}
+      />
     </div>
   )
 }
@@ -493,7 +503,7 @@ export default function Sector(props) {
 export async function getStaticPaths() {
   const { getSnowflakeData } = require('../../utils/snowflake')
   const { rows } = await getSnowflakeData({
-    sqlText: `select CURRENT_URL from AREAS_OF_FOCUS where CURRENT_URL != '\n'`
+    sqlText: `select CURRENT_URL from AREAS_OF_FOCUS where CURRENT_URL is not null`
   })
 
   return {
@@ -503,7 +513,7 @@ export async function getStaticPaths() {
           return {
             params: {
               // TODO: update when table gets updated
-              slug: areaOfFocus.CURRENT_URL.split('\nareas-of-focus/')[1]
+              slug: areaOfFocus.CURRENT_URL.split('areas-of-focus/')[1]
             }
           }
         }
@@ -524,23 +534,33 @@ export async function getStaticProps({ params }) {
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL != '\n' order by HEADER_TITLE ASC`
+    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const currentAreaOfFocus = areasOfFocusData.find(
-    (areaOfFocus) =>
-      areaOfFocus.CURRENT_URL === `\nareas-of-focus/${params.slug}`
+    (areaOfFocus) => areaOfFocus.CURRENT_URL === `areas-of-focus/${params.slug}`
   )
 
-  // TODO: statement table doesn't match url
-  // const { rows: resultsData } = await getSnowflakeData({
-  //   sqlText: `select * from STATEMENTS where LEVEL = 'areas_of_focus' and AREA_OF_FOCUS = '${titleCase(
-  //     params.slug
-  //   )}'`
-  // })
+  const { rows: resultsData } = await getSnowflakeData({
+    sqlText: `select * from STATEMENTS where LEVEL = 'areas_of_focus' and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'`
+  })
 
   const { rows: controlData } = await getSnowflakeData({
-    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+    sqlText: `select * from CONTROL where LEVEL = 'areas_of_focus' or LEVEL = 'navigation' order by VALUE ASC`
+  })
+
+  const { rows: disclaimerData } = await getSnowflakeData({
+    sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
+  })
+
+  const { rows: resourcesData } = await getSnowflakeData({
+    sqlText: `select * from RESOURCES where ${Array(4)
+      .fill('')
+      .map((val, index) => {
+        const resourceId = currentAreaOfFocus[`RESOURCEID_0${index + 1}`]
+        return `RESOURCEID = '${resourceId}'`
+      })
+      .join(' or ')}`
   })
 
   return {
@@ -550,12 +570,15 @@ export async function getStaticProps({ params }) {
         controlData,
         areasOfFocusData,
         countriesData
-      )
-      // results: transformResultsData(resultsData),
-      // control: controlData,
-      // highlightedResults: resultsData.filter(
-      //   (result) => result.DATA_PANEL === 'yes'
-      // )
+      ),
+      results: transformResultsData(resultsData),
+      controls:
+        controlData.filter((control) => control.LEVEL === 'areas_of_focus') ||
+        [],
+      highlightedResults:
+        resultsData.filter((result) => result.DATA_PANEL === 'yes') || [],
+      resources: resourcesData || [],
+      disclaimer: disclaimerData[0].TEXT
     }
   }
 }
