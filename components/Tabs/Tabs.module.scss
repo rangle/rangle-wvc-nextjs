@@ -7,7 +7,7 @@ $focus-outline: 4px solid $blue-light;
   flex-direction: column;
 
   [role='tab'] {
-    @include typographysmallkarlaregular;
+    @include typographysmallkarladefault;
     justify-content: center;
     box-sizing: border-box;
     border-bottom: 2px solid $grey-lighter;
@@ -32,6 +32,8 @@ $focus-outline: 4px solid $blue-light;
     }
 
     @media (min-width: 768px) {
+      @include typographylargekarladefault;
+
       padding: $space-xl 0;
       width: 12rem; // 192px
     }
