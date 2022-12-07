@@ -49,6 +49,8 @@ export const NextIcon = () => {
 const HomepageCarousel = ({ cards, title }) => {
   const id = useId()
 
+  console.log({ cards })
+
   return (
     <div id={`carousel-${id}`} className={styles['homepage-carousel']}>
       {title && <h2 className={styles['homepage-carousel-title']}>{title}</h2>}

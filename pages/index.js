@@ -44,7 +44,8 @@ const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 const sectorHighlights = (t) => [
   {
     value: '18 million',
-    title: 'people reached'
+    title: 'people reached',
+    tooltip: 'sample tooltip'
   },
   {
     value: '$226 million',
@@ -58,6 +59,7 @@ export default function Home({
   translation: t,
   chartData
 }) {
+  console.log({ t })
   return (
     <div className={styles.container}>
       <Head>
