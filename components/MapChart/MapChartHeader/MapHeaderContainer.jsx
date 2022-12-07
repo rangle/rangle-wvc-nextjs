@@ -13,12 +13,20 @@ const PROGRAMMING_TYPE_FILL_COLOR = {
 }
 
 const getCountryOptions = (countryData, showEmptyPrograms, selectedYear) => {
+  const filtered = countryData.filter((country) => {
+    console.log(selectedYear)
+    return (
+      showEmptyPrograms ||
+      (showEmptyPrograms === false && country?.programs?.length > 0) ||
+      selectedYear === country['YEAR']
+    )
+  })
+  console.log(filtered)
   const data = countryData
     .filter(
       (country) =>
         showEmptyPrograms ||
         (showEmptyPrograms === false && country?.programs?.length > 0) ||
-        selectedYear === 'All' ||
         selectedYear === country['YEAR']
     )
     .reduce(
@@ -38,7 +46,6 @@ const getProgramOptions = (programData, selectedCountry, selectedYear) => {
       (n) =>
         n.country === countryName ||
         selectedCountry === 'All' ||
-        selectedYear === 'All' ||
         selectedYear === n['YEAR']
     )
     .reduce(
@@ -51,14 +58,12 @@ const getProgramOptions = (programData, selectedCountry, selectedYear) => {
     )
 }
 
-//TODO The design only shows 2021 but its risky to rely only on that number because
-// it will either never update, unless a code change is done, or the results might become weird
-// for now hardcoding 'all' and '2021' as the year is not even visible in the DB yet
 const getYearOptions = (programData) => {
   const years = programData
     .map((program) => program['YEAR'])
     .filter((year) => year !== undefined)
-  const uniqueYears = [...new Set(['All', '2021', ...years])]
+    .sort((a, b) => b - a)
+  const uniqueYears = [...new Set([...years])]
   return uniqueYears.map((year) => ({ value: year, label: year }))
 }
 
@@ -96,7 +101,7 @@ const MapHeaderContainer = ({
   countryData = [],
   ...props
 }) => {
-  const [selectedYear, setSelectedYear] = useState('All')
+  const [selectedYear, setSelectedYear] = useState('2021')
   const [selectedCountry, setSelectedCountry] = useState('All')
   const [selectedProgramType, setSelectedProgramType] = useState('All')
 

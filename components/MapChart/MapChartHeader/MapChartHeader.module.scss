@@ -7,7 +7,7 @@
 .map-container {
   position: relative;
   display: block;
-  height: calc(100vh - 117px);
+  height: 70vh;
 }
 
 .map-header-container {
@@ -16,12 +16,10 @@
   &__map-legend {
     position: absolute;
     display: flex;
-    height: 15.5rem;
-    width: 18.063;
     background: $grey;
     flex-direction: column;
 
-    bottom: 0px;
+    bottom: 0;
     padding: $size-m;
 
     span {
