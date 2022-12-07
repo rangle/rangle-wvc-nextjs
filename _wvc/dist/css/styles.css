@@ -6267,7 +6267,7 @@ img.jssocials-share-logo {
   margin: 0 auto;
 }
 
-.hero-video iframe {
+/* .hero-video iframe {
   position: absolute;
   top: 0;
   left: -130px;
@@ -6275,8 +6275,8 @@ img.jssocials-share-logo {
   height: 900%;
   top: -385%;
   pointer-events: none;
-}
-@media (max-width: 1310px) {
+} */
+/* @media (max-width: 1310px) {
   .hero-video iframe {
     width: 134%;
     top: -392%;
@@ -6287,7 +6287,7 @@ img.jssocials-share-logo {
     width: 128%;
     top: -399%;
   }
-}
+} */
 
 .media-slider .media-slider_item iframe[data-video=''] {
   display: none;
@@ -6330,7 +6330,7 @@ img.jssocials-share-logo {
 .rmtMediaSlider {
   margin-bottom: 10px;
 }
-.rmtMediaSlider i.arrow.fa.fa-angle-right.slick-arrow {
+/* .rmtMediaSlider i.arrow.fa.fa-angle-right.slick-arrow {
   right: 2.4%;
 }
 .rmtMediaSlider i.arrow.fa.fa-angle-right.slick-arrow:focus {
@@ -6393,7 +6393,7 @@ img.jssocials-share-logo {
 .rmtMediaSlider .slider-nav-label {
   position: absolute;
   left: 10000px;
-}
+} */
 
 .childDonationSlider .slick-list {
   padding-bottom: 10px !important;
@@ -9047,14 +9047,14 @@ a.siteFooter-bbb img {
   .carousel a.carousel-control {
     display: none;
   }
-  .video-background .video-foreground iframe.desktop-content {
+  /* .video-background .video-foreground iframe.desktop-content {
     margin-top: -60px;
     zoom: 1;
   }
   .video-background .video-foreground iframe.mobile-content {
     zoom: 3.4;
     margin-top: -70px;
-  }
+  } */
 }
 
 /* Small Devices, Tablets */
@@ -9100,10 +9100,10 @@ a.siteFooter-bbb img {
   .homepage-tabs p {
     font-size: 16px;
   }
-  .video-background .video-foreground iframe.mobile-content {
+  /* .video-background .video-foreground iframe.mobile-content {
     margin-top: -110px;
     zoom: 2.6;
-  }
+  } */
   .homepage-trust {
     padding: 0 0 25px 0;
   }
@@ -9190,10 +9190,10 @@ a.siteFooter-bbb img {
     padding-right: 0px;
     padding-left: 0px;
   }
-  .video-background .video-foreground iframe.mobile-content {
+  /* .video-background .video-foreground iframe.mobile-content {
     margin-top: -100px;
     zoom: 1.7;
-  }
+  } */
 }
 
 @media only screen and (max-width: 767px) {

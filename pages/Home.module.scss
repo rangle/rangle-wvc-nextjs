@@ -23,16 +23,16 @@
     }
   }
 
+  &--map {
+    overflow: hidden;
+  }
+
   &--sticky-carousel {
     background-color: $light-bg;
   }
 
   &--video-carousel {
     background-color: $light-bg;
-  }
-
-  &--map {
-  //TODO set linear-gradient background that rolls from video into map
   }
 
   &--sector-overview {

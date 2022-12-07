@@ -18,7 +18,8 @@ const slideIn = {
   variants: {
     enter: {
       y: 30,
-      opacity: 0
+      opacity: 0,
+      duration: 1.5
     },
     center: {
       zIndex: 1,
@@ -35,7 +36,7 @@ const slideIn = {
   exit: ['exit'],
   transition: {
     type: 'spring',
-    duration: 2
+    duration: 0.1
   }
 }
 
@@ -87,7 +88,9 @@ const StickyCarousel = ({ backgroundImage, content, pretext, subtext }) => {
               <p className={styles['pretext']}>{pretext}</p>
               <motion.h3 {...fadeIn}>{content[index].text}</motion.h3>
             </div>
-            <motion.img {...fadeIn} src={content[index].image} />
+            <div className={styles['image-container']}>
+              <motion.img {...fadeIn} src={content[index].image} />
+            </div>
             <div className={styles['hidden-mobile']}>
               <p className={styles['pretext']}>{pretext}</p>
               <motion.h3 {...fadeIn}>{content[index].text}</motion.h3>

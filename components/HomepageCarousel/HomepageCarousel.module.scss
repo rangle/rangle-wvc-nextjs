@@ -7,6 +7,7 @@
     text-align: center;
     color: $orange-light;
     font-size: 2.5rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     @media (min-width: 768px) {
       font-size: 3.875rem;
@@ -50,11 +51,18 @@
 
     &--mobile {
       display: flex;
-      margin: 0 1rem;
 
       @media (min-width: 768px) {
         display: none;
       }
+    }
+
+    &--mobile-left {
+      margin: 0 1rem 0 0;
+    }
+
+    &--mobile-right {
+      margin: 0 0 0 1rem;
     }
   }
 
