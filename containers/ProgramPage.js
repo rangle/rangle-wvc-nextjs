@@ -157,7 +157,7 @@ export default function ProgramPage(props) {
           )}
         </div>
       </HeroBlock>
-      {props.topGraphs && props.topGraphs.length > 0 (
+      {props.topGraphs && props.topGraphs.length > 0 && (
         <ChartContainer
           chartType='stackedBar'
           controlTitle='Explore our investments and results'
