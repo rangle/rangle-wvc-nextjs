@@ -11,18 +11,17 @@ const HomepageCarouselNoSSR = dynamic(
 )
 
 const VideoCarousel = ({ videos }) => {
-  console.log({ videos })
   const cards = videos.map((video) => (
     <Video backgroundImage={video.img} src={video.src} />
   ))
 
   return (
     <div className={styles['video-carousel']}>
-      {/* {cards && cards.length && ( */}
-      <div className={styles['slide-container']}>
-        <HomepageCarouselNoSSR cards={cards} />
-      </div>
-      {/* )} */}
+      {cards && cards.length && (
+        <div className={styles['slide-container']}>
+          <HomepageCarouselNoSSR cards={cards} />
+        </div>
+      )}
 
       <div
         className={styles['background-img-container']}

@@ -17,7 +17,7 @@ const featureCardData = (t, max) =>
     title: t[`did_know_title_0${index + 1}`],
     description: t[`did_know_body_0${index + 1}`],
     imgSrc: t[`did_know_image_url_0${index + 1}`],
-    imgAlt: 'sample alt text'
+    imgAlt: t[`did_know_image_alt_0${index + 1}`]
   }))
 
 const creditsData = (t) => [
@@ -44,8 +44,7 @@ const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 const sectorHighlights = (t) => [
   {
     value: '18 million',
-    title: 'people reached',
-    tooltip: 'sample tooltip'
+    title: 'people reached'
   },
   {
     value: '$226 million',

@@ -49,8 +49,6 @@ export const NextIcon = () => {
 const HomepageCarousel = ({ cards, title }) => {
   const id = useId()
 
-  console.log({ cards })
-
   return (
     <div id={`carousel-${id}`} className={styles['homepage-carousel']}>
       {title && <h2 className={styles['homepage-carousel-title']}>{title}</h2>}
@@ -95,14 +93,14 @@ const HomepageCarousel = ({ cards, title }) => {
       <div className={styles['mobile-nav-button-container']}>
         <button
           id='carousel-nav-button-previous'
-          className={`${styles['homepage-carousel-nav-button']} ${styles['homepage-carousel-nav-button--mobile']}`}
+          className={`${styles['homepage-carousel-nav-button']} ${styles['homepage-carousel-nav-button--mobile']} ${styles['homepage-carousel-nav-button--mobile-left']}`}
           tabIndex={-1}
         >
           <PrevIcon className={styles['carousel-nav-button--icon']} />
         </button>
         <button
           id='carousel-nav-button-next'
-          className={`${styles['homepage-carousel-nav-button']} ${styles['homepage-carousel-nav-button--mobile']}`}
+          className={`${styles['homepage-carousel-nav-button']} ${styles['homepage-carousel-nav-button--mobile']} ${styles['homepage-carousel-nav-button--mobile-right']}`}
           tabIndex={-1}
         >
           <NextIcon className={styles['carousel-nav-button--icon']} />

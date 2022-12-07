@@ -23,12 +23,15 @@
     }
   }
 
+  &--map {
+    overflow: hidden;
+  }
+
   &--sticky-carousel {
     background-color: $light-bg;
   }
 
   &--video-carousel {
-    height: 100vh;
     background-color: $light-bg;
   }
 

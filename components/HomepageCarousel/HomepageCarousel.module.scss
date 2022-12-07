@@ -51,11 +51,18 @@
 
     &--mobile {
       display: flex;
-      margin: 0 1rem;
 
       @media (min-width: 768px) {
         display: none;
       }
+    }
+
+    &--mobile-left {
+      margin: 0 1rem 0 0;
+    }
+
+    &--mobile-right {
+      margin: 0 0 0 1rem;
     }
   }
 
