@@ -17,5 +17,7 @@ Default.args = {
     'Stories',
     'Resources'
   ],
+  ctaText: 'Donate',
+  ctaUrl: 'https://www.worldvision.ca',
   ctaText: 'Donate'
 }

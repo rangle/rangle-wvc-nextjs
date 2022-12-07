@@ -4,7 +4,16 @@ import React, { useEffect, useState, useRef } from 'react'
 import { getScreenWidth } from '../../utils/getScreenWidth'
 import { convertToKebabCase } from '../../utils/convertStrings'
 
-export const TableOfContents = ({ contents, isMobile, ctaText }) => {
+const exitIcon = (
+  <svg xmlns='http://www.w3.org/2000/svg' fill='none'>
+    <path
+      fill='#333'
+      d='M2.3 19.1.9 17.7 8.6 10 .9 2.3 2.3.9 10 8.6 17.7.9l1.4 1.4-7.7 7.7 7.7 7.7-1.4 1.4-7.7-7.7-7.7 7.7Z'
+    />
+  </svg>
+)
+
+export const TableOfContents = ({ contents, isMobile, ctaUrl, ctaText }) => {
   const buttonRef = useRef(null)
   const menuRef = useRef(null)
   const screenWidth = getScreenWidth()
@@ -35,26 +44,57 @@ export const TableOfContents = ({ contents, isMobile, ctaText }) => {
     setSmallScreen(screenWidth < 768)
   }, [screenWidth])
 
+  const closeModal = () => {
+    setIsExpanded(!isExpanded)
+  }
+
+  useEffect(() => {
+    if (smallScreen) {
+      if (isExpanded) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'unset'
+      }
+    }
+  }, [isExpanded])
+
   return (
-    <div className={styles['table-of-contents-container']}>
-      {!(smallScreen && isExpanded) && (
-        <Button innerRef={buttonRef} label='Jump to' buttonType='secondary' />
-      )}
+    <div
+      style={isExpanded ? { zIndex: '9999' } : { zIndex: '100' }}
+      className={styles['table-of-contents-container']}
+    >
+      <Button innerRef={buttonRef} label='Jump to' buttonType='secondary' />
 
       {isExpanded && (
-        <div className={styles['table-of-contents']}>
-          <ul ref={menuRef}>
-            {contents.map((item) => (
-              <div
-                key={convertToKebabCase(item)}
-                className={styles['table-of-contents__list-item']}
+        <div
+          className={styles['table-of-contents']}
+          style={smallScreen ? { top: '0' } : { top: '' }}
+          ref={menuRef}
+        >
+          <div className={styles['table-of-contents__content-container']}>
+            <div className={styles['table-of-contents__exit-button-container']}>
+              <button
+                onClick={closeModal}
+                className={styles['table-of-contents__exit-button']}
               >
-                <a href={`#${convertToKebabCase(item)}`}>{item}</a>
-              </div>
-            ))}
-          </ul>
+                {exitIcon}
+              </button>
+            </div>
+            <ul>
+              {contents.map((item) => (
+                <li
+                  key={convertToKebabCase(item)}
+                  className={styles['table-of-contents__list-item']}
+                >
+                  <a onClick={closeModal} href={`#${convertToKebabCase(item)}`}>
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className={styles['cta-btn']}>
-            <Button label={ctaText} />
+            <Button url={ctaUrl} label={ctaText} />
           </div>
         </div>
       )}

@@ -126,7 +126,7 @@ const Prefooter = ({
   // must use index as key as all other props may be the same on multiple cards
   const reportCards = reportCardData.map((card, i) => (
     <ReportCard
-      key={i}
+      key={card.title}
       title={card.title}
       url={card.url}
       imageSrc={card.imageSrc}
