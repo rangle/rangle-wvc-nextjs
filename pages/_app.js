@@ -43,11 +43,19 @@ function MyApp({ Component, pageProps }) {
           data-gtm-yt-inspected-9483441_46='true'
           id='newsletter-subscription2'
           scrolling='no'
+          onLoad={() => {
+            if (typeof ewt != 'undefined' && ewt && ewt.setIFrameSrc) {
+              ewt.setIFrameSrc(
+                this,
+                'https://site3.worldvision.ca/Double_Optin/newsletter'
+              )
+            }
+          }}
           src='https://site3.worldvision.ca/Double_Optin/newsletter'
           className='newsletter-iframe'
           title='Newsletter Signup'
           width='100%'
-        ></iframe>
+        />
       </div>
       <GlobalFooter />
     </div>

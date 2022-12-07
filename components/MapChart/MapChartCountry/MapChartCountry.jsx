@@ -20,11 +20,9 @@ const countryLayerStyle = {
 const MapPopupTitle = ({ markerInfo }) => {
   return (
     <h5 className={`${styles['map-popup__title']}`}>
-      {markerInfo?.card_url?.length > 0 ? (
+      {markerInfo?.CARD_URL?.length > 0 ? (
         <Link href={markerInfo['CARD_URL']} passHref legacyBehavior>
-          <a className={styles['map-popup__link']}>
-            {markerInfo['NAME']} - {markerInfo['CARD_URL']}
-          </a>
+          <a className={styles['map-popup__link']}>{markerInfo['NAME']}</a>
         </Link>
       ) : (
         `${markerInfo['NAME']}`
@@ -40,7 +38,7 @@ const MapPopup = ({ popupInfo, ...props }) => {
         <MapPopupTitle markerInfo={markerInfo} />
 
         <p className={`${styles['map-popup__labels']} `}>
-          {`${markerInfo['CARD_VALUE_1']}`}
+          {`${markerInfo['CARD_VALUE_1'] || markerInfo['PROGRAM_TYPE']}`}
         </p>
       </div>
     </Popup>

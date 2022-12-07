@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import MapHeaderContainer, {
-  getCountryOptions,
-  getProgramOptions,
-  getMarkerCoordinates
-} from './MapHeaderContainer'
+// import MapHeaderContainer, {
+//   getCountryOptions,
+//   getProgramOptions,
+//   getMarkerCoordinates
+// } from './MapHeaderContainer'
 
 import countryData from './country_mock_data.json'
 import mapData from '../../../public/data/countries.json'
