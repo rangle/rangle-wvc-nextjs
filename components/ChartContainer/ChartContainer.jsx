@@ -1,16 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import styles from './ChartContainer.module.scss'
 import Dropdown from '../Dropdown/Dropdown'
 import { getGraph } from '../../utils/getGraphs'
 
 export const ChartContainer = ({
-  footnote,
   controlTitle,
   isDarkMode,
   chartData
 }) => {
   const [chartToRender, setChartToRender] = useState()
+  const [disclaimer, setDisclaimer] = useState(
+    chartData.map((ea) => ea.GRAPH_ALT)[0]
+  )
 
   const getOptions = () => {
     let rowOptions = chartData.map((ea) => {
@@ -19,15 +21,23 @@ export const ChartContainer = ({
         id: ea.INDICATOR_CODE
       }
     })
-  
     const uniqueIds = new Set(rowOptions.map((item) => item.id))
-  
     let controlOptions = [...uniqueIds]
       .map((id) => rowOptions.find((item) => item.id === id))
       .filter(Boolean)
 
-      return controlOptions
+    return controlOptions
   }
+
+  useEffect(() => {
+    let obj = chartData.find((o) => o.INDICATOR_CODE === chartToRender)
+
+    if (obj) {
+      setDisclaimer(obj.GRAPH_ALT)
+    } else {
+      chartData.map((ea) => ea.GRAPH_ALT)[0]
+    }
+  }, [chartToRender])
 
   return (
     <div
@@ -52,14 +62,14 @@ export const ChartContainer = ({
             updateSelection={(e) => setChartToRender(e)}
             dropdownLabel={controlTitle}
           />
-          {footnote && (
+          {disclaimer && (
             <div className={styles['chart-container-control__footnote']}>
-              <p>{footnote}</p>
+              <p>{disclaimer}</p>
             </div>
           )}
         </div>
         <div className={styles['chart-container-chart']}>
-          {getGraph(0, chartData, chartToRender)}
+          {getGraph(0, chartData, chartToRender, true)}
         </div>
       </div>
     </div>

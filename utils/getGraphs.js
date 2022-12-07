@@ -3,7 +3,7 @@ import { LineChart } from '../components/Charts/LineChart/LineChart'
 import { StackedBarChart } from '../components/Charts/StackedBarChart/StackedBarChart'
 import { DoughnutChart } from '../components/Charts/DoughnutChart/DoughnutChart'
 
-export const getGraph = (graphNumber, graphData, idCode) => {
+export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
   // get the indicator code (/chart) to plot
   let graphToPlot =
     idCode ||
@@ -22,7 +22,7 @@ export const getGraph = (graphNumber, graphData, idCode) => {
     title: `${rowsToPlot[0].GRAPH_STATEMENT}`,
     aspectRatio: 0.8,
     ariaLabe: 'Bar Chart Reading Comprehension',
-    withAxes: !!idCode,
+    withAxes: !!idCode || !!chartContainer,
     aspectRatio: 0.8,
     colors: [
       'rgb(255, 166, 102)',
@@ -34,7 +34,7 @@ export const getGraph = (graphNumber, graphData, idCode) => {
     data: rowsToPlot.map((ea) =>
       ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
     ),
-    labels: rowsToPlot.map((ea) => ea.YEAR_OR_TARGET),
+    labels: [...new Set(rowsToPlot.map((ea) => ea.YEAR_OR_TARGET))],
     showTopBarLabels: true,
     subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
       rowsToPlot[0].LOCATION && rowsToPlot[0].COUNTRY ? ', ' : ''
@@ -43,7 +43,8 @@ export const getGraph = (graphNumber, graphData, idCode) => {
     // so if so it will become an array:
     // title: [`${rowsToPlot[0].GRAPH_STATEMENT_1}`, ${rowsToPlot[0].GRAPH_STATEMENT_2}, ${rowsToPlot[0].GRAPH_STATEMENT_3}]
     title: `${rowsToPlot[0].GRAPH_STATEMENT}`,
-    ariaLabel: `${rowsToPlot[0].GRAPH_ALT}`
+    ariaLabel: `${rowsToPlot[0].GRAPH_ALT}`,
+    maintainAspectRatio: !chartContainer
   }
 
   let legends = {}

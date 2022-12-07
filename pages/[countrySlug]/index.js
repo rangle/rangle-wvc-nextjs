@@ -88,7 +88,6 @@ const OverviewSection = (props) => {
         chartData={props.resultInvestmentGraphs}
         chartType='line'
         controlTitle={props.GRAPHBOX_TITLE}
-        footnote='Date as of footnote'
       />
     </section>
   )

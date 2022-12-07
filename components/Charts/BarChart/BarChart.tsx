@@ -104,7 +104,7 @@ export function BarChart({
           if (data[0][data[0].length - 1] === '%') {
             return `${value * 100}%`
           }
-          return value
+          return numFormatter(value)
         }
       }
     },

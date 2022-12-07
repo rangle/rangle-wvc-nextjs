@@ -84,6 +84,8 @@ export async function getStaticProps({ params }) {
     sqlText: `select * from MAP where IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
   })
 
+  // TODO: Get chart container graph, and pass to chart container
+
   return {
     props: {
       ...currentProgram,
