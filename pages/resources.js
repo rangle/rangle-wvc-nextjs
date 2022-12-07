@@ -5,6 +5,7 @@ import Dropdown from '../components/Dropdown/Dropdown'
 import { getScreenWidth } from '../utils/getScreenWidth'
 
 export default function ProgramFilter(props) {
+  console.log(props.resourcesData)
   const DEFAULT_DESKTOP_INITIAL_RESULT = 9
   const DEFAULT_MOBILE_INITIAL_RESULT = 6
   const DEFAULT_MOBILE_INITIAL_FILTERS = 2
@@ -19,9 +20,7 @@ export default function ProgramFilter(props) {
     DEFAULT_MOBILE_INITIAL_FILTERS
   )
 
-  // TODO: results below would come from filtering actual data
-  const results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  const filters = ['Country', 'Area of Focus', 'Partner', 'Year']
+  const filters = ['Country', 'Area of Focus', /*'Partner',*/ 'Year']
   const screenWidth = getScreenWidth()
   const smallScreen = screenWidth < 768
 
@@ -37,11 +36,49 @@ export default function ProgramFilter(props) {
   }
 
   const options = {
-    Country: [...new Set(props.countries)],
-    'Area of Focus': [...new Set(props.areasOfFocus)],
-    Partner: [...new Set(props.partners)],
-    Year: [...new Set(props.programs.map((ea) => ea.TIMELINE_TAG_02))]
+    Country: props.countryOptions,
+    'Area of Focus': props.areasOfFocusOptions,
+    // Partner: [...new Set(props.partners)],
+    Year: [
+      ...new Set(props.resourcesData.map((resource) => resource.YEAR))
+    ].map((year) => ({ VALUE: year, LABEL: year }))
   }
+
+  const [selectedOptions, updateOptions] = useState({})
+
+  const resources = props.resourcesData.filter((resource) => {
+    const filters = Object.keys(selectedOptions).filter(
+      (option) => selectedOptions[option] !== 'All'
+    )
+
+    return filters
+      .map((filter) => {
+        const value = selectedOptions[filter]
+
+        if (filter === 'Area of Focus') {
+          return (
+            resource.AREA_OF_FOCUS_1_CODE === value ||
+            resource.AREA_OF_FOCUS_2_CODE === value ||
+            resource.AREA_OF_FOCUS_3_CODE === value
+          )
+        }
+
+        if (filter === 'Country') {
+          return (
+            resource.COUNTRY_CODE_1 === value ||
+            resource.COUNTRY_CODE_2 === value ||
+            resource.COUNTRY_CODE_3 === value ||
+            resource.COUNTRY_CODE_4 === value ||
+            resource.COUNTRY_CODE_5 === value
+          )
+        }
+
+        if (filter === 'Year') {
+          return resource.YEAR === value
+        }
+      })
+      .every((isSelected) => isSelected)
+  })
 
   return (
     <div className={styles['programs-container']}>
@@ -67,12 +104,20 @@ export default function ProgramFilter(props) {
                   <Dropdown
                     dropdownLabel={filter}
                     id='selectId'
-                    options={options[filter].map((ea) => ({
-                      label: ea,
-                      value: ea
-                    }))}
-                    updateSelection={() => {}}
-                  />{' '}
+                    options={[
+                      { label: 'All', value: null },
+                      ...options[filter].map((option) => ({
+                        label: option.LABEL,
+                        value: option.VALUE
+                      }))
+                    ]}
+                    updateSelection={(value) => {
+                      updateOptions({
+                        ...selectedOptions,
+                        [filter]: value
+                      })
+                    }}
+                  />
                 </div>
               ))}
           </div>
@@ -86,21 +131,21 @@ export default function ProgramFilter(props) {
 
       <div className={styles['result-body']}>
         <div className={styles['result-grid']}>
-          {results
+          {resources
             .slice(0, smallScreen ? resultsToShowMobile : resultsToShowDesktop)
-            .map((result, index) => (
+            .map((resource, index) => (
               <MediaCard
-                alt='My image alt text.'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health', 'Canada']}
-                title='Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='https://worldvision.ca/'
+                alt={resource.ICON_ALT}
+                body={resource.RESOURCE_BODY}
+                iconSrc={resource.ICON_URL}
+                labels={[resource.RESOURCE_SUBTYPE]}
+                title={resource.RESOURCE_TITLE}
+                url={resource.RESOURCE_URL}
               />
             ))}
         </div>
         {(smallScreen ? resultsToShowMobile : resultsToShowDesktop) <
-          results.length && (
+          resources.length && (
           <div className={styles['show-more']}>
             <a onClick={showMoreResults}> Show more </a>
           </div>
@@ -140,10 +185,22 @@ export async function getStaticProps() {
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
+  const { rows: resourcesData } = await getSnowflakeData({
+    sqlText: `select * from RESOURCES ORDER BY YEAR DESC`
+  })
+
+  const { rows: countryOptions } = await getSnowflakeData({
+    sqlText: `select HEADER_TITLE as label, COUNTRY_CODE as value from COUNTRIES`
+  })
+
+  const { rows: areasOfFocusOptions } = await getSnowflakeData({
+    sqlText: `select HEADER_TITLE as label, AREA_ID as value from AREAS_OF_FOCUS `
+  })
+
   return {
     props: {
-      countries: countriesData.map((ea) => ea.HEADER_TITLE),
-      areasOfFocus: areasOfFocusData.map((ea) => ea.HEADER_TITLE),
+      countryOptions,
+      areasOfFocusOptions,
       partners: partners.rows.map((ea) => ea.PARTNER_NAME),
       programs: programs.rows,
       navigation: transformNavigationData(
@@ -151,7 +208,8 @@ export async function getStaticProps() {
         areasOfFocusData,
         countriesData
       ),
-      disclaimer: disclaimerData[0].TEXT
+      disclaimer: disclaimerData[0].TEXT,
+      resourcesData
     }
   }
 }
