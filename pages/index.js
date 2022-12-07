@@ -313,15 +313,6 @@ function translateOrFallback(t) {
 
   //FIXME these keys do not exist in DB but were filled in on the frontend,
   // could be expected values, could be very wrong
-  obj.main_video_01_img =
-    obj.main_video_01_img ||
-    'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-  obj.main_video_02_img =
-    obj.main_video_02_img ||
-    'https://www.worldvision.ca/WorldVisionCanada/media/Homepage-assets/wvc-homepage-supporting-banner-gift-impact-three-frames-chickens.jpg'
-  obj.main_video_03_img =
-    obj.main_video_03_img ||
-    'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
   obj.map_background_01_url =
     obj.map_background_01_url ||
     '/homepage/rollingCredits/rolling-credits-background.jpg'

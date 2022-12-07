@@ -49,38 +49,39 @@ const sampleAccordionItems = [
   }
 ]
 
-const sampleMediaCards = [
+// Data provided by Monique
+const hardcodedMediaCards = [
   {
     title: 'COVID-19',
-    body: 'How the pandemic is changing the way we teach our youth ready curriculum',
+    body: 'How the pandemic is changing the way we teach our Youth Ready curriculum',
     labels: ['Paper'],
-    url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf	',
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   },
   {
     title: 'Gender Equality',
     body: 'Five key pillars for effective programming.',
     labels: ['Paper'],
     url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   },
   {
     title: 'Data Challenges',
     body: 'Lessons learned with sex-disaggregation.',
     labels: ['Paper'],
-    url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf	',
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   },
   {
     title: 'Impact Measurement',
     body: 'What we’ve learned through World Vision’s Agile transformation.',
     labels: ['Paper'],
-    url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf',
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   }
 ]
 
@@ -106,7 +107,7 @@ const Prefooter = ({
   mediaBlockBackground,
   mediaBlockSrc,
   mediaBlockTitle,
-  mediaCardData = sampleMediaCards,
+  mediaCardData = hardcodedMediaCards,
   reportCardData = sampleReportCards,
   subtitle,
   title
@@ -135,11 +136,7 @@ const Prefooter = ({
   ))
   return (
     <div className={styles['prefooter']}>
-      <MediaBlock
-        title={mediaBlockTitle}
-        videoSrc={mediaBlockSrc}
-        videoBackgroundImage={mediaBlockBackground}
-      />
+      <MediaBlock title={mediaBlockTitle} videoSrc={mediaBlockSrc} />
       <div className={styles['prefooter-content']}>
         <h2 className={styles['prefooter-carousel-title']}>{title}</h2>
         <p className={styles['prefooter-carousel-subtitle']}>{subtitle}</p>
