@@ -7,7 +7,7 @@ export default function Program(props) {
 export async function getStaticPaths() {
   const { getSnowflakeData } = require('../../utils/snowflake')
   const { rows } = await getSnowflakeData({
-    sqlText: `select * from PROGRAMS where URL LIKE 'programs/%'`
+    sqlText: `select * from PROGRAMS where URL not LIKE 'programs/%'`
   })
   return {
     paths: rows
@@ -15,7 +15,8 @@ export async function getStaticPaths() {
         if (program.URL) {
           return {
             params: {
-              slug: program.URL.split('programs/')[1]
+              countrySlug: program.URL.split('/')[0],
+              programSlug: program.URL.split('/')[1]
             }
           }
         }
@@ -25,12 +26,20 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params: { countrySlug, programSlug } }) {
   const {
     getSnowflakeData,
     transformResultsData,
     transformNavigationData
   } = require('../../utils/snowflake')
+
+  const changeGraphs = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'change_graph'`
+    // TODO: add the program code filter
+    // and IVS_PROGRAM_CODE is '....'
+  })
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
     sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
@@ -48,16 +57,8 @@ export async function getStaticProps({ params }) {
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
-  const changeGraphs = await getSnowflakeData({
-    sqlText: `select * from GRAPHS
-    where LEVEL = 'programs'
-    and DATA_PANEL = 'change_graph'`
-    // TODO: add the program code filter
-    // and IVS_PROGRAM_CODE is '....'
-  })
-
   const { rows: programs } = await getSnowflakeData({
-    sqlText: `select * from PROGRAMS where URL = 'programs/${params.slug}'`
+    sqlText: `select * from PROGRAMS where URL = '${countrySlug}/${programSlug}'`
   })
 
   const currentProgram = programs[0]

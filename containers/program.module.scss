@@ -1,5 +1,5 @@
-@import '../../styles/lumen-tokens';
-@import '../../styles/spacing';
+@import '../styles/lumen-tokens';
+@import '../styles/spacing';
 
 .program-container {
   background-color: $sky-lighter;
@@ -20,6 +20,37 @@
     @media (min-width: 1366px) {
       width: calc($column-max * 8);
       margin: 0 auto;
+    }
+  }
+
+  .timeline-heading {
+    margin: 0 $page-margin-mobile;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: $space-xxl;
+
+    @media (min-width: 767px) {
+      margin: 0 $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      margin-top: 0 $page-margin-desktop;
+    }
+
+    @media (min-width: 1366px) {
+      width: calc($column-max * 10);
+      margin: 0 auto;
+    }
+
+    &__subtitle {
+      @include typographylargeparagraphintro_regular;
+      padding-top: $space-m;
+
+      &__status {
+        color: $orange;
+      }
     }
   }
 

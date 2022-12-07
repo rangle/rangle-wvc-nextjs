@@ -1,22 +1,22 @@
 import parse from 'html-react-parser'
 
-import AccordionGroup from '../components/AccordionGroup/AccordionGroup'
-import Carousel from '../components/Carousel/Carousel'
-import CtaBlock from '../components/CtaBlock/CtaBlock'
-import EmergencyAlert from '../components/EmergencyAlert/EmergencyAlert'
-import ExpandableTextBlock from '../components/ExpandableTextBlock/ExpandableTextBlock'
-import HeroBlock from '../components/HeroBlock/HeroBlock'
-import ImpactHighlightGrid from '../components/ImpactHighlightGrid/ImpactHighlightGrid'
-import MediaCard from '../components/MediaCard/MediaCard'
-import SectionContainer from '../components/SectionContainer/SectionContainer'
-import Tabs from '../components/Tabs/Tabs'
-import { TableOfContents } from '../components/TableOfContents/TableOfContents'
-import { convertToKebabCase } from '../utils/convertStrings'
+import AccordionGroup from '../../components/AccordionGroup/AccordionGroup'
+import Carousel from '../../components/Carousel/Carousel'
+import CtaBlock from '../../components/CtaBlock/CtaBlock'
+import EmergencyAlert from '../../components/EmergencyAlert/EmergencyAlert'
+import ExpandableTextBlock from '../../components/ExpandableTextBlock/ExpandableTextBlock'
+import HeroBlock from '../../components/HeroBlock/HeroBlock'
+import ImpactHighlightGrid from '../../components/ImpactHighlightGrid/ImpactHighlightGrid'
+import MediaCard from '../../components/MediaCard/MediaCard'
+import SectionContainer from '../../components/SectionContainer/SectionContainer'
+import Tabs from '../../components/Tabs/Tabs'
+import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
+import { convertToKebabCase } from '../../utils/convertStrings'
 
 import StatisticCardGrid, {
   StatisticCard
-} from '../components/StatisticCardGrid/StatisticCardGrid'
-import { ChartContainer } from '../components/ChartContainer/ChartContainer'
+} from '../../components/StatisticCardGrid/StatisticCardGrid'
+import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { Item } from 'react-stately'
 
 import styles from './country.module.scss'
@@ -36,7 +36,8 @@ const OverviewSection = (props) => {
               props[`SUMMARY_0${index + 1}_LABEL`] &&
               props[`SUMMARY_0${index + 1}_VALUE`] && {
                 title: props[`SUMMARY_0${index + 1}_LABEL`],
-                value: props[`SUMMARY_0${index + 1}_VALUE`]
+                value: props[`SUMMARY_0${index + 1}_VALUE`],
+                tooltip: props[`SUMMARY_0${index + 1}_INFO`]
               }
           )
           .filter((summary) => summary)}
@@ -301,7 +302,7 @@ export default function Country(props) {
 }
 
 export async function getStaticPaths() {
-  const { getSnowflakeData } = require('../utils/snowflake')
+  const { getSnowflakeData } = require('../../utils/snowflake')
   const { rows } = await getSnowflakeData({
     sqlText: `select URL from COUNTRIES where URL is not null`
   })
@@ -312,7 +313,7 @@ export async function getStaticPaths() {
         if (country.URL) {
           return {
             params: {
-              slug: country.URL
+              countrySlug: country.URL
             }
           }
         }
@@ -327,7 +328,7 @@ export async function getStaticProps({ params }) {
     getSnowflakeData,
     transformResultsData,
     transformNavigationData
-  } = require('../utils/snowflake')
+  } = require('../../utils/snowflake')
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
     sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
@@ -338,7 +339,7 @@ export async function getStaticProps({ params }) {
   })
 
   const currentCountry = countriesData.find(
-    (country) => country.URL === params.slug
+    (country) => country.URL === params.countrySlug
   )
 
   const { rows: controlData } = await getSnowflakeData({
