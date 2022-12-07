@@ -7,33 +7,33 @@ import useSWRImmutable from 'swr/immutable'
 function useMapMarkers(markerCoordinates, setPopupInfo) {
   return useMemo(
     () =>
-      markerCoordinates?.map((marker, index) => (
+      markerCoordinates?.map(([long, lat, options], index) => (
         <Marker
           key={`marker-${index}`}
-          longitude={marker[0]}
-          latitude={marker[1]}
+          longitude={long}
+          latitude={lat}
           anchor='top'
           onClick={(evt) => {
             // currently the marker is an array of [long,lat, optional popupInfo object]
             // might change this to be more
             // { long: 22, lat: 33, options: { }}
             // but for now, if there is no popup info - just return;
-            if (!marker[2]) {
+            if (!options) {
               return
             }
             evt.originalEvent.stopPropagation()
             setPopupInfo(() => ({
               evt,
-              markerInfo: marker[2],
-              longitude: marker[0],
-              latitude: marker[1]
+              markerInfo: options,
+              longitude: long,
+              latitude: lat
             }))
           }}
         >
-          <Pin fill={marker[2]?.fill} />
+          <Pin fill={options?.fill} />
         </Marker>
       )),
-    [markerCoordinates]
+    [markerCoordinates, setPopupInfo]
   )
 }
 function useFetchGeoJson(countryCode) {
@@ -80,6 +80,6 @@ function useFitBounds(
     } else if (isMapLoaded) {
       mapRef?.current.setZoom(1)
     }
-  }, [boundingBox, isMapLoaded, padding, duration, countryCode])
+  }, [boundingBox, isMapLoaded, padding, duration, countryCode, mapRef])
 }
 export { useFetchGeoJson, useFitBounds, useMapMarkers }
