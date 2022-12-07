@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import MapChartHeader from './MapChartHeader'
+import { COUNTRY_CODES } from '../MapConstants'
 
 //TODO: Fill color is to be based on type + sponsored or not
 // will be driven by value in table, Monique to provide columns + formula
@@ -17,7 +18,6 @@ const getCountryOptions = (countryData, showEmptyPrograms, selectedYear) => {
       (country) =>
         showEmptyPrograms ||
         (showEmptyPrograms === false && country?.programs?.length > 0) ||
-        selectedYear === 'All' ||
         selectedYear === country['YEAR']
     )
     .reduce(
@@ -31,11 +31,13 @@ const getCountryOptions = (countryData, showEmptyPrograms, selectedYear) => {
 }
 
 const getProgramOptions = (programData, selectedCountry, selectedYear) => {
+  const countryName = COUNTRY_CODES[selectedCountry]
   return programData
     ?.filter(
       (n) =>
-        (n.COUNTRY === selectedCountry || selectedCountry === 'All') &&
-        (selectedYear === n['YEAR'] || selectedYear === 'All')
+        n.country === countryName ||
+        selectedCountry === 'All' ||
+        selectedYear === n['YEAR']
     )
     .reduce(
       (acc, { PROGRAM_TYPE }) => {
@@ -47,14 +49,12 @@ const getProgramOptions = (programData, selectedCountry, selectedYear) => {
     )
 }
 
-//TODO The design only shows 2021 but its risky to rely only on that number because
-// it will either never update, unless a code change is done, or the results might become weird
-// for now hardcoding 'all' and '2021' as the year is not even visible in the DB yet
 const getYearOptions = (programData) => {
   const years = programData
     .map((program) => program['YEAR'])
     .filter((year) => year !== undefined)
-  const uniqueYears = [...new Set(['All', '2021', ...years])]
+    .sort((a, b) => b - a)
+  const uniqueYears = [...new Set([...years])]
   return uniqueYears.map((year) => ({ value: year, label: year }))
 }
 
@@ -103,7 +103,7 @@ const MapHeaderContainer = ({
   countryData = [],
   ...props
 }) => {
-  const [selectedYear, setSelectedYear] = useState('All')
+  const [selectedYear, setSelectedYear] = useState('2021')
   const [selectedCountry, setSelectedCountry] = useState('All')
   const [selectedProgramType, setSelectedProgramType] = useState('All')
 
