@@ -2,6 +2,7 @@
 @import '../../styles/spacing';
 
 .hero-block {
+  color: $charcoal;
   display: flex;
   flex-direction: column;
 
@@ -163,7 +164,7 @@
   &__cta {
     display: flex;
     justify-content: center;
-    margin-top: $space-xl
+    margin-top: $space-xl;
   }
 
   &__summary-container {

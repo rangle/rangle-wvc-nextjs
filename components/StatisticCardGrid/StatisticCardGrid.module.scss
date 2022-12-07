@@ -10,7 +10,7 @@
   height: 100%;
 
   &__title {
-    @include typographylargeheadingh6;
+    @include typographysmallheadingh6;
     color: $grey;
     font-weight: 400;
     margin-bottom: $space-s;

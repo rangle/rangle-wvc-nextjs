@@ -1,56 +1,61 @@
 @import '../../styles/lumen-tokens';
 
+$focus-outline: 4px solid $blue-light;
+
 .tabs-container {
   display: flex;
   flex-direction: column;
 
   [role='tab'] {
+    @include typographysmallkarladefault;
     justify-content: center;
     box-sizing: border-box;
+    border-bottom: 2px solid $grey-lighter;
 
     /* Auto layout */
-    @include typographysmallkarlaregular;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-
-    padding: 1.5rem 1rem;
-    gap: 0.5rem;
+    gap: $space-xs;
     isolation: isolate;
-    min-width: 8rem;
-    height: 4.5rem;
+    padding: $space-s 2.25rem;
 
-    &:focus {
-      border: 0.125rem solid $blue-light;
-      outline: none;
-    }
+    &:focus,
     &:focus-visible {
-      border: 0.125rem solid $blue-light;
-      outline: none;
+      outline: $focus-outline;
     }
 
     &:hover {
       background-color: $sky-lighter;
       cursor: pointer;
     }
+
+    @media (min-width: 768px) {
+      @include typographylargekarladefault;
+
+      padding: $space-xl 4.75rem;
+    }
   }
 
   [role='tablist'] {
     display: flex;
     justify-content: center;
+    overflow-x: scroll;
   }
 
   [role='tablist'][aria-orientation='horizontal'] [role='tab'] {
-    &:focus {
-      border-bottom: 0.125rem solid $blue-light;
+    &:focus,
+    &:focus-visible {
+      outline: $focus-outline;
     }
   }
 
   [role='tablist'] [role='tab'][aria-selected='true'] {
-    border-bottom: 0.25rem solid $orange-light;
+    border-bottom: 4px solid $orange-light;
 
-    &:focus {
-      border-bottom: 0.125rem solid $blue-light;
+    &:focus,
+    &:focus-visible {
+      outline: $focus-outline;
     }
   }
 

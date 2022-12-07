@@ -9,7 +9,8 @@
   }
 
   @media (min-width: 1024px) {
-    padding: $section-margin-desktop calc($column-desktop + $page-margin-desktop);
+    padding: $section-margin-desktop
+      calc($column-desktop + $page-margin-desktop);
   }
 
   @media (min-width: 1366px) {
@@ -79,7 +80,6 @@
         width: 50%;
         padding: $size-m 2rem 2rem 0.5rem;
       }
-
     }
   }
 }

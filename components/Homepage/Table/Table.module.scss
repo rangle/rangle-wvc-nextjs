@@ -37,7 +37,7 @@
   &__main-th,
   &__main-th-highlight {
     @include typographylargeheadingh5;
-    background: #ffe1cc;
+    background: $orange-lightest;
     color: $charcoal;
     text-transform: uppercase;
   }
