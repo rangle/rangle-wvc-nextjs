@@ -42,13 +42,19 @@ function MyApp({ Component, pageProps }) {
           data-gtm-yt-inspected-1_25='true'
           data-gtm-yt-inspected-9483441_46='true'
           id='newsletter-subscription2'
-          onLoad="javascript: if(typeof ewt != 'undefined' &amp;&amp; ewt &amp;&amp; ewt.setIFrameSrc) ewt.setIFrameSrc(this, 'https://site3.worldvision.ca/Double_Optin/newsletter'); else if(this.src != 'https://site3.worldvision.ca/Double_Optin/newsletter') this.src = 'https://site3.worldvision.ca/Double_Optin/newsletter';"
-          scrolling='no'
+          onLoad={() => {
+            if (typeof ewt != 'undefined' && ewt && ewt.setIFrameSrc) {
+              ewt.setIFrameSrc(
+                this,
+                'https://site3.worldvision.ca/Double_Optin/newsletter'
+              )
+            }
+          }}
           src='https://site3.worldvision.ca/Double_Optin/newsletter'
           className='newsletter-iframe'
           title='Newsletter Signup'
           width='100%'
-        ></iframe>
+        />
       </div>
       <GlobalFooter />
     </div>
