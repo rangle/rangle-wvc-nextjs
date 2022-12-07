@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import MapChartHeader from './MapChartHeader'
-import { COUNTRY_CODES } from '../MapConstants'
 
 //TODO: Fill color is to be based on type + sponsored or not
 // will be driven by value in table, Monique to provide columns + formula
@@ -32,14 +31,11 @@ const getCountryOptions = (countryData, showEmptyPrograms, selectedYear) => {
 }
 
 const getProgramOptions = (programData, selectedCountry, selectedYear) => {
-  const countryName = COUNTRY_CODES[selectedCountry]
   return programData
     ?.filter(
       (n) =>
-        n.country === countryName ||
-        selectedCountry === 'All' ||
-        selectedYear === 'All' ||
-        selectedYear === n['YEAR']
+        (n.COUNTRY === selectedCountry || selectedCountry === 'All') &&
+        (selectedYear === n['YEAR'] || selectedYear === 'All')
     )
     .reduce(
       (acc, { PROGRAM_TYPE }) => {
@@ -64,14 +60,15 @@ const getYearOptions = (programData) => {
 
 const getMarkerCoordinates = (
   programData,
+  selectedYear,
   selectedCountry,
   selectedProgramType
 ) => {
-  const selectedCountryName = COUNTRY_CODES[selectedCountry] || 'All'
   return programData
     .filter(
-      ({ COUNTRY, PROGRAM_TYPE }) =>
-        (COUNTRY === selectedCountryName || selectedCountryName === 'All') &&
+      ({ COUNTRY, PROGRAM_TYPE, YEAR }) =>
+        (YEAR === selectedYear || selectedYear === 'All') &&
+        (COUNTRY === selectedCountry || selectedCountry === 'All') &&
         (PROGRAM_TYPE === selectedProgramType || selectedProgramType === 'All')
     )
     .map((mapData) => {
@@ -80,8 +77,7 @@ const getMarkerCoordinates = (
         mapData['CENTRAL_LAT'],
         {
           ...mapData,
-          fill:
-            PROGRAMMING_TYPE_FILL_COLOR[mapData['PROGRAMMING_TYPE']] || '#d00'
+          fill: PROGRAMMING_TYPE_FILL_COLOR[mapData['PROGRAM_TYPE']] || '#d00'
         }
       ]
     })
@@ -117,10 +113,11 @@ const MapHeaderContainer = ({
   const markerCoordinates = useMemo(() => {
     return getMarkerCoordinates(
       programData,
+      selectedYear,
       selectedCountry,
       selectedProgramType
     )
-  }, [selectedCountry, selectedProgramType, programData])
+  }, [selectedYear, selectedCountry, selectedProgramType, programData])
 
   const onSelectedYearChange = useCallback((evt) => {
     setSelectedYear(evt)
