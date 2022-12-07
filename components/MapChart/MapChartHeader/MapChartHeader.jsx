@@ -56,6 +56,7 @@ function MapChartHeader({
   countryDropdownLabel,
   programDropdownLabel,
   yearDropdownLabel,
+  mapOptions,
   children,
   ...props
 }) {
@@ -77,6 +78,7 @@ function MapChartHeader({
           countryCode={COUNTRY_NAMES[selectedCountry] || 'All'}
           onCountryDataLoaded={onCountryDataLoaded}
           markerCoordinates={showMarkers ? markerCoordinates : []}
+          mapOptions={mapOptions}
         >
           {children}
         </MapChartCountries>

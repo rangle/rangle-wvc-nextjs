@@ -53,6 +53,7 @@ const MapChartCountries = ({
   padding = 200,
   markerCoordinates = [],
   onCountryDataLoaded = (evt) => {},
+  mapOptions = {},
   ...props
 }) => {
   const mapRef = useRef()
@@ -90,6 +91,7 @@ const MapChartCountries = ({
       id='countryMap'
       onLoad={() => setIsMapLoaded(true)}
       ref={mapRef}
+      {...mapOptions}
     >
       {mapMarkers}
       {popupInfo && (
