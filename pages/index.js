@@ -41,7 +41,7 @@ const creditsData = (t) => [
 const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
 
 //FIXME should come from graph table but doesn't seem to be there
-const sectorHighlights = (t) => [
+const sectorHighlights = () => [
   {
     value: '18 million',
     title: 'people reached'
@@ -225,37 +225,23 @@ export async function getStaticProps() {
     sqlText: 'SELECT * FROM STAGE.MAP'
   })
 
-  const programData = mapData.filter((n) => n['LEVEL'] === 'programs')
-
-  const countryData = mapData
-    .filter((n) => n['LEVEL'] === 'countries')
-    .map((item) => {
-      return {
-        ...item,
-        country_code: COUNTRY_NAMES[item['NAME']]
-          ? COUNTRY_NAMES[item['NAME']]
-          : 'undefined',
-        programs: programData.filter(
-          (program) => program['COUNTRY'] === item['NAME']
-        )
-      }
-    })
-
   const { rows: mainPage } = await getSnowflakeData({
     sqlText: 'SELECT * FROM STAGE.MAIN_PAGE'
   })
-  const translateKeys = mainPage[0]
-  const translation = translateOrFallback(translateKeys)
 
   const { rows: graphData } = await getSnowflakeData({
     sqlText:
       "SELECT * FROM STAGE.GRAPHS WHERE LEVEL='main_page' AND CHART_TYPE='pie_chart' AND GRAPH_STATEMENT='Program expenditures by Sector' AND UNIT_OF_MEASUREMENT='percentage'"
   })
-  const chartData = sectorData(translation, graphData)
 
   const { rows: disclaimerData } = await getSnowflakeData({
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
+
+  const programData = getProgramData(mapData)
+  const countryData = getCountryData(mapData, programData)
+  const translation = translateOrFallback(mainPage[0])
+  const chartData = sectorData(translation, graphData)
 
   return {
     props: {
@@ -347,6 +333,11 @@ function translateOrFallback(t) {
   obj.sector_03_img_src = obj.sector_03_img_src || '/modalImage.jpg'
   obj.sector_04_img_src = obj.sector_04_img_src || '/modalImage.jpg'
   obj.sector_05_img_src = obj.sector_05_img_src || '/modalImage.jpg'
+  obj.sector_01_img_alt = obj.sector_01_img_alt || 'image'
+  obj.sector_02_img_alt = obj.sector_02_img_alt || 'image'
+  obj.sector_03_img_alt = obj.sector_03_img_alt || 'image'
+  obj.sector_04_img_alt = obj.sector_04_img_alt || 'image'
+  obj.sector_05_img_alt = obj.sector_05_img_alt || 'image'
   obj.sector_01_color = obj.sector_01_color || '#E7600C'
   obj.sector_02_color = obj.sector_02_color || '#9054A1'
   obj.sector_03_color = obj.sector_03_color || '#006661'
@@ -379,7 +370,7 @@ const sectorData = (t, chartData) => {
           ctaShortLabel: 'Learn more',
           ctaUrl: t[`sector_0${j}_link_url`],
           imgSrc: t[`sector_0${j}_img_src`],
-          imgAlt: 'Alt text',
+          imgAlt: t[`sector_0${j}_img_alt`],
           label1: t[`sector_0${j}_statement_intro_01`],
           label2: t[`sector_0${j}_statement_01`],
           label3: t[`sector_0${j}_statement_02`],
@@ -394,4 +385,24 @@ const sectorData = (t, chartData) => {
     }
   }
   return arr
+}
+
+const getCountryData = (mapData, programData) => {
+  return mapData
+    .filter((n) => n['LEVEL'] === 'countries')
+    .map((item) => {
+      return {
+        ...item,
+        country_code: COUNTRY_NAMES[item['NAME']]
+          ? COUNTRY_NAMES[item['NAME']]
+          : 'undefined',
+        programs: programData.filter(
+          (program) => program['COUNTRY'] === item['NAME']
+        )
+      }
+    })
+}
+
+const getProgramData = (mapData) => {
+  return mapData.filter((n) => n['LEVEL'] === 'programs')
 }
