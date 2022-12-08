@@ -85,6 +85,7 @@ const SectorOverview = ({
   const [peopleReached, setPeopleReached] = useState(18)
   const [invested, setInvested] = useState(447)
 
+  // TODO: hook this up to the doughnut chart somehow
   const onChartHover = (itemName) => {
     const highlightInfo = HighlightData.find(
       (highlight) => highlight.name === itemName || highlight.name === 'Total'
