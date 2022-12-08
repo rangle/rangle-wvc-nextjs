@@ -371,11 +371,14 @@ function translateOrFallback(t) {
   obj.sector_05_modal_aria_label =
     obj.sector_05_modal_aria_label ||
     'This aria label will describe the modal contents.'
-  obj.sector_01_img_src = obj.sector_01_img_src || '/modalImage.jpg'
-  obj.sector_02_img_src = obj.sector_02_img_src || '/modalImage.jpg'
-  obj.sector_03_img_src = obj.sector_03_img_src || '/modalImage.jpg'
-  obj.sector_04_img_src = obj.sector_04_img_src || '/modalImage.jpg'
-  obj.sector_05_img_src = obj.sector_05_img_src || '/modalImage.jpg'
+  obj.sector_01_img_src =
+    obj.sector_01_img_src || '/homepage/modal/livelihoods.jpg'
+  obj.sector_02_img_src = obj.sector_02_img_src || '/homepage/modal/Health.jpg'
+  obj.sector_03_img_src =
+    obj.sector_03_img_src || '/homepage/modal/Education.jpg'
+  obj.sector_04_img_src =
+    obj.sector_04_img_src || '/homepage/modal/childprotection.jpg'
+  obj.sector_05_img_src = obj.sector_05_img_src || '/homepage/modal/WASH.jpg'
   obj.sector_01_color = obj.sector_01_color || '#E7600C'
   obj.sector_02_color = obj.sector_02_color || '#9054A1'
   obj.sector_03_color = obj.sector_03_color || '#006661'

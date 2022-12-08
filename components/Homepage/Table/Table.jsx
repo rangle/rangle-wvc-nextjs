@@ -24,13 +24,6 @@ const Table = ({ data, introText }) => {
     ...new Set(firstSectionRows.map((section) => section.DISAGGREGATION))
   ]
 
-  const secondSectionRows = data.filter(
-    (item) => item.GRAPH_STATEMENT === graphSections[1]
-  )
-  const secondSectionTitles = [
-    ...new Set(secondSectionRows.map((section) => section.DISAGGREGATION))
-  ]
-
   return (
     <div className={styles['table']}>
       <p className={styles['table__intro']}>{introText}</p>
