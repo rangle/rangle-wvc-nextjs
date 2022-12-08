@@ -145,10 +145,10 @@ export default function ProgramFilter(props) {
               const program = props.programs[id]
               return (
                 <MediaCard
+                  // TODO: add this to Snowflake
                   alt='My image alt text.'
-                  body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                  imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                  labels={['Health', 'Canada']}
+                  body={program.DETAILS_BODY_01}
+                  imageSrc={program.CARD_IMAGE_URL}
                   title={program.HEADER_TITLE}
                   url={`/${program.URL}`}
                 />
@@ -158,6 +158,7 @@ export default function ProgramFilter(props) {
         {(smallScreen ? resultsToShowMobile : resultsToShowDesktop) <
           programIds.length && (
           <div className={styles['show-more']}>
+            {/* TODO: add to snowflake */}
             <a onClick={showMoreResults}> Show more </a>
           </div>
         )}
@@ -210,14 +211,6 @@ export async function getStaticProps() {
     sqlText: `select COUNTRY as label, MIN(COUNTRYCODE) as value from MAP INNER JOIN PROGRAMS ON MAP.IVS_PROGRAM_CODE=PROGRAMS.IVS_PROGRAM_CODE group by COUNTRY`
   })
 
-  // const { rows: areasOfFocusOptions1 } = await getSnowflakeData({
-  //   sqlText: `select MIN(AREAS_OF_FOCUS.HEADER_TITLE) as label, AREA_ID as value from PROGRAMS INNER JOIN AREAS_OF_FOCUS ON PROGRAMS.AREA_OF_FOCUS_CODE_01=AREAS_OF_FOCUS.AREA_ID group by AREA_ID`
-  // })
-
-  // const { rows: areasOfFocusOptions2 } = await getSnowflakeData({
-  //   sqlText: `select MIN(AREAS_OF_FOCUS.HEADER_TITLE) as label, AREA_ID as value from PROGRAMS INNER JOIN AREAS_OF_FOCUS ON PROGRAMS.AREA_OF_FOCUS_CODE_02=AREAS_OF_FOCUS.AREA_ID group by AREA_ID`
-  // })
-
   const { rows: areasOfFocusOptions } = await getSnowflakeData({
     sqlText: `select AREA_ID as value, HEADER_TITLE as label from AREAS_OF_FOCUS`
   })
@@ -245,10 +238,6 @@ export async function getStaticProps() {
       disclaimer: disclaimerData[0].TEXT,
       statusOptions,
       countryOptions,
-      // TODO: remove duplicates, this doesn't work right now
-      // areasOfFocusOptions: [
-      //   ...new Set(areasOfFocusOptions1.concat(areasOfFocusOptions2))
-      // ],
       areasOfFocusOptions,
       programTypeOptions
     }

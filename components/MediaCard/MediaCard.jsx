@@ -1,3 +1,5 @@
+import parse from 'html-react-parser'
+
 import styles from './MediaCard.module.scss'
 
 const MediaCard = ({
@@ -10,7 +12,7 @@ const MediaCard = ({
   imageSrc,
   alt
 }) => {
-  const labelList = Array.from(labels.values()).join(', ')
+  const labelList = labels ? Array.from(labels.values()).join(', ') : ''
 
   return (
     <a
@@ -46,7 +48,7 @@ const MediaCard = ({
             {title}
           </h5>
           <p className={`${styles['media-card__body']} ${styles['truncate']}`}>
-            {body}
+            {parse(body || '')}
           </p>
         </div>
         <p className={`${styles['media-card__labels']} ${styles['truncate']}`}>
