@@ -1,17 +1,22 @@
 import Link from 'next/link'
 
-const CtaLink = ({ className, linkLabel, linkUrl }) => {
-  const { hostname } = new URL(linkUrl)
-  const isExternal = hostname !== 'www.worldvision.ca'
+const CtaLink = ({ className, label, url }) => {
+  let isExternal
+  const isInternal = url.startsWith('/')
+
+  if (!isInternal) {
+    const { hostname } = new URL(url)
+    isExternal = hostname !== 'www.worldvision.ca'
+  }
 
   return (
-    <Link href={linkUrl} passHref legacyBehavior>
+    <Link href={url} passHref legacyBehavior>
       <a
         target={isExternal ? '_blank' : '_self'}
         rel={isExternal && 'noopener'}
         className={className}
       >
-        {linkLabel}
+        {label}
       </a>
     </Link>
   )

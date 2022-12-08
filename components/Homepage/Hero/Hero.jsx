@@ -57,8 +57,8 @@ const Hero = ({
             <p className={styles['hero-text']}>{subtitleText}</p>
             <CtaLink
               className={styles['hero-text']}
-              linkLabel={linkLabel}
-              linkUrl={url}
+              label={linkLabel}
+              url={url}
             />
           </div>
           <div className={styles['desktop-scroll-icon']} aria-hidden>
