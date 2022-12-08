@@ -2,6 +2,7 @@
 @import '../../styles/spacing';
 
 .hero-block {
+  background: #fcf6f2;
   color: $charcoal;
   display: flex;
   flex-direction: column;
@@ -58,39 +59,22 @@
     }
   }
 
+  &__background-image-container {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
+
   &__main-content {
     padding-bottom: 2rem;
-
-    &--sector {
-      background: linear-gradient(
-        to bottom,
-        $orange-lighter 0%,
-        $orange-lighter 33.33%,
-        $orange-lighter 33.33%,
-        #febf92 33.33%,
-        #febf92 100%
-      );
-    }
-
-    &--country {
-      background: linear-gradient(
-        to bottom,
-        $charcoal 0%,
-        $charcoal 75%,
-        $charcoal 75%,
-        $grey-light 33.33%,
-        $grey-light 100%
-      );
-    }
 
     &--program {
       background: #fffaf2;
     }
 
     @media (min-width: 1024px) {
-      position: relative;
-      height: 21.875rem; // 350px
       padding-bottom: 0;
+      position: relative;
     }
 
     img {
@@ -106,14 +90,16 @@
 
   &__hero-content {
     background-color: $white;
-    border-radius: 4px 0px 0px 4px;
+    border-radius: 4px;
     box-shadow: 2px 2px 24px rgba(0, 0, 0, 0.02);
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 10;
-    margin: -3rem $page-margin-mobile 0;
+    top: -3.5rem;
+    margin-right: $page-margin-mobile;
+    margin-left: $page-margin-mobile;
 
     @media (min-width: 768px) {
       margin-left: $page-margin-tablet;
@@ -121,8 +107,6 @@
     }
 
     @media (min-width: 1024px) {
-      position: absolute;
-      top: -4rem;
       padding: 2.625rem 3.5rem;
       margin-left: calc($column-desktop * 2 + $page-margin-desktop);
       margin-right: calc($column-desktop * 2 + $page-margin-desktop);
@@ -130,8 +114,6 @@
 
     @media (min-width: 1366px) {
       width: calc($column-max * 8);
-      left: 0;
-      right: 0;
       margin-left: auto;
       margin-right: auto;
     }
@@ -168,77 +150,16 @@
   }
 
   &__summary-container {
-    display: relative;
-    background-color: #fcf6f2;
+    background: #fcf6f2;
   }
 
   &__summary-block {
-    position: static;
-
-    &--country {
-      background: linear-gradient(
-        to bottom,
-        $grey-light 0%,
-        $grey-light 50%,
-        $grey-light 50%,
-        #fcf6f2 50%,
-        #fcf6f2 100%
-      );
-    }
-
-    &--sector {
-      background: linear-gradient(
-        to bottom,
-        #febf92 0%,
-        #febf92 50%,
-        #febf92 50%,
-        #fcf6f2 50%,
-        #fcf6f2 100%
-      );
-    }
-
-    &--program {
-      background: linear-gradient(
-        to bottom,
-        #fffaf2 0%,
-        #fffaf2 50%,
-        #fffaf2 50%,
-        #fcf6f2 50%,
-        #fcf6f2 100%
-      );
-    }
+    position: relative;
+    top: -4rem;
 
     @media (min-width: 1024px) {
-      position: relative;
-      z-index: 10;
-      margin-top: -70px;
+      top: -2rem;
       width: 100%;
-      background: #fcf6f2;
-
-      &--sector,
-      &--country {
-        background: linear-gradient(
-          to bottom,
-          transparent 0%,
-          transparent 50%,
-          transparent 50%,
-          #fcf6f2 50%,
-          #fcf6f2 100%
-        );
-      }
-
-      &--program {
-        margin-top: -150px;
-
-        background: linear-gradient(
-          to bottom,
-          #fffaf2 0%,
-          #fffaf2 33.33%,
-          #fffaf2 33.33%,
-          #fcf6f2 33.33%,
-          #fcf6f2 100%
-        );
-      }
     }
   }
 
