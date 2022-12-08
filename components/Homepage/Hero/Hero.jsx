@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import TextLoop from './TextLoop'
 import styles from './Hero.module.scss'
-import Link from 'next/link'
+import CtaLink from '../../CtaLink/CtaLink'
 
 const Hero = ({
   backgroundImage,
@@ -55,9 +55,11 @@ const Hero = ({
             className={`${styles['centered-column']} ${styles['subtitle-container']}`}
           >
             <p className={styles['hero-text']}>{subtitleText}</p>
-            <Link href={url} passHref legacyBehavior>
-              <a className={styles['hero-text']}>{linkLabel}</a>
-            </Link>
+            <CtaLink
+              className={styles['hero-text']}
+              linkLabel={linkLabel}
+              linkUrl={url}
+            />
           </div>
           <div className={styles['desktop-scroll-icon']} aria-hidden>
             <div className={styles['mouse']}>
