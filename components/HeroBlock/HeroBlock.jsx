@@ -76,21 +76,32 @@ const HeroBlock = ({
           )}
         </div>
         <div
-          className={`${styles['hero-block__main-content']} ${styles[`hero-block__main-content--${page}`]}`}
+          className={`${styles['hero-block__main-content']} ${
+            styles[`hero-block__main-content--${page}`]
+          }`}
         >
-          <img src={imgSrc} alt='' aria-hidden />
-          <div className={styles['hero-block__hero-content']}>
-            <h1 className={styles['hero-block__title']}>{title}</h1>
-            {body && <p className={styles['hero-block__body']}>{body}</p>}
-            <div className={styles['hero-block__cta']}><Button label={ctaLabel} url={ctaUrl} /></div>
+          <div
+            className={styles['hero-block__background-image-container']}
+            style={{
+              backgroundImage: `url('${imgSrc}')`
+            }}
+          >
+            <div className={styles['hero-block__hero-content']}>
+              <h1 className={styles['hero-block__title']}>{title}</h1>
+              {body && <p className={styles['hero-block__body']}>{body}</p>}
+              <div className={styles['hero-block__cta']}>
+                <Button label={ctaLabel} url={ctaUrl} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      {
-        highlights.length > 0 &&
+      {highlights.length > 0 && (
         <div className={styles['hero-block__summary-container']}>
           <div
-            className={`${styles['hero-block__summary-block']} ${styles[`hero-block__summary-block--${page}`]}`}
+            className={`${styles['hero-block__summary-block']} ${
+              styles[`hero-block__summary-block--${page}`]
+            }`}
           >
             <SummaryBlock
               highlights={highlights}
@@ -98,10 +109,11 @@ const HeroBlock = ({
               direction={summaryDirection}
             />
           </div>
-          <div className={styles['hero-block__children-container']}>{children}</div>
+          <div className={styles['hero-block__children-container']}>
+            {children}
+          </div>
         </div>
-      }
-      
+      )}
     </div>
   )
 }
