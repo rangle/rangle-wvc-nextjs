@@ -199,13 +199,15 @@ export default function Home({
                 title: 'Report',
                 url: t.report_button_url,
                 imageSrc: t.report_image_url,
-                alt: t.report_image_alt
+                alt: t.report_image_alt,
+                key: 1
               },
               {
                 title: 'Report',
                 url: t.strategy_button_url,
                 imageSrc: t.strategy_image_url,
-                alt: t.strategy_image_alt
+                alt: t.strategy_image_alt,
+                key: 2
               }
             ]}
             accordionItems={[

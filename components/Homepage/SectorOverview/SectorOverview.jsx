@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { HomepageDoughnutChart } from '../../Charts/HomepageDoughnut/HomepageDoughnut'
 import ContentModal from '../../ContentModal/ContentModal'
 import Tooltip from '../../Tooltip/Tooltip'
+import { CounterUtil } from '../Counter/Counter'
 import styles from './SectorOverview.module.scss'
 
 const ChevronRight = () => {
@@ -22,6 +23,39 @@ const ChevronRight = () => {
     </svg>
   )
 }
+
+const HighlightData = [
+  {
+    name: 'Livelihoods',
+    peopleReached: 4.1,
+    invested: 226
+  },
+  {
+    name: 'Health',
+    peopleReached: 10.8,
+    invested: 74
+  },
+  {
+    name: 'Education',
+    peopleReached: 1.4,
+    invested: 42
+  },
+  {
+    name: 'Child Protection & Participation',
+    peopleReached: 1.7,
+    invested: 35
+  },
+  {
+    name: 'Water, Sanitation and Hygiene',
+    peopleReached: 1.3,
+    invested: 70
+  },
+  {
+    name: 'Total',
+    peopleReached: 18,
+    invested: 447
+  }
+]
 
 const SectorOverview = ({
   doughnutChartLabel = 'Doughnut chart for sector overview',
@@ -48,6 +82,18 @@ const SectorOverview = ({
     setModalOpen(false)
   }
 
+  const [peopleReached, setPeopleReached] = useState(18)
+  const [invested, setInvested] = useState(447)
+
+  // TODO: hook this up to the doughnut chart somehow
+  const onChartHover = (itemName) => {
+    const highlightInfo = HighlightData.find(
+      (highlight) => highlight.name === itemName || highlight.name === 'Total'
+    )
+    setPeopleReached(highlightInfo.peopleReached)
+    setInvested(highlightInfo.invested)
+  }
+
   return (
     <div className={styles['sector-overview']}>
       <ContentModal
@@ -67,6 +113,7 @@ const SectorOverview = ({
               data={data}
               ariaLabel={doughnutChartLabel}
               openModal={openModal}
+              onChartHover={onChartHover}
             />
           )}
         </div>
@@ -107,19 +154,22 @@ const SectorOverview = ({
         </div>
       </div>
       <div className={styles['desktop-data-container']}>
-        {sectorHighlights.slice(0, 2).map((highlight) => (
-          <div key={highlight.value} className={styles['sector-highlight']}>
-            <p className={styles['sector-highlight--value']}>
-              {highlight.value}
-            </p>
-            <div className={styles['sector-highlight-title-row']}>
-              <p className={styles['sector-highlight--title']}>
-                {highlight.title}
-              </p>
-              {highlight.tooltip && <Tooltip content={highlight.tooltip} />}
-            </div>
+        <div className={styles['sector-highlight']}>
+          <p className={styles['sector-highlight--value']}>
+            <CounterUtil total={peopleReached} /> million
+          </p>
+          <div className={styles['sector-highlight-title-row']}>
+            <p className={styles['sector-highlight--title']}>people reached</p>
           </div>
-        ))}
+        </div>
+        <div className={styles['sector-highlight']}>
+          <p className={styles['sector-highlight--value']}>
+            $<CounterUtil total={invested} /> million
+          </p>
+          <div className={styles['sector-highlight-title-row']}>
+            <p className={styles['sector-highlight--title']}>invested</p>
+          </div>
+        </div>
       </div>
     </div>
   )
