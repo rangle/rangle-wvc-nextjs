@@ -15,14 +15,14 @@ const EmergencyAlert = ({ body, buttonLabel, url, title }) => {
           </div>
           <div>
             <h4 className={styles['emergency-alert__title']}>{title}</h4>
-            <p className={styles['emergency-alert__body']}>
-              {parse(body)}
+            <span className={styles['emergency-alert__body']}>
+              {parse(body || '')}
               {url && (
                 <a target='_blank' className={styles['emergency-alert__link']} href={url}>
                   Learn more
                 </a>
               )}
-            </p>
+            </span>
           </div>
         </div>
         <button

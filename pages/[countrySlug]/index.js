@@ -12,7 +12,9 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import Tabs from '../../components/Tabs/Tabs'
 import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { convertToKebabCase } from '../../utils/convertStrings'
-
+import StoryCardGrid, {
+  StoryCard
+} from '../../components/StoryCardGrid/StoryCardGrid'
 import StatisticCardGrid, {
   StatisticCard
 } from '../../components/StatisticCardGrid/StatisticCardGrid'
@@ -74,6 +76,7 @@ const OverviewSection = (props) => {
               <StatisticCardGrid
                 cards={props.highlightedResults.map((result) => (
                   <StatisticCard
+                    key={result.STATEMENT_WITHOUT_VALUE}
                     body={result.STATEMENT_WITHOUT_VALUE}
                     statistic={result.VALUE}
                     title={props.PROGRESS_CARD_LABEL}
@@ -84,11 +87,13 @@ const OverviewSection = (props) => {
           )}
         </div>
       </HeroBlock>
-      {props.topGraphs && props.topGraphs.length > 0 && <ChartContainer
-        chartData={props.topGraphs}
-        chartType='line'
-        controlTitle={props.GRAPHBOX_TITLE}
-      />}
+      {props.topGraphs && props.topGraphs.length > 0 && (
+        <ChartContainer
+          chartData={props.topGraphs}
+          chartType='line'
+          controlTitle={props.GRAPHBOX_TITLE}
+        />
+      )}
     </section>
   )
 }
@@ -131,7 +136,7 @@ const DetailsSection = (props) => {
 }
 
 const ResultsSection = (props) => {
-  return (
+  return props.results.length > 0 ? (
     <section id={props.sectionId}>
       <SectionContainer
         alt={props.RESULTS_IMAGE_ALT}
@@ -139,90 +144,90 @@ const ResultsSection = (props) => {
         title={props.RESULTS_TITLE}
         isDarkMode
       >
-        {props.results.length > 0 && (
-          <div className={styles['results-content']}>
-            <Tabs isDarkMode>
-              {props.results.map((result) => (
-                <Item title={result.year}>
-                  <AccordionGroup
-                    isDarkMode
-                    items={Object.keys(result.areasOfFocus).map(
-                      (areaOfFocusTitle) => ({
-                        title: areaOfFocusTitle,
-                        children: (
-                          <p>
-                            <ul>
-                              {result.areasOfFocus[areaOfFocusTitle].map(
-                                (areaOfFocus) => (
-                                  <li>{areaOfFocus.FULL_STATEMENT}</li>
-                                )
-                              )}
-                            </ul>
-                          </p>
-                        )
-                      })
-                    )}
-                  />
-                </Item>
-              ))}
-            </Tabs>
-          </div>
-        )}
+        <div className={styles['results-content']}>
+          <Tabs isDarkMode>
+            {props.results.map((result) => (
+              <Item title={result.year} key={result.year}>
+                <AccordionGroup
+                  key={result.year}
+                  isDarkMode
+                  items={Object.keys(result.areasOfFocus).map(
+                    (areaOfFocusTitle) => ({
+                      title: areaOfFocusTitle,
+                      children: (
+                        <p>
+                          <ul>
+                            {result.areasOfFocus[areaOfFocusTitle].map(
+                              (areaOfFocus) => (
+                                <li key={areaOfFocus.FULL_STATEMENT}>
+                                  {areaOfFocus.FULL_STATEMENT}
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        </p>
+                      )
+                    })
+                  )}
+                />
+              </Item>
+            ))}
+          </Tabs>
+        </div>
       </SectionContainer>
     </section>
-  )
+  ) : null
 }
 
 const ProgramsSection = (props) => {
-  // TODO: connect to snowflake
-  return (
+  return props.programs.length > 0 ? (
     <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel
-          cards={[
+          cards={props.programs.map((program) => (
             <MediaCard
+              // TODO: add this to Snowflake
               alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
-            />,
-            <MediaCard
-              alt='Children running down a street smiling'
-              body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-              imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-              labels={['Health, Water']}
-              title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-              url='http://worldvision.ca/our-work'
+              body={program.CARD_BODY}
+              imageSrc={program.CARD_IMAGE_URL}
+              title={program.HEADER_TITLE}
+              url={`/${program.URL}`}
             />
-          ]}
+          ))}
+          // TODO: add this to Snowflake
           title='Programs'
         />
       </div>
     </section>
-  )
+  ) : null
 }
 
 const StoriesSection = (props) => {
-  // TODO: add story grid
-  return <section id={props.sectionId}></section>
+  const hasStories =
+    props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
+  return hasStories ? (
+    <section className={styles['stories-container']} id={props.sectionId}>
+      <StoryCardGrid
+        cards={Array(3)
+          .fill('')
+          .map((val, index) =>
+            props[`STORY_URL_0${index + 1}`] ? (
+              <StoryCard
+                body={props[`STORY_BLURB_0${index + 1}`]}
+                imgAlt={props[`STORY_IMAGE_ALT_0${index + 1}`]}
+                imgSrc={props[`STORY_IMAGE_URL_0${index + 1}`]}
+                // TODO: add to snowflake
+                linkLabel='Read more'
+                linkUrl={props[`STORY_URL_0${index + 1}`]}
+              />
+            ) : null
+          )
+          .filter((story) => story)}
+        // TODO: add to snowflake
+        title='Stories'
+      />
+    </section>
+  ) : null
 }
 
 const ResourcesSection = (props) => {
@@ -282,6 +287,7 @@ export default function Country(props) {
           return (
             <Component
               {...props}
+              key={convertToKebabCase(section.TEXT)}
               sectionId={convertToKebabCase(section.TEXT)}
             />
           )
@@ -349,6 +355,10 @@ export async function getStaticProps({ params }) {
     sqlText: `select * from STATEMENTS where LEVEL = 'countries' and ID_COUNTRY = '${currentCountry.COUNTRY_CODE}'`
   })
 
+  const { rows: programsData } = await getSnowflakeData({
+    sqlText: `select * from MAP INNER JOIN PROGRAMS on MAP.IVS_PROGRAM_CODE=PROGRAMS.IVS_PROGRAM_CODE where LEVEL = 'programs' and COUNTRYCODE = '${currentCountry.COUNTRY_CODE}'`
+  })
+
   const { rows: resourcesData } = await getSnowflakeData({
     sqlText: `select * from RESOURCES where ${Array(4)
       .fill('')
@@ -385,7 +395,8 @@ export async function getStaticProps({ params }) {
         resultsData.filter((result) => result.DATA_PANEL === 'yes') || [],
       resources: resourcesData || [],
       disclaimer: disclaimerData[0].TEXT,
-      topGraphs: [ ...topGraphs]
+      topGraphs: [...topGraphs],
+      programs: programsData || []
     }
   }
 }

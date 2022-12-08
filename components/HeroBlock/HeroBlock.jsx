@@ -86,18 +86,22 @@ const HeroBlock = ({
           </div>
         </div>
       </div>
-      <div className={styles['hero-block__summary-container']}>
-        <div
-          className={`${styles['hero-block__summary-block']} ${styles[`hero-block__summary-block--${page}`]}`}
-        >
-          <SummaryBlock
-            highlights={highlights}
-            order={page === 'sector' ? 'reverse' : 'title-first'}
-            direction={summaryDirection}
-          />
+      {
+        highlights.length > 0 &&
+        <div className={styles['hero-block__summary-container']}>
+          <div
+            className={`${styles['hero-block__summary-block']} ${styles[`hero-block__summary-block--${page}`]}`}
+          >
+            <SummaryBlock
+              highlights={highlights}
+              order={page === 'sector' ? 'reverse' : 'title-first'}
+              direction={summaryDirection}
+            />
+          </div>
+          <div className={styles['hero-block__children-container']}>{children}</div>
         </div>
-        <div className={styles['hero-block__children-container']}>{children}</div>
-      </div>
+      }
+      
     </div>
   )
 }

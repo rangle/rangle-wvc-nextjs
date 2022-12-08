@@ -156,6 +156,14 @@
       width: calc($column-max * 12);
       margin: 0 auto;
     }
+
+    &__image {
+      height: 180px;
+
+      img {
+        height: 100%;
+      }
+    }
   }
 
   .results-content {

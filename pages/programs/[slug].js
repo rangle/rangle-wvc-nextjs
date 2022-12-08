@@ -76,7 +76,7 @@ export async function getStaticProps({ params }) {
     sqlText: `select * from MAP where IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
   })
 
-  const { rows: changeGraphs} = await getSnowflakeData({
+  const { rows: changeGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'programs'
     and DATA_PANEL = 'change_graph'
@@ -89,6 +89,32 @@ export async function getStaticProps({ params }) {
     and DATA_PANEL = 'top_graph'
     and IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
   })
+
+  let imageGallery =
+    currentProgram.CAROUSEL_CONTROL !== 'no'
+      ? Array(10)
+          .fill('')
+          .map((val, index) => ({
+            url: currentProgram[
+              `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_URL`
+            ],
+            alt: currentProgram[
+              `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_ALT`
+            ]
+          }))
+          .filter((image) => image.url) || []
+      : []
+
+  if (currentProgram.CAROUSEL_CONTROL === 'no') {
+    const res = await fetch(
+      `https://svc.worldvision.ca/MediaService/api2/media/project/${currentProgram.RC_TABLE_CODE}`
+    )
+    const imageGalleryData = await res.json()
+    imageGallery = imageGalleryData?.Data?.map((image) => ({
+      url: image.ThumbnailLocation,
+      alt: image.Caption
+    }))
+  }
 
   return {
     props: {
@@ -108,7 +134,8 @@ export async function getStaticProps({ params }) {
       partners: partnerData || [],
       mapData: mapData || [],
       changeGraphs: [...changeGraphs],
-      topGraphs: [...topGraphs]
+      topGraphs: [...topGraphs],
+      imageGallery
     }
   }
 }
