@@ -33,14 +33,6 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
     transformNavigationData
   } = require('../../utils/snowflake')
 
-  const changeGraphs = await getSnowflakeData({
-    sqlText: `select * from GRAPHS
-    where LEVEL = 'programs'
-    and DATA_PANEL = 'change_graph'`
-    // TODO: add the program code filter
-    // and IVS_PROGRAM_CODE is '....'
-  })
-
   const { rows: areasOfFocusData } = await getSnowflakeData({
     sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
   })
@@ -85,6 +77,46 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
     sqlText: `select * from MAP where IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
   })
 
+  const { rows: changeGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'change_graph'
+    and IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
+  })
+
+  const { rows: topGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'top_graph'
+    and IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
+  })
+
+  let imageGallery =
+    currentProgram.CAROUSEL_CONTROL !== 'no'
+      ? Array(10)
+          .fill('')
+          .map((val, index) => ({
+            url: currentProgram[
+              `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_URL`
+            ],
+            alt: currentProgram[
+              `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_ALT`
+            ]
+          }))
+          .filter((image) => image.url) || []
+      : []
+
+  if (currentProgram.CAROUSEL_CONTROL === 'no') {
+    const res = await fetch(
+      `https://svc.worldvision.ca/MediaService/api2/media/project/${currentProgram.RC_TABLE_CODE}`
+    )
+    const imageGalleryData = await res.json()
+    imageGallery = imageGalleryData?.Data?.map((image) => ({
+      url: image.ThumbnailLocation,
+      alt: image.Caption
+    }))
+  }
+
   return {
     props: {
       ...currentProgram,
@@ -102,7 +134,9 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
       resources: resourcesData || [],
       partners: partnerData || [],
       mapData: mapData || [],
-      changeGraphs: [...changeGraphs.rows]
+      changeGraphs: [...changeGraphs],
+      topGraphs: [...topGraphs],
+      imageGallery: imageGallery || []
     }
   }
 }

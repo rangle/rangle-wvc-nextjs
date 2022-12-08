@@ -5,7 +5,6 @@ import Dropdown from '../components/Dropdown/Dropdown'
 import { getScreenWidth } from '../utils/getScreenWidth'
 
 export default function ProgramFilter(props) {
-  console.log(props.resourcesData)
   const DEFAULT_DESKTOP_INITIAL_RESULT = 9
   const DEFAULT_MOBILE_INITIAL_RESULT = 6
   const DEFAULT_MOBILE_INITIAL_FILTERS = 2

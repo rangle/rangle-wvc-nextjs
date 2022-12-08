@@ -19,26 +19,16 @@ import { ChartContainer } from '../components/ChartContainer/ChartContainer'
 import { TableOfContents } from '../components/TableOfContents/TableOfContents'
 import { getGraph } from '../utils/getGraphs'
 import { Item } from 'react-stately'
+import { convertToKebabCase } from '../utils/convertStrings'
+import StoryCardGrid, {
+  StoryCard
+} from '../components/StoryCardGrid/StoryCardGrid'
 
 import styles from './program.module.scss'
 
-export default function ProgramPage(props) {
-  const sectionsData = props.controls.filter((control) => control.VALUE)
+const OverviewSection = (props) => {
   return (
-    <div className={styles['program-container']}>
-      {props.EMERGENCY_BANNER_BODY && (
-        <EmergencyAlert
-          body={props.EMERGENCY_BANNER_BODY}
-          // TODO: need to add to snowflake table
-          buttonLabel='Close'
-        />
-      )}
-      <TableOfContents
-        contents={sectionsData.map((control) => control.TEXT)}
-        ctaText={
-          props.controls.find((control) => control.ITEM === 'donate_label').TEXT
-        }
-      />
+    <section id={props.sectionId}>
       <HeroBlock
         ctaLabel={props.HEADER_CTABUTTON_LABEL}
         ctaUrl={props.HEADER_CTABUTTON_URL}
@@ -121,7 +111,7 @@ export default function ProgramPage(props) {
           {props.highlightedResults.length > 0 && (
             <div className={styles['summary-statistic-container']}>
               <StatisticCardGrid
-                cards={props.highlightedResults.map((result) => (
+                cards={props.highlightedResults.slice(0, 3).map((result) => (
                   <StatisticCard
                     body={result.STATEMENT_WITHOUT_VALUE}
                     statistic={result.VALUE}
@@ -164,13 +154,22 @@ export default function ProgramPage(props) {
           chartData={props.topGraphs}
         />
       )}
-      <MediaBlock
-        videoSrc={props.FEATURED_VIDEO_URL}
-        // TODO: where does this come from?
-        videoBackgroundImage='/MediaBlockBackground.png'
-        title={props.FEATURED_TITLE}
-        body={props.FEATURED_BODY}
-      />
+      {props.FEATURED_VIDEO_URL && (
+        <MediaBlock
+          videoSrc={props.FEATURED_VIDEO_URL}
+          // TODO: where does this come from?
+          videoBackgroundImage='/MediaBlockBackground.png'
+          title={props.FEATURED_TITLE}
+          body={props.FEATURED_BODY}
+        />
+      )}
+    </section>
+  )
+}
+
+const DetailsSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.DETAILS_IMAGE_ALT}
         src={props.DETAILS_IMAGE_URL}
@@ -192,84 +191,96 @@ export default function ProgramPage(props) {
               ) : null
             )}
         </div>
-        {/* TODO: connect to snowflake */}
-        <div className={styles['details-from-field-container']}>
-          <Carousel
-            cards={[
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='1. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />,
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='2. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />,
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='3. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />,
-              <MediaCard
-                alt='Children running down a street smiling'
-                body='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sequi eos molestias et ullam veniam tenetur magni possimus reprehenderit cupiditate aspernatur temporibus corporis excepturi consectetur nobis neque officia inventore, incidunt amet sapiente nulla! Et, nulla. Aut quam fuga eos suscipit fugit eligendi odit molestiae exercitationem assumenda eius itaque, delectus quaerat aspernatur quidem omnis! Totam illo maxime vel consequatur explicabo aliquid!'
-                imageSrc='https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-                labels={['Health, Water']}
-                title='4. Prevention of malnutrition through a community-based approach centered on the 1000 days through the "Care Groups"'
-                url='http://worldvision.ca/our-work'
-              />
-            ]}
-            title='From the field'
-          />
-        </div>
+        {props.imageGallery.length > 0 && (
+          <div className={styles['details-from-field-container']}>
+            <Carousel
+              cards={props.imageGallery.map((image) => (
+                <div className={styles['details-from-field-container__image']}>
+                  <img src={image.url} alt={image.alt} />
+                </div>
+              ))}
+              // TODO: connect to snowflake
+              title='From the field'
+            />
+          </div>
+        )}
       </SectionContainer>
+    </section>
+  )
+}
 
+const ResultsSection = (props) => {
+  return props.results.length > 0 ? (
+    <section id={props.sectionId}>
       <SectionContainer
         alt={props.RESULTS_IMAGE_ALT}
         src={props.RESULTS_IMAGE_URL}
         title={props.RESULTS_TITLE}
         isDarkMode
       >
-        {props.results.length > 0 && (
-          <div className={styles['results-content']}>
-            <Tabs isDarkMode>
-              {props.results.map((result) => (
-                <Item title={result.year}>
-                  <AccordionGroup
-                    isDarkMode
-                    items={Object.keys(result.areasOfFocus).map(
-                      (areaOfFocusTitle) => ({
-                        title: areaOfFocusTitle,
-                        children: (
-                          <p>
-                            <ul>
-                              {result.areasOfFocus[areaOfFocusTitle].map(
-                                (areaOfFocus) => (
-                                  <li>{areaOfFocus.FULL_STATEMENT}</li>
-                                )
-                              )}
-                            </ul>
-                          </p>
-                        )
-                      })
-                    )}
-                  />
-                </Item>
-              ))}
-            </Tabs>
-          </div>
-        )}
+        <div className={styles['results-content']}>
+          <Tabs isDarkMode>
+            {props.results.map((result) => (
+              <Item title={result.year}>
+                <AccordionGroup
+                  isDarkMode
+                  items={Object.keys(result.areasOfFocus).map(
+                    (areaOfFocusTitle) => ({
+                      title: areaOfFocusTitle,
+                      children: (
+                        <p>
+                          <ul>
+                            {result.areasOfFocus[areaOfFocusTitle].map(
+                              (areaOfFocus) => (
+                                <li>{areaOfFocus.FULL_STATEMENT}</li>
+                              )
+                            )}
+                          </ul>
+                        </p>
+                      )
+                    })
+                  )}
+                />
+              </Item>
+            ))}
+          </Tabs>
+        </div>
       </SectionContainer>
+    </section>
+  ) : null
+}
+
+const StoriesSection = (props) => {
+  const hasStories =
+    props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
+  return hasStories ? (
+    <section className={styles['stories-container']} id={props.sectionId}>
+      <StoryCardGrid
+        cards={Array(3)
+          .fill('')
+          .map((val, index) =>
+            props[`STORY_URL_0${index + 1}`] ? (
+              <StoryCard
+                body={props[`STORY_BLURB_0${index + 1}`]}
+                imgAlt={props[`STORY_IMAGE_ALT_0${index + 1}`]}
+                imgSrc={props[`STORY_IMAGE_URL_0${index + 1}`]}
+                // TODO: add to snowflake
+                linkLabel='Read more'
+                linkUrl={props[`STORY_URL_0${index + 1}`]}
+              />
+            ) : null
+          )
+          .filter((story) => story)}
+        // TODO: add to snowflake
+        title='Stories'
+      />
+    </section>
+  ) : null
+}
+
+const ResourcesSection = (props) => {
+  return (
+    <section id={props.sectionId}>
       {props.resources.length > 0 && (
         <div className={styles['resource-container']}>
           <Carousel
@@ -287,14 +298,13 @@ export default function ProgramPage(props) {
           />
         </div>
       )}
-      <CtaBlock
-        body={props.CTA_BODY}
-        buttonLabel={props.CTA_BUTTON_LABEL}
-        buttonUrl={props.CTA_BUTTON_URL}
-        imageUrl={props.CTA_IMAGE_URL}
-        imageUrlAlt={props.CTA_IMAGE_URL_ALT}
-        title={props.CTA_TITLE}
-      />
+    </section>
+  )
+}
+
+const PartnersSection = (props) => {
+  return props.partners.length > 0 ? (
+    <section id={props.sectionId}>
       <LogoBlock
         // TODO: connect to control table
         title='Our Partners'
@@ -303,6 +313,57 @@ export default function ProgramPage(props) {
           url: partner.DONOR_LINK,
           src: partner.DONOR_LOGO_URL
         }))}
+      />
+    </section>
+  ) : null
+}
+
+const componentMap = {
+  section_order_summary: OverviewSection,
+  section_order_details: DetailsSection,
+  section_order_results: ResultsSection,
+  section_order_stories: StoriesSection,
+  section_order_resources: ResourcesSection,
+  section_order_partners: PartnersSection
+}
+
+export default function ProgramPage(props) {
+  const sectionsData = props.controls.filter((control) => control.VALUE)
+  return (
+    <div className={styles['program-container']}>
+      {props.EMERGENCY_BANNER_BODY && (
+        <EmergencyAlert
+          body={props.EMERGENCY_BANNER_BODY}
+          // TODO: need to add to snowflake table
+          buttonLabel='Close'
+        />
+      )}
+      <TableOfContents
+        contents={sectionsData.map((control) => control.TEXT)}
+        ctaText={
+          props.controls.find((control) => control.ITEM === 'donate_label').TEXT
+        }
+      />
+      {sectionsData.map((section) => {
+        if (componentMap[section.ITEM]) {
+          const Component = componentMap[section.ITEM]
+          return (
+            <Component
+              {...props}
+              key={convertToKebabCase(section.TEXT)}
+              sectionId={convertToKebabCase(section.TEXT)}
+            />
+          )
+        }
+        return null
+      })}
+      <CtaBlock
+        body={props.CTA_BODY}
+        buttonLabel={props.CTA_BUTTON_LABEL}
+        buttonUrl={props.CTA_BUTTON_URL}
+        imageUrl={props.CTA_IMAGE_URL}
+        imageUrlAlt={props.CTA_IMAGE_URL_ALT}
+        title={props.CTA_TITLE}
       />
     </div>
   )

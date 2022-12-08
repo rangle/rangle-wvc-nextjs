@@ -147,7 +147,7 @@ export default function ProgramFilter(props) {
                 <MediaCard
                   // TODO: add this to Snowflake
                   alt='My image alt text.'
-                  body={program.DETAILS_BODY_01}
+                  body={program.CARD_BODY}
                   imageSrc={program.CARD_IMAGE_URL}
                   title={program.HEADER_TITLE}
                   url={`/${program.URL}`}
