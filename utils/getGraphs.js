@@ -4,6 +4,9 @@ import { StackedBarChart } from '../components/Charts/StackedBarChart/StackedBar
 import { DoughnutChart } from '../components/Charts/DoughnutChart/DoughnutChart'
 
 export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
+  if (graphData) {
+    return null
+  }
   // get the indicator code (/chart) to plot
   let graphToPlot =
     idCode ||
