@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import parse from 'html-react-parser'
 
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
@@ -11,6 +12,7 @@ import MapHeaderContainer from '../components/MapChart/MapChartHeader/MapHeaderC
 import { COUNTRY_NAMES } from '../components/MapChart/MapConstants'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 import Prefooter from '../components/Homepage/Prefooter/Prefooter'
+import Table from '../components/Homepage/Table/Table'
 
 const featureCardData = (t, max) =>
   Array.from(Array(max).keys(), (_, index) => ({
@@ -56,9 +58,9 @@ export default function Home({
   programData,
   countryData,
   translation: t,
-  chartData
+  chartData,
+  tableData
 }) {
-  console.log({ t })
   return (
     <div className={styles.container}>
       <Head>
@@ -187,17 +189,45 @@ export default function Home({
           className={`${styles['section']} ${styles['section--pre-footer']}`}
         >
           <Prefooter
-            title={
-              'Commitment to learning, and sharing what we’ve learned, keep us accountable.'
-            }
-            subtitle={'Four case studies of wisdom gained in 2021:'}
+            title={t.learning_title}
+            subtitle={t.learning_subtitle}
             mediaBlockTitle={
               "As we partner with communities, we're focused on creating real impact."
             }
-            mediaBlockSrc={'https://www.youtube.com/watch?v=RYTFzGkb-5A'}
-            mediaBlockBackground={
-              'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg'
-            }
+            mediaBlockSrc={t.learning_video}
+            reportCardData={[
+              {
+                title: 'Report',
+                url: t.report_button_url,
+                imageSrc: t.report_image_url,
+                alt: t.report_image_alt
+              },
+              {
+                title: 'Report',
+                url: t.strategy_button_url,
+                imageSrc: t.strategy_image_url,
+                alt: t.strategy_image_alt
+              }
+            ]}
+            accordionItems={[
+              {
+                title: t.accordion_title_01,
+                children: parse(t.accordion_body_01)
+              },
+              {
+                title: t.accordion_title_02,
+                children: (
+                  <div>
+                    {parse(t.accordion_body_02)}
+                    <Table data={tableData} />
+                  </div>
+                )
+              },
+              {
+                title: t.accordion_title_03,
+                children: parse(t.accordion_body_03)
+              }
+            ]}
           />
         </section>
       </main>
@@ -258,12 +288,19 @@ export async function getStaticProps() {
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
+  const tableData = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'main_page'
+    and DATA_PANEL = 'financial_table'`
+  })
+
   return {
     props: {
       programData,
       countryData,
       translation,
       chartData,
+      tableData: tableData.rows,
       navigation: transformNavigationData(
         controlData,
         areasOfFocusData,

@@ -85,30 +85,13 @@ const hardcodedMediaCards = [
   }
 ]
 
-const sampleReportCards = [
-  {
-    title: 'Report',
-    url: 'https://worldvision.ca/',
-    imageSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
-    alt: 'My image alt text.'
-  },
-  {
-    title: 'Report',
-    url: 'https://worldvision.ca/',
-    imageSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
-    alt: 'My image alt text.'
-  }
-]
-
 const Prefooter = ({
   accordionItems = sampleAccordionItems,
   mediaBlockBackground,
   mediaBlockSrc,
   mediaBlockTitle,
   mediaCardData = hardcodedMediaCards,
-  reportCardData = sampleReportCards,
+  reportCardData,
   subtitle,
   title
 }) => {
@@ -136,7 +119,13 @@ const Prefooter = ({
   ))
   return (
     <div className={styles['prefooter']}>
-      <MediaBlock title={mediaBlockTitle} videoSrc={mediaBlockSrc} />
+      {mediaBlockSrc && (
+        <MediaBlock
+          title={mediaBlockTitle}
+          videoSrc={mediaBlockSrc}
+          videoBackgroundImage={mediaBlockBackground}
+        />
+      )}
       <div className={styles['prefooter-content']}>
         <h2 className={styles['prefooter-carousel-title']}>{title}</h2>
         <p className={styles['prefooter-carousel-subtitle']}>{subtitle}</p>

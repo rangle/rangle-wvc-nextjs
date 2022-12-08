@@ -34,9 +34,10 @@ const AccordionItem = ({ children, isDarkMode = false, title }) => {
         <h5>{title}</h5>
         <Chevron />
       </button>
-      {/* TODO: Extend to support RTE when CMS is decided */}
       {isOpen && (
-        <div className={styles['accordion-item-content-container']}>{children}</div>
+        <div className={styles['accordion-item-content-container']}>
+          {children}
+        </div>
       )}
     </div>
   )
