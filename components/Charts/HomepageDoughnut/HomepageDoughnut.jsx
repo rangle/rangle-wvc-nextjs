@@ -2,7 +2,11 @@ import React, { useRef } from 'react'
 import { Chart as ChartJS, ArcElement } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
-import { Doughnut, getElementAtEvent } from 'react-chartjs-2'
+import {
+  Doughnut,
+  getElementAtEvent,
+  getElementsAtEvent
+} from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, ChartDataLabels)
 
@@ -19,11 +23,12 @@ export const HomepageDoughnutChart = ({
   cutout = 90,
   isDarkMode = false,
   ariaLabel = 'Doughnut Chart',
-  openModal
+  openModal,
+  onChartHover
 }) => {
   const fullTitle = [title, subTitle]
 
-  const chartRef = useRef(null)
+  const chartRef = useRef()
 
   const onClick = (event) => {
     const { current: chart } = chartRef

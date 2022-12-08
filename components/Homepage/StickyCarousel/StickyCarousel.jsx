@@ -11,7 +11,7 @@ const fadeIn = {
   whileInView: ['visible'],
   exit: ['hidden'],
   viewport: { amount: 0.4 },
-  transition: { type: 'spring', duration: 1.5, bounce: 0 }
+  transition: { type: 'spring', duration: 0.4, bounce: 0 }
 }
 
 const slideIn = {
