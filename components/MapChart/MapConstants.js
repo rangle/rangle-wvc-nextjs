@@ -1,3 +1,4 @@
+//FIXME: this should either come from SnowflakeDB or contain all the country codes
 const COUNTRY_CODES = {
   AFG: 'Afghanistan',
   ARM: 'Armenia',
