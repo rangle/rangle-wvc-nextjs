@@ -19,14 +19,14 @@ function MyApp({ Component, pageProps }) {
     )
   return (
     <div className={styles['page-container']}>
-      {/* <Script src='../_wvc/dist/js/lazy-loading.js' /> */}
+      <Script src='../_wvc/dist/js/lazy-loading.js' />
       <Script src='../_wvc/dist/js/header.js' />
-      {/* <Script src='../_wvc/dist/js/jssocials.min.js' />
+      <Script src='../_wvc/dist/js/jssocials.min.js' />
       <Script src='../_wvc/dist/js/site.js' />
       <Script src='../_wvc/dist/js/web-chat.js' />
       <Script src='../_wvc/dist/js/bootstrap.min.js' />
       <Script src='../_wvc/dist/js/data-layer-events.js' />
-      <Script src='../_wvc/dist/js/bootstrap-tabcollapse.js' /> */}
+      <Script src='../_wvc/dist/js/bootstrap-tabcollapse.js' />
 
       <Script src='https://unpkg.com/@world-vision-canada/wvc-design-system@1.*.*/dist/wvc.umd.min.js' />
       <Script src='https://code.jquery.com/jquery-3.6.0.min.js' />

@@ -11,8 +11,6 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 // TODO: replace hard coded data with data from snowflake
 const Table = ({ data, introText }) => {
-  console.log({ data })
-
   const availableYears = [...new Set(data.map((item) => item.YEAR_OR_TARGET))]
 
   const graphSections = [...new Set(data.map((item) => item.GRAPH_STATEMENT))]
