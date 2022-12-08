@@ -205,13 +205,14 @@ const ApproachSection = (props) => {
 }
 
 const ExpenditureSection = (props) => {
-  let numberOfGraphs = [
-    ...new Set(
-      props.expensesGraphs.map(
-        (ea, idx) => props.expensesGraphs[idx].INDICATOR_CODE
-      )
-    )
-  ]
+
+  let chartsToPlot = []
+  props.expensesGraphs?.filter(row => {
+    let i = chartsToPlot.findIndex(x => x.INDICATOR_CODE === row.INDICATOR_CODE)
+    if (i <= -1) {
+      chartsToPlot.push(row)
+    } return null
+  })
 
   return (
     <section id={props.sectionId}>
@@ -226,10 +227,8 @@ const ExpenditureSection = (props) => {
         {props.expensesGraphs && (
           <div className={styles['expenditures-tabs']}>
             <Tabs>
-              {numberOfGraphs.map((ea, idx) => (
-                <Item title={props.expensesGraphs[idx].GRAPH_STATEMENT}>
-                  {getGraph(idx, props.expensesGraphs)}
-                </Item>
+              {chartsToPlot.map((ea, idx) => (
+                <Item title={chartsToPlot[idx].GRAPH_STATEMENT}>{getGraph(idx, props.expensesGraphs)}</Item>
               ))}
             </Tabs>
           </div>
@@ -294,7 +293,7 @@ const ChangeSection = (props) => {
           <p className={styles['change-intro']}>
             {parse(props.CHANGE_BODY || '')}
           </p>
-          {props.changeGraphs && props.changeGraphs > 0 && (
+          {props.changeGraphs && props.changeGraphs.length > 0 && (
             <div className={styles['change-container__chart-container']}>
               <div
                 className={styles['change-container__chart-container__chart']}
@@ -528,22 +527,22 @@ export async function getStaticProps({ params }) {
   const { rows: topGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'areas_of_focus'
+    and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'
     and DATA_PANEL = 'top_graph'`
-    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
   })
 
   const { rows: expensesGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'areas_of_focus'
+    and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'
     and DATA_PANEL = 'expenses_graph'`
-    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
   })
 
   const { rows: changeGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'areas_of_focus'
+    and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'
     and DATA_PANEL = 'change_graph'`
-    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
   })
 
   return {

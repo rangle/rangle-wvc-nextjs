@@ -60,7 +60,14 @@ export const DoughnutChart = ({
   }
 
   const chartData = {
-    labels: labels.map((label, idx) => `${label}  ${data[idx]}`),
+    labels: labels.map(
+      (label, idx) =>
+        `${label}:  ${
+          data[idx][data[idx].length - 1] === '%'
+            ? `${data[idx].slice(0, -1) * 100}%`
+            : data[idx]
+        }`
+    ),
     datasets: [
       {
         data: data.map((ea) => parseFloat(ea)),

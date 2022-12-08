@@ -34,10 +34,15 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
       'rgb(102, 102, 102)',
       'rgb(153, 153, 153)'
     ],
-    data: rowsToPlot.map((ea) =>
-      ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
+    data: rowsToPlot.map((ea) => ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
     ),
-    labels: [...new Set(rowsToPlot.map((ea) => ea.YEAR_OR_TARGET))],
+    labels: [
+      ...new Set(
+        rowsToPlot.map((ea) =>
+          ea.CHART_TYPE === 'pie_chart' ? ea.DISAGGREGATION : ea.YEAR_OR_TARGET
+        )
+      )
+    ],
     showTopBarLabels: true,
     subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
       rowsToPlot[0].LOCATION && rowsToPlot[0].COUNTRY ? ', ' : ''
