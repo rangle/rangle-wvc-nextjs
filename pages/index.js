@@ -7,10 +7,10 @@ import RollingCredits from '../components/Homepage/RollingCredits/RollingCredits
 import VideoCarousel from '../components/Homepage/VideoCarousel/VideoCarousel'
 import StickyCarousel from '../components/Homepage/StickyCarousel/StickyCarousel'
 import styles from './Home.module.scss'
-import MapHeaderContainer from '../components/MapChart/MapChartHeader/MapHeaderContainer'
 import { COUNTRY_NAMES } from '../components/MapChart/MapConstants'
 import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingCreditsMap'
 import Prefooter from '../components/Homepage/Prefooter/Prefooter'
+import MapChartHeader from '../components/MapChart/MapChartHeader/MapChartHeader'
 
 const featureCardData = (t, max) =>
   Array.from(Array(max).keys(), (_, index) => ({
@@ -147,19 +147,18 @@ export default function Home({
             imageSrc={t.map_background_02_url}
             mapCreditsData={[t.map_text_02]}
           />
-          {/*FIXME ish very very big*/}
-          <MapHeaderContainer
-            duration={1000}
-            isDark
-            legendText={t.map_title}
-            padding={40}
-            countryDropdownLabel={t.map_country_label}
-            programDropdownLabel={t.map_program_type_label}
-            yearDropdownLabel='Year'
+          <MapChartHeader
+            labels={{
+              legend: t.map_title,
+              country: t.map_country_label,
+              program: t.map_program_type_label,
+              year: 'year',
+              people: t.map_people_label,
+              invested: t.map_invested_label,
+              programs: t.map_program_label
+            }}
             programData={programData}
             countryData={countryData}
-            showHeaderControls
-            showMarkers
           />
         </section>
         <section
@@ -389,7 +388,7 @@ const sectorData = (t, chartData) => {
 
 const getCountryData = (mapData, programData) => {
   return mapData
-    .filter((n) => n['LEVEL'] === 'countries')
+    .filter((n) => n.LEVEL === 'countries' || n.LEVEL === 'ALL')
     .map((item) => {
       return {
         ...item,

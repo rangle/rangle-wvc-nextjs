@@ -1,7 +1,6 @@
 import styles from './RollingCreditsMap.module.scss'
 
 import React from 'react'
-import MapHeaderContainer from '../../MapChart/MapChartHeader/MapHeaderContainer'
 
 const RollingCreditsMap = ({ mapCreditsData }) => {
   return (

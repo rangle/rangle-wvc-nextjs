@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './MapStatistics.module.scss'
 
+//FIXME tooltips are not implemented
 const MapStatistics = ({ mapStatistics }) => {
   return (
     <MapStatisticsContainer>

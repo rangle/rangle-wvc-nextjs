@@ -14,10 +14,6 @@ function useMapMarkers(markerCoordinates, setPopupInfo) {
           latitude={lat}
           anchor='top'
           onClick={(evt) => {
-            // currently the marker is an array of [long,lat, optional popupInfo object]
-            // might change this to be more
-            // { long: 22, lat: 33, options: { }}
-            // but for now, if there is no popup info - just return;
             if (!options) {
               return
             }
