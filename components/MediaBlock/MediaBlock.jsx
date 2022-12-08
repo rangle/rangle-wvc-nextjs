@@ -25,7 +25,12 @@ const MediaBlock = ({
             />
           )}
           {videoSrc && (
-            <Video src={videoSrc} backgroundImage={videoBackgroundImage} />
+            <Video
+              src={videoSrc}
+              backgroundImage={
+                videoBackgroundImage ? videoBackgroundImage : null
+              }
+            />
           )}
         </div>
       </div>

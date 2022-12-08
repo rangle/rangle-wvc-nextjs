@@ -49,55 +49,39 @@ const sampleAccordionItems = [
   }
 ]
 
-const sampleMediaCards = [
+// Data provided by Monique
+const hardcodedMediaCards = [
   {
     title: 'COVID-19',
-    body: 'How the pandemic is changing the way we teach our youth ready curriculum',
+    body: 'How the pandemic is changing the way we teach our Youth Ready curriculum',
     labels: ['Paper'],
-    url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf	',
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   },
   {
     title: 'Gender Equality',
     body: 'Five key pillars for effective programming.',
     labels: ['Paper'],
     url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   },
   {
     title: 'Data Challenges',
     body: 'Lessons learned with sex-disaggregation.',
     labels: ['Paper'],
-    url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
+    url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf	',
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   },
   {
     title: 'Impact Measurement',
     body: 'What we’ve learned through World Vision’s Agile transformation.',
     labels: ['Paper'],
-    url: 'https://worldvision.ca/',
-    iconSrc: '/conference.svg',
-    alt: 'sample alt text'
-  }
-]
-
-const sampleReportCards = [
-  {
-    title: 'Report',
-    url: 'https://worldvision.ca/',
-    imageSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
-    alt: 'My image alt text.'
-  },
-  {
-    title: 'Report',
-    url: 'https://worldvision.ca/',
-    imageSrc:
-      'https://www.worldvision.ca/WorldVisionCanada/media/our-work/where-we-work-850x500/world-vision-canada-our-work-where-we-work-children-running.jpg',
-    alt: 'My image alt text.'
+    url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf',
+    iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
+    alt: 'Lessons Learned icon'
   }
 ]
 
@@ -106,8 +90,8 @@ const Prefooter = ({
   mediaBlockBackground,
   mediaBlockSrc,
   mediaBlockTitle,
-  mediaCardData = sampleMediaCards,
-  reportCardData = sampleReportCards,
+  mediaCardData = hardcodedMediaCards,
+  reportCardData,
   subtitle,
   title
 }) => {
@@ -135,11 +119,13 @@ const Prefooter = ({
   ))
   return (
     <div className={styles['prefooter']}>
-      <MediaBlock
-        title={mediaBlockTitle}
-        videoSrc={mediaBlockSrc}
-        videoBackgroundImage={mediaBlockBackground}
-      />
+      {mediaBlockSrc && (
+        <MediaBlock
+          title={mediaBlockTitle}
+          videoSrc={mediaBlockSrc}
+          videoBackgroundImage={mediaBlockBackground}
+        />
+      )}
       <div className={styles['prefooter-content']}>
         <h2 className={styles['prefooter-carousel-title']}>{title}</h2>
         <p className={styles['prefooter-carousel-subtitle']}>{subtitle}</p>
