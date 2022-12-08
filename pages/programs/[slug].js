@@ -48,14 +48,6 @@ export async function getStaticProps({ params }) {
     sqlText: `select TEXT from CONTROL where WHAT = 'disclaimer'`
   })
 
-  const changeGraphs = await getSnowflakeData({
-    sqlText: `select * from GRAPHS
-    where LEVEL = 'programs'
-    and DATA_PANEL = 'change_graph'`
-    // TODO: add the program code filter
-    // and IVS_PROGRAM_CODE is '....'
-  })
-
   const { rows: programs } = await getSnowflakeData({
     sqlText: `select * from PROGRAMS where URL = 'programs/${params.slug}'`
   })
@@ -84,6 +76,20 @@ export async function getStaticProps({ params }) {
     sqlText: `select * from MAP where IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
   })
 
+  const { rows: changeGraphs} = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'change_graph'
+    and IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
+  })
+
+  const { rows: topGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'programs'
+    and DATA_PANEL = 'top_graph'
+    and IVS_PROGRAM_CODE = '${currentProgram.IVS_PROGRAM_CODE}'`
+  })
+
   return {
     props: {
       ...currentProgram,
@@ -101,7 +107,8 @@ export async function getStaticProps({ params }) {
       resources: resourcesData || [],
       partners: partnerData || [],
       mapData: mapData || [],
-      changeGraphs: [...changeGraphs.rows]
+      changeGraphs: [...changeGraphs],
+      topGraphs: [...topGraphs]
     }
   }
 }

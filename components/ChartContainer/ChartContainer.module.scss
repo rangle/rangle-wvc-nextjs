@@ -70,7 +70,8 @@
       width: 100%;
       height: 80vh;
       background-color: #f6f2ec;
-      padding: $size-m 2rem 5rem 2rem;
+      // padding: $size-m 2rem 5rem 2rem;
+      padding: 2rem;
 
       @media (min-width: 400px) {
         height: 65vh;
@@ -78,7 +79,8 @@
 
       @media (min-width: 767px) {
         width: 50%;
-        padding: $size-m 2rem 2rem 0.5rem;
+        // padding: $size-m 2rem 2rem 0.5rem;
+        padding: 2rem;
       }
     }
   }

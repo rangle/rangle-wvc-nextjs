@@ -20,6 +20,7 @@ import { ChartContainer } from '../../components/ChartContainer/ChartContainer'
 import { TableOfContents } from '../../components/TableOfContents/TableOfContents'
 import { Item } from 'react-stately'
 import { convertToKebabCase } from '../../utils/convertStrings'
+import { getGraph } from '../../utils/getGraphs'
 
 import styles from './sector.module.scss'
 
@@ -90,11 +91,13 @@ const OverviewSection = (props) => {
           }))}
         title={props.SDG_TITLE}
       />
-      <ChartContainer
-        chartType='line'
-        controlTitle={props.GRAPHBOX_TITLE}
-        footnote='Date as of footnote'
-      />
+      {props.topGraphs && (
+        <ChartContainer
+          chartData={props.topGraphs}
+          controlTitle={props.GRAPHBOX_TITLE}
+          footnote='Date as of footnote'
+        />
+      )}
     </section>
   )
 }
@@ -219,6 +222,14 @@ const ApproachSection = (props) => {
 }
 
 const ExpenditureSection = (props) => {
+  let numberOfGraphs = [
+    ...new Set(
+      props.expensesGraphs.map(
+        (ea, idx) => props.expensesGraphs[idx].INDICATOR_CODE
+      )
+    )
+  ]
+
   return (
     <section id={props.sectionId}>
       <SectionContainer
@@ -229,41 +240,15 @@ const ExpenditureSection = (props) => {
         <p className={styles['expenditure-intro']}>
           {props.EXPENDITURE_DISCUSSION}
         </p>
-        <div className={styles['expenditures-tabs']}>
-          {/* TODO: connect to snowflake API */}
-          <Tabs>
-            <Item title='Programming Type'>
-              <div className={styles['expenditures-tabs__content']}>
-                <DoughnutChart
-                  ariaLabel='Doughnut chart for development program'
-                  aspectRatio={2}
-                  colors={[
-                    'rgb(231, 96, 12)',
-                    'rgb(255, 166, 102)',
-                    'rgb(255, 195, 153)',
-                    'rgb(231, 96, 12)'
-                  ]}
-                  cutout={90}
-                  data={['90%', '6%', '4%']}
-                  displayLegend
-                  labels={[
-                    'Development Programming',
-                    'Protected Emergencies & Fragile Contexts',
-                    'Emergencies Response I-III'
-                  ]}
-                  legendPosition='right'
-                  title=''
-                  titlePosition='top'
-                />
-              </div>
-            </Item>
-            <Item title='Level of Fragility'>
-              <div className={styles['expenditures-tabs__content']}>
-                Senatus Populusque Romanus.
-              </div>
-            </Item>
-          </Tabs>
-        </div>
+        {props.expensesGraphs && (
+          <div className={styles['expenditures-tabs']}>
+            <Tabs>
+              {numberOfGraphs.map((ea, idx) => (
+                <Item title={props.expensesGraphs[idx].GRAPH_STATEMENT}>{getGraph(idx, props.expensesGraphs)}</Item>
+              ))}
+            </Tabs>
+          </div>
+        )}
         <div className={styles['expenditures-section']}>
           <ExpandableTextBlock body={props.EXPENDITURE_PLANS} />
         </div>
@@ -324,66 +309,27 @@ const ChangeSection = (props) => {
           <p className={styles['change-intro']}>
             {parse(props.CHANGE_BODY || '')}
           </p>
-          <div className={styles['change-container__chart-container']}>
-            <div className={styles['change-container__chart-container__chart']}>
-              {/* TODO: connect to snowflake */}
-              <BarChart
-                ariaLabel='Bar Chart Reading Comprehension'
-                withAxes={false}
-                aspectRatio={0.8}
-                colors={[
-                  'rgb(231, 96, 12)',
-                  'rgb(255, 166, 102)',
-                  'rgb(255, 225, 204)'
-                ]}
-                data={['83.5%', '74.1%']}
-                labels={['2021', '2013']}
-                showTopBarLabels
-                subTitle='Eravur Pattu, Sri Lanka'
-                title='Reading Comprehension'
-                titlePosition='bottom'
-                yStepSize={10}
-              />
+          {props.changeGraphs && props.changeGraphs > 0 && (
+            <div className={styles['change-container__chart-container']}>
+              <div
+                className={styles['change-container__chart-container__chart']}
+              >
+                {getGraph(0, props.changeGraphs)}
+              </div>
+              <div
+                className={styles['change-container__chart-container__chart']}
+              >
+                {props.changeGraphs.length > 1 &&
+                  getGraph(1, props.changeGraphs)}
+              </div>
+              <div
+                className={styles['change-container__chart-container__chart']}
+              >
+                {props.changeGraphs.length > 2 &&
+                  getGraph(2, props.changeGraphs)}
+              </div>
             </div>
-            <div className={styles['change-container__chart-container__chart']}>
-              <BarChart
-                ariaLabel='Bar Chart Reading Comprehension'
-                withAxes={false}
-                aspectRatio={0.8}
-                colors={[
-                  'rgb(231, 96, 12)',
-                  'rgb(255, 166, 102)',
-                  'rgb(255, 225, 204)'
-                ]}
-                data={['83.5%', '74.1%']}
-                labels={['2021', '2013']}
-                showTopBarLabels
-                subTitle='Eravur Pattu, Sri Lanka'
-                title='Reading Comprehension'
-                titlePosition='bottom'
-                yStepSize={10}
-              />
-            </div>
-            <div className={styles['change-container__chart-container__chart']}>
-              <BarChart
-                ariaLabel='Bar Chart Reading Comprehension'
-                aspectRatio={0.8}
-                withAxes={false}
-                colors={[
-                  'rgb(231, 96, 12)',
-                  'rgb(255, 166, 102)',
-                  'rgb(255, 225, 204)'
-                ]}
-                data={['83.5%', '74.1%']}
-                labels={['2021', '2013']}
-                showTopBarLabels
-                subTitle='Eravur Pattu, Sri Lanka'
-                title='Reading Comprehension'
-                titlePosition='bottom'
-                yStepSize={10}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
@@ -562,6 +508,27 @@ export async function getStaticProps({ params }) {
       .join(' or ')}`
   })
 
+  const { rows: topGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'areas_of_focus'
+    and DATA_PANEL = 'top_graph'`
+    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
+  })
+
+  const { rows: expensesGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'areas_of_focus'
+    and DATA_PANEL = 'expenses_graph'`
+    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
+  })
+
+  const { rows: changeGraphs } = await getSnowflakeData({
+    sqlText: `select * from GRAPHS
+    where LEVEL = 'areas_of_focus'
+    and DATA_PANEL = 'change_graph'`
+    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
+  })
+
   return {
     props: {
       ...currentAreaOfFocus,
@@ -577,7 +544,10 @@ export async function getStaticProps({ params }) {
       highlightedResults:
         resultsData.filter((result) => result.DATA_PANEL === 'yes') || [],
       resources: resourcesData || [],
-      disclaimer: disclaimerData[0].TEXT
+      disclaimer: disclaimerData[0].TEXT,
+      topGraphs: [...topGraphs],
+      expensesGraphs: [...expensesGraphs],
+      changeGraphs: [...changeGraphs]
     }
   }
 }

@@ -131,35 +131,39 @@ export default function ProgramPage(props) {
               />
             </div>
           )}
-          <div className={styles['change-container']}>
-            {/* TODO: connect to snowflake */}
-            {props.changeGraphs.length > 0 && <h2>Change</h2>}
-            <div className={styles['change-container__chart-container']}>
-              <div
-                className={styles['change-container__chart-container__chart']}
-              >
-                {getGraph(0, props)}
-              </div>
-              <div
-                className={styles['change-container__chart-container__chart']}
-              >
-                {props.changeGraphs.length > 1 && getGraph(1, props)}
-              </div>
-              <div
-                className={styles['change-container__chart-container__chart']}
-              >
-                {props.changeGraphs.length > 2 && getGraph(2, props)}
+          {props.changeGraphs.length > 0 && (
+            <div className={styles['change-container']}>
+              <h2>Change</h2>
+              <div className={styles['change-container__chart-container']}>
+                <div
+                  className={styles['change-container__chart-container__chart']}
+                >
+                  {getGraph(0, props.changeGraphs)}
+                </div>
+                <div
+                  className={styles['change-container__chart-container__chart']}
+                >
+                  {props.changeGraphs.length > 1 &&
+                    getGraph(1, props.changeGraphs)}
+                </div>
+                <div
+                  className={styles['change-container__chart-container__chart']}
+                >
+                  {props.changeGraphs.length > 2 &&
+                    getGraph(2, props.changeGraphs)}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </HeroBlock>
-      {/* TODO: connect to snowflake */}
-      <ChartContainer
-        chartType='stackedBar'
-        controlTitle='Explore our investments and results'
-        footnote='Date as of footnote'
-      />
+      {props.topGraphs && props.topGraphs.length > 0 && (
+        <ChartContainer
+          chartType='stackedBar'
+          controlTitle='Explore our investments and results'
+          chartData={props.topGraphs}
+        />
+      )}
       <MediaBlock
         videoSrc={props.FEATURED_VIDEO_URL}
         // TODO: where does this come from?
