@@ -321,7 +321,7 @@ const ChangeSection = (props) => {
 }
 
 const ProgramsSection = (props) => {
-  return props.programs.length > 0 ? (
+  return props.programs?.length > 0 ? (
     <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel

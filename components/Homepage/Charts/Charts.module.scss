@@ -1,0 +1,21 @@
+
+@import '../../../styles/lumen-tokens';
+@import '../../../styles/spacing.scss';
+
+.charts-container {
+    color: white;
+    text-align: center;
+
+    .title {
+        margin-top: 6rem;
+        margin-bottom: 4rem;
+        @include typographylargeheadingh3;
+    }
+
+    .section-title {
+        text-transform: uppercase;
+        border: solid 1px white;
+    }
+
+
+}
