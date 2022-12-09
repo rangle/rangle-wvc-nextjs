@@ -4,20 +4,16 @@ import styles from './ChartContainer.module.scss'
 import Dropdown from '../Dropdown/Dropdown'
 import { getGraph } from '../../utils/getGraphs'
 
-export const ChartContainer = ({
-  controlTitle,
-  isDarkMode,
-  chartData
-}) => {
+export const ChartContainer = ({ controlTitle, isDarkMode, chartData }) => {
   const [chartToRender, setChartToRender] = useState()
-  const [disclaimer, setDisclaimer] = useState(
-    chartData.map((ea) => ea.GRAPH_ALT)[0]
-  )
+  const [disclaimer, setDisclaimer] = useState(chartData[0].GRAPH_DISCLAIMER)
 
   const getOptions = () => {
     let rowOptions = chartData.map((ea) => {
       return {
-        title: ea.GRAPH_STATEMENT,
+        title: `${ea.GRAPH_STATEMENT ? ea.GRAPH_STATEMENT : ''} ${
+          ea.GRAPH_STATEMENT_02 ? ea.GRAPH_STATEMENT_02 : ''
+        } ${ea.GRAPH_STATEMENT_03 ? ea.GRAPH_STATEMENT_03 : ''}`,
         id: ea.INDICATOR_CODE
       }
     })
@@ -33,9 +29,7 @@ export const ChartContainer = ({
     let obj = chartData.find((o) => o.INDICATOR_CODE === chartToRender)
 
     if (obj) {
-      setDisclaimer(obj.GRAPH_ALT)
-    } else {
-      chartData.map((ea) => ea.GRAPH_ALT)[0]
+      setDisclaimer(obj.GRAPH_DISCLAIMER)
     }
   }, [chartToRender])
 
