@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import styles from './SubNavigation.module.scss'
 import { RegionImage } from './SubMenuIcons'
+import CtaLink from '../CtaLink/CtaLink'
 
 export const CountrySubMenuDesktop = ({
   activeRegion,
@@ -36,25 +37,22 @@ export const CountrySubMenuDesktop = ({
         className={`${styles['sub-navigation__sub-menu-link-container']} ${styles['sub-navigation__sub-menu-link-container--country']}`}
       >
         <ul>
-          {countryList
-            .map((country) => {
-              return (
-                <li key={country?.label}>
-                  <div
-                    className={styles['sub-navigation__sub-menu-link']}
-                    onClick={() => openCloseSubMenu(country?.label, false)}
+          {countryList.map((country) => {
+            return (
+              <li key={country?.label}>
+                <div
+                  className={styles['sub-navigation__sub-menu-link']}
+                  onClick={() => openCloseSubMenu(country?.label, false)}
+                >
+                  <CtaLink
+                    url={country?.url ? `/${country?.url}` : `/our-work`}
                   >
-                    <Link
-                      href={country?.url ? `/${country?.url}` : `/our-work`}
-                      passHref
-                      legacyBehavior
-                    >
-                      <a>{country?.label}</a>
-                    </Link>
-                  </div>
-                </li>
-              )
-            })}
+                    {country?.label}
+                  </CtaLink>
+                </div>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </>
@@ -82,62 +80,59 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
       {subMenuItems && subMenuItems.length && (
         <>
           <div className={styles['sub-navigation__region-accordion']}>
-            {subMenuItems
-              .map((menuItem) => {
-                const openCountryList = mobileCountryList?.find(
-                  (region) => region.name === menuItem.name
-                )?.open
+            {subMenuItems.map((menuItem) => {
+              const openCountryList = mobileCountryList?.find(
+                (region) => region.name === menuItem.name
+              )?.open
 
-                return (
-                  <React.Fragment key={menuItem.name}>
-                    <button
-                      className={
-                        styles['sub-navigation__region-accordion--button']
-                      }
-                      onClick={() => toggleMobileCountryList(menuItem.name)}
-                    >
-                      {menuItem.name}
-                      <img
-                        src={'/ChevronDown.png'}
-                        alt=''
-                        aria-hidden
-                        className={`${
-                          styles['sub-navigation__region-accordion-icon']
-                        } ${
-                          openCountryList
-                            ? styles[
-                                'sub-navigation__region-accordion-icon--flip'
-                              ]
-                            : ''
-                        }`}
-                      />
-                    </button>
+              return (
+                <React.Fragment key={menuItem.name}>
+                  <button
+                    className={
+                      styles['sub-navigation__region-accordion--button']
+                    }
+                    onClick={() => toggleMobileCountryList(menuItem.name)}
+                  >
+                    {menuItem.name}
+                    <img
+                      src={'/ChevronDown.png'}
+                      alt=''
+                      aria-hidden
+                      className={`${
+                        styles['sub-navigation__region-accordion-icon']
+                      } ${
+                        openCountryList
+                          ? styles[
+                              'sub-navigation__region-accordion-icon--flip'
+                            ]
+                          : ''
+                      }`}
+                    />
+                  </button>
 
-                    {openCountryList && (
-                      <ul>
-                        {menuItem?.list?.map((country) => {
-                          return (
-                            <li
-                              className={
-                                styles['sub-navigation__sub-menu-link']
+                  {openCountryList && (
+                    <ul>
+                      {menuItem?.list?.map((country) => {
+                        return (
+                          <li
+                            className={styles['sub-navigation__sub-menu-link']}
+                            key={country?.label}
+                          >
+                            <CtaLink
+                              url={
+                                country?.url ? `/${country?.url} ` : `/our-work`
                               }
-                              key={country?.label}
                             >
-                              <Link
-                                href={country?.url ? country?.url : `/our-work`}
-                                passHref
-                                legacyBehavior
-                              >
-                                <a>{country?.label}</a>
-                              </Link>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                    )}
-                  </React.Fragment>
-                )
-              })}
+                              {country?.label}
+                            </CtaLink>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                </React.Fragment>
+              )
+            })}
           </div>
         </>
       )}
