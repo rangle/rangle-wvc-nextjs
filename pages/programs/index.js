@@ -178,7 +178,7 @@ export async function getStaticProps() {
   })
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
+    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const partners = await getSnowflakeData({

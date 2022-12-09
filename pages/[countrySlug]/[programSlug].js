@@ -34,7 +34,7 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
   } = require('../../utils/snowflake')
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
+    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const { rows: countriesData } = await getSnowflakeData({

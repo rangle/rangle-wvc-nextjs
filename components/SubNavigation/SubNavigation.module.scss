@@ -139,6 +139,12 @@
       flex-wrap: wrap;
       width: 100%;
 
+      li {
+        @media (min-width: 768px) {
+          height: calc(100% / 7);
+        }
+      }
+
       &:last-child {
         margin-bottom: 2.5rem;
       }
@@ -246,10 +252,10 @@
     list-style: none;
     margin-left: 1.25rem;
     margin-bottom: $size-xl;
+    display: inline-block;
 
     @media (min-width: 768px) {
       @include typographysmalllinkinline;
-      height: calc(100% / 7);
       margin-bottom: 0;
       margin-left: 0;
       transition: all 280ms;
