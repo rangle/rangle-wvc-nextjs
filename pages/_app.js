@@ -38,7 +38,8 @@ function MyApp({ Component, pageProps }) {
       ></Script>
       <Script src='js/lazy-loading.js' />
       <Script src='js/header.js' />
-      <Script src='js/jssocials.min.js' />
+      {/* @TODO: Do we need this? I've commented it out in site.js due to errors */}
+      {/* <Script src='js/jssocials.min.js' /> */}
       <Script src='js/site.js' />
       {/* @TODO: Do we need web-chat? If so we need to debug:
         TypeError: Cannot read properties of null (reading 'contentWindow')
