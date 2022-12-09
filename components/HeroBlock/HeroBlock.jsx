@@ -42,7 +42,7 @@ const HeroBlock = ({
     } else if (page === 'program') {
       setImgSrc('/HeroProgram.png')
     }
-  }, [[page]])
+  }, [page])
 
   return (
     <div className={styles['hero-block']}>
@@ -61,6 +61,7 @@ const HeroBlock = ({
                 countryCode={countryCode}
                 zoomLevel={mapZoomLevel}
                 interactive={false}
+                markerCoordinates={markerCoordinates}
               />
             </div>
           )}
