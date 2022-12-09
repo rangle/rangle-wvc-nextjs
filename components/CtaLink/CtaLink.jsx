@@ -2,11 +2,11 @@ import Link from 'next/link'
 
 const CtaLink = ({ ariaLabel, children, className, tabIndex, url }) => {
   let isExternal
-  const isInternal = url.startsWith('/')
 
-  if (!isInternal) {
-    const { hostname } = new URL(url)
-    isExternal = hostname !== 'www.worldvision.ca'
+  const isHttp = (url) => /^http?/i.test(url)
+
+  if (isHttp(url)) {
+    isExternal = !url.includes('www.worldvision.ca')
   }
 
   return (
