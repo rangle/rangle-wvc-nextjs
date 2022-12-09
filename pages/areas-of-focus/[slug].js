@@ -27,7 +27,6 @@ import { getGraph } from '../../utils/getGraphs'
 import styles from './sector.module.scss'
 
 const OverviewSection = (props) => {
-  console.log('props.topGraphs', props.topGraphs)
   return (
     <section id={props.sectionId}>
       <HeroBlock
