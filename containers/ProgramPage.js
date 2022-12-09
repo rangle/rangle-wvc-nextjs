@@ -38,9 +38,9 @@ const OverviewSection = (props) => {
             .map((val, index) => {
               let value = props[`SUMMARY_0${index + 1}_VALUE`]
               if (index + 1 === 3) {
-                value = props.mapData
-                  .map((location) => location.COUNTRY)
-                  .join(' | ')
+                value = [
+                  ...new Set(props.mapData.map((location) => location.COUNTRY))
+                ].join(' | ')
               }
 
               if (index + 1 === 7) {
@@ -75,39 +75,44 @@ const OverviewSection = (props) => {
         summaryDirection='vertical'
         title={props.HEADER_TITLE}
       >
-        <div>
-          <div className={styles['timeline-heading']}>
-            <h3>{props.PROGRAM_STATUS_LABLE}</h3>
-            <p className={styles['timeline-heading__subtitle']}>
-              {props.PROGRAM_STATUS}{' '}
-              <span className={styles['timeline-heading__subtitle__status']}>
-                {props.PROGRAM_STATUS_VALUE}
-              </span>
-            </p>
-          </div>
-          <Timeline
-            data={Array(5)
-              .fill('')
-              .map((val, index) => {
-                const cardNum = index + 1
-                const text =
-                  props[`TIMELINE_BODY_${cardNum < 10 ? '0' : ''}${cardNum}`]
+        {props.PROGRAM_STATUS_LABLE && (
+          <>
+            {' '}
+            <div className={styles['timeline-heading']}>
+              <h3>{props.PROGRAM_STATUS_LABLE}</h3>
+              <p className={styles['timeline-heading__subtitle']}>
+                {props.PROGRAM_STATUS}{' '}
+                <span className={styles['timeline-heading__subtitle__status']}>
+                  {props.PROGRAM_STATUS_VALUE}
+                </span>
+              </p>
+            </div>
+            <Timeline
+              data={Array(5)
+                .fill('')
+                .map((val, index) => {
+                  const cardNum = index + 1
+                  const text =
+                    props[`TIMELINE_BODY_${cardNum < 10 ? '0' : ''}${cardNum}`]
 
-                const title =
-                  props[`TIMELINE_TITLE_${cardNum < 10 ? '0' : ''}${cardNum}`]
+                  const title =
+                    props[`TIMELINE_TITLE_${cardNum < 10 ? '0' : ''}${cardNum}`]
 
-                const tag =
-                  props[`TIMELINE_TAG_${cardNum < 10 ? '0' : ''}${cardNum}`]
-                if (title && tag) {
-                  return {
-                    cardDetailedText: text,
-                    cardTitle: title,
-                    title: tag
+                  const tag =
+                    props[`TIMELINE_TAG_${cardNum < 10 ? '0' : ''}${cardNum}`]
+                  if (title && tag) {
+                    return {
+                      cardDetailedText: text,
+                      cardTitle: title,
+                      title: tag
+                    }
                   }
-                }
-              })
-              .filter((card) => card)}
-          />
+                })
+                .filter((card) => card)}
+            />
+          </>
+        )}
+        <div>
           {props.highlightedResults.length > 0 && (
             <div className={styles['summary-statistic-container']}>
               <StatisticCardGrid
