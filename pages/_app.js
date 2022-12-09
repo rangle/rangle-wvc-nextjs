@@ -21,7 +21,6 @@ function MyApp({ Component, pageProps }) {
     )
 
   const router = useRouter()
-  console.log(router)
   return (
     <div className={styles['page-container']}>
       <Head>
@@ -31,6 +30,7 @@ function MyApp({ Component, pageProps }) {
           rel='canonical'
           href={`https://our-work.worldvision.ca${router.asPath}`}
         />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Script
         strategy='beforeInteractive'
