@@ -94,7 +94,7 @@ const OverviewSection = (props) => {
           }))}
         title={props.SDG_TITLE}
       />
-      {props.topGraphs && (
+      {props.topGraphs && props.topGraphs.length > 0 && (
         <ChartContainer
           chartData={props.topGraphs}
           controlTitle={props.GRAPHBOX_TITLE}
@@ -205,13 +205,16 @@ const ApproachSection = (props) => {
 }
 
 const ExpenditureSection = (props) => {
-  let numberOfGraphs = [
-    ...new Set(
-      props.expensesGraphs.map(
-        (ea, idx) => props.expensesGraphs[idx].INDICATOR_CODE
-      )
+  let chartsToPlot = []
+  props.expensesGraphs?.filter((row) => {
+    let i = chartsToPlot.findIndex(
+      (x) => x.INDICATOR_CODE === row.INDICATOR_CODE
     )
-  ]
+    if (i <= -1) {
+      chartsToPlot.push(row)
+    }
+    return null
+  })
 
   return (
     <section id={props.sectionId}>
@@ -223,11 +226,11 @@ const ExpenditureSection = (props) => {
         <p className={styles['expenditure-intro']}>
           {parse(props.EXPENDITURE_DISCUSSION || '')}
         </p>
-        {props.expensesGraphs && (
+        {props.expensesGraphs && props.expensesGraphs.length > 0 && (
           <div className={styles['expenditures-tabs']}>
             <Tabs>
-              {numberOfGraphs.map((ea, idx) => (
-                <Item title={props.expensesGraphs[idx].GRAPH_STATEMENT}>
+              {chartsToPlot.map((ea, idx) => (
+                <Item title={chartsToPlot[idx].GRAPH_STATEMENT}>
                   {getGraph(idx, props.expensesGraphs)}
                 </Item>
               ))}
@@ -288,41 +291,43 @@ const ProgressSection = (props) => {
 const ChangeSection = (props) => {
   return (
     <section id={props.sectionId}>
-      <div className={styles['change-container-wrapper']}>
-        <div className={styles['change-container']}>
-          <h2>{props.CHANGE_TITLE}</h2>
-          <p className={styles['change-intro']}>
-            {parse(props.CHANGE_BODY || '')}
-          </p>
-          {props.changeGraphs && props.changeGraphs > 0 && (
-            <div className={styles['change-container__chart-container']}>
-              <div
-                className={styles['change-container__chart-container__chart']}
-              >
-                {getGraph(0, props.changeGraphs)}
+      {props.changeGraphs && props.changeGraphs.length > 0 && (
+        <div className={styles['change-container-wrapper']}>
+          <div className={styles['change-container']}>
+            <h2>{props.CHANGE_TITLE}</h2>
+            <p className={styles['change-intro']}>
+              {parse(props.CHANGE_BODY || '')}
+            </p>
+            {props.changeGraphs && props.changeGraphs.length > 0 && (
+              <div className={styles['change-container__chart-container']}>
+                <div
+                  className={styles['change-container__chart-container__chart']}
+                >
+                  {getGraph(0, props.changeGraphs)}
+                </div>
+                <div
+                  className={styles['change-container__chart-container__chart']}
+                >
+                  {props.changeGraphs.length > 1 &&
+                    getGraph(1, props.changeGraphs)}
+                </div>
+                <div
+                  className={styles['change-container__chart-container__chart']}
+                >
+                  {props.changeGraphs.length > 2 &&
+                    getGraph(2, props.changeGraphs)}
+                </div>
               </div>
-              <div
-                className={styles['change-container__chart-container__chart']}
-              >
-                {props.changeGraphs.length > 1 &&
-                  getGraph(1, props.changeGraphs)}
-              </div>
-              <div
-                className={styles['change-container__chart-container__chart']}
-              >
-                {props.changeGraphs.length > 2 &&
-                  getGraph(2, props.changeGraphs)}
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }
 
 const ProgramsSection = (props) => {
-  return props.programs.length > 0 ? (
+  return props.programs?.length > 0 ? (
     <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel
@@ -528,22 +533,22 @@ export async function getStaticProps({ params }) {
   const { rows: topGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'areas_of_focus'
+    and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'
     and DATA_PANEL = 'top_graph'`
-    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
   })
 
   const { rows: expensesGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'areas_of_focus'
+    and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'
     and DATA_PANEL = 'expenses_graph'`
-    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
   })
 
   const { rows: changeGraphs } = await getSnowflakeData({
     sqlText: `select * from GRAPHS
     where LEVEL = 'areas_of_focus'
+    and ID_AREAOFFOCUS = '${currentAreaOfFocus.AREA_ID}'
     and DATA_PANEL = 'change_graph'`
-    // TODO: add the program ID and AREA_OF_FOCUS_ID = '${currentAreaOfFocus.AREA_ID}'
   })
 
   return {

@@ -93,7 +93,7 @@ const Prefooter = ({
   mediaCardData = hardcodedMediaCards,
   reportCardData,
   subtitle,
-  title
+  title,
 }) => {
   const caseStudyCards = mediaCardData.map((card) => (
     <MediaCard
@@ -138,7 +138,7 @@ const Prefooter = ({
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-accordion']}`}
       >
-        <AccordionGroup items={accordionItems} isDarkMode />
+        <AccordionGroup items={accordionItems} isDarkMode/>
       </div>
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-report-cards']}`}

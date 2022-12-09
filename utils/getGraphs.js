@@ -4,7 +4,7 @@ import { StackedBarChart } from '../components/Charts/StackedBarChart/StackedBar
 import { DoughnutChart } from '../components/Charts/DoughnutChart/DoughnutChart'
 
 export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
-  if (graphData) {
+  if (!graphData) {
     return null
   }
   // get the indicator code (/chart) to plot
@@ -14,6 +14,10 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
       graphNumber
     ]
 
+    // return if there are no unique indicator codes
+    if (!graphToPlot) {
+      return null
+    }
   // get the rows to be plotted for one chart
   let rowsToPlot = Object.keys(graphData)
     .map((ea) => graphData[ea])
@@ -30,14 +34,20 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
     colors: [
       'rgb(255, 166, 102)',
       'rgb(231, 96, 12)',
-      // 'rgb(255, 136, 51)',
       'rgb(102, 102, 102)',
-      'rgb(153, 153, 153)'
+      'rgb(153, 153, 153)',
+      // 'rgb(204, 204, 204)',
+      'rgb(255, 136, 51)',
     ],
-    data: rowsToPlot.map((ea) =>
-      ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
+    data: rowsToPlot.map((ea) => ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
     ),
-    labels: [...new Set(rowsToPlot.map((ea) => ea.YEAR_OR_TARGET))],
+    labels: [
+      ...new Set(
+        rowsToPlot.map((ea) =>
+          ea.CHART_TYPE === 'pie_chart' ? ea.DISAGGREGATION : ea.YEAR_OR_TARGET
+        )
+      )
+    ],
     showTopBarLabels: true,
     subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
       rowsToPlot[0].LOCATION && rowsToPlot[0].COUNTRY ? ', ' : ''
