@@ -12,7 +12,6 @@ export const DoughnutChart = ({
   colors,
   aspectRatio = 1,
   title = '',
-  subTitle = '',
   titlePosition = 'top',
   displayLegend = true,
   legendPosition = 'right',
@@ -21,7 +20,6 @@ export const DoughnutChart = ({
   isMobile = false,
   maintainAspectRatio = true
 }) => {
-  const fullTitle = [title, subTitle]
 
   const options = {
     responsive: true,
@@ -39,7 +37,7 @@ export const DoughnutChart = ({
       },
       title: {
         display: title,
-        text: fullTitle,
+        text: title,
         position: titlePosition,
         font: {
           size: 18

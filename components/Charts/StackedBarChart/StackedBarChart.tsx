@@ -32,7 +32,6 @@ export function StackedBarChart({
   yStepSize,
   aspectRatio = 1,
   title = '',
-  subTitle = '',
   titlePosition = 'top',
   displayLegend = true,
   legends = [],
@@ -42,7 +41,6 @@ export function StackedBarChart({
   isDarkMode = false,
   maintainAspectRatio = true
 }) {
-  const fullTitle = [title, subTitle]
 
   const options: Options = {
     responsive: true,
@@ -60,7 +58,7 @@ export function StackedBarChart({
       },
       title: {
         display: title,
-        text: fullTitle,
+        text: title,
         position: titlePosition,
         font: {
           size: 18

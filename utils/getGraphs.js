@@ -3,6 +3,22 @@ import { LineChart } from '../components/Charts/LineChart/LineChart'
 import { StackedBarChart } from '../components/Charts/StackedBarChart/StackedBarChart'
 import { DoughnutChart } from '../components/Charts/DoughnutChart/DoughnutChart'
 
+
+export const getTitleArray = (statement, statement_02, statement_03) => {
+  let title = []
+
+  if (statement) {
+    title.push(statement)
+  }
+  if (statement_02) {
+    title.push(statement_02)
+  }
+  if (statement_03) {
+    title.push(statement_03)
+  }
+  return title
+}
+
 export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
   if (!graphData) {
     return null
@@ -52,10 +68,7 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
     subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
       rowsToPlot[0].LOCATION && rowsToPlot[0].COUNTRY ? ', ' : ''
     }${rowsToPlot[0].COUNTRY ? rowsToPlot[0].COUNTRY : ' '}`,
-    // TODO: They might divide this title into three,
-    // so if so it will become an array:
-    // title: [`${rowsToPlot[0].GRAPH_STATEMENT_1}`, ${rowsToPlot[0].GRAPH_STATEMENT_2}, ${rowsToPlot[0].GRAPH_STATEMENT_3}]
-    title: `${rowsToPlot[0].GRAPH_STATEMENT}`,
+    title: getTitleArray(rowsToPlot[0].GRAPH_STATEMENT, rowsToPlot[0].GRAPH_STATEMENT_02, rowsToPlot[0].GRAPH_STATEMENT_03),
     ariaLabel: `${rowsToPlot[0].GRAPH_ALT}`,
     maintainAspectRatio: !chartContainer
   }
