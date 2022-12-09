@@ -55,11 +55,9 @@ const Hero = ({
             className={`${styles['centered-column']} ${styles['subtitle-container']}`}
           >
             <p className={styles['hero-text']}>{subtitleText}</p>
-            <CtaLink
-              className={styles['hero-text']}
-              label={linkLabel}
-              url={url}
-            />
+            <CtaLink className={styles['hero-text']} url={url}>
+              {linkLabel}
+            </CtaLink>
           </div>
           <div className={styles['desktop-scroll-icon']} aria-hidden>
             <div className={styles['mouse']}>

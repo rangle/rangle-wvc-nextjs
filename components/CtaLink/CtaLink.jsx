@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const CtaLink = ({ className, label, url }) => {
+const CtaLink = ({ className, children, url }) => {
   let isExternal
   const isInternal = url.startsWith('/')
 
@@ -13,10 +13,10 @@ const CtaLink = ({ className, label, url }) => {
     <Link href={url} passHref legacyBehavior>
       <a
         target={isExternal ? '_blank' : '_self'}
-        rel={isExternal && 'noopener'}
+        rel={isExternal ? 'noopener' : ''}
         className={className}
       >
-        {label}
+        {children}
       </a>
     </Link>
   )
