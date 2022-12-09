@@ -524,7 +524,7 @@ const headerHTML = `
                   data-track-action="wv logo"
                   data-track-category="Navigation"
                   data-track-label="http://www.worldvision.ca/"
-                  href="/"
+                  href="http://www.worldvision.ca/"
                   tabindex=""
                   >
                <img
