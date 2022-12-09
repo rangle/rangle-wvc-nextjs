@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import Link from 'next/link'
+import CtaLink from '../../CtaLink/CtaLink'
 import { Source, Layer, Popup } from 'react-map-gl'
 import bbox from '@turf/bbox'
 import { multiPoint } from '@turf/helpers'
@@ -22,9 +22,12 @@ const MapPopupTitle = ({ markerInfo }) => {
   return (
     <h5 className={`${styles['map-popup__title']}`}>
       {markerInfo?.CARD_URL?.length > 0 ? (
-        <Link href={markerInfo['CARD_URL']} passHref legacyBehavior>
-          <a className={styles['map-popup__link']}>{markerInfo['NAME']}</a>
-        </Link>
+        <CtaLink
+          className={styles['map-popup__link']}
+          url={markerInfo['CARD_URL']}
+        >
+          {markerInfo['NAME']}
+        </CtaLink>
       ) : (
         `${markerInfo['NAME']}`
       )}
