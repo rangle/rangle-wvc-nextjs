@@ -141,6 +141,16 @@ h5 {
   border-right-color: $white;
 }
 
+#timeline-main-wrapper > div {
+  width: 100%;
+}
+
+#timeline-main-wrapper {
+  ul {
+    justify-content: center;
+  }
+}
+
 .timeline-item-title.rc-title {
   font-weight: normal;
 
