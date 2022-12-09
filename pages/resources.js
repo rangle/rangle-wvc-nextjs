@@ -84,16 +84,9 @@ export default function ProgramFilter(props) {
       <div
         className={[styles['heading-content'], styles['resources']].join(' ')}
       >
-        <h1 className={styles['title']}>Resources</h1>
+        <h1 className={styles['title']}>{props.title}</h1>
 
-        <p className={styles['intro']}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing
-          elit ut aliquam purus sit amet. Turpis egestas maecenas pharetra
-          convallis posuere morbi. Nulla facilisi cras fermentum odio eu. Elit
-          ut aliquam purus sit amet luctus. Nullam non nisi est sit amet
-          facilisis.
-        </p>
+        <p className={styles['intro']}>{props.body}</p>
         <div className={styles['filters-container']}>
           <div className={styles['filter-container']}>
             {filters
@@ -129,6 +122,10 @@ export default function ProgramFilter(props) {
       </div>
 
       <div className={styles['result-body']}>
+        {/* TODO: add to snowflake */}
+        {resources.length < 1 && (
+          <p className={styles['result-not-found']}>No results found</p>
+        )}
         <div className={styles['result-grid']}>
           {resources
             .slice(0, smallScreen ? resultsToShowMobile : resultsToShowDesktop)
@@ -169,7 +166,7 @@ export async function getStaticProps() {
   })
 
   const { rows: controlData } = await getSnowflakeData({
-    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation' or LEVEL = 'resources_filter'`
   })
 
   const partners = await getSnowflakeData({
@@ -208,7 +205,17 @@ export async function getStaticProps() {
         countriesData
       ),
       disclaimer: disclaimerData[0].TEXT,
-      resourcesData
+      resourcesData,
+      title:
+        controlData.find((control) => control.WHAT === 'header_title')?.TEXT ||
+        '',
+      body:
+        controlData.find((control) => control.WHAT === 'header_body')?.TEXT ||
+        '',
+      TITLETAG:
+        controlData.find((control) => control.WHAT === 'titletag')?.TEXT || '',
+      METADATA:
+        controlData.find((control) => control.WHAT === 'metatag')?.TEXT || ''
     }
   }
 }

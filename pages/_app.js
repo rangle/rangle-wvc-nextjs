@@ -1,10 +1,12 @@
+import Head from 'next/head'
+import Script from 'next/script'
+import { useRouter } from 'next/router'
 // Styles from World Vision for the global components
 import '../_wvc/dist/css/styles.css'
 
 import '../styles/globals.scss'
 import styles from './app.module.scss'
 import SubNavigation from '../components/SubNavigation/SubNavigation'
-import Script from 'next/script'
 import GlobalNavBar from '../components/Global/NavBar/NavBar'
 import GlobalFooter from '../components/Global/Footer/Footer'
 import { convertToKebabCase } from '../utils/convertStrings'
@@ -17,8 +19,19 @@ function MyApp({ Component, pageProps }) {
         (control) => control.ITEM === 'section_order_newsletter'
       )?.TEXT
     )
+
+  const router = useRouter()
+  console.log(router)
   return (
     <div className={styles['page-container']}>
+      <Head>
+        <title>{pageProps.TITLETAG}</title>
+        <meta name='description' content={pageProps.METADATA} />
+        <link
+          rel='canonical'
+          href={`https://our-work.worldvision.ca${router.asPath}`}
+        />
+      </Head>
       <Script
         strategy='beforeInteractive'
         src='https://code.jquery.com/jquery-3.6.0.min.js'

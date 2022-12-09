@@ -70,7 +70,7 @@ const OverviewSection = (props) => {
               }}
             >
               <StatisticCardGrid
-                cards={props.highlightedResults.map((result) => (
+                cards={props.highlightedResults.slice(0, 3).map((result) => (
                   <StatisticCard
                     body={result.STATEMENT_WITHOUT_VALUE}
                     statistic={result.VALUE}
