@@ -64,6 +64,11 @@
       }
   }
 
+  .result-not-found {
+    @include typographylargeparagraphbodycopy_regular;
+    text-align: center;
+  }
+
   .result-body {
     padding: 48px $page-margin-mobile;
 

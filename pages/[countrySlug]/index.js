@@ -83,7 +83,7 @@ const OverviewSection = (props) => {
               }}
             >
               <StatisticCardGrid
-                cards={props.highlightedResults.map((result) => (
+                cards={props.highlightedResults.slice(0, 3).map((result) => (
                   <StatisticCard
                     key={result.STATEMENT_WITHOUT_VALUE}
                     body={result.STATEMENT_WITHOUT_VALUE}

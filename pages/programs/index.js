@@ -91,16 +91,9 @@ export default function ProgramFilter(props) {
   return (
     <div className={styles['programs-container']}>
       <div className={styles['heading-content']}>
-        <h1 className={styles['title']}>Programs</h1>
+        <h1 className={styles['title']}>{props.title}</h1>
 
-        <p className={styles['intro']}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing
-          elit ut aliquam purus sit amet. Turpis egestas maecenas pharetra
-          convallis posuere morbi. Nulla facilisi cras fermentum odio eu. Elit
-          ut aliquam purus sit amet luctus. Nullam non nisi est sit amet
-          facilisis.
-        </p>
+        <p className={styles['intro']}>{props.body}</p>
         <div className={styles['filters-container']}>
           <div className={styles['filter-container']}>
             {filters
@@ -136,8 +129,11 @@ export default function ProgramFilter(props) {
           )}
         </div>
       </div>
-
       <div className={styles['result-body']}>
+        {/* TODO: add to snowflake */}
+        {programIds.length < 1 && (
+          <p className={styles['result-not-found']}>No results found</p>
+        )}
         <div className={styles['result-grid']}>
           {programIds
             .slice(0, smallScreen ? resultsToShowMobile : resultsToShowDesktop)
@@ -146,7 +142,7 @@ export default function ProgramFilter(props) {
               return (
                 <MediaCard
                   // TODO: add this to Snowflake
-                  alt='My image alt text.'
+                  alt=''
                   body={program.CARD_BODY}
                   imageSrc={program.CARD_IMAGE_URL}
                   title={program.HEADER_TITLE}
@@ -196,7 +192,7 @@ export async function getStaticProps() {
   })
 
   const { rows: controlData } = await getSnowflakeData({
-    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation'`
+    sqlText: `select * from CONTROL where LEVEL = 'countries' or LEVEL = 'navigation' or LEVEL = 'programs_filter'`
   })
 
   const { rows: disclaimerData } = await getSnowflakeData({
@@ -239,7 +235,17 @@ export async function getStaticProps() {
       statusOptions,
       countryOptions,
       areasOfFocusOptions,
-      programTypeOptions
+      programTypeOptions,
+      title:
+        controlData.find((control) => control.WHAT === 'header_title')?.TEXT ||
+        '',
+      body:
+        controlData.find((control) => control.WHAT === 'header_body')?.TEXT ||
+        '',
+      TITLETAG:
+        controlData.find((control) => control.WHAT === 'titletag')?.TEXT || '',
+      METADATA:
+        controlData.find((control) => control.WHAT === 'metatag')?.TEXT || ''
     }
   }
 }

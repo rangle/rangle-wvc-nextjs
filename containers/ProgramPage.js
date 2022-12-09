@@ -43,6 +43,12 @@ const OverviewSection = (props) => {
                 ].join(' | ')
               }
 
+              if (index + 1 === 4) {
+                const firstValue = props[`SUMMARY_04_VALUE_01`]
+                const secondValue = props[`SUMMARY_04_VALUE_02`]
+                value = `${firstValue}${secondValue ? ` | ${secondValue}` : ''}`
+              }
+
               if (index + 1 === 7) {
                 value = props.partners
                   .filter(
