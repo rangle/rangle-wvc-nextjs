@@ -158,7 +158,10 @@ export default function Home({
               year: 'year',
               people: t.map_people_label,
               invested: t.map_invested_label,
-              programs: t.map_program_label
+              programs: t.map_program_label,
+              reach_tooltip: t.reach_tooltip,
+              investment_tooltip: t.investment_tooltip,
+              programs_tooltip: t.programs_tooltip
             }}
             programData={programData}
             countryData={countryData}

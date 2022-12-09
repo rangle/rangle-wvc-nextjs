@@ -70,6 +70,7 @@ function useFitBounds(
             duration: duration,
             animate: true,
             essential: true,
+            maxZoom: 5,
             ...opts
           }
         )
