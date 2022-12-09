@@ -84,6 +84,10 @@ const MapChartCountries = ({
 
   useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded, countryCode)
 
+  useEffect(() => {
+    setPopupInfo(null)
+  }, [markerCoordinates])
+
   return (
     <MapChart
       {...props}
