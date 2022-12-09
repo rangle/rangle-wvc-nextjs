@@ -1,4 +1,9 @@
 import parse from 'html-react-parser'
+const {
+  getSnowflakeData,
+  transformResultsData,
+  transformNavigationData
+} = require('../../utils/snowflake')
 
 import AccordionGroup from '../../components/AccordionGroup/AccordionGroup'
 import Carousel from '../../components/Carousel/Carousel'
@@ -43,6 +48,10 @@ const OverviewSection = (props) => {
               }
           )
           .filter((summary) => summary)}
+        markerCoordinates={props.mapData.map((l) => [
+          Number(l.CENTRAL_LONG),
+          Number(l.CENTRAL_LAT)
+        ])}
         page='country'
         title={props.HEADER_TITLE}
       >
@@ -329,12 +338,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const {
-    getSnowflakeData,
-    transformResultsData,
-    transformNavigationData
-  } = require('../../utils/snowflake')
-
   const { rows: areasOfFocusData } = await getSnowflakeData({
     sqlText: `select * from AREAS_OF_FOCUS order by HEADER_TITLE ASC`
   })
@@ -357,6 +360,10 @@ export async function getStaticProps({ params }) {
 
   const { rows: programsData } = await getSnowflakeData({
     sqlText: `select * from MAP INNER JOIN PROGRAMS on MAP.IVS_PROGRAM_CODE=PROGRAMS.IVS_PROGRAM_CODE where LEVEL = 'programs' and COUNTRYCODE = '${currentCountry.COUNTRY_CODE}'`
+  })
+
+  const { rows: mapData } = await getSnowflakeData({
+    sqlText: `select * from STAGE.MAP where COUNTRYCODE = '${currentCountry.COUNTRY_CODE}' AND LEVEL = 'programs'`
   })
 
   const { rows: resourcesData } = await getSnowflakeData({
@@ -384,6 +391,7 @@ export async function getStaticProps({ params }) {
     props: {
       ...currentCountry,
       results: transformResultsData(resultsData),
+      mapData: mapData,
       controls:
         controlData.filter((control) => control.LEVEL === 'countries') || [],
       navigation: transformNavigationData(

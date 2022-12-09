@@ -98,13 +98,12 @@ const getCountryOptions = (countryData, showEmptyPrograms, selectedYear) => {
 
 const getProgramOptions = (programData, selectedCountry, selectedYear) => {
   return programData
-    ?.filter(
-      (n) => {
-        return n.COUNTRYCODE === selectedCountry ||
-        selectedCountry === 'All' ||
+    ?.filter((n) => {
+      return (
+        (n.COUNTRYCODE === selectedCountry || selectedCountry === 'All') &&
         selectedYear === n['YEAR']
-      }
-    )
+      )
+    })
     .reduce(
       (acc, { PROGRAM_TYPE }) => {
         return acc.find((n) => n.value === PROGRAM_TYPE) !== undefined
