@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Source, Layer, Popup } from 'react-map-gl'
 import bbox from '@turf/bbox'
 import { multiPoint } from '@turf/helpers'
+import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
 
 import MapChart from '../MapChart'
 import { useFetchGeoJson, useFitBounds, useMapMarkers } from '../mapHooks'
