@@ -39,7 +39,7 @@ const MapPopup = ({ popupInfo, ...props }) => {
         <MapPopupTitle markerInfo={markerInfo} />
 
         <p className={`${styles['map-popup__labels']} `}>
-          {`${markerInfo['CARD_VALUE_1'] || markerInfo['PROGRAM_TYPE']}`}
+          {`${markerInfo.SUB_PROGRAMMING_TYPE}`}
         </p>
       </div>
     </Popup>
@@ -49,7 +49,7 @@ const MapPopup = ({ popupInfo, ...props }) => {
 const MapChartCountries = ({
   countryCode,
   duration = 1000,
-  padding = 200,
+  padding = 100,
   markerCoordinates = [],
   onCountryDataLoaded = (evt) => {},
   mapOptions = {},
@@ -83,6 +83,10 @@ const MapChartCountries = ({
   }, [geoJson, isMapLoaded, countryCode, markerCoordinates])
 
   useFitBounds(mapRef, boundingBox, padding, duration, isMapLoaded, countryCode)
+
+  useEffect(() => {
+    setPopupInfo(null)
+  }, [markerCoordinates])
 
   return (
     <MapChart

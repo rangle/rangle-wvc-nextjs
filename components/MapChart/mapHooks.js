@@ -65,7 +65,14 @@ function useFitBounds(
             [minLng, minLat],
             [maxLng, maxLat]
           ],
-          { padding: padding, duration: duration, ...opts }
+          {
+            padding: padding,
+            duration: duration,
+            animate: true,
+            essential: true,
+            maxZoom: 5,
+            ...opts
+          }
         )
       }
       if (countryCode === 'All') {

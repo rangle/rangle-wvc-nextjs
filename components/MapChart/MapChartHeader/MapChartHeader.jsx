@@ -57,19 +57,22 @@ const getMapStatistics = (
   if (filteredStats[0]?.PEOPLE_REACHED) {
     stats.push({
       title: labels.people,
-      statistic: filteredStats[0].PEOPLE_REACHED
+      statistic: filteredStats[0].PEOPLE_REACHED,
+      tooltip: labels.reach_tooltip
     })
   }
   if (filteredStats[0]?.INVESTMENT) {
     stats.push({
       title: labels.invested,
-      statistic: filteredStats[0].INVESTMENT
+      statistic: filteredStats[0].INVESTMENT,
+      tooltip: labels.investment_tooltip
     })
   }
   if (filteredStats[0]?.PROGRAM_COUNT) {
     stats.push({
       title: labels.programs,
-      statistic: filteredStats[0].PROGRAM_COUNT
+      statistic: filteredStats[0].PROGRAM_COUNT,
+      tooltip: labels.programs_tooltip
     })
   }
 
@@ -174,7 +177,7 @@ const MAP_OPTIONS = {
     zoom: 1
   },
   minZoom: 1,
-  maxZoom: 8
+  maxZoom: 5
 }
 
 function MapChartHeader({
