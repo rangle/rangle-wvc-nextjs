@@ -1,15 +1,17 @@
 import React from 'react'
 import styles from './MapStatistics.module.scss'
+import Tooltip from '../../Tooltip/Tooltip'
 
 //FIXME tooltips are not implemented
 const MapStatistics = ({ mapStatistics }) => {
   return (
     <MapStatisticsContainer>
-      {mapStatistics?.map(({ title, statistic }, index) => (
+      {mapStatistics?.map(({ title, statistic, tooltip }, index) => (
         <MapStatisticsBlock
           key={title}
           title={title}
           statistic={statistic}
+          tooltip={tooltip}
           isLead={index === 0}
         />
       ))}
@@ -19,7 +21,7 @@ const MapStatistics = ({ mapStatistics }) => {
 const MapStatisticsContainer = ({ children }) => {
   return <div className={styles['map-statistics-block-grid']}>{children}</div>
 }
-const MapStatisticsBlock = ({ title, statistic, isLead, ...props }) => {
+const MapStatisticsBlock = ({ title, statistic, tooltip, isLead }) => {
   return (
     <div className={styles['map-statistics-block']}>
       <div className={styles['map-statistics-block_content']}>
@@ -34,7 +36,9 @@ const MapStatisticsBlock = ({ title, statistic, isLead, ...props }) => {
             {statistic}
           </span>
         </p>
-        <h6 className={styles[`map-statistics-block__title`]}>{title}</h6>
+        <h6 className={styles[`map-statistics-block__title`]}>
+          {title} <Tooltip content={tooltip} />
+        </h6>
       </div>
     </div>
   )
