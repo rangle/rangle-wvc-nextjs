@@ -391,7 +391,7 @@ const ResourcesSection = (props) => {
                 iconSrc={resource.ICON_URL}
                 labels={[resource.RESOURCE_TYPE]}
                 title={resource.RESOURCE_TITLE}
-                url={resource.RESOURCE_URL}
+                url={`/${resource.RESOURCE_URL}`}
               />
             ))}
           />
