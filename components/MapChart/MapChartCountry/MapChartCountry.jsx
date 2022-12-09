@@ -48,7 +48,7 @@ const MapPopup = ({ popupInfo, ...props }) => {
 const MapChartCountries = ({
   countryCode,
   duration = 1000,
-  padding = 200,
+  padding = 100,
   markerCoordinates = [],
   onCountryDataLoaded = (evt) => {},
   mapOptions = {},
