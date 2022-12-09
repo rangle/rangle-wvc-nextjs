@@ -1,5 +1,5 @@
 import parse from 'html-react-parser'
-import Link from 'next/link'
+import CtaLink from '../CtaLink/CtaLink'
 
 import styles from './MediaCard.module.scss'
 
@@ -16,48 +16,47 @@ const MediaCard = ({
   const labelList = labels ? Array.from(labels.values()).join(', ') : ''
 
   return (
-    <Link href={url} passHref legacyBehavior>
-      <a
-        className={styles['media-card']}
-        aria-label={ariaLabel || `Link to ${title}`}
-      >
-        <div className={styles['media-card__media-container']}>
-          {iconSrc && (
-            <div className={styles['media-card__icon-container']}>
-              <img
-                className={styles['media-card__icon']}
-                src={iconSrc}
-                alt={alt}
-              />
-            </div>
-          )}
-          {imageSrc && (
-            <div className={styles['media-card__image-container']}>
-              <img
-                className={styles['media-card__image']}
-                src={imageSrc}
-                alt={alt}
-              />
-            </div>
-          )}
-        </div>
-        <div className={styles['media-card__content']}>
-          <div>
-            <h5
-              className={`${styles['media-card__title']} ${styles['truncate']}`}
-            >
-              {title}
-            </h5>
-            <p className={`${styles['media-card__body']} ${styles['truncate']}`}>
-              {parse(body || '')}
-            </p>
+    <CtaLink
+      className={styles['media-card']}
+      url={url}
+      ariaLabel={ariaLabel || `Link to ${title}`}
+    >
+      <div className={styles['media-card__media-container']}>
+        {iconSrc && (
+          <div className={styles['media-card__icon-container']}>
+            <img
+              className={styles['media-card__icon']}
+              src={iconSrc}
+              alt={alt}
+            />
           </div>
-          <p className={`${styles['media-card__labels']} ${styles['truncate']}`}>
-            {labelList}
+        )}
+        {imageSrc && (
+          <div className={styles['media-card__image-container']}>
+            <img
+              className={styles['media-card__image']}
+              src={imageSrc}
+              alt={alt}
+            />
+          </div>
+        )}
+      </div>
+      <div className={styles['media-card__content']}>
+        <div>
+          <h5
+            className={`${styles['media-card__title']} ${styles['truncate']}`}
+          >
+            {title}
+          </h5>
+          <p className={`${styles['media-card__body']} ${styles['truncate']}`}>
+            {parse(body || '')}
           </p>
         </div>
-      </a>
-    </Link>
+        <p className={`${styles['media-card__labels']} ${styles['truncate']}`}>
+          {labelList}
+        </p>
+      </div>
+    </CtaLink>
   )
 }
 
