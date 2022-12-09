@@ -132,9 +132,11 @@ const getYearOptions = (programData) => {
 // for simplicity, but it feels like there is more work to be done here
 const getMarkerColor = (programType) => {
   const PROGRAM_TYPE_FILL_COLOR = {
-    'Community Development': '#46BB95', //$green
-    'Chronic Emergencies & Fragile Contexts': '#FFBF00',
-    'Crisis Response': '#d00'
+    'sub-prog-CEFC': '#E7600C',
+    'sub-prog-SHIP': '#46BB95',
+    'sub-prog-MCD': '#9054A1',
+    'sub-prog-CR': '#006661',
+    'sub-prog-LCD': '#FDD25F'
   }
   return PROGRAM_TYPE_FILL_COLOR[programType]
 }
@@ -158,7 +160,7 @@ const getMarkerCoordinates = (
         mapData['CENTRAL_LAT'],
         {
           ...mapData,
-          fill: getMarkerColor(mapData['PROGRAM_TYPE'])
+          fill: getMarkerColor(mapData.SUB_PROGRAMMING_TYPE_CODE)
         }
       ]
     })
@@ -279,7 +281,6 @@ function MapChartHeader({
           />
         )}
       </div>
-      
 
       {showHeaderControls && (
         <MapHeaderControlBar>
@@ -301,17 +302,15 @@ function MapChartHeader({
               updateSelection={onSelectedProgramChange}
             />
           </div>
-          {
-            mapStatistics?.map(({ title, statistic, tooltip }, index) => (
-              <MapStatisticsBlock
-                key={title}
-                title={title}
-                statistic={statistic}
-                tooltip={tooltip}
-                isLead={index === 0}
-              />
-            ))
-          }
+          {mapStatistics?.map(({ title, statistic, tooltip }, index) => (
+            <MapStatisticsBlock
+              key={title}
+              title={title}
+              statistic={statistic}
+              tooltip={tooltip}
+              isLead={index === 0}
+            />
+          ))}
         </MapHeaderControlBar>
       )}
     </div>
