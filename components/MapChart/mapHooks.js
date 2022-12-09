@@ -12,7 +12,7 @@ function useMapMarkers(markerCoordinates, setPopupInfo) {
           key={`marker-${index}`}
           longitude={long}
           latitude={lat}
-          anchor='top'
+          anchor='bottom'
           onClick={(evt) => {
             if (!options) {
               return

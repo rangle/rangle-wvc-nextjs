@@ -7,6 +7,8 @@ const MapChartGL = forwardRef(
     ref,
     attributionPosition = 'top-right'
   ) => {
+
+    console.log(props)
     return (
       <>
         <Map
@@ -16,7 +18,7 @@ const MapChartGL = forwardRef(
           id={id}
           ref={ref}
           attributionControl={false}
-          renderWorldCopies={false}
+          renderWorldCopies={true}
         >
           <AttributionControl position={attributionPosition} />
           {children}

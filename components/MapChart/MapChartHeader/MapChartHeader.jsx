@@ -189,7 +189,6 @@ function MapChartHeader({
   showMarkers = true,
   showEmptyPrograms = false,
   isDark = true,
-  duration = 1000,
   padding = 40,
   labels,
   children,
