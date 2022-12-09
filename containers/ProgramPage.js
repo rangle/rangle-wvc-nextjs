@@ -17,6 +17,7 @@ import StatisticCardGrid, {
 } from '../components/StatisticCardGrid/StatisticCardGrid'
 import { ChartContainer } from '../components/ChartContainer/ChartContainer'
 import { TableOfContents } from '../components/TableOfContents/TableOfContents'
+import Video from '../components/Video/Video'
 import { getGraph } from '../utils/getGraphs'
 import { Item } from 'react-stately'
 import { convertToKebabCase } from '../utils/convertStrings'
@@ -94,7 +95,7 @@ const OverviewSection = (props) => {
               </p>
             </div>
             <Timeline
-              data={Array(5)
+              data={Array(10)
                 .fill('')
                 .map((val, index) => {
                   const cardNum = index + 1
@@ -205,9 +206,29 @@ const DetailsSection = (props) => {
         {props.imageGallery.length > 0 && (
           <div className={styles['details-from-field-container']}>
             <Carousel
-              cards={props.imageGallery.map((image) => (
-                <div className={styles['details-from-field-container__image']}>
-                  <img src={image.url} alt={image.alt} />
+              cards={props.imageGallery.map((media) => (
+                <div
+                  className={
+                    styles['details-from-field-container__image-container']
+                  }
+                >
+                  {media.mediaType === 'image' ? (
+                    <img
+                      className={
+                        styles[
+                          'details-from-field-container__image-container__image'
+                        ]
+                      }
+                      src={media.url}
+                      alt={media.alt}
+                    />
+                  ) : (
+                    <Video
+                      src={media.url}
+                      alt={media.alt}
+                      backgroundImage={media.backgroundImage}
+                    />
+                  )}
                 </div>
               ))}
               // TODO: connect to snowflake

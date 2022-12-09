@@ -101,7 +101,12 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
             ],
             alt: currentProgram[
               `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_ALT`
-            ]
+            ],
+            mediaType: currentProgram[
+              `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_URL`
+            ]?.includes('youtube.com')
+              ? 'image'
+              : 'video'
           }))
           .filter((image) => image.url) || []
       : []
@@ -112,8 +117,10 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
     )
     const imageGalleryData = await res.json()
     imageGallery = imageGalleryData?.Data?.map((image) => ({
-      url: image.ThumbnailLocation,
-      alt: image.Caption
+      url: image.Location,
+      alt: image.Caption,
+      mediaType: image.MediaCode === 'PIC' ? 'image' : 'video',
+      backgroundImage: image.ThumbnailLocation || ''
     }))
   }
 

@@ -12,7 +12,10 @@ const HomepageCarouselNoSSR = dynamic(
 
 const VideoCarousel = ({ videos }) => {
   const cards = videos.map((video) => (
-    <Video key={video.src} backgroundImage={video.img} src={video.src} />
+    <div className={styles['video-container']}>
+      <Video key={video.src} backgroundImage={video.img} src={video.src} />
+    </div>
+    
   ))
 
   return (

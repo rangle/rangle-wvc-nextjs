@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import styles from './Video.module.scss'
 
-const Video = ({ backgroundImage, src }) => {
-  const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
 
+const Video = ({ backgroundImage, src }) => {
   const [playerState, setPlayerState] = useState({
     playing: false
   })

@@ -157,10 +157,14 @@
       margin: 0 auto;
     }
 
-    &__image {
+    &__image-container {
       height: 180px;
 
-      img {
+      &__image {
+        height: 100%;
+      }
+
+      video {
         height: 100%;
       }
     }
