@@ -38,7 +38,7 @@ const MapPopup = ({ popupInfo, ...props }) => {
         <MapPopupTitle markerInfo={markerInfo} />
 
         <p className={`${styles['map-popup__labels']} `}>
-          {`${markerInfo['CARD_VALUE_1'] || markerInfo['PROGRAM_TYPE']}`}
+          {`${markerInfo.SUB_PROGRAMMING_TYPE}`}
         </p>
       </div>
     </Popup>
