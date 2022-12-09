@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './ContentModal.module.scss'
 import Modal from 'react-modal'
 import Video from '../Video/Video'
-import Link from 'next/link'
+import CtaLink from '../CtaLink/CtaLink'
 
 const ctaArrow = (
   <svg xmlns='http://www.w3.org/2000/svg' width='8' height='12'>
@@ -96,18 +96,19 @@ const ContentModal = ({
                 </div>
                 {ctaUrl && (
                   <div className={styles['content-modal__cta-container']}>
-                    <Link href={ctaUrl} passHref legacyBehavior>
-                      <a className={styles['content-modal__cta-short']}>
-                        {ctaShortLabel}
-                        {ctaArrow}
-                      </a>
-                    </Link>
-                    <Link href={ctaUrl} passHref legacyBehavior>
-                      <a className={styles['content-modal__cta']}>
-                        {ctaLabel}
-                        {ctaArrow}
-                      </a>
-                    </Link>
+                    <CtaLink
+                      className={styles['content-modal__cta-short']}
+                      url={ctaUrl}
+                    >
+                      {ctaShortLabel}
+                      {ctaArrow}
+                    </CtaLink>
+                    <CtaLink
+                      className={styles['content-modal__cta']}
+                      url={ctaUrl}
+                    >
+                      {ctaLabel}
+                    </CtaLink>
                   </div>
                 )}
               </div>
