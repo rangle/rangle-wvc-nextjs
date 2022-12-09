@@ -57,8 +57,10 @@ export const ChartContainer = ({ controlTitle, isDarkMode, chartData }) => {
             dropdownLabel={controlTitle}
           />
           {disclaimer && (
-            <div className={styles['chart-container-control__footnote']}>
-              <p>{disclaimer}</p>
+            <div>
+              <p className={styles['chart-container-control__footnote']}>
+                {disclaimer}
+              </p>
             </div>
           )}
         </div>
