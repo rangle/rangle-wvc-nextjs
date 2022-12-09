@@ -7,7 +7,8 @@ export const CountrySubMenuDesktop = ({
   activeRegion,
   countryList,
   setActiveRegion,
-  regions
+  regions,
+  openCloseSubMenu
 }) => {
   return (
     <>
@@ -38,17 +39,19 @@ export const CountrySubMenuDesktop = ({
           {countryList
             .map((country) => {
               return (
-                <li
-                  className={styles['sub-navigation__sub-menu-link']}
-                  key={country?.label}
-                >
-                  <Link
-                    href={country?.url ? `/${country?.url}` : `/our-work`}
-                    passHref
-                    legacyBehavior
+                <li key={country?.label}>
+                  <div
+                    className={styles['sub-navigation__sub-menu-link']}
+                    onClick={() => openCloseSubMenu(country?.label, false)}
                   >
-                    <a>{country?.label}</a>
-                  </Link>
+                    <Link
+                      href={country?.url ? `/${country?.url}` : `/our-work`}
+                      passHref
+                      legacyBehavior
+                    >
+                      <a>{country?.label}</a>
+                    </Link>
+                  </div>
                 </li>
               )
             })}

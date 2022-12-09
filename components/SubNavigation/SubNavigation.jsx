@@ -25,18 +25,20 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
                   </h3>
                   <ul>
                     {item?.list?.map((link) => (
-                      <li
-                        className={styles['sub-navigation__sub-menu-link']}
-                        key={link?.label}
-                      >
-                        <Link
-                          href={
-                            link?.url ? `/${link.url}` : '/our-work'
-                          }
-                          legacyBehavior
+                      <li key={link?.label}>
+                        <div
+                          className={styles['sub-navigation__sub-menu-link']}
+                          onClick={() => openCloseSubMenu(link?.label, false)}
                         >
-                          <a>{link?.label}</a>
-                        </Link>
+                          <Link
+                            href={
+                              link?.url ? `/${link.url}` : '/our-work'
+                            }
+                            legacyBehavior
+                          >
+                            <a>{link?.label}</a>
+                          </Link>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -54,6 +56,7 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
             countryList={activeRegionData.list}
             setActiveRegion={setActiveRegion}
             regions={data}
+            openCloseSubMenu={openCloseSubMenu}
           />
           <CountrySubMenuMobile subMenuItems={data} />
         </div>
