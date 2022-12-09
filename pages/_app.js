@@ -19,18 +19,24 @@ function MyApp({ Component, pageProps }) {
     )
   return (
     <div className={styles['page-container']}>
-      <Script src='../_wvc/dist/js/lazy-loading.js' />
-      <Script src='../_wvc/dist/js/header.js' />
-      <Script src='../_wvc/dist/js/jssocials.min.js' />
-      <Script src='../_wvc/dist/js/site.js' />
-      <Script src='../_wvc/dist/js/web-chat.js' />
-      <Script src='../_wvc/dist/js/bootstrap.min.js' />
-      <Script src='../_wvc/dist/js/data-layer-events.js' />
-      <Script src='../_wvc/dist/js/bootstrap-tabcollapse.js' />
+      <Script
+        strategy='beforeInteractive'
+        src='https://code.jquery.com/jquery-3.6.0.min.js'
+      ></Script>
+      <Script src='js/lazy-loading.js' />
+      <Script src='js/header.js' />
+      <Script src='js/jssocials.min.js' />
+      <Script src='js/site.js' />
+      {/* @TODO: Do we need web-chat? If so we need to debug:
+        TypeError: Cannot read properties of null (reading 'contentWindow')
+      */}
+      {/* <Script src='js/web-chat.js' /> */}
+      <Script src='js/bootstrap.min.js' />
+      <Script src='js/data-layer-events.js' />
+      <Script src='js/bootstrap-tabcollapse.js' />
 
-      <Script src='https://unpkg.com/@world-vision-canada/wvc-design-system@1.*.*/dist/wvc.umd.min.js' />
-      <Script src='https://code.jquery.com/jquery-3.6.0.min.js' />
-      <Script src='https://sdks.shopifycdn.com/js-buy-sdk/1.11.0/index.umd.min.js' />
+      <Script src='https://unpkg.com/@world-vision-canada/wvc-design-system@1.*.*/dist/wvc.umd.min.js'></Script>
+      <Script src='https://sdks.shopifycdn.com/js-buy-sdk/1.11.0/index.umd.min.js'></Script>
 
       <GlobalNavBar />
       <SubNavigation navItems={pageProps.navigation} />
