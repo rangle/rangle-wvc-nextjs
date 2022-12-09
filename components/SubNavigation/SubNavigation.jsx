@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import CtaLink from '../CtaLink/CtaLink'
 import { useState } from 'react'
 import styles from './SubNavigation.module.scss'
 import { SubMenuIcon, SubMenuOpenIcon } from './SubMenuIcons'
@@ -30,14 +30,11 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
                           className={styles['sub-navigation__sub-menu-link']}
                           onClick={() => openCloseSubMenu(link?.label, false)}
                         >
-                          <Link
-                            href={
-                              link?.url ? `/${link.url}` : '/our-work'
-                            }
-                            legacyBehavior
+                          <CtaLink
+                            url={link?.url ? `/${link.url}` : '/our-work'}
                           >
-                            <a>{link?.label}</a>
-                          </Link>
+                            {link?.label}
+                          </CtaLink>
                         </div>
                       </li>
                     ))}
@@ -97,11 +94,13 @@ const SubNavItem = ({
             onMouseOver={() => openCloseSubMenu(label, false)}
             className={styles['sub-navigation__nav-item-container']}
           >
-            <Link href={`/${url}`} passHref legacyBehavior>
-              <a className={styles['sub-navigation__button']} tabIndex={0}>
-                {label}
-              </a>
-            </Link>
+            <CtaLink
+              className={styles['sub-navigation__button']}
+              url={`/${url}`}
+              tabIndex={0}
+            >
+              {label}
+            </CtaLink>
           </div>
         ) : (
           <button

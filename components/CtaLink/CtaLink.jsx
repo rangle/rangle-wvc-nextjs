@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const CtaLink = ({ className, children, url }) => {
+const CtaLink = ({ ariaLabel, children, className, tabIndex, url }) => {
   let isExternal
   const isInternal = url.startsWith('/')
 
@@ -12,9 +12,11 @@ const CtaLink = ({ className, children, url }) => {
   return (
     <Link href={url} passHref legacyBehavior>
       <a
-        target={isExternal ? '_blank' : '_self'}
-        rel={isExternal ? 'noopener' : ''}
+        ariaLabel={ariaLabel}
         className={className}
+        rel={isExternal ? 'noopener' : ''}
+        tabIndex={tabIndex}
+        target={isExternal ? '_blank' : '_self'}
       >
         {children}
       </a>
