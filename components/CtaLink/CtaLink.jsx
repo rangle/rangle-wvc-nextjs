@@ -12,7 +12,7 @@ const CtaLink = ({ ariaLabel, children, className, tabIndex, url }) => {
   return (
     <Link href={url} passHref legacyBehavior>
       <a
-        ariaLabel={ariaLabel}
+        aria-label={ariaLabel}
         className={className}
         rel={isExternal ? 'noopener' : ''}
         tabIndex={tabIndex}

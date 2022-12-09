@@ -119,7 +119,9 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                             key={country?.label}
                           >
                             <CtaLink
-                              url={country?.url ? country?.url : `/our-work`}
+                              url={
+                                country?.url ? `/${country?.url} ` : `/our-work`
+                              }
                             >
                               {country?.label}
                             </CtaLink>
