@@ -118,13 +118,11 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                             className={styles['sub-navigation__sub-menu-link']}
                             key={country?.label}
                           >
-                            <Link
-                              href={country?.url ? country?.url : `/our-work`}
-                              passHref
-                              legacyBehavior
+                            <CtaLink
+                              url={country?.url ? country?.url : `/our-work`}
                             >
-                              <a>{country?.label}</a>
-                            </Link>
+                              {country?.label}
+                            </CtaLink>
                           </li>
                         )
                       })}
