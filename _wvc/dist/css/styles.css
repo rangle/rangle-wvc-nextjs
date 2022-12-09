@@ -479,6 +479,7 @@ blockquote {
   /* To override the CSS from legacy code */
 }
 
+/* Dark overlay */
 header .main-overlay {
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
@@ -487,7 +488,7 @@ header .main-overlay {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 300;
 }
 
 @media (min-width: 1260px) {
@@ -1048,6 +1049,7 @@ a.skip:focus,
     display: block;
   }
 
+  /* sliding mobile nav  */
   .siteHeader-main .main-nav.nav-visible .siteHeader-nav {
     font-family: 'Lato', sans-serif;
     font-size: 18px;
@@ -1068,7 +1070,7 @@ a.skip:focus,
     overflow: scroll;
     margin-left: 0;
     background: #ffffff;
-    z-index: 10;
+    z-index: 400;
   }
 }
 
@@ -1266,7 +1268,7 @@ a.skip:focus,
   position: relative;
   top: 13px;
   left: 0;
-  z-index: 2;
+  z-index: 200;
   margin-right: 0;
   outline-offset: 2px;
 }
@@ -1287,7 +1289,7 @@ a.skip:focus,
   position: relative;
   top: 12px;
   border: 0;
-  z-index: 2;
+  z-index: 200;
   outline-offset: 2px;
 }
 
@@ -1359,7 +1361,7 @@ a.skip:focus,
   top: 5px;
   right: 174px;
   width: 250px;
-  z-index: 2;
+  z-index: 200;
 }
 
 .siteHeader-topbar .grid-search-wrapper .arrow-box {
@@ -1380,7 +1382,7 @@ a.skip:focus,
   position: absolute;
   top: 8px;
   right: 0;
-  z-index: 2;
+  z-index: 200;
 }
 
 .siteHeader-topbar .site-lang-wrapper .site-lang {
@@ -1433,7 +1435,7 @@ a.skip:focus,
   position: absolute;
   top: -13px;
   right: 19px;
-  z-index: 2;
+  z-index: 200;
 }
 
 .siteHeader-topbar .site-lang-wrapper.show .drop-menu a {
@@ -1543,7 +1545,7 @@ a.skip:focus,
     position: absolute;
     top: 20px;
     right: 65px;
-    z-index: 2;
+    z-index: 200;
     height: 20px;
     width: 20px;
   }
@@ -1600,7 +1602,7 @@ a.skip:focus,
     position: absolute;
     top: -12px;
     right: 68px;
-    z-index: 2;
+    z-index: 200;
   }
 
   .siteHeader-topbar .grid-search-wrapper.show {
@@ -1730,7 +1732,7 @@ header {
     position: relative;
     top: 13px;
     left: 0;
-    z-index: 2;
+    z-index: 200;
     padding-right: 10px;
     margin-right: 0;
   }
@@ -1884,7 +1886,7 @@ header {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1967,6 +1969,10 @@ header {
   height: 26px !important;
   border-radius: 4px !important;
   min-width: 154px;
+}
+
+.gsc-search-box {
+  width: 100%;
 }
 
 .gsc-search-box-tools .gsc-search-box .gsib_a {
@@ -2332,7 +2338,7 @@ header {
   background-color: #333333;
   border: 0;
   position: relative;
-  z-index: 2;
+  z-index: 200;
   padding-left: 0;
   padding-right: 0;
 }
@@ -6606,7 +6612,7 @@ img.jssocials-share-logo {
   font-size: 1.4em;
   border: 1px solid rgba(0, 0, 0, 0.2);
   opacity: 0.9;
-  z-index: 2;
+  z-index: 200;
 }
 
 .rmtMediaSlider {
@@ -7812,7 +7818,7 @@ ul.phase-navigation li a.phase-navigaiton_link {
   border-radius: 50px;
   display: block;
   cursor: pointer;
-  z-index: 2;
+  z-index: 200;
   opacity: 1;
   transition: visibility 0s linear 0s, opacity 300ms;
   visibility: visible;
