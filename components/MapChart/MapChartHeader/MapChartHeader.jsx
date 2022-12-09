@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import styles from './MapChartHeader.module.scss'
 import MapChartCountries from '../MapChartCountry/MapChartCountry'
 import DropDown from '../../Dropdown/Dropdown'
-import { MapStatistics } from './MapStatistics'
+import { MapStatisticsBlock } from './MapStatistics'
 import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
 
 const MapHeaderControlBar = ({ children }) => {
@@ -258,15 +258,17 @@ function MapChartHeader({
   return (
     <div className={styles['map-header-container']}>
       <div className={styles['map-container']}>
-        <MapChartCountries
-          {...props}
-          color={isDark ? 'dark' : 'light'}
-          countryCode={selectedCountry || 'All'}
-          markerCoordinates={showMarkers ? markerCoordinates : []}
-          mapOptions={MAP_OPTIONS}
-        >
-          {children}
-        </MapChartCountries>
+        <div className={styles['map-container__map']}>
+          <MapChartCountries
+            {...props}
+            color={isDark ? 'dark' : 'light'}
+            countryCode={selectedCountry || 'All'}
+            markerCoordinates={showMarkers ? markerCoordinates : []}
+            mapOptions={MAP_OPTIONS}
+          >
+            {children}
+          </MapChartCountries>
+        </div>
         {showHeaderControls && (
           <MapLegend
             text={labels.legend}
@@ -277,6 +279,7 @@ function MapChartHeader({
           />
         )}
       </div>
+      
 
       {showHeaderControls && (
         <MapHeaderControlBar>
@@ -298,9 +301,17 @@ function MapChartHeader({
               updateSelection={onSelectedProgramChange}
             />
           </div>
-          <div className={styles['map-header__control-bar__col--3']}>
-            <MapStatistics mapStatistics={mapStatistics} />
-          </div>
+          {
+            mapStatistics?.map(({ title, statistic, tooltip }, index) => (
+              <MapStatisticsBlock
+                key={title}
+                title={title}
+                statistic={statistic}
+                tooltip={tooltip}
+                isLead={index === 0}
+              />
+            ))
+          }
         </MapHeaderControlBar>
       )}
     </div>
