@@ -181,6 +181,7 @@
 
   &__media-container {
     border: 1px solid $white;
+    height: 270px;
 
     @media (min-width: 1024px) {
       border-width: 4px;

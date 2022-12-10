@@ -16,7 +16,7 @@ const MapChartGL = forwardRef(
           id={id}
           ref={ref}
           attributionControl={false}
-          renderWorldCopies={false}
+          renderWorldCopies={true}
         >
           <AttributionControl position={attributionPosition} />
           {children}

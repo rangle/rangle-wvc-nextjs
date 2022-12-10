@@ -359,7 +359,7 @@ export async function getStaticProps({ params }) {
   })
 
   const { rows: programsData } = await getSnowflakeData({
-    sqlText: `select * from MAP INNER JOIN PROGRAMS on MAP.IVS_PROGRAM_CODE=PROGRAMS.IVS_PROGRAM_CODE where LEVEL = 'programs' and COUNTRYCODE = '${currentCountry.COUNTRY_CODE}'`
+    sqlText: `select * from MAP INNER JOIN PROGRAMS on MAP.IVS_PROGRAM_CODE=PROGRAMS.IVS_PROGRAM_CODE where LEVEL = 'programs' and COUNTRYCODE = '${currentCountry.COUNTRY_CODE}' ORDER BY PRIORITY LIMIT 12`
   })
 
   const { rows: mapData } = await getSnowflakeData({

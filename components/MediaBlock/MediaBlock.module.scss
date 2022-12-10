@@ -80,8 +80,15 @@
     }
   
     &__media {
+      height: 400px;;
+
       @media (min-width: 768px) {
         width: 50%;
+        height: 300px;
+      }
+
+      @media (min-width: 1366px) {
+        height: 400px;
       }
     }
   

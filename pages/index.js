@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import parse from 'html-react-parser'
 
 import Counter from '../components/Homepage/Counter/Counter'
@@ -63,11 +62,6 @@ export default function Home({
 }) {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>World Vision - Our Work</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-
       <main className={styles.main}>
         <section className={`${styles['section']} ${styles['section--hero']}`}>
           <Hero

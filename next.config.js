@@ -2,7 +2,7 @@
 const webpack = require('webpack')
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: { unoptimized: true },
   webpack: (config) => {
