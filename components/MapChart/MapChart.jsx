@@ -7,8 +7,6 @@ const MapChartGL = forwardRef(
     ref,
     attributionPosition = 'top-right'
   ) => {
-
-    console.log(props)
     return (
       <>
         <Map

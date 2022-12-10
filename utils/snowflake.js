@@ -124,10 +124,10 @@ export const transformResultsData = (data) => {
       byYear[result.YEAR] = {}
     }
 
-    if (byYear[result.YEAR][result.AREA_OF_FOCUS]) {
-      byYear[result.YEAR][result.AREA_OF_FOCUS].push(result)
+    if (byYear[result.YEAR][result.RESULTS_SUBHEADER]) {
+      byYear[result.YEAR][result.RESULTS_SUBHEADER].push(result)
     } else {
-      byYear[result.YEAR][result.AREA_OF_FOCUS] = [result]
+      byYear[result.YEAR][result.RESULTS_SUBHEADER] = [result]
     }
   })
   return Object.keys(byYear)
