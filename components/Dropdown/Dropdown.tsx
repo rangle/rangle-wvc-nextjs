@@ -42,9 +42,7 @@ const Dropdown = ({
           className={styles['select-dropdown__select']}
           id={id}
           value={value}
-          onChange={(e) => {
-            return updateSelection(e.target.value)
-          }}
+          onChange={(e) => updateSelection(e.target.value)}
         >
           {options.map((option) => {
             return (

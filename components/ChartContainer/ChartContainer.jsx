@@ -25,6 +25,12 @@ export const ChartContainer = ({ controlTitle, isDarkMode, chartData }) => {
     return controlOptions
   }
 
+  // For Google Tag Manager custom event
+  const getOptionLabel = (e) => {
+    let row = chartData.find((o) => o.INDICATOR_CODE === e)
+    return `${row.GRAPH_STATEMENT} ${row.GRAPH_STATEMENT_02} ${row.GRAPH_STATEMENT_03}`
+  }
+
   useEffect(() => {
     let obj = chartData.find((o) => o.INDICATOR_CODE === chartToRender)
 
@@ -53,7 +59,14 @@ export const ChartContainer = ({ controlTitle, isDarkMode, chartData }) => {
               label: option.title,
               value: option.id
             }))}
-            updateSelection={(e) => setChartToRender(e)}
+            updateSelection={(e) => {
+              window.dataLayer.push({
+                'Event Category': 'Dropdown',
+                'Event Action': `${controlTitle} Charts`,
+                'Event Label': `${getOptionLabel(e)}`
+              })
+              setChartToRender(e)
+            }}
             dropdownLabel={controlTitle}
           />
           {disclaimer && (
