@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import parse from 'html-react-parser'
 
 import ExpandableTextBlock from '../components/ExpandableTextBlock/ExpandableTextBlock'
@@ -354,6 +355,12 @@ const PartnersSection = (props) => {
 }
 
 export default function ProgramPage(props) {
+  const [showAlert, setShowAlert] = useState(true)
+
+  useEffect(() => {
+    setShowAlert(true)
+  }, [props.URL])
+
   const hasStories =
     props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
   const componentMap = {
@@ -379,7 +386,7 @@ export default function ProgramPage(props) {
   const sectionsData = props.controls.filter((control) => control.VALUE)
   return (
     <div className={styles['program-container']}>
-      {props.EMERGENCY_BANNER_BODY && (
+      {showAlert && props.EMERGENCY_BANNER_BODY && (
         <EmergencyAlert
           body={props.EMERGENCY_BANNER_BODY}
           // TODO: need to add to snowflake table
