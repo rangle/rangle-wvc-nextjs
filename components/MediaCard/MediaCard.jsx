@@ -1,5 +1,6 @@
 import parse from 'html-react-parser'
 import CtaLink from '../CtaLink/CtaLink'
+import Image from 'next/image'
 
 import styles from './MediaCard.module.scss'
 
@@ -24,19 +25,22 @@ const MediaCard = ({
       <div className={styles['media-card__media-container']}>
         {iconSrc && (
           <div className={styles['media-card__icon-container']}>
-            <img
+            <Image
               className={styles['media-card__icon']}
               src={iconSrc}
               alt={alt}
+              width={64}
+              height={64}
             />
           </div>
         )}
         {imageSrc && (
           <div className={styles['media-card__image-container']}>
-            <img
+            <Image
               className={styles['media-card__image']}
               src={imageSrc}
               alt={alt}
+              fill
             />
           </div>
         )}

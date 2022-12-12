@@ -28,9 +28,13 @@
     background-color: #ebf2f8;
   }
 
+  &__image-container {
+    position: relative;
+    height: 15.5rem;
+  }
+
   &__image {
     display: block;
-    height: 15.5rem;
     object-fit: cover;
     width: 100%;
   }

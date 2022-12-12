@@ -26,6 +26,10 @@
     top: 0;
   }
 
+  &__bg-relative {
+    position: relative;
+  }
+
   &__bg-image {
     object-fit: cover;
     width: 100%;

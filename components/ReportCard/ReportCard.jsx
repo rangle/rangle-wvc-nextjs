@@ -1,4 +1,5 @@
 import styles from './ReportCard.module.scss'
+import Image from 'next/image'
 
 const ReportCard = ({ ariaLabel, title, url, imageSrc, alt }) => {
   return (
@@ -10,10 +11,11 @@ const ReportCard = ({ ariaLabel, title, url, imageSrc, alt }) => {
       <div className={styles['report-card__media-container']}>
         {imageSrc && (
           <div className={styles['report-card__image-container']}>
-            <img
+            <Image
               className={styles['report-card__image']}
               src={imageSrc}
               alt={alt}
+              fill
             />
           </div>
         )}

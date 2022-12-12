@@ -4,6 +4,8 @@ import Modal from 'react-modal'
 import Video from '../Video/Video'
 import CtaLink from '../CtaLink/CtaLink'
 
+import Image from 'next/image'
+
 const ctaArrow = (
   <svg xmlns='http://www.w3.org/2000/svg' width='8' height='12'>
     <path
@@ -73,10 +75,11 @@ const ContentModal = ({
             </button>
             <h1 className={styles['content-modal__heading']}>{title}</h1>
           </div>
-          <img
+          <Image
             className={styles['content-modal__image']}
             src={imgSrc}
             alt={imgAlt}
+            fill
           />
           <div className={styles['content-modal__content-container']}>
             <div className={styles['content-modal__content-flex']}>

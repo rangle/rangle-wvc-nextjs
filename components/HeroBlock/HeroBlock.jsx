@@ -5,6 +5,7 @@ import Button from '../Button/Button'
 import SummaryBlock from '../SummaryBlock/SummaryBlock'
 import MapChartCountries from '../MapChart/MapChartCountry/MapChartCountry'
 import { getScreenWidth } from '../../utils/getScreenWidth'
+import Image from 'next/image'
 
 const HeroBlock = ({
   body,
@@ -49,10 +50,12 @@ const HeroBlock = ({
       <div className={styles['hero-block__hero-container']}>
         <div className={styles['hero-block__top-container']}>
           {page === 'sector' && sectorImgSrc && (
-            <img
+            <Image
               src={sectorImgSrc}
               alt={sectorImgAlt}
-              className={styles['hero-block__sector-image']}
+              className={styles['hero-block__top-container--image']}
+              fill
+              priority
             />
           )}
           {page === 'country' && countryCode && (
