@@ -89,6 +89,11 @@
       padding-bottom: $size-xl;
       justify-content: space-around;
 
+      // Media card flex-child
+      > a {
+        height: auto;
+      }
+
       @media (min-width: 767px) {
         justify-content: flex-start;
       }
