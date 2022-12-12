@@ -10,8 +10,8 @@ const PIN_BASE_STYLE = {
   stroke: 'none'
 }
 
-function Pin({ size = 20, fill = '#FFBF00' }) {
-  const pinStyle = { ...PIN_BASE_STYLE, fill }
+function Pin({ cursor = 'pointer', size = 20, fill = '#FFBF00' }) {
+  const pinStyle = { ...PIN_BASE_STYLE, fill, cursor }
   return (
     <svg height={size} viewBox='0 0 24 24' style={pinStyle}>
       <path d={ICON} />

@@ -26,7 +26,7 @@ function useMapMarkers(markerCoordinates, setPopupInfo) {
             }))
           }}
         >
-          <Pin fill={options?.fill} />
+          <Pin cursor={options ? 'pointer' : 'auto'} fill={options?.fill} />
         </Marker>
       )),
     [markerCoordinates, setPopupInfo]

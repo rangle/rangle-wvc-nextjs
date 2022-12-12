@@ -30,16 +30,34 @@
       }
     }
   }
+  // previous arrow
+  svg:nth-child(1) {
+    margin-right: 0.5rem;
+  }
+
+  // next arrow
+  svg:nth-child(2) {
+    margin-left: 0.5rem;
+  }
 }
 
 .carousel-nav-container-desktop {
-  @media (max-width: 767px) {
-    display: none;
+  display: none;
+
+  @media (min-width: 768px) {
+    align-items: center;
+    display: flex;
+    margin-right: 24px;
+  }
+
+  @media (min-width: 1366px) {
+    margin-right: 0;
   }
 }
 
 .carousel-nav-container-mobile {
   justify-content: space-between;
+  margin-right: 1rem;
 
   @media (min-width: 768px) {
     display: none;
@@ -70,7 +88,6 @@
 
   .carousel-nav-button--label {
     @include typographysmallparagraphsmallcopy_regular;
-    margin: 0 0.25rem;
     font-weight: 400;
   }
 
