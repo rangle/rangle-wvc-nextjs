@@ -110,9 +110,9 @@ const ImpactSection = (props) => {
   const videos = Array(3)
     .fill('')
     .map((val, index) =>
-      props[`VIDEO_TOP_0${index + 2}_URL`] ? (
+      props[`VIDEO_TOP_0${index + 1}_URL`] ? (
         <div className={styles['from-field-container__video']}>
-          <Video src={props[`VIDEO_TOP_0${index + 2}_URL`]}></Video>
+          <Video src={props[`VIDEO_TOP_0${index + 1}_URL`]}></Video>
         </div>
       ) : null
     )
@@ -121,7 +121,7 @@ const ImpactSection = (props) => {
   return (
     <section id={props.sectionId}>
       <div className={styles['impact-container-wrapper']}>
-        {props.IMPACT_TITLE && props.IMPACT_BODY && (
+        {props.IMPACT_TITLE && (
           <div className={styles['impact-container']}>
             <h3>{props.IMPACT_TITLE}</h3>
             <p className={styles['impact-intro']}>
@@ -129,13 +129,9 @@ const ImpactSection = (props) => {
             </p>
           </div>
         )}
-        {videos.length > 0 && (
+        {props.VIDEO_TITLE && videos.length > 0 && (
           <div className={styles['from-field-container']}>
-            <Carousel
-              cards={videos}
-              // TODO: connect to snowflake
-              title='From the field'
-            />
+            <Carousel cards={videos} title={props.VIDEO_TITLE} />
           </div>
         )}
       </div>
@@ -146,7 +142,6 @@ const ImpactSection = (props) => {
 const ChallengesSection = (props) => {
   return (
     <section id={props.sectionId}>
-      {' '}
       <SectionContainer
         alt={props.CHALLENGES_ALT}
         src={props.CHALLENGES_URL}
@@ -176,7 +171,7 @@ const ChallengesSection = (props) => {
 }
 
 const ApproachSection = (props) => {
-  return props.APPROACH_GOAL ? (
+  return (
     <section id={props.sectionId}>
       <SectionContainer
         alt={props.APPROACHES_IMAGE_ALT}
@@ -202,7 +197,7 @@ const ApproachSection = (props) => {
         </div>
       </SectionContainer>
     </section>
-  ) : null
+  )
 }
 
 const ExpenditureSection = (props) => {
@@ -292,43 +287,41 @@ const ProgressSection = (props) => {
 const ChangeSection = (props) => {
   return (
     <section id={props.sectionId}>
-      {props.changeGraphs && props.changeGraphs.length > 0 && (
-        <div className={styles['change-container-wrapper']}>
-          <div className={styles['change-container']}>
-            <h2>{props.CHANGE_TITLE}</h2>
-            <p className={styles['change-intro']}>
-              {parse(props.CHANGE_BODY || '')}
-            </p>
-            {props.changeGraphs && props.changeGraphs.length > 0 && (
-              <div className={styles['change-container__chart-container']}>
-                <div
-                  className={styles['change-container__chart-container__chart']}
-                >
-                  {getGraph(0, props.changeGraphs)}
-                </div>
-                <div
-                  className={styles['change-container__chart-container__chart']}
-                >
-                  {props.changeGraphs.length > 1 &&
-                    getGraph(1, props.changeGraphs)}
-                </div>
-                <div
-                  className={styles['change-container__chart-container__chart']}
-                >
-                  {props.changeGraphs.length > 2 &&
-                    getGraph(2, props.changeGraphs)}
-                </div>
+      <div className={styles['change-container-wrapper']}>
+        <div className={styles['change-container']}>
+          <h2>{props.CHANGE_TITLE}</h2>
+          <p className={styles['change-intro']}>
+            {parse(props.CHANGE_BODY || '')}
+          </p>
+          {props.changeGraphs && props.changeGraphs.length > 0 && (
+            <div className={styles['change-container__chart-container']}>
+              <div
+                className={styles['change-container__chart-container__chart']}
+              >
+                {getGraph(0, props.changeGraphs)}
               </div>
-            )}
-          </div>
+              <div
+                className={styles['change-container__chart-container__chart']}
+              >
+                {props.changeGraphs.length > 1 &&
+                  getGraph(1, props.changeGraphs)}
+              </div>
+              <div
+                className={styles['change-container__chart-container__chart']}
+              >
+                {props.changeGraphs.length > 2 &&
+                  getGraph(2, props.changeGraphs)}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </section>
   )
 }
 
 const ProgramsSection = (props) => {
-  return props.programs?.length > 0 ? (
+  return (
     <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel
@@ -347,13 +340,11 @@ const ProgramsSection = (props) => {
         />
       </div>
     </section>
-  ) : null
+  )
 }
 
 const StoriesSection = (props) => {
-  const hasStories =
-    props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
-  return hasStories ? (
+  return (
     <section className={styles['stories-container']} id={props.sectionId}>
       <StoryCardGrid
         cards={Array(3)
@@ -371,63 +362,103 @@ const StoriesSection = (props) => {
             ) : null
           )
           .filter((story) => story)}
-        title='Stories'
+        title={props.STORIES_TITLE}
       />
     </section>
-  ) : null
+  )
 }
 
 const ResourcesSection = (props) => {
   return (
     <section id={props.sectionId}>
-      {props.resources.length > 0 && (
-        <div className={styles['resource-container']}>
-          <Carousel
-            // TODO: connect to snowflake
-            title='Resources'
-            cards={props.resources.map((resource) => (
-              <MediaCard
-                alt={resource.ICON_ALT}
-                body={resource.RESOURCE_BODY}
-                iconSrc={resource.ICON_URL}
-                labels={[resource.RESOURCE_TYPE]}
-                title={resource.RESOURCE_TITLE}
-                url={`/${resource.RESOURCE_URL}`}
-              />
-            ))}
-          />
-        </div>
-      )}
+      <div className={styles['resource-container']}>
+        <Carousel
+          title={props.RESOURCES_TITLE}
+          cards={props.resources.map((resource) => (
+            <MediaCard
+              alt={resource.ICON_ALT}
+              body={resource.RESOURCE_BODY}
+              iconSrc={resource.ICON_URL}
+              labels={[resource.RESOURCE_TYPE]}
+              title={resource.RESOURCE_TITLE}
+              url={`/${resource.RESOURCE_URL}`}
+            />
+          ))}
+        />
+      </div>
     </section>
   )
 }
 
-const componentMap = {
-  section_order_summary: OverviewSection,
-  section_order_impact: ImpactSection,
-  section_order_challenges: ChallengesSection,
-  section_order_approach: ApproachSection,
-  section_order_expenditure: ExpenditureSection,
-  section_order_progress: ProgressSection,
-  section_order_change: ChangeSection,
-  section_order_programs: ProgramsSection,
-  section_order_stories: StoriesSection,
-  section_order_resources: ResourcesSection
-}
-
 export default function Sector(props) {
+  const hasStories =
+    props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
+  const componentMap = {
+    section_order_summary: {
+      component: OverviewSection,
+      isShown: true
+    },
+    section_order_impact: {
+      component: ImpactSection,
+      isShown: !!(props.IMPACT_TITLE || props.VIDEO_TITLE)
+    },
+    section_order_challenges: {
+      component: ChallengesSection,
+      isShown: !!props.CHALLENGES_TITLE
+    },
+    section_order_approach: {
+      component: ApproachSection,
+      isShown: !!props.APPROACH_TITLE
+    },
+    section_order_expenditure: {
+      component: ExpenditureSection,
+      isShown: !!props.EXPENDITURE_TITLE
+    },
+    section_order_progress: {
+      component: ProgressSection,
+      isShown: !!props.RESULTS_TITLE
+    },
+    section_order_change: {
+      component: ChangeSection,
+      isShown: !!(
+        props.CHANGE_TITLE &&
+        props.changeGraphs &&
+        props.changeGraphs.length > 0
+      )
+    },
+    section_order_programs: {
+      component: ProgramsSection,
+      isShown: !!(props.PROGRAMS_TITLE && props.programs?.length > 0)
+    },
+    section_order_stories: {
+      component: StoriesSection,
+      isShown: !!(hasStories && props.STORIES_TITLE)
+    },
+    section_order_resources: {
+      component: ResourcesSection,
+      isShown: !!(props.resources.length > 0 && props.RESOURCES_TITLE)
+    }
+  }
   const sectionsData = props.controls.filter((control) => control.VALUE)
   return (
     <div className={styles['sector-container']}>
       <TableOfContents
-        contents={sectionsData.map((control) => control.TEXT)}
+        contents={sectionsData
+          .filter(
+            (section) =>
+              componentMap[section.ITEM] && componentMap[section.ITEM].isShown
+          )
+          .map((control) => control.TEXT)}
         ctaText={
           props.controls.find((control) => control.ITEM === 'donate_label').TEXT
         }
+        ctaUrl={
+          props.controls.find((control) => control.ITEM === 'donate_url').URL
+        }
       />
       {sectionsData.map((section) => {
-        if (componentMap[section.ITEM]) {
-          const Component = componentMap[section.ITEM]
+        if (componentMap[section.ITEM] && componentMap[section.ITEM].isShown) {
+          const Component = componentMap[section.ITEM].component
           return (
             <Component
               {...props}
