@@ -3,7 +3,6 @@ import { LineChart } from '../components/Charts/LineChart/LineChart'
 import { StackedBarChart } from '../components/Charts/StackedBarChart/StackedBarChart'
 import { DoughnutChart } from '../components/Charts/DoughnutChart/DoughnutChart'
 
-
 export const getTitleArray = (statement, statement_02, statement_03) => {
   let title = []
 
@@ -30,10 +29,10 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
       graphNumber
     ]
 
-    // return if there are no unique indicator codes
-    if (!graphToPlot) {
-      return null
-    }
+  // return if there are no unique indicator codes
+  if (!graphToPlot) {
+    return null
+  }
   // get the rows to be plotted for one chart
   let rowsToPlot = Object.keys(graphData)
     .map((ea) => graphData[ea])
@@ -42,7 +41,7 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
     .sort((a, b) => a.YEAR_OR_TARGET.localeCompare(b.YEAR_OR_TARGET))
 
   let args = {
-    title: `${rowsToPlot[0].GRAPH_STATEMENT}`,
+    title: `${rowsToPlot[0]?.GRAPH_STATEMENT}`,
     aspectRatio: 0.8,
     ariaLabe: 'Bar Chart Reading Comprehension',
     withAxes: !!idCode || !!chartContainer,
@@ -53,9 +52,10 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
       'rgb(102, 102, 102)',
       'rgb(153, 153, 153)',
       // 'rgb(204, 204, 204)',
-      'rgb(255, 136, 51)',
+      'rgb(255, 136, 51)'
     ],
-    data: rowsToPlot.map((ea) => ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
+    data: rowsToPlot.map((ea) =>
+      ea.UNIT_OF_MEASUREMENT === 'percentage' ? `${ea.VALUE}%` : ea.VALUE
     ),
     labels: [
       ...new Set(
@@ -65,11 +65,15 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
       )
     ],
     showTopBarLabels: true,
-    subTitle: `${rowsToPlot[0].LOCATION ? rowsToPlot[0].LOCATION : ''}${
-      rowsToPlot[0].LOCATION && rowsToPlot[0].COUNTRY ? ', ' : ''
-    }${rowsToPlot[0].COUNTRY ? rowsToPlot[0].COUNTRY : ' '}`,
-    title: getTitleArray(rowsToPlot[0].GRAPH_STATEMENT, rowsToPlot[0].GRAPH_STATEMENT_02, rowsToPlot[0].GRAPH_STATEMENT_03),
-    ariaLabel: `${rowsToPlot[0].GRAPH_ALT}`,
+    subTitle: `${rowsToPlot[0]?.LOCATION ? rowsToPlot[0]?.LOCATION : ''}${
+      rowsToPlot[0]?.LOCATION && rowsToPlot[0]?.COUNTRY ? ', ' : ''
+    }${rowsToPlot[0]?.COUNTRY ? rowsToPlot[0]?.COUNTRY : ' '}`,
+    title: getTitleArray(
+      rowsToPlot[0]?.GRAPH_STATEMENT,
+      rowsToPlot[0]?.GRAPH_STATEMENT_02,
+      rowsToPlot[0]?.GRAPH_STATEMENT_03
+    ),
+    ariaLabel: `${rowsToPlot[0]?.GRAPH_ALT}`,
     maintainAspectRatio: !chartContainer
   }
 
@@ -93,7 +97,7 @@ export const getGraph = (graphNumber, graphData, idCode, chartContainer) => {
     return { data, legends }
   }
 
-  switch (rowsToPlot[0].CHART_TYPE) {
+  switch (rowsToPlot[0]?.CHART_TYPE) {
     case 'bar_chart':
       return <BarChart {...args} />
     case 'line':

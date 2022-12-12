@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Navigation, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { resetId } from 'react-id-generator'
+import { v4 } from "uuid";
 
 import styles from './Carousel.module.scss'
 
@@ -72,7 +72,7 @@ export const NextIcon = () => {
 const Carousel = ({ cards, controlsTheme, title }) => {
   const slideTotal = cards.length
   const [activeSlideNumber, setActiveSlideNumber] = useState(1)
-  const id = resetId()
+  const id = v4();
 
   return (
     <div id={`carousel-${id}`} className={styles['carousel']}>
