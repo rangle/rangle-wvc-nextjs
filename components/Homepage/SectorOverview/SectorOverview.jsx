@@ -53,7 +53,7 @@ const HighlightData = [
   {
     name: 'Total',
     peopleReached: 18,
-    invested: 447
+    invested: 384
   }
 ]
 
@@ -83,7 +83,7 @@ const SectorOverview = ({
   }
 
   const [peopleReached, setPeopleReached] = useState(18)
-  const [invested, setInvested] = useState(447)
+  const [invested, setInvested] = useState(384)
 
   // TODO: hook this up to the doughnut chart somehow
   const onChartHover = (itemName) => {

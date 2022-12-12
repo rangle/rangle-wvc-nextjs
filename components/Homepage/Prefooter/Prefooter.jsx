@@ -54,7 +54,7 @@ const hardcodedMediaCards = [
   {
     title: 'COVID-19',
     body: 'How the pandemic is changing the way we teach our Youth Ready curriculum',
-    labels: ['Paper'],
+    labels: ['Lessons Learned'],
     url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf	',
     iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
     alt: 'Lessons Learned icon'
@@ -62,7 +62,7 @@ const hardcodedMediaCards = [
   {
     title: 'Gender Equality',
     body: 'Five key pillars for effective programming.',
-    labels: ['Paper'],
+    labels: ['Lessons Learned'],
     url: 'https://worldvision.ca/',
     iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
     alt: 'Lessons Learned icon'
@@ -70,7 +70,7 @@ const hardcodedMediaCards = [
   {
     title: 'Data Challenges',
     body: 'Lessons learned with sex-disaggregation.',
-    labels: ['Paper'],
+    labels: ['Lessons Learned'],
     url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf	',
     iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
     alt: 'Lessons Learned icon'
@@ -78,7 +78,7 @@ const hardcodedMediaCards = [
   {
     title: 'Impact Measurement',
     body: 'What we’ve learned through World Vision’s Agile transformation.',
-    labels: ['Paper'],
+    labels: ['Lessons Learned'],
     url: 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/World-Vision-Canada-Annual-Results-Report-FY2021-LEARNING.pdf',
     iconSrc: '/homepage/prefooter/Lessons-Learned-icon.jpg',
     alt: 'Lessons Learned icon'
@@ -93,7 +93,7 @@ const Prefooter = ({
   mediaCardData = hardcodedMediaCards,
   reportCardData,
   subtitle,
-  title,
+  title
 }) => {
   const caseStudyCards = mediaCardData.map((card) => (
     <MediaCard
@@ -138,7 +138,7 @@ const Prefooter = ({
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-accordion']}`}
       >
-        <AccordionGroup items={accordionItems} isDarkMode/>
+        <AccordionGroup items={accordionItems} isDarkMode />
       </div>
       <div
         className={`${styles['prefooter-content']} ${styles['prefooter-report-cards']}`}

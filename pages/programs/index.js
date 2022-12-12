@@ -44,12 +44,16 @@ export default function ProgramFilter(props) {
   }
 
   const options = {
-    Country: props.countryOptions,
+    Country: props.countryOptions.sort((a, b) =>
+      a.LABEL > b.LABEL ? 1 : b.LABEL > a.LABEL ? -1 : 0
+    ),
     'Area of Focus': props.areasOfFocusOptions,
     Partner: [...new Set(props.partners)],
     Status: props.statusOptions,
     'Program Type': props.programTypeOptions
   }
+
+  console.log({ options })
 
   const programIds = [
     ...new Set(

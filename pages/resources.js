@@ -34,6 +34,8 @@ export default function ProgramFilter(props) {
     setFiltersToShowMobile(filters.length)
   }
 
+  console.log({ props })
+
   const options = {
     Country: props.countryOptions,
     'Area of Focus': props.areasOfFocusOptions,
