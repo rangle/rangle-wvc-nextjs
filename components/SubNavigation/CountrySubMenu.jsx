@@ -59,7 +59,7 @@ export const CountrySubMenuDesktop = ({
   )
 }
 
-export const CountrySubMenuMobile = ({ subMenuItems }) => {
+export const CountrySubMenuMobile = ({ subMenuItems, openCloseSubMenu }) => {
   const [mobileCountryList, setMobileCountryList] = useState([
     { name: 'Africa', open: false },
     { name: 'Asia and Pacific', open: false },
@@ -114,17 +114,19 @@ export const CountrySubMenuMobile = ({ subMenuItems }) => {
                     <ul>
                       {menuItem?.list?.map((country) => {
                         return (
-                          <li
-                            className={styles['sub-navigation__sub-menu-link']}
-                            key={country?.label}
-                          >
-                            <CtaLink
-                              url={
-                                country?.url ? `/${country?.url} ` : `/our-work`
-                              }
+                          <li key={country?.label}>
+                            <div
+                              className={styles['sub-navigation__sub-menu-link']}
+                              onClick={() => openCloseSubMenu(country?.label, false)}
                             >
-                              {country?.label}
-                            </CtaLink>
+                              <CtaLink
+                                url={
+                                  country?.url ? `/${country?.url} ` : `/our-work`
+                                }
+                              >
+                                {country?.label}
+                              </CtaLink>
+                            </div>
                           </li>
                         )
                       })}

@@ -55,7 +55,7 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
             regions={data}
             openCloseSubMenu={openCloseSubMenu}
           />
-          <CountrySubMenuMobile subMenuItems={data} />
+          <CountrySubMenuMobile subMenuItems={data} openCloseSubMenu={openCloseSubMenu} />
         </div>
       )}
 

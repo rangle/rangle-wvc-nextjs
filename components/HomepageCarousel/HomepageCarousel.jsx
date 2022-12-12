@@ -1,7 +1,7 @@
 import { Navigation, A11y, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './HomepageCarousel.module.scss'
-import { useId } from 'react-id-generator'
+import { v4 } from 'uuid';
 
 export const PrevIcon = () => {
   return (
@@ -47,7 +47,7 @@ export const NextIcon = () => {
 }
 
 const HomepageCarousel = ({ cards, title }) => {
-  const id = useId()
+  const id = v4()
 
   return (
     <div id={`carousel-${id}`} className={styles['homepage-carousel']}>
@@ -76,7 +76,7 @@ const HomepageCarousel = ({ cards, title }) => {
           {cards &&
             cards.length &&
             cards.map((card) => {
-              const slideId = useId()
+              const slideId = v4()
               return <SwiperSlide key={slideId}>{card}</SwiperSlide>
             })}
         </Swiper>

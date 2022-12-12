@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Navigation, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { v4 } from "uuid";
+import { v4 } from 'uuid';
 
 import styles from './Carousel.module.scss'
 
