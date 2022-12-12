@@ -4,14 +4,16 @@ import Image from 'next/image'
 const SectionContainer = ({ alt, children, src, title, isDarkMode }) => {
   return (
     <section className={styles['section-container']}>
-      <picture className={styles['section-container__picture']}>
-        <Image
-          className={styles['section-container__image']}
-          src={src}
-          alt={alt}
-          fill
-        />
-      </picture>
+      {src && (
+        <picture className={styles['section-container__picture']}>
+          <Image
+            className={styles['section-container__image']}
+            src={src}
+            alt={alt}
+            fill
+          />
+        </picture>
+      )}
       <div
         className={
           styles[
