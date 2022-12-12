@@ -2,6 +2,7 @@ import styles from './StoryCardGrid.module.scss'
 import { getScreenWidth } from '../../utils/getScreenWidth'
 import { useEffect, useState } from 'react'
 import CtaLink from '../CtaLink/CtaLink'
+import Image from 'next/image'
 
 const ctaArrow = (
   <svg xmlns='http://www.w3.org/2000/svg' width='8' height='12'>
@@ -17,7 +18,12 @@ export const StoryCard = ({ body, imgSrc, imgAlt, linkUrl, linkLabel }) => {
   return (
     <div className={styles['story-card']}>
       <div className={styles['story-card__img-container']}>
-        <img src={imgSrc} alt={imgAlt} />
+        <Image
+          src={imgSrc}
+          alt={imgAlt}
+          className={styles['story-card__img']}
+          fill
+        />
       </div>
       <div className={styles['story-card__content-container']}>
         <p>{body}</p>

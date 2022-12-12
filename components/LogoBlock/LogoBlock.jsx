@@ -1,4 +1,5 @@
 import styles from './LogoBlock.module.scss'
+import Image from 'next/image'
 
 const ctaArrow = (
   <svg xmlns='http://www.w3.org/2000/svg' width='8' height='12'>
@@ -23,7 +24,12 @@ const LogoBlock = ({ ctaLabel, ctaUrl, logos, title }) => {
                 className={styles['logo-block__container__logo']}
                 href={logo.url}
               >
-                <img src={logo.src} alt={logo.alt} />
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  className={styles['logo-block__container__logo--image']}
+                  fill
+                />
               </a>
             ) : null
           })}
