@@ -1,4 +1,6 @@
+import React, { useEffect, useState } from 'react'
 import parse from 'html-react-parser'
+
 const {
   getSnowflakeData,
   transformResultsData,
@@ -260,6 +262,12 @@ const ResourcesSection = (props) => {
 }
 
 export default function Country(props) {
+  const [showAlert, setShowAlert] = useState(true)
+
+  useEffect(() => {
+    setShowAlert(true)
+  }, [props.COUNTRY_CODE])
+
   const hasStories =
     props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
   const componentMap = {
@@ -288,12 +296,13 @@ export default function Country(props) {
   const sectionsData = props.controls.filter((control) => control.VALUE)
   return (
     <div className={styles['country-container']}>
-      {props.EMERGENCY_BANNER_BODY && (
+      {showAlert && props.EMERGENCY_BANNER_BODY && (
         <EmergencyAlert
           body={props.EMERGENCY_BANNER_BODY}
           // TODO: need to add to snowflake table
           buttonLabel='Close'
           url={props.EMERGENCY_BANNER_URL}
+          setShowAlert={setShowAlert}
         />
       )}
       <TableOfContents
