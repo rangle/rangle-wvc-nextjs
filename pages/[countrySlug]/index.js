@@ -76,7 +76,7 @@ const OverviewSection = (props) => {
               ]}
             />
           )}
-          {props.highlightedResults.length > 0 && (
+          {props.PROGRESS_CARD_LABEL && props.highlightedResults.length > 0 && (
             <div
               style={{
                 marginTop: '6rem'
@@ -85,7 +85,7 @@ const OverviewSection = (props) => {
               <StatisticCardGrid
                 cards={props.highlightedResults.slice(0, 3).map((result) => (
                   <StatisticCard
-                    key={result.STATEMENT_WITHOUT_VALUE}
+                    key={result.STATEMENT_WITHOUT_VALUE + result.VALUE}
                     body={result.STATEMENT_WITHOUT_VALUE}
                     statistic={result.VALUE}
                     title={props.PROGRESS_CARD_LABEL}
@@ -145,7 +145,7 @@ const DetailsSection = (props) => {
 }
 
 const ResultsSection = (props) => {
-  return props.results.length > 0 ? (
+  return (
     <section id={props.sectionId}>
       <SectionContainer
         alt={props.RESULTS_IMAGE_ALT}
@@ -185,11 +185,11 @@ const ResultsSection = (props) => {
         </div>
       </SectionContainer>
     </section>
-  ) : null
+  )
 }
 
 const ProgramsSection = (props) => {
-  return props.programs.length > 0 ? (
+  return (
     <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel
@@ -208,13 +208,11 @@ const ProgramsSection = (props) => {
         />
       </div>
     </section>
-  ) : null
+  )
 }
 
 const StoriesSection = (props) => {
-  const hasStories =
-    props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
-  return hasStories ? (
+  return (
     <section className={styles['stories-container']} id={props.sectionId}>
       <StoryCardGrid
         cards={Array(3)
@@ -236,43 +234,57 @@ const StoriesSection = (props) => {
         title='Stories'
       />
     </section>
-  ) : null
+  )
 }
 
 const ResourcesSection = (props) => {
   return (
     <section id={props.sectionId}>
-      {props.resources.length > 0 && (
-        <div className={styles['resource-container']}>
-          <Carousel
-            title={props.RESULTS_TITLE}
-            cards={props.resources.map((resource) => (
-              <MediaCard
-                alt={resource.ICON_ALT}
-                body={resource.RESOURCE_BODY}
-                iconSrc={resource.ICON_URL}
-                labels={[resource.RESOURCE_TYPE]}
-                title={resource.RESOURCE_TITLE}
-                url={resource.RESOURCE_URL}
-              />
-            ))}
-          />
-        </div>
-      )}
+      <div className={styles['resource-container']}>
+        <Carousel
+          title={props.RESULTS_TITLE}
+          cards={props.resources.map((resource) => (
+            <MediaCard
+              alt={resource.ICON_ALT}
+              body={resource.RESOURCE_BODY}
+              iconSrc={resource.ICON_URL}
+              labels={[resource.RESOURCE_TYPE]}
+              title={resource.RESOURCE_TITLE}
+              url={resource.RESOURCE_URL}
+            />
+          ))}
+        />
+      </div>
     </section>
   )
 }
 
-const componentMap = {
-  section_order_summary: OverviewSection,
-  section_order_details: DetailsSection,
-  section_order_results: ResultsSection,
-  section_order_programs: ProgramsSection,
-  section_order_stories: StoriesSection,
-  section_order_resources: ResourcesSection
-}
-
 export default function Country(props) {
+  const hasStories =
+    props[`STORY_URL_01`] || props[`STORY_URL_02`] || props[`STORY_URL_03`]
+  const componentMap = {
+    section_order_summary: {
+      component: OverviewSection,
+      isShown: true
+    },
+    section_order_details: {
+      component: DetailsSection,
+      isShown: !!props.DETAILS_TITLE
+    },
+    section_order_results: {
+      component: ResultsSection,
+      isShown: !!(props.RESULTS_TITLE && props.results.length > 0)
+    },
+    section_order_programs: {
+      component: ProgramsSection,
+      isShown: !!(props.programs.length > 0)
+    },
+    section_order_stories: { component: StoriesSection, isShown: !!hasStories },
+    section_order_resources: {
+      component: ResourcesSection,
+      isShown: !!(props.resources.length > 0 && props.RESULTS_TITLE)
+    }
+  }
   const sectionsData = props.controls.filter((control) => control.VALUE)
   return (
     <div className={styles['country-container']}>
@@ -285,14 +297,22 @@ export default function Country(props) {
         />
       )}
       <TableOfContents
-        contents={sectionsData.map((control) => control.TEXT)}
+        contents={sectionsData
+          .filter(
+            (section) =>
+              componentMap[section.ITEM] && componentMap[section.ITEM].isShown
+          )
+          .map((section) => section.TEXT)}
         ctaText={
           props.controls.find((control) => control.ITEM === 'donate_label').TEXT
         }
+        ctaUrl={
+          props.controls.find((control) => control.ITEM === 'donate_url').URL
+        }
       />
       {sectionsData.map((section) => {
-        if (componentMap[section.ITEM]) {
-          const Component = componentMap[section.ITEM]
+        if (componentMap[section.ITEM] && componentMap[section.ITEM].isShown) {
+          const Component = componentMap[section.ITEM].component
           return (
             <Component
               {...props}
@@ -303,14 +323,16 @@ export default function Country(props) {
         }
         return null
       })}
-      <CtaBlock
-        body={props.CTA_BODY}
-        buttonLabel={props.CTA_BUTTON_LABEL}
-        buttonUrl={props.CTA_BUTTON_URL}
-        imageUrl={props.CTA_IMAGE_URL}
-        imageUrlAlt={props.CTA_IMAGE_ALT}
-        title={props.CTA_TITLE}
-      />
+      {props.CTA_TITLE && (
+        <CtaBlock
+          body={props.CTA_BODY}
+          buttonLabel={props.CTA_BUTTON_LABEL}
+          buttonUrl={props.CTA_BUTTON_URL}
+          imageUrl={props.CTA_IMAGE_URL}
+          imageUrlAlt={props.CTA_IMAGE_ALT}
+          title={props.CTA_TITLE}
+        />
+      )}
     </div>
   )
 }
