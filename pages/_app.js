@@ -41,6 +41,8 @@ function MyApp({ Component, pageProps }) {
       {/* @TODO: Do we need this? I've commented it out in site.js due to errors */}
       {/* <Script src='js/jssocials.min.js' /> */}
       <Script src='js/site.js' />
+      <Script src='js/rangle-header.js' />
+
       {/* @TODO: Do we need web-chat? If so we need to debug:
         TypeError: Cannot read properties of null (reading 'contentWindow')
       */}
