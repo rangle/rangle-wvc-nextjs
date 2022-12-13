@@ -40,11 +40,9 @@ export const CountrySubMenuDesktop = ({
           {countryList.map((country) => {
             return (
               <li key={country?.label}>
-                <div
-                  className={styles['sub-navigation__sub-menu-link']}
-                  onClick={() => openCloseSubMenu(country?.label, false)}
-                >
+                <div className={styles['sub-navigation__sub-menu-link']}>
                   <CtaLink
+                    onClick={() => openCloseSubMenu(country?.label, false)}
                     url={country?.url ? `/${country?.url}` : `/our-work`}
                   >
                     {country?.label}
@@ -119,11 +117,11 @@ export const CountrySubMenuMobile = ({ subMenuItems, openCloseSubMenu }) => {
                               className={
                                 styles['sub-navigation__sub-menu-link']
                               }
-                              onClick={() =>
-                                openCloseSubMenu(country?.label, false)
-                              }
                             >
                               <CtaLink
+                                onClick={() =>
+                                  openCloseSubMenu(country?.label, false)
+                                }
                                 url={
                                   country?.url
                                     ? `/${country?.url} `
