@@ -125,6 +125,7 @@
       left: 0;
       transform: translateY(-100%);
       background: linear-gradient(transparent, $sky-lighter);
+      pointer-events: none;
     }
   }
 }
