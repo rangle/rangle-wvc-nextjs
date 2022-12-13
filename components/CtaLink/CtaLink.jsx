@@ -1,6 +1,13 @@
 import Link from 'next/link'
 
-const CtaLink = ({ ariaLabel, children, className, tabIndex, url }) => {
+const CtaLink = ({
+  ariaLabel,
+  children,
+  className,
+  onClick,
+  tabIndex,
+  url
+}) => {
   let isExternal
 
   const isHttp = (url) => /^http?/i.test(url)
@@ -14,6 +21,7 @@ const CtaLink = ({ ariaLabel, children, className, tabIndex, url }) => {
       <a
         aria-label={ariaLabel}
         className={className}
+        onClick={onClick}
         rel={isExternal ? 'noopener' : ''}
         tabIndex={tabIndex}
         target={isExternal ? '_blank' : '_self'}

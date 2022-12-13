@@ -28,9 +28,9 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
                       <li key={link?.label}>
                         <div
                           className={styles['sub-navigation__sub-menu-link']}
-                          onClick={() => openCloseSubMenu(link?.label, false)}
                         >
                           <CtaLink
+                            onClick={() => openCloseSubMenu(link?.label, false)}
                             url={link?.url ? `/${link.url}` : '/our-work'}
                           >
                             {link?.label}
@@ -55,7 +55,10 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
             regions={data}
             openCloseSubMenu={openCloseSubMenu}
           />
-          <CountrySubMenuMobile subMenuItems={data} openCloseSubMenu={openCloseSubMenu} />
+          <CountrySubMenuMobile
+            subMenuItems={data}
+            openCloseSubMenu={openCloseSubMenu}
+          />
         </div>
       )}
 
@@ -90,11 +93,9 @@ const SubNavItem = ({
     >
       <div className={styles['sub-navigation__nav-item-container']}>
         {isLink ? (
-          <div
-            onMouseOver={() => openCloseSubMenu(label, false)}
-            className={styles['sub-navigation__nav-item-container']}
-          >
+          <div className={styles['sub-navigation__nav-item-container']}>
             <CtaLink
+              onMouseOver={() => openCloseSubMenu(label, false)}
               className={styles['sub-navigation__button']}
               url={`/${url}`}
               tabIndex={0}
