@@ -19,4 +19,13 @@ const sendToSearchPage = (function () {
         window.location.href = `https://worldvision.ca/search?q=${value}`
       }
     })
+
+  document
+    .getElementById('mobile-search-button')
+    .addEventListener('click', () => {
+      const mobileInput = document.getElementById('mobile-search-input')
+      const closeButton = document.getElementById('mobile-search-close-button')
+      mobileInput.classList.toggle('show')
+      closeButton.classList.toggle('show')
+    })
 })()

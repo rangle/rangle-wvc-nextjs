@@ -98,7 +98,7 @@ const headerHTML = `
                </svg
                   >
             </a>
-            <div class="grid-search-wrapper siteHeader-topItem">
+            <div class="grid-search-wrapper siteHeader-topItem" id="mobile-search-input">
                <div class="arrow-box">
                   <svg class="siteHeader-carrot">
                      <use xlink:href="#icon--carrot"></use>
@@ -214,6 +214,7 @@ const headerHTML = `
                   aria-expanded="false"
                   aria-label="Open Search"
                   class="siteHeader-searchToggle siteHeader-topItem u-hide-desktop"
+                  id="mobile-search-button"
                   role="button"
                   tabindex=""
                   >
@@ -221,7 +222,7 @@ const headerHTML = `
                   <svg aria-hidden="true" tabindex="-1">
                      <use xlink:href="#icon--search"></use>
                   </svg>
-                  <span aria-hidden="true" class="toggle-close">&nbsp;</span>
+                  <span aria-hidden="true" class="toggle-close" id="mobile-search-close-button">&nbsp;</span>
                </span>
             </label
                >
