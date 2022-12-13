@@ -11,11 +11,12 @@
 
   &__items {
     display: flex;
-    overflow-x: scroll;
     margin: 0 $page-margin-mobile;
+    overflow-x: scroll;
 
     @media (min-width: 767px) {
       margin: 0 $page-margin-tablet;
+      overflow-x: hidden;
     }
 
     @media (min-width: 1024px) {
