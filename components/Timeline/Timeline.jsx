@@ -10,15 +10,16 @@ export const Timeline = ({ data, isMobile }) => {
     <div className={styles['timeline-container']}>
       <Chrono
         mode={smallScreen ? 'VERTICAL' : 'HORIZONTAL'}
-        items={data.map((ea) => ({
-          ...ea,
-          cardSubtitle: ea.title
+        items={data.map((item) => ({
+          ...item,
+          cardSubtitle: item.title
         }))}
         showAllCardsHorizontal
         theme={{
           primary: '#E7600C'
         }}
         hideControls={smallScreen}
+        cardHeight={160}
       >
         <div className='chrono-icons'>
           {data.map((ea) => (
