@@ -2,19 +2,16 @@
 @import '../../styles/spacing';
 
 .chart-control-section-container {
-  padding: $section-margin-mobile 0;
+  position: relative;
 
-  @media (min-width: 767px) {
-    padding: $section-margin-mobile $page-margin-tablet;
-  }
+  .background-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-  @media (min-width: 1024px) {
-    padding: $section-margin-desktop
-      calc($column-desktop + $page-margin-desktop);
-  }
-
-  @media (min-width: 1366px) {
-    padding: $section-margin-desktop 0;
+    .background-image {
+      object-fit: cover;
+    }
   }
 
   .chart-title {
@@ -29,10 +26,24 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
+    z-index: 10;
+
+    padding: $section-margin-mobile 0;
+
+    @media (min-width: 767px) {
+      padding: $section-margin-mobile $page-margin-tablet;
+    }
+
+    @media (min-width: 1024px) {
+      padding: $section-margin-desktop
+        calc($column-desktop + $page-margin-desktop);
+    }
 
     @media (min-width: 1366px) {
       width: calc($column-max * 10);
       margin: 0 auto;
+      padding: $section-margin-desktop 0;
     }
 
     &-control {

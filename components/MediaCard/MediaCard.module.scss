@@ -41,17 +41,17 @@
 
   &__icon-container {
     margin-top: $space-xl;
+    position: relative;
   }
 
   &__image-container {
     margin-bottom: $space-xs;
+    position: relative;
   }
 
   &__icon {
     display: block;
-    height: 4rem;
     margin: 0 auto;
-    width: 4rem;
   }
 
   &__image {

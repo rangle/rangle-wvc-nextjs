@@ -191,11 +191,16 @@ const ResultsSection = (props) => {
 }
 
 const ProgramsSection = (props) => {
+  const allPrograms = props.programs
+  const uniquePrograms = [
+    ...new Map(allPrograms.map((item) => [item['HEADER_TITLE'], item])).values()
+  ]
+
   return (
     <section id={props.sectionId}>
       <div className={styles['program-container']}>
         <Carousel
-          cards={props.programs.map((program) => (
+          cards={uniquePrograms.map((program) => (
             <MediaCard
               // TODO: add this to Snowflake
               alt='Children running down a street smiling'

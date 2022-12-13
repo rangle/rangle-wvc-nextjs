@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 import styles from './ChartContainer.module.scss'
 import Dropdown from '../Dropdown/Dropdown'
@@ -40,14 +41,15 @@ export const ChartContainer = ({ controlTitle, isDarkMode, chartData }) => {
   }, [chartToRender])
 
   return (
-    <div
-      className={styles['chart-control-section-container']}
-      style={{
-        backgroundImage: `url('/D155.png')`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-      }}
-    >
+    <div className={styles['chart-control-section-container']}>
+      <div className={styles['background-container']}>
+        <Image
+          src={'/D155.png'}
+          alt=''
+          className={styles['background-image']}
+          fill
+        />
+      </div>
       <div className={styles['chart-container']}>
         <div className={styles['chart-container-control']}>
           <h2 className={styles['chart-title']}>{controlTitle}</h2>

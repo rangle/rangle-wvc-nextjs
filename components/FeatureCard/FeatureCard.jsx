@@ -1,4 +1,5 @@
 import styles from './FeatureCard.module.scss'
+import Image from 'next/image'
 
 const FeatureCard = ({ description, imgAlt, imgSrc, title }) => {
   return (
@@ -8,7 +9,12 @@ const FeatureCard = ({ description, imgAlt, imgSrc, title }) => {
         <p className={styles['feature-card__description']}>{description}</p>
       </div>
       <div className={styles['feature-card__img-container']}>
-        <img src={imgSrc} alt={imgAlt} />
+        <Image
+          src={imgSrc}
+          alt={imgAlt}
+          className={styles['feature-card-image']}
+          fill
+        />
       </div>
     </div>
   )

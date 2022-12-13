@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import TextLoop from './TextLoop'
 import styles from './Hero.module.scss'
 import CtaLink from '../../CtaLink/CtaLink'
+import Image from 'next/image'
 
 const Hero = ({
   backgroundImage,
@@ -21,10 +22,16 @@ const Hero = ({
   const opacity2 = useTransform(scrollYProgress, [0, 0.1], [1, 0])
 
   return (
-    <div
-      className={styles['hero-wrapper']}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+    <div className={styles['hero-wrapper']}>
+      <div className={styles['background-image-container']}>
+        <Image
+          src={backgroundImage}
+          alt=''
+          className={styles['background-image']}
+          fill
+          priority
+        />
+      </div>
       <div className={styles['hero-floating-images']}>
         <motion.img
           src='/homepage/hero/hero-kid-default-left.png'

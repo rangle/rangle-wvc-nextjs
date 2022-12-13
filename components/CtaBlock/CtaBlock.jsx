@@ -1,5 +1,6 @@
 import styles from './CtaBlock.module.scss'
 import Button from '../Button/Button'
+import Image from 'next/image'
 
 const CtaContainer = ({
   showTitleInside,
@@ -12,7 +13,9 @@ const CtaContainer = ({
 }) => {
   return (
     <>
-      {showTitleOutside && <h2 className={styles['cta-block-title']}>{title}</h2>}
+      {showTitleOutside && (
+        <h2 className={styles['cta-block-title']}>{title}</h2>
+      )}
       <div
         className={`${styles['cta-block-body-container']} ${
           !showBody ? styles['cta-block-body-container--title'] : ''
@@ -28,7 +31,9 @@ const CtaContainer = ({
           </h2>
         )}
         {showBody && <p className={styles['cta-block-body']}>{body}</p>}
-        <div className={styles['cta-block-cta']}><Button label={buttonLabel} url={buttonUrl} /></div>
+        <div className={styles['cta-block-cta']}>
+          <Button label={buttonLabel} url={buttonUrl} />
+        </div>
       </div>
     </>
   )
@@ -65,7 +70,12 @@ const CtaBlock = ({
             !body ? styles['cta-block-container--image-title-only'] : ''
           }`}
         >
-          <img src={imageUrl} alt={imageUrlAlt} />
+          <Image
+            src={imageUrl}
+            alt={imageUrlAlt}
+            className={styles['cta-image']}
+            fill
+          />
         </div>
       )}
     </div>

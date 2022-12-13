@@ -48,9 +48,18 @@
     }
 
     &__logo {
-      img {
-        max-height: 120px;
-        max-width: 100%;
+      position: relative;
+      height: 120px;
+      width: 120px;
+      margin: 0.25rem;
+
+      @media (min-width: 767px) {
+        margin: 0;
+      }
+
+      .logo-block__container__logo--image {
+        object-fit: cover;
+        height: 100%;
         width: 100%;
       }
     }
