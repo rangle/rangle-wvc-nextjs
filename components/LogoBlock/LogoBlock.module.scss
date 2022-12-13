@@ -12,21 +12,6 @@
   }
 
   &__container {
-    // margin: 0 $page-margin-mobile;
-
-    // @media (min-width: 767px) {
-    //   margin: 0 $page-margin-tablet;
-    // }
-
-    // @media (min-width: 1024px) {
-    //   margin: 0 calc($column-desktop * 2 + $page-margin-desktop);
-    // }
-
-    // @media (min-width: 1366px) {
-    //   width: calc($column-max * 8);
-    //   margin: 0 auto;
-    // }
-
     padding: $section-margin-mobile 0;
     margin: 0 $page-margin-mobile;
 
@@ -57,7 +42,6 @@
       gap: $space-xl;
       justify-content: center;
       margin: 0 auto;
-      // max-width: 760px;
     }
 
     &__logo {
