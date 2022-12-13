@@ -1,8 +1,3 @@
-# Node.js with React
-# Build a Node.js project that uses React.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
   - main
   - staging
@@ -12,10 +7,27 @@ variables:
 
 stages:
 - stage: StageA
-  condition: and(succeeded(), eq(variables.isMain, 'false'))
   displayName: "Stage A"
   jobs:
     - job: output_message_job_a
+      displayName: "Output Message Job"
+      pool:
+          vmImage: "ubuntu-latest"
+      steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.x'
+            displayName: 'Install Node.js'
+
+          - script: |
+              npm install
+            displayName: 'npm install'
+- stage: StageB
+  condition: and(succeeded(), eq(variables.isMain, 'false'))
+  displayName: "Stage B"
+  dependsOn: StageA
+  jobs:
+    - job: output_message_job_b
       displayName: "Output Message Job"
       variables:
         - group: dev-variables  
@@ -28,10 +40,9 @@ stages:
             displayName: 'Install Node.js'
 
           - script: |
-              npm install
               npm run build
               npm run export
-            displayName: 'npm install and build'
+            displayName: 'npm build and export'
           - task: CopyFiles@2
             displayName: 'Copy Files'
             inputs:
@@ -48,11 +59,12 @@ stages:
             displayName: 'Publish Artifact: wvc-our-work-staging'
             inputs:
               ArtifactName: 'wvc-our-work-staging'
-- stage: StageB
+- stage: StageC
   condition: and(succeeded(), eq(variables.isMain, 'true'))
-  displayName: "Stage B"
+  displayName: "Stage C"
+  dependsOn: StageA
   jobs:
-    - job: output_message_job_b
+    - job: output_message_job_c
       displayName: "Output Message Job"
       variables:
         - group: prod-variables  
@@ -65,10 +77,9 @@ stages:
             displayName: 'Install Node.js'
 
           - script: |
-              npm install
               npm run build
               npm run export
-            displayName: 'npm install and build'
+            displayName: 'npm build and export'
           - task: CopyFiles@2
             displayName: 'Copy Files'
             inputs:
