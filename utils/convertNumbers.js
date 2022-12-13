@@ -10,3 +10,13 @@ export function numFormatter(num) {
     return num // if value < 1000, nothing to do
   }
 }
+
+export function convertPercentage(num) {
+  const percentage = num * 100
+  if (num.length === 4) {
+    return `${percentage.toFixed(0)}%`
+  } else if (num.length === 5) {
+    return `${percentage.toFixed(1)}%}`
+  }
+  return `${(num * 100).toFixed(2)}%`
+}

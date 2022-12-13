@@ -11,7 +11,7 @@ import {
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Bar } from 'react-chartjs-2'
-import { numFormatter } from '../../../utils/convertNumbers'
+import { convertPercentage, numFormatter } from '../../../utils/convertNumbers'
 import { Options } from '../charts.type'
 
 ChartJS.register(
@@ -51,16 +51,7 @@ export function BarChart({
         display: title,
         text: titlePosition === 'top' ? title : subTitle,
         position: titlePosition,
-        color:
-          titlePosition === 'top'
-            ? // if the title is on the top, just change the darkmode color
-            !isDarkMode
-              ? ''
-              : '#ffffff'
-            : // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
-            !isDarkMode
-              ? '#666666'
-              : '#cccccc',
+        color: getTitleColor(titlePosition, isDarkMode, '#fff', '#ccc', '#666'),
         font: {
           size: titlePosition === 'top' ? 18 : 12,
           weight: titlePosition === 'top' ? 'bold' : 'normal'
@@ -74,16 +65,7 @@ export function BarChart({
         display: subTitle,
         text: titlePosition === 'top' ? subTitle : title,
         position: titlePosition,
-        color:
-          titlePosition === 'top'
-            ? // if the subtitle is on the top, just change the darkmode color
-            !isDarkMode
-              ? ''
-              : '#cccccc'
-            : // if subtitle is on the bottom, this becomes the title, so change colors to match title
-            !isDarkMode
-              ? '#333333'
-              : '#ffffff',
+        color: getTitleColor(titlePosition, isDarkMode, '#ccc', '#fff', '#333'),
         font: {
           size: titlePosition === 'top' ? 12 : 18,
           weight: titlePosition === 'top' ? 'normal' : 'bold'
@@ -101,8 +83,8 @@ export function BarChart({
         },
         formatter: function (value, context) {
           // if the data received ends with %, add "%" to the top bar labels
-          if (data[0][data[0].length - 1] === '%') {
-            return `${value * 100}%`
+          if (value[0] === '0') {
+            return convertPercentage(value)
           }
           return numFormatter(value)
         }
@@ -156,7 +138,7 @@ export function BarChart({
     labels,
     datasets: [
       {
-        data: data.map((ea) => parseFloat(ea)),
+        data: data.map((ea) => parseFloat(ea).toFixed(2)),
         backgroundColor: colors,
         maxBarThickness: 40
       }
@@ -171,4 +153,20 @@ export function BarChart({
       data-testid='bar-chart'
     />
   )
+}
+
+const getTitleColor = (
+  titlePosition,
+  isDarkMode,
+  topDark,
+  bottomDark,
+  bottomLight
+) => {
+  if (titlePosition === 'top') {
+    // if the title is on the top, just change the darkmode color
+    return isDarkMode ? topDark : ''
+  } else {
+    // if title is on the bottom, this becomes subtitle, so change colors to match subtitle
+    return isDarkMode ? bottomDark : bottomLight
+  }
 }
