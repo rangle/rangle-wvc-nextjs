@@ -1,5 +1,10 @@
 @import '../styles/lumen-tokens';
 
+.container {
+  position: relative;
+  transition: background-color 1s ease;
+}
+
 .main {
   align-items: center;
   display: flex;
@@ -8,8 +13,50 @@
   justify-content: center;
 }
 
+.background-overlay {
+  transition: background-color 1s ease;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.background-image-container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.map-overlay{
+  display: none;
+  @media (min-width: 1024px) {
+    display: block;
+    height: 80vh;
+    pointer-events: none;
+  }
+}
+
+.map {
+  transition: opacity 1s ease;
+
+  @media (min-width: 1024px) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+}
+
 .section {
   width: 100vw;
+  transition: opacity 1s ease;
+  z-index: 1;
 
   &--hero {
     height: 100vh;
@@ -27,37 +74,13 @@
     overflow: hidden;
   }
 
-  &--sticky-carousel {
-    background-color: $light-bg;
-  }
-
   &--video-carousel {
-    background-color: $light-bg;
+    padding-bottom: 80vh;
   }
 
   &--sector-overview {
-    background: $charcoal;
-  }
-
-  &--did-you-know {
-    background-color: lavender;
-  }
-
-  &--pre-footer {
-    background-color: $charcoal;
+    @media (min-width: 1024px) {
+      padding-top: 80vh;
+    }
   }
 }
-
-/* commenting out for now to not have dark mode as the default theme */
-/* @media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
-} */

@@ -25,13 +25,6 @@ const VideoCarousel = ({ videos }) => {
           <HomepageCarouselNoSSR cards={cards} />
         </div>
       )}
-
-      <div
-        className={styles['background-img-container']}
-        style={{
-          backgroundImage: `url('/homepage/videoCarousel/video-gradient.png')`
-        }}
-      />
     </div>
   )
 }

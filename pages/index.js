@@ -1,4 +1,7 @@
 import parse from 'html-react-parser'
+import Image from 'next/image'
+import React, { useRef, useState, useEffect } from 'react'
+import { useInView, AnimatePresence, motion } from 'framer-motion'
 
 import Counter from '../components/Homepage/Counter/Counter'
 import Hero from '../components/Homepage/Hero/Hero'
@@ -12,6 +15,7 @@ import RollingCreditsMap from '../components/Homepage/RollingCreditsMap/RollingC
 import Prefooter from '../components/Homepage/Prefooter/Prefooter'
 import Table from '../components/Homepage/Table/Table'
 import MapChartHeader from '../components/MapChart/MapChartHeader/MapChartHeader'
+import { getScreenWidth } from '../utils/getScreenWidth'
 
 const featureCardData = (t, max) =>
   Array.from(Array(max).keys(), (_, index) => ({
@@ -39,7 +43,7 @@ const creditsData = (t) => [
   }
 ]
 
-const HeroBackgroundDefault = '/homepage/hero/hero-background.png'
+const HeroBackgroundDefault = '/homepage/hero/hero-background.jpg'
 
 //FIXME should come from graph table but doesn't seem to be there
 const sectorHighlights = () => [
@@ -60,108 +64,228 @@ export default function Home({
   chartData,
   tableData
 }) {
+  const pageRef = useRef(null)
+  const lightSectionRef = useRef(null)
+  const heroSectionRef = useRef(null)
+  const reachSectionRef = useRef(null)
+  const mapSectionRef = useRef(null)
+  const sectorSectionRef = useRef(null)
+  const rollingCreditSectionRef = useRef(null)
+  const mapOverlayRef = useRef(null)
+  const mapTextSectionRef = useRef(null)
+  const isPageInView = useInView(pageRef, { amount: 0 })
+  const isLightSectionInView = useInView(lightSectionRef, { amount: 0 })
+  const isHeroSectionInView = useInView(heroSectionRef, { amount: 0 })
+  const isReachSectionInView = useInView(reachSectionRef, { amount: 0 })
+  const isMapSectionInView = useInView(mapSectionRef, { amount: 0 })
+  const isSectorSectionInView = useInView(sectorSectionRef, { amount: 0 })
+  const isRollingCreditSectionInView = useInView(rollingCreditSectionRef, {
+    amount: 0
+  })
+  const isMapOverlayInView = useInView(mapOverlayRef, { amount: 0 })
+  const isMapTextInView = useInView(mapTextSectionRef, { amount: 0 })
+
+  const screenWidth = getScreenWidth()
+  const [isDesktop, setIsDesktop] = useState()
+
+  useEffect(() => {
+    if (screenWidth > 1023) {
+      setIsDesktop(true)
+    } else {
+      setIsDesktop(false)
+    }
+  }, [screenWidth])
+
+  const getBackgroundColor = () => {
+    if (isLightSectionInView || !isPageInView) {
+      return '#fffbf4'
+    }
+
+    if (isRollingCreditSectionInView) {
+      return 'rgba(0, 0, 0, 0.45)'
+    }
+
+    return '#333333'
+  }
+
+  const getBackgroundImage = () => {
+    if (isHeroSectionInView) {
+      return HeroBackgroundDefault
+    }
+
+    if (isRollingCreditSectionInView) {
+      return '/homepage/rollingCredits/rolling-credits-background.jpg'
+    }
+
+    if (isMapTextInView && !isDesktop) {
+      return 'https://www.worldvision.ca/WorldVisionCanada/media/our-work/our-work-images/Community-development-facilitator-Doris.jpg'
+    }
+  }
+
   return (
-    <div className={styles.container}>
+    <div
+      ref={pageRef}
+      className={styles.container}
+      style={{ backgroundColor: getBackgroundColor() }}
+    >
       <main className={styles.main}>
-        <section className={`${styles['section']} ${styles['section--hero']}`}>
-          <Hero
-            backgroundImage={HeroBackgroundDefault}
-            heroText={t.text_01}
-            highlightList={[
-              t.highlight_top_01,
-              t.highlight_top_02,
-              t.highlight_top_03,
-              t.highlight_top_04
-            ]}
-            linkLabel={t.label_01}
-            subtitleText={t.text_02}
-            url={t.url_label_01}
-          />
-        </section>
-        <section
-          className={`${styles['section']} ${styles['section--counter']}`}
-        >
-          <Counter
-            introLine1={t.people_text_01_first}
-            introLine2={t.people_text_01_last}
-            animatedTotal={parseInt(t.people_value)}
-            totalDescriptor={t.people_text_02}
-            detailValue1={t.people_girls_value}
-            detailDescriptor1={t.people_girls_label}
-            detailValue2={t.people_boys_value}
-            detailDescriptor2={t.people_boys_label}
-          />
-        </section>
-        <section
-          className={`${styles['section']} ${styles['section--sticky-carousel']}`}
-        >
-          <StickyCarousel
-            pretext={t.text_03}
-            subtext={t.text_04}
-            backgroundImage={t.highlight_mid_background_image_url}
-            content={[
-              {
-                image: t.highlight_mid_01_image_url,
-                text: t.highlight_mid_01
-              },
-              {
-                image: t.highlight_mid_02_image_url,
-                text: t.highlight_mid_02
-              },
-              {
-                image: t.highlight_mid_03_image_url,
-                text: t.highlight_mid_03
-              }
-            ]}
-          />
-        </section>
-        <section
-          className={`${styles['section']} ${styles['section--video-carousel']}`}
-        >
-          <VideoCarousel
-            videos={[
-              {
-                img: t.main_video_01_img,
-                src: t.main_video_01_url
-              },
-              {
-                img: t.main_video_02_img,
-                src: t.main_video_02_url
-              },
-              {
-                img: t.main_video_03_img,
-                src: t.main_video_03_url
-              }
-            ]}
-          />
-        </section>
-        <section className={`${styles['section']} ${styles['section--map']}`}>
-          <RollingCreditsMap
-            imageSrc={t.map_background_01_url}
-            mapCreditsData={[t.map_text_01]}
-          />
-          <RollingCreditsMap
-            imageSrc={t.map_background_02_url}
-            mapCreditsData={[t.map_text_02]}
-          />
-          <MapChartHeader
-            labels={{
-              legend: t.map_title,
-              country: t.map_country_label,
-              program: t.map_program_type_label,
-              year: 'year',
-              people: t.map_people_label,
-              invested: t.map_invested_label,
-              programs: t.map_program_label,
-              reach_tooltip: t.reach_tooltip,
-              investment_tooltip: t.investment_tooltip,
-              programs_tooltip: t.programs_tooltip
+        <div className={styles['background-image-container']}>
+          <div
+            style={{
+              backgroundColor:
+                isRollingCreditSectionInView || isMapSectionInView
+                  ? `rgba(0, 0, 0, 0.45)`
+                  : 'transparent'
             }}
-            programData={programData}
-            countryData={countryData}
-          />
+            className={styles['background-overlay']}
+          ></div>
+          <AnimatePresence>
+            {!isReachSectionInView &&
+              (isHeroSectionInView ||
+                (isRollingCreditSectionInView && !isSectorSectionInView) ||
+                isMapTextInView) && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Image
+                    src={getBackgroundImage()}
+                    alt=''
+                    className={styles['background-image']}
+                    fill
+                    priority
+                    objectFit='cover'
+                  />
+                </motion.div>
+              )}
+          </AnimatePresence>
+        </div>
+        <div ref={lightSectionRef}>
+          <section
+            ref={heroSectionRef}
+            style={{ opacity: !isReachSectionInView ? 1 : 0 }}
+            className={`${styles['section']} ${styles['section--hero']}`}
+          >
+            <Hero
+              backgroundImage={HeroBackgroundDefault}
+              heroText={t.text_01}
+              highlightList={[
+                t.highlight_top_01,
+                t.highlight_top_02,
+                t.highlight_top_03,
+                t.highlight_top_04
+              ]}
+              linkLabel={t.label_01}
+              subtitleText={t.text_02}
+              url={t.url_label_01}
+            />
+          </section>
+          <section
+            className={`${styles['section']} ${styles['section--counter']}`}
+            ref={reachSectionRef}
+          >
+            <Counter
+              introLine1={t.people_text_01_first}
+              introLine2={t.people_text_01_last}
+              animatedTotal={parseInt(t.people_value)}
+              totalDescriptor={t.people_text_02}
+              detailValue1={t.people_girls_value}
+              detailDescriptor1={t.people_girls_label}
+              detailValue2={t.people_boys_value}
+              detailDescriptor2={t.people_boys_label}
+            />
+          </section>
+          <section
+            className={`${styles['section']} ${styles['section--sticky-carousel']}`}
+          >
+            <StickyCarousel
+              pretext={t.text_03}
+              subtext={t.text_04}
+              backgroundImage={t.highlight_mid_background_image_url}
+              content={[
+                {
+                  image: t.highlight_mid_01_image_url,
+                  text: t.highlight_mid_01
+                },
+                {
+                  image: t.highlight_mid_02_image_url,
+                  text: t.highlight_mid_02
+                },
+                {
+                  image: t.highlight_mid_03_image_url,
+                  text: t.highlight_mid_03
+                }
+              ]}
+            />
+          </section>
+          <section
+            className={`${styles['section']} ${styles['section--video-carousel']}`}
+          >
+            <VideoCarousel
+              videos={[
+                {
+                  img: t.main_video_01_img,
+                  src: t.main_video_01_url
+                },
+                {
+                  img: t.main_video_02_img,
+                  src: t.main_video_02_url
+                },
+                {
+                  img: t.main_video_03_img,
+                  src: t.main_video_03_url
+                }
+              ]}
+            />
+          </section>
+        </div>
+        <section
+          ref={mapSectionRef}
+          className={`${styles['section']} ${styles['section--map']}`}
+        >
+          <div ref={mapTextSectionRef}>
+            <RollingCreditsMap
+              imageSrc={t.map_background_01_url}
+              mapCreditsData={[t.map_text_01]}
+            />
+            <RollingCreditsMap
+              imageSrc={t.map_background_02_url}
+              mapCreditsData={[t.map_text_02]}
+            />
+          </div>
+
+          <div ref={mapOverlayRef} className={styles['map-overlay']} />
+          <div
+            className={styles['map']}
+            style={{ opacity: isMapSectionInView ? 1 : 0 }}
+          >
+            <MapChartHeader
+              showHeaderControls={
+                isDesktop ? isMapOverlayInView && !isMapTextInView : true
+              }
+              showMarkers={
+                isDesktop ? isMapOverlayInView && !isMapTextInView : true
+              }
+              labels={{
+                legend: t.map_title,
+                country: t.map_country_label,
+                program: t.map_program_type_label,
+                year: 'year',
+                people: t.map_people_label,
+                invested: t.map_invested_label,
+                programs: t.map_program_label,
+                reach_tooltip: t.reach_tooltip,
+                investment_tooltip: t.investment_tooltip,
+                programs_tooltip: t.programs_tooltip
+              }}
+              programData={programData}
+              countryData={countryData}
+            />
+          </div>
         </section>
         <section
+          ref={sectorSectionRef}
           className={`${styles['section']} ${styles['section--sector-overview']}`}
         >
           <SectorOverview
@@ -172,6 +296,7 @@ export default function Home({
           />
         </section>
         <section
+          ref={rollingCreditSectionRef}
           className={`${styles['section']} ${styles['section--rolling-credits']}`}
         >
           <RollingCredits
