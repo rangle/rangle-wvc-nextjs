@@ -60,7 +60,6 @@ export default function Home({
   chartData,
   tableData
 }) {
-  console.log({ t })
   return (
     <div className={styles.container}>
       <main className={styles.main}>
