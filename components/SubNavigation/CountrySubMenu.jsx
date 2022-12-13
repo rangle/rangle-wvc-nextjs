@@ -93,7 +93,7 @@ export const CountrySubMenuMobile = ({ subMenuItems, openCloseSubMenu }) => {
                     }
                     onClick={() => toggleMobileCountryList(menuItem.name)}
                   >
-                    {menuItem.name}
+                    <span>{menuItem.name}</span>
                     <img
                       src={'/ChevronDown.png'}
                       alt=''
@@ -116,12 +116,18 @@ export const CountrySubMenuMobile = ({ subMenuItems, openCloseSubMenu }) => {
                         return (
                           <li key={country?.label}>
                             <div
-                              className={styles['sub-navigation__sub-menu-link']}
-                              onClick={() => openCloseSubMenu(country?.label, false)}
+                              className={
+                                styles['sub-navigation__sub-menu-link']
+                              }
+                              onClick={() =>
+                                openCloseSubMenu(country?.label, false)
+                              }
                             >
                               <CtaLink
                                 url={
-                                  country?.url ? `/${country?.url} ` : `/our-work`
+                                  country?.url
+                                    ? `/${country?.url} `
+                                    : `/our-work`
                                 }
                               >
                                 {country?.label}

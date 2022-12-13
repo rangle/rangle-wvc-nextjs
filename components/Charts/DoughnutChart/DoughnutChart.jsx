@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, ArcElement } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 import { Doughnut } from 'react-chartjs-2'
+import { getScreenWidth } from '../../../utils/getScreenWidth'
 
 ChartJS.register(ArcElement, ChartDataLabels)
 
@@ -17,9 +18,18 @@ export const DoughnutChart = ({
   legendPosition = 'right',
   isDarkMode = false,
   ariaLabel = 'Doughnut Chart',
-  isMobile = false,
   maintainAspectRatio = true
 }) => {
+  const screenWidth = getScreenWidth()
+  const [isMobile, setIsMobile] = useState()
+
+  useEffect(() => {
+    if (screenWidth < 768) {
+      setIsMobile(true)
+    } else {
+      setIsMobile(false)
+    }
+  }, [screenWidth])
 
   const options = {
     responsive: true,

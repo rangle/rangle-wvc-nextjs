@@ -7,6 +7,7 @@
   flex-direction: column;
   color: $charcoal;
   align-content: center;
+  justify-content: center;
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
@@ -23,28 +24,28 @@
     }
 
     &--dark {
-        color: $white;
+      color: $white;
     }
 
     .goal-box {
-        outline: 1px solid $orange;
-        padding: $size-l;
-        width: 215px;
-        box-shadow: $spacing-xl $spacing-xl 16px rgba(0, 0, 0, 0.05);
-        border-radius: $radius-default;
-      }
-    
-      .connecting-line {
-        height: $size-l;
-        border-right: $spacing-xl solid $orange;
-        width: 107px;
+      outline: 1px solid $orange;
+      padding: $size-l;
+      width: 215px;
+      box-shadow: $spacing-xl $spacing-xl 16px rgba(0, 0, 0, 0.05);
+      border-radius: $radius-default;
+    }
 
-        @media screen and (min-width: 767px) {
-            border-right: 0;
-            border-bottom: $spacing-xl solid $orange;
-            height: 50%;
-            width: $size-l;
-          }
+    .connecting-line {
+      height: $size-l;
+      border-right: $spacing-xl solid $orange;
+      width: 107px;
+
+      @media screen and (min-width: 767px) {
+        border-right: 0;
+        border-bottom: $spacing-xl solid $orange;
+        height: 50%;
+        width: $size-l;
       }
+    }
   }
 }
