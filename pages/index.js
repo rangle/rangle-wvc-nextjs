@@ -167,8 +167,8 @@ export default function Home({
           <SectorOverview
             sectorData={chartData}
             sectorHighlights={sectorHighlights(t)}
-            text1={t.sector_text_01}
-            text2={t.sector_text_02}
+            text1={t.sectors_text_01}
+            text2={t.sectors_text_02}
           />
         </section>
         <section
