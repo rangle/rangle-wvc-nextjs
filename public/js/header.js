@@ -23,45 +23,45 @@ header_controller = {
 /* -------------------------------------------------------------------------- *\
 Search box for mobile
 \* -------------------------------------------------------------------------- */
-header_controller.searchBox = {
-  selector: $('.siteHeader-searchToggle'),
+// header_controller.searchBox = {
+//   selector: $('.siteHeader-searchToggle'),
 
-  init: function () {
-    this.selector
-      .on('click', function (cb) {
-        var $this = $(this),
-          s = $('.grid-search-wrapper'),
-          l = $('.site-lang-wrapper'),
-          tc = $('.siteHeader-searchToggle .toggle-close')
+//   init: function () {
+//     this.selector
+//       .on('click', function (cb) {
+//         var $this = $(this),
+//           s = $('.grid-search-wrapper'),
+//           l = $('.site-lang-wrapper'),
+//           tc = $('.siteHeader-searchToggle .toggle-close')
 
-        s.toggleClass('show')
-        if (s.hasClass('show')) {
-          $this.attr('aria-expanded', 'true')
-          tc.addClass('show')
-        } else {
-          $this.attr('aria-expanded', 'false')
-          tc.removeClass('show')
-        }
+//         s.toggleClass('show')
+//         if (s.hasClass('show')) {
+//           $this.attr('aria-expanded', 'true')
+//           tc.addClass('show')
+//         } else {
+//           $this.attr('aria-expanded', 'false')
+//           tc.removeClass('show')
+//         }
 
-        if (l.hasClass('show')) {
-          l.removeClass('show').attr('aria-expanded', 'false')
-        }
-        if (document.activeElement !== $('input.gsc-input').first()[0]) {
-          $('input.gsc-input').focus().attr('type', 'search')
-        }
-      })
-      .on('focus', function (e) {
-        $(this).attr('aria-expanded', false)
-        $('svg', this).removeAttr('aria-expanded')
-      })
-    $('.siteHeader-searchToggle svg').removeAttr('aria-expanded')
-    $('.siteHeader-searchToggle .toggle-close').click(function (e) {
-      e.stopPropagation()
-      e.preventDefault()
-      return false
-    })
-  }
-}
+//         if (l.hasClass('show')) {
+//           l.removeClass('show').attr('aria-expanded', 'false')
+//         }
+//         if (document.activeElement !== $('input.gsc-input').first()[0]) {
+//           $('input.gsc-input').focus().attr('type', 'search')
+//         }
+//       })
+//       .on('focus', function (e) {
+//         $(this).attr('aria-expanded', false)
+//         $('svg', this).removeAttr('aria-expanded')
+//       })
+//     $('.siteHeader-searchToggle svg').removeAttr('aria-expanded')
+//     $('.siteHeader-searchToggle .toggle-close').click(function (e) {
+//       e.stopPropagation()
+//       e.preventDefault()
+//       return false
+//     })
+//   }
+// }
 
 /* -------------------------------------------------------------------------- *\
 Search box desktop - google widget inserted after document load
@@ -71,7 +71,6 @@ header_controller.searchDesktop = {
   selector: $('.grid-search'),
 
   init: function () {
-    console.log('init')
     this.selector.on('DOMNodeInserted', function (e) {
       if ($(e.target).hasClass('gsc-input') && $(e.target).is('input')) {
         console.log('DOMNodeInserted')
@@ -85,7 +84,6 @@ header_controller.searchDesktop = {
         }
 
         target.on('focus', function () {
-          console.log('focus')
           if (langWrapper.hasClass('show')) {
             $('.site-lang').attr('aria-expanded', 'false')
             langWrapper.removeClass('show')
@@ -106,7 +104,6 @@ header_controller.searchDesktop = {
       }
     })
     $('#gsc-i-id1').on('focus', function () {
-      console.log('focused')
       $('.toggle-close').toggleClass('show')
     })
   }
