@@ -29,6 +29,9 @@ const LogoBlock = ({ ctaLabel, ctaUrl, logos, title }) => {
                   alt={logo.alt}
                   className={styles['logo-block__container__logo--image']}
                   fill
+                  // width={120}
+                  // height={120}
+                  objectFit={'contain'}
                 />
               </a>
             ) : null
