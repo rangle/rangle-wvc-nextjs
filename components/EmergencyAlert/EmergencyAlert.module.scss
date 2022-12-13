@@ -5,6 +5,14 @@
   background: #3c6f99;
   position: relative;
 
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   &__content-container {
     margin: 0 $page-margin-mobile;
     padding: $space-xl 0;
