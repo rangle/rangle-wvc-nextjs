@@ -63,9 +63,10 @@ export const ChartContainer = ({ controlTitle, isDarkMode, chartData }) => {
             }))}
             updateSelection={(e) => {
               window.dataLayer.push({
-                'Event Category': 'Dropdown',
-                'Event Action': `${controlTitle} Charts`,
-                'Event Label': `${getOptionLabel(e)}`
+                event: "Website Events",
+                event_category: "dropdown",
+                event_action: `${controlTitle} Charts`,
+                event_label: `${getOptionLabel(e)}`
               })
               setChartToRender(e)
             }}

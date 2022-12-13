@@ -48,12 +48,12 @@ const StickyCarousel = ({ backgroundImage, content, pretext, subtext }) => {
   const { scrollYProgress } = useScroll()
   const ref = useRef(null)
 
-  const middleSection = (end - start) / 3
+  const middleSection = (end - start) / 5
 
   scrollYProgress.onChange((y) => {
-    if (y > start + 2 * middleSection) {
+    if (y > start + 3 * middleSection) {
       setIndex(2)
-    } else if (y > start + middleSection) {
+    } else if (y > start + 2 * middleSection) {
       setIndex(1)
     } else {
       setIndex(0)
