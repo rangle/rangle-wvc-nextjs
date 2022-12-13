@@ -184,6 +184,7 @@ const headerHTML = `
                                     <td class="gsc-search-button">
                                        <button
                                           class="gsc-search-button gsc-search-button-v2"
+                                          id="nav-search-button"
                                           >
                                           <svg width="13" height="13" viewBox="0 0 13 13">
                                              <title>search</title>
