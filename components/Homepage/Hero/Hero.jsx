@@ -23,15 +23,6 @@ const Hero = ({
 
   return (
     <div className={styles['hero-wrapper']}>
-      <div className={styles['background-image-container']}>
-        <Image
-          src={backgroundImage}
-          alt=''
-          className={styles['background-image']}
-          fill
-          priority
-        />
-      </div>
       <div className={styles['hero-floating-images']}>
         <motion.img
           src='/homepage/hero/hero-kid-default-left.png'

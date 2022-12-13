@@ -7,18 +7,11 @@
   display: flex;
   flex-direction: column;
 
-  // &__hero-container {
-  //   img {
-  //     width: 100%;
-  //     max-width: 100%;
-  //     display: block;
-  //   }
-  // }
-
   &__top-container {
     position: relative;
     width: 100%;
-    height: 9.375rem; // 150px
+    height: 50vh;
+    max-height: 20rem;
 
     &--image {
       display: block;
@@ -28,12 +21,8 @@
       max-width: 100%;
     }
 
-    @media (min-width: 768px) {
-      height: 15.625rem; // 250px
-    }
-
     @media (min-width: 1024px) {
-      height: 50vw;
+      height: 50vh;
       max-height: 40rem; // 640px
       width: 100%;
       max-width: 100%;
@@ -46,19 +35,10 @@
   }
 
   &__map-container {
-    height: 9.375rem; // 150px
     position: relative;
     width: 100%;
+    height: 100%;
     display: block;
-    overflow: hidden;
-
-    @media (min-width: 768px) {
-      height: 15.625rem; // 250px
-    }
-
-    @media (min-width: 1024px) {
-      height: 40rem; // 640px
-    }
   }
 
   &__background-image-container {

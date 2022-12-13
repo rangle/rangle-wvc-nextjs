@@ -27,13 +27,6 @@ const RollingCredits = ({ title, credits, imageSrc, featureCardData }) => {
     <div className={styles['rolling-credits']}>
       <div className={styles['rolling-credits__relative-wrapper']}>
         <div className={styles['rolling-credits__bg-outer']}>
-          <div className={styles['rolling-credits__bg-inner']}>
-            <img
-              className={styles['rolling-credits__bg-image']}
-              src={imageSrc}
-              alt=''
-            />
-          </div>
         </div>
         <div>
           {credits &&

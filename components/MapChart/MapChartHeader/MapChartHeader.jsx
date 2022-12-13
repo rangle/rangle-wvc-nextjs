@@ -270,48 +270,51 @@ function MapChartHeader({
             {children}
           </MapChartCountries>
         </div>
-        {showHeaderControls && (
-          <MapLegend
-            text={labels.legend}
-            selectedYear={selectedYear}
-            yearDropdownLabel={labels.year}
-            yearOptions={yearOptions}
-            updateSelection={onSelectedYearChange}
-          />
-        )}
+        <div className={styles[`map-container__controls-container`]}>
+          <div className={styles[`map-container__controls`]} style={{ opacity: showHeaderControls ? 1 : 0}}>
+            <MapLegend
+              text={labels.legend}
+              selectedYear={selectedYear}
+              yearDropdownLabel={labels.year}
+              yearOptions={yearOptions}
+              updateSelection={onSelectedYearChange}
+            />
+          </div>
+          <div className={styles[`map-container__controls`]} style={{ opacity: showHeaderControls ? 1 : 0, display: 'block'}}>
+          <MapHeaderControlBar>
+            <div className={styles['map-header__control-bar--first']}>
+              <DropDown
+                isDark={true}
+                dropdownLabel={labels.country}
+                options={countryOptions}
+                value={selectedCountry}
+                updateSelection={onSelectedCountryChange}
+              />
+            </div>
+            <div className={styles['map-header__control-bar__col--1']}>
+              <DropDown
+                isDark={true}
+                dropdownLabel={labels.program}
+                options={programOptions}
+                value={selectedProgramType}
+                updateSelection={onSelectedProgramChange}
+              />
+            </div>
+            {mapStatistics?.map(({ title, statistic, tooltip }, index) => (
+              <MapStatisticsBlock
+                key={title}
+                title={title}
+                statistic={statistic}
+                tooltip={tooltip}
+                isLead={index === 0}
+              />
+            ))}
+          </MapHeaderControlBar>
+          </div> 
+        </div>
       </div>
 
-      {showHeaderControls && (
-        <MapHeaderControlBar>
-          <div className={styles['map-header__control-bar--first']}>
-            <DropDown
-              isDark={true}
-              dropdownLabel={labels.country}
-              options={countryOptions}
-              value={selectedCountry}
-              updateSelection={onSelectedCountryChange}
-            />
-          </div>
-          <div className={styles['map-header__control-bar__col--1']}>
-            <DropDown
-              isDark={true}
-              dropdownLabel={labels.program}
-              options={programOptions}
-              value={selectedProgramType}
-              updateSelection={onSelectedProgramChange}
-            />
-          </div>
-          {mapStatistics?.map(({ title, statistic, tooltip }, index) => (
-            <MapStatisticsBlock
-              key={title}
-              title={title}
-              statistic={statistic}
-              tooltip={tooltip}
-              isLead={index === 0}
-            />
-          ))}
-        </MapHeaderControlBar>
-      )}
+        
     </div>
   )
 }

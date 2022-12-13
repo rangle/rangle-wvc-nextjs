@@ -4,6 +4,7 @@
 .rolling-credits {
   position: relative;
   z-index: 0;
+  padding-top: 25vw;
 
   &__relative-wrapper {
     position: relative;
@@ -42,7 +43,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.45);
+    // background-color: rgba(0, 0, 0, 0.45);
     height: 100vh;
     width: 100%;
     padding: $page-margin-mobile;
