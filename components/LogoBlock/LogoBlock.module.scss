@@ -12,7 +12,6 @@
   }
 
   &__container {
-    padding: $section-margin-mobile 0;
     margin: 0 $page-margin-mobile;
 
     @media (min-width: 767px) {
@@ -20,7 +19,6 @@
     }
 
     @media (min-width: 1024px) {
-      padding: $section-margin-desktop 0;
       margin: 0 calc($column-desktop + $page-margin-desktop);
     }
 
@@ -32,7 +30,7 @@
     &__title {
       @include typographylargeheadingh3;
       color: $charcoal;
-      margin-bottom: $space-xl;
+      margin-bottom: 2.5rem;
     }
 
     &__logo-container {
@@ -59,7 +57,7 @@
     }
 
     &__cta-container {
-      padding-top: $space-xl;
+      padding-top: 2.5rem;
     }
 
     &__cta {
