@@ -34,8 +34,6 @@ export default function ProgramFilter(props) {
     setFiltersToShowMobile(filters.length)
   }
 
-  console.log({ props })
-
   const options = {
     Country: props.countryOptions,
     'Area of Focus': props.areasOfFocusOptions,
@@ -160,11 +158,11 @@ export async function getStaticProps() {
   } = require('../utils/snowflake')
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
+    sqlText: `select NAVIGATION_SUBMENU, HEADER_TITLE, CURRENT_URL from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
+    sqlText: `select HEADER_TITLE, URL, NAVIGATION_REGIONS from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const { rows: controlData } = await getSnowflakeData({
@@ -173,10 +171,6 @@ export async function getStaticProps() {
 
   const partners = await getSnowflakeData({
     sqlText: `select PARTNER_NAME from PARTNERS`
-  })
-
-  const programs = await getSnowflakeData({
-    sqlText: `select * from PROGRAMS`
   })
 
   const { rows: disclaimerData } = await getSnowflakeData({
@@ -200,7 +194,6 @@ export async function getStaticProps() {
       countryOptions,
       areasOfFocusOptions,
       partners: partners.rows.map((ea) => ea.PARTNER_NAME),
-      programs: programs.rows,
       navigation: transformNavigationData(
         controlData,
         areasOfFocusData,
@@ -211,9 +204,7 @@ export async function getStaticProps() {
       title:
         controlData.find((control) => control.WHAT === 'header_title')?.TEXT ||
         '',
-      body:
-        controlData.find((control) => control.WHAT === 'header_body')?.TEXT ||
-        '',
+      body: controlData.find((control) => control.WHAT === 'body')?.TEXT || '',
       TITLETAG:
         controlData.find((control) => control.WHAT === 'titletag')?.TEXT || '',
       METADATA:

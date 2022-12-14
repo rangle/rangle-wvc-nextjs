@@ -525,7 +525,7 @@ export async function getStaticProps({ params }) {
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
+    sqlText: `select HEADER_TITLE, URL, NAVIGATION_REGIONS from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const currentAreaOfFocus = areasOfFocusData.find(

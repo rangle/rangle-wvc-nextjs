@@ -1,15 +1,15 @@
 import Head from 'next/head'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
-// Styles from World Vision for the global components
-import '../_wvc/dist/css/styles.css'
-
-import '../styles/globals.scss'
-import styles from './app.module.scss'
 import SubNavigation from '../components/SubNavigation/SubNavigation'
 import GlobalNavBar from '../components/Global/NavBar/NavBar'
 import GlobalFooter from '../components/Global/Footer/Footer'
 import { convertToKebabCase } from '../utils/convertStrings'
+
+import '../styles/globals.scss'
+import styles from './app.module.scss'
+// Styles from World Vision for the global components
+import '../_wvc/dist/css/styles.css'
 
 function MyApp({ Component, pageProps }) {
   const newsletterId =
@@ -36,23 +36,29 @@ function MyApp({ Component, pageProps }) {
         strategy='beforeInteractive'
         src='https://code.jquery.com/jquery-3.6.0.min.js'
       ></Script>
-      <Script src='js/lazy-loading.js' />
-      <Script src='js/header.js' />
+      <Script strategy='lazyOnload' src='js/lazy-loading.js' />
+      <Script strategy='lazyOnload' src='js/header.js' />
       {/* @TODO: Do we need this? I've commented it out in site.js due to errors */}
       {/* <Script src='js/jssocials.min.js' /> */}
-      <Script src='js/site.js' />
-      <Script src='js/rangle-header.js' />
+      <Script strategy='lazyOnload' src='js/site.js' />
+      <Script strategy='lazyOnload' src='js/rangle-header.js' />
 
       {/* @TODO: Do we need web-chat? If so we need to debug:
         TypeError: Cannot read properties of null (reading 'contentWindow')
       */}
       {/* <Script src='js/web-chat.js' /> */}
-      <Script src='js/bootstrap.min.js' />
-      <Script src='js/data-layer-events.js' />
-      <Script src='js/bootstrap-tabcollapse.js' />
+      <Script strategy='lazyOnload' src='js/bootstrap.min.js' />
+      <Script strategy='lazyOnload' src='js/data-layer-events.js' />
+      <Script strategy='lazyOnload' src='js/bootstrap-tabcollapse.js' />
 
-      <Script src='https://unpkg.com/@world-vision-canada/wvc-design-system@1.*.*/dist/wvc.umd.min.js'></Script>
-      <Script src='https://sdks.shopifycdn.com/js-buy-sdk/1.11.0/index.umd.min.js'></Script>
+      <Script
+        strategy='lazyOnload'
+        src='https://unpkg.com/@world-vision-canada/wvc-design-system@1.*.*/dist/wvc.umd.min.js'
+      ></Script>
+      <Script
+        strategy='lazyOnload'
+        src='https://sdks.shopifycdn.com/js-buy-sdk/1.11.0/index.umd.min.js'
+      ></Script>
 
       {/* Google Tag Manager */}
       <Script id='google-tag-manager' strategy='afterInteractive'>

@@ -76,8 +76,6 @@ const getMapStatistics = (
     })
   }
 
-  console.log(stats)
-
   return stats
 }
 

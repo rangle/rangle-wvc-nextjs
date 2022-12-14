@@ -74,11 +74,12 @@ export default function Home({
   const mapOverlayRef = useRef(null)
   const mapTextSectionRef = useRef(null)
   const mapSpacerRef = useRef(null)
+  const prefooterSectionRef = useRef(null)
   const isMapSpacerInView = useInView(mapSpacerRef, { amount: 0 })
   const isPageInView = useInView(pageRef, { amount: 0 })
   const isLightSectionInView = useInView(lightSectionRef, { amount: 0 })
   const isHeroSectionInView = useInView(heroSectionRef, { amount: 0 })
-  const isReachSectionInView = useInView(reachSectionRef, { amount: 0 })
+  const isReachSectionInView = useInView(reachSectionRef, { amount: 0.4 })
   const isMapSectionInView = useInView(mapSectionRef, { amount: 0 })
   const isSectorSectionInView = useInView(sectorSectionRef, { amount: 0 })
   const isRollingCreditSectionInView = useInView(rollingCreditSectionRef, {
@@ -86,6 +87,9 @@ export default function Home({
   })
   const isMapOverlayInView = useInView(mapOverlayRef, { amount: 0 })
   const isMapTextInView = useInView(mapTextSectionRef, { amount: 0.2 })
+  const isPrefooterSectionInView = useInView(prefooterSectionRef, {
+    amount: 0.2
+  })
 
   const screenWidth = getScreenWidth()
   const [isDesktop, setIsDesktop] = useState()
@@ -103,7 +107,11 @@ export default function Home({
       return '#fffbf4'
     }
 
-    if (isRollingCreditSectionInView) {
+    if (
+      isRollingCreditSectionInView &&
+      !isSectorSectionInView &&
+      !isPrefooterSectionInView
+    ) {
       return 'rgba(0, 0, 0, 0.45)'
     }
 
@@ -115,7 +123,7 @@ export default function Home({
       return HeroBackgroundDefault
     }
 
-    if (isRollingCreditSectionInView) {
+    if (isRollingCreditSectionInView && !isSectorSectionInView) {
       return '/homepage/rollingCredits/rolling-credits-background.jpg'
     }
 
@@ -135,7 +143,10 @@ export default function Home({
           <div
             style={{
               backgroundColor:
-                isRollingCreditSectionInView || isMapSectionInView
+                (!isPrefooterSectionInView &&
+                  isRollingCreditSectionInView &&
+                  !isSectorSectionInView) ||
+                isMapSectionInView
                   ? `rgba(0, 0, 0, 0.45)`
                   : 'transparent'
             }}
@@ -143,6 +154,7 @@ export default function Home({
           ></div>
           <AnimatePresence>
             {!isReachSectionInView &&
+              !isPrefooterSectionInView &&
               (isHeroSectionInView ||
                 (isRollingCreditSectionInView && !isSectorSectionInView) ||
                 isMapTextInView) && (
@@ -261,7 +273,7 @@ export default function Home({
           <div
             className={styles['map']}
             style={{
-              opacity: isMapSectionInView ? 1 : 0,
+              opacity: isMapSectionInView && !isMapSpacerInView ? 1 : 0,
               pointerEvents:
                 isMapOverlayInView && !isMapTextInView && !isMapSpacerInView
                   ? 'auto'
@@ -320,6 +332,7 @@ export default function Home({
           />
         </section>
         <section
+          ref={prefooterSectionRef}
           className={`${styles['section']} ${styles['section--pre-footer']}`}
         >
           <Prefooter
@@ -377,11 +390,11 @@ export async function getStaticProps() {
     transformNavigationData
   } = require('../utils/snowflake')
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
+    sqlText: `select NAVIGATION_SUBMENU, HEADER_TITLE, CURRENT_URL from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
+    sqlText: `select HEADER_TITLE, URL, NAVIGATION_REGIONS from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const { rows: controlData } = await getSnowflakeData({
@@ -389,16 +402,16 @@ export async function getStaticProps() {
   })
 
   const { rows: mapData } = await getSnowflakeData({
-    sqlText: 'SELECT * FROM STAGE.MAP'
+    sqlText: 'SELECT * FROM MAP'
   })
 
   const { rows: mainPage } = await getSnowflakeData({
-    sqlText: 'SELECT * FROM STAGE.MAIN_PAGE'
+    sqlText: 'SELECT * FROM MAIN_PAGE'
   })
 
   const { rows: graphData } = await getSnowflakeData({
     sqlText:
-      "SELECT * FROM STAGE.GRAPHS WHERE LEVEL='main_page' AND CHART_TYPE='pie_chart' AND GRAPH_STATEMENT='Program expenditures by Sector' AND UNIT_OF_MEASUREMENT='percentage'"
+      "SELECT * FROM GRAPHS WHERE LEVEL='main_page' AND CHART_TYPE='pie_chart' AND GRAPH_STATEMENT='Program expenditures by Sector' AND UNIT_OF_MEASUREMENT='percentage'"
   })
 
   const { rows: disclaimerData } = await getSnowflakeData({

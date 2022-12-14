@@ -33,11 +33,11 @@ export async function getStaticProps({ params }) {
   } = require('../../utils/snowflake')
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
+    sqlText: `select NAVIGATION_SUBMENU, HEADER_TITLE, CURRENT_URL from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
+    sqlText: `select HEADER_TITLE, URL, NAVIGATION_REGIONS from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const { rows: controlData } = await getSnowflakeData({

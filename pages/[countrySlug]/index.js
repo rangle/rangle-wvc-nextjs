@@ -375,7 +375,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
+    sqlText: `select NAVIGATION_SUBMENU, HEADER_TITLE, CURRENT_URL from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const { rows: countriesData } = await getSnowflakeData({
@@ -399,7 +399,7 @@ export async function getStaticProps({ params }) {
   })
 
   const { rows: mapData } = await getSnowflakeData({
-    sqlText: `select * from STAGE.MAP where COUNTRYCODE = '${currentCountry.COUNTRY_CODE}' AND LEVEL = 'programs'`
+    sqlText: `select * from MAP where COUNTRYCODE = '${currentCountry.COUNTRY_CODE}' AND LEVEL = 'programs'`
   })
 
   const { rows: resourcesData } = await getSnowflakeData({
