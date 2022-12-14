@@ -391,6 +391,7 @@ export default function ProgramPage(props) {
           body={props.EMERGENCY_BANNER_BODY}
           // TODO: need to add to snowflake table
           buttonLabel='Close'
+          setShowAlert={setShowAlert}
         />
       )}
       <TableOfContents
