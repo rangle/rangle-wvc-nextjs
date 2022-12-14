@@ -441,7 +441,9 @@ export async function getStaticProps() {
         areasOfFocusData,
         countriesData
       ),
-      disclaimer: disclaimerData[0].TEXT
+      disclaimer: disclaimerData[0].TEXT,
+      TITLETAG: mainPage[0]?.TITLETAG,
+      METADATA: mainPage[0]?.METADATA
     }
   }
 }
