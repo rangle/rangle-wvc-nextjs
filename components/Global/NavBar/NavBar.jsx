@@ -666,8 +666,12 @@ const headerHTML = `
 `
 
 const GlobalNavBar = () => {
-  return <div style={{  zIndex: 1,
-   position: 'relative'}} dangerouslySetInnerHTML={{ __html: headerHTML }} />
+  return (
+    <div
+      style={{ zIndex: 151, position: 'relative' }}
+      dangerouslySetInnerHTML={{ __html: headerHTML }}
+    />
+  )
 }
 
 export default GlobalNavBar
