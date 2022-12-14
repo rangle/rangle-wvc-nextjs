@@ -35,6 +35,11 @@ stages:
       pool:
           vmImage: "ubuntu-latest"
       steps:
+          - task: Cache@2
+            displayName: 'Cache .next/cache'
+            inputs:
+              key: next | $(Agent.OS) | yarn.lock
+              path: '$(System.DefaultWorkingDirectory)/.next/cache'
           - task: NodeTool@0
             inputs:
               versionSpec: '16.x'
