@@ -101,14 +101,16 @@ const ContentModal = ({
                   <div className={styles['content-modal__cta-container']}>
                     <CtaLink
                       className={styles['content-modal__cta-short']}
-                      url={ctaUrl}
+                      // TODO: update this when table gets fixed
+                      url={`/areas-of-focus/${ctaUrl}`}
                     >
                       {ctaShortLabel}
                       {ctaArrow}
                     </CtaLink>
                     <CtaLink
                       className={styles['content-modal__cta']}
-                      url={ctaUrl}
+                      // TODO: update this when table gets fixed
+                      url={`/areas-of-focus/${ctaUrl}`}
                     >
                       {ctaLabel}
                     </CtaLink>

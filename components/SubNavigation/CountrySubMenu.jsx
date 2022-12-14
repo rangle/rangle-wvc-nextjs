@@ -43,7 +43,7 @@ export const CountrySubMenuDesktop = ({
                 <div className={styles['sub-navigation__sub-menu-link']}>
                   <CtaLink
                     onClick={() => openCloseSubMenu(country?.label, false)}
-                    url={country?.url ? `/${country?.url}` : `/our-work`}
+                    url={country?.url ? `/${country?.url}` : `/`}
                   >
                     {country?.label}
                   </CtaLink>

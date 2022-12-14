@@ -31,7 +31,7 @@ const SubMenu = ({ activeRegion, data, openCloseSubMenu, setActiveRegion }) => {
                         >
                           <CtaLink
                             onClick={() => openCloseSubMenu(link?.label, false)}
-                            url={link?.url ? `/${link.url}` : '/our-work'}
+                            url={link?.url ? `/${link.url}` : '/'}
                           >
                             {link?.label}
                           </CtaLink>

@@ -53,8 +53,6 @@ export default function ProgramFilter(props) {
     'Program Type': props.programTypeOptions
   }
 
-  console.log({ options })
-
   const programIds = [
     ...new Set(
       props.programsReference
@@ -174,11 +172,11 @@ export async function getStaticProps() {
   } = require('../../utils/snowflake')
 
   const { rows: countriesData } = await getSnowflakeData({
-    sqlText: `select * from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
+    sqlText: `select HEADER_TITLE, URL, NAVIGATION_REGIONS from COUNTRIES where URL is not null order by HEADER_TITLE ASC`
   })
 
   const { rows: areasOfFocusData } = await getSnowflakeData({
-    sqlText: `select * from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
+    sqlText: `select NAVIGATION_SUBMENU, HEADER_TITLE, CURRENT_URL from AREAS_OF_FOCUS order by NAVIGATION_ORDER`
   })
 
   const partners = await getSnowflakeData({
@@ -192,7 +190,7 @@ export async function getStaticProps() {
 
   // This contains all unique programs
   const { rows: programsData } = await getSnowflakeData({
-    sqlText: `select * from PROGRAMS`
+    sqlText: `select IVS_PROGRAM_CODE, CARD_BODY, CARD_IMAGE_URL, HEADER_TITLE, URL from PROGRAMS`
   })
 
   const { rows: controlData } = await getSnowflakeData({
@@ -243,9 +241,7 @@ export async function getStaticProps() {
       title:
         controlData.find((control) => control.WHAT === 'header_title')?.TEXT ||
         '',
-      body:
-        controlData.find((control) => control.WHAT === 'header_body')?.TEXT ||
-        '',
+      body: controlData.find((control) => control.WHAT === 'body')?.TEXT || '',
       TITLETAG:
         controlData.find((control) => control.WHAT === 'titletag')?.TEXT || '',
       METADATA:
