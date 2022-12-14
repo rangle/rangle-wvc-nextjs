@@ -36,8 +36,8 @@ function MyApp({ Component, pageProps }) {
         strategy='beforeInteractive'
         src='https://code.jquery.com/jquery-3.6.0.min.js'
       ></Script>
-      <Script strategy='lazyOnload' src='js/lazy-loading.js' />
       <Script strategy='lazyOnload' src='js/header.js' />
+      <Script strategy='lazyOnload' src='js/lazy-loading.js' />
       {/* @TODO: Do we need this? I've commented it out in site.js due to errors */}
       {/* <Script src='js/jssocials.min.js' /> */}
       <Script strategy='lazyOnload' src='js/site.js' />
