@@ -43,7 +43,7 @@ const getMapStatistics = (
     if (selectedCountry === 'All') {
       return (
         country.YEAR === selectedYear &&
-        country.LEVEL === 'ALL' &&
+        country.COUNTRY === 'All' &&
         country.PROGRAM_TYPE === selectedProgramType
       )
     }
@@ -75,6 +75,8 @@ const getMapStatistics = (
       tooltip: labels.programs_tooltip
     })
   }
+
+  console.log(stats)
 
   return stats
 }
@@ -226,7 +228,6 @@ function MapChartHeader({
 
   const mapStatistics = useMemo(() => {
     return getMapStatistics(
-      // programData,
       countryData,
       selectedYear,
       selectedCountry,
@@ -234,7 +235,6 @@ function MapChartHeader({
       labels
     )
   }, [
-    programData,
     countryData,
     selectedYear,
     selectedCountry,

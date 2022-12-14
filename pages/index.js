@@ -73,6 +73,8 @@ export default function Home({
   const rollingCreditSectionRef = useRef(null)
   const mapOverlayRef = useRef(null)
   const mapTextSectionRef = useRef(null)
+  const mapSpacerRef = useRef(null)
+  const isMapSpacerInView = useInView(mapSpacerRef, { amount: 0 })
   const isPageInView = useInView(pageRef, { amount: 0 })
   const isLightSectionInView = useInView(lightSectionRef, { amount: 0 })
   const isHeroSectionInView = useInView(heroSectionRef, { amount: 0 })
@@ -83,7 +85,7 @@ export default function Home({
     amount: 0
   })
   const isMapOverlayInView = useInView(mapOverlayRef, { amount: 0 })
-  const isMapTextInView = useInView(mapTextSectionRef, { amount: 0 })
+  const isMapTextInView = useInView(mapTextSectionRef, { amount: 0.2 })
 
   const screenWidth = getScreenWidth()
   const [isDesktop, setIsDesktop] = useState()
@@ -258,14 +260,24 @@ export default function Home({
           <div ref={mapOverlayRef} className={styles['map-overlay']} />
           <div
             className={styles['map']}
-            style={{ opacity: isMapSectionInView ? 1 : 0 }}
+            style={{
+              opacity: isMapSectionInView ? 1 : 0,
+              pointerEvents:
+                isMapOverlayInView && !isMapTextInView && !isMapSpacerInView
+                  ? 'auto'
+                  : 'none'
+            }}
           >
             <MapChartHeader
               showHeaderControls={
-                isDesktop ? isMapOverlayInView && !isMapTextInView : true
+                isDesktop
+                  ? isMapOverlayInView && !isMapTextInView && !isMapSpacerInView
+                  : true
               }
               showMarkers={
-                isDesktop ? isMapOverlayInView && !isMapTextInView : true
+                isDesktop
+                  ? isMapOverlayInView && !isMapTextInView && !isMapSpacerInView
+                  : true
               }
               labels={{
                 legend: t.map_title,
@@ -283,6 +295,7 @@ export default function Home({
               countryData={countryData}
             />
           </div>
+          <div ref={mapSpacerRef} className={styles['map-spacer']} />
         </section>
         <section
           ref={sectorSectionRef}
