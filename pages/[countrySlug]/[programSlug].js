@@ -105,8 +105,8 @@ export async function getStaticProps({ params: { countrySlug, programSlug } }) {
             mediaType: currentProgram[
               `CAROUSEL_IMAGE_${index + 1 > 9 ? '' : '0'}${index + 1}_URL`
             ]?.includes('youtube.com')
-              ? 'image'
-              : 'video'
+              ? 'video'
+              : 'image'
           }))
           .filter((image) => image.url) || []
       : []
